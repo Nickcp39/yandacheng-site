@@ -59,20 +59,20 @@ h2 {
   padding: 20px 0;
 }
 
-/* 注释单行或多行内容 */
+/* 👇原始压缩过的设置（你想禁用） */
+/*
 .project-card img {
-  /* width: 120px; */  /* 注释掉原来的强制宽度 */
+  width: 120px;
+  height: 100px;
+  object-fit: cover;
+}
+*/
+
+/* 👇你新想启用的设置 */
+.project-card img {
   max-width: 120px;
   height: auto;
   object-fit: contain;
-}
-
-/* 原始头像样式（保留不动） */
-.profile-card img {
-  width: 130px;
-  height: 130px;
-  border-radius: 50%;
-  border: 3px solid #ddd;
 }
 
 .profile-info {
