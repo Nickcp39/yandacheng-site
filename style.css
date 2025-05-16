@@ -52,11 +52,12 @@ h2 {
 }
 
 /* ============ Profile Card ============ */
-.profile-card {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 20px 0;
+.profile-card img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: 3px solid #ddd;
+  object-fit: cover;
 }
 
 /* 👇原始压缩过的设置（你想禁用） */
