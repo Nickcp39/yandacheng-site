@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Projects | Lu Dong</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="scripts.js" defer></script>
+</head>
+<body>
+
+  <!-- 🔹 Navbar -->
+  <div class="navbar">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="index_yc.html">Home</a>
+      </div>
+      <div class="nav-right">
+        <a href="about_yc.html">About</a>
+        <a href="projects_yc.html">Projects</a>
+        <a href="publications_yc.html">Publications</a>
+        <a href="experience_yc.html">Experience</a>
+        <a href="awards_yc.html">Awards</a>
+        <a href="photos_yc.html">Photos</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>Selected Projects</h2>
+
+    <!-- 🔸 Filter Buttons -->
+    <div class="project-filter">
+      <button class="filter-btn active" data-category="all">All</button>
+      <button class="filter-btn" data-category="AI">AI</button>
+      <button class="filter-btn" data-category="SignLanguage">Sign Language</button>
+      <button class="filter-btn" data-category="3D">3D Modeling</button>
+      <button class="filter-btn" data-category="Others">Others</button>
+    </div>
+
+    <!-- 🔸 Project Cards -->
+    <div class="project-grid">
+
+      <div class="project-card" data-category="AI">
+        <img src="files/pubs/autoMisty.png" alt="AutoMisty">
+        <div class="project-content">
+          <h3>AutoMisty: LLM Framework for Misty Robot</h3>
+          <p>Multi-agent LLM system enabling autonomous behavior generation in social robots.</p>
+        </div>
+      </div>
+
+      <div class="project-card" data-category="SignLanguage">
+        <img src="files/pubs/EMNLP.gif" alt="wSignGen">
+        <div class="project-content">
+          <h3>wSignGen: Word-Conditioned 3D Sign Language</h3>
+          <p>Sign language motion generation using natural language input and 3D modeling.</p>
+        </div>
+      </div>
+
+      <div class="project-card" data-category="3D">
+        <img src="files/pubs/ECCVW.gif" alt="Ig3D">
+        <div class="project-content">
+          <h3>Ig3D: 3D Face Integration for Expression Inference</h3>
+          <p>3D-aware model for robust facial emotion estimation across subjects and poses.</p>
+        </div>
+      </div>
+
+      <div class="project-card" data-category="SignLanguage">
+        <img src="files/pubs/SignAvatar_Quick.gif" alt="SignAvatar">
+        <div class="project-content">
+          <h3>SignAvatar</h3>
+          <p>Real-time 3D reconstruction and animation system for ASL motion generation.</p>
+        </div>
+      </div>
+
+      <div class="project-card" data-category="AI">
+        <img src="files/pubs/MMPG.gif" alt="MultiMotion">
+        <div class="project-content">
+          <h3>Multi-Person Motion Generation</h3>
+          <p>Open-domain text-driven motion generation for multi-human interactions.</p>
+        </div>
+      </div>
+
+      <div class="project-card" data-category="Others">
+        <img src="files/pubs/Music.gif" alt="XinTianYou">
+        <div class="project-content">
+          <h3>XinTianYou Melody Modeling</h3>
+          <p>Melodic structure analysis of traditional folk songs using machine learning.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 🔹 Footer -->
+  <div class="footer">
+    Projects © Lu Dong | Last updated May 2025
+  </div>
+
+</body>
+</html>
