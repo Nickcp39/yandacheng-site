@@ -1,0 +1,7 @@
+@article{zhang2025mmskin,
+  title={mmSkin: An Over-Gauze Wound Assessment System Using Radio Frequency Technologies},
+  author={Zhang, Xiaoyu and Li, Zhengxiong and Cheng, Yanda and Xu, Chenhan and Huang, Chuqin and Zhang, Emma and Zhan, Ye and Bo, Wei and Xia, Jun and Xu, Wenyao},
+  journal={IEEE Internet of Things Journal},
+  year={2025},
+  publisher={IEEE}
+}
