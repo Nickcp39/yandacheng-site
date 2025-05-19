@@ -178,3 +178,27 @@ h2 {
     height: 100px;
   }
 }
+/* === Publications with Image Left and Text Right === */
+.publication {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.publication img.row-image {
+  width: 160px;
+  height: auto;
+  object-fit: contain;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.publication .row-text {
+  flex: 1;
+}
+
+.publication .row-text .btn {
+  margin-top: 6px;
+  margin-right: 5px;
+}
