@@ -2,78 +2,109 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Publications – Yanda Cheng</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Publications | Yanda Cheng</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <h2>Selected Research</h2>
-"""
 
-html_tail = """
+  <!-- 🔹 Navbar -->
+  <div class="navbar">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="index.html">Home</a>
+      </div>
+      <div class="nav-right">
+        <a href="about_yc.html">About</a>
+        <a href="projects_yc.html">Projects</a>
+        <a href="publications_yc.html">Publications</a>
+        <a href="experience_yc.html">Experience</a>
+        <a href="awards_yc.html">Awards</a>
+        <a href="photos_yc.html">Photos</a>
+      </div>
+    </div>
   </div>
+
+  <div class="container">
+    <h2>Selected Publications</h2>
+
+    <!-- 📌 Paper 1 -->
+    <div class="project-card">
+      <div class="project-content">
+        <img src="files/pubs/cheng2021_job_blood_flow.png" alt="thumbnail" style="width:150px; float:left; margin-right:15px; border-radius:8px; border:1px solid #ccc;">
+        <h3><strong>Simultaneous measurements of tissue blood flow and oxygenation using a wearable fiber-free optical sensor</strong></h3>
+        <p><strong>Yanda Cheng</strong>, et al.</p>
+        <p><em>Journal of Biomedical Optics (JBO), 2021</em></p>
+        <a class="btn btn-red" href="files/papers/cheng2021_jbo_bloodflow.pdf" target="_blank">PDF</a>
+        <div style="clear:both;"></div>
+      </div>
+    </div>
+
+    <!-- 📌 Paper 2 -->
+    <div class="project-card">
+      <div class="project-content">
+        <img src="files/pubs/cheng2023_tuffc_foot_scan.png" alt="thumbnail" style="width:150px; float:left; margin-right:15px; border-radius:8px; border:1px solid #ccc;">
+        <h3><strong>Dual-scan photoacoustic tomography for the imaging of vascular structure on foot</strong></h3>
+        <p><strong>Yanda Cheng</strong>, et al.</p>
+        <p><em>IEEE Transactions on UFFC, 2023</em></p>
+        <a class="btn btn-red" href="files/papers/cheng2023_ieee_foot.pdf" target="_blank">PDF</a>
+        <div style="clear:both;"></div>
+      </div>
+    </div>
+
+    <!-- 📌 Paper 3 -->
+    <div class="project-card">
+      <div class="project-content">
+        <img src="files/pubs/cheng2024_boe_n2n.png" alt="thumbnail" style="width:150px; float:left; margin-right:15px; border-radius:8px; border:1px solid #ccc;">
+        <h3><strong>Unsupervised denoising of photoacoustic images based on the Noise2Noise network</strong></h3>
+        <p><strong>Yanda Cheng</strong>, Peizhou Huang, Leslie Ying, et al.</p>
+        <p><em>Biomedical Optics Express, 2024</em></p>
+        <a class="btn btn-red" href="files/papers/cheng2024_boe_denoising.pdf" target="_blank">PDF</a>
+        <div style="clear:both;"></div>
+      </div>
+    </div>
+
+    <!-- 📌 Paper 4 -->
+    <div class="project-card">
+      <div class="project-content">
+        <img src="files/pubs/cheng2025_hcs_mmwave.png" alt="thumbnail" style="width:150px; float:left; margin-right:15px; border-radius:8px; border:1px solid #ccc;">
+        <h3><strong>Through-dressing wound monitoring based on the mmWave sensor</strong></h3>
+        <p><strong>Yanda Cheng</strong>, et al.</p>
+        <p><em>3rd Intl. Workshop on Human-Centered Sensing (HCS), 2025</em></p>
+        <a class="btn btn-red" href="files/papers/cheng2025_hcs_mmwave.pdf" target="_blank">PDF</a>
+        <div style="clear:both;"></div>
+      </div>
+    </div>
+
+    <!-- 📌 Paper 5 -->
+    <div class="project-card">
+      <div class="project-content">
+        <img src="files/pubs/cheng2025_iotj_mmskin.png" alt="thumbnail" style="width:150px; float:left; margin-right:15px; border-radius:8px; border:1px solid #ccc;">
+        <h3><strong>mmSkin: An Over-Gauze Wound Assessment System Using Radio Frequency Technologies</strong></h3>
+        <p><strong>Yanda Cheng</strong>, et al.</p>
+        <p><em>IEEE Internet of Things Journal, 2025</em></p>
+        <a class="btn btn-red" href="files/papers/cheng2025_iot_mmskin.pdf" target="_blank">PDF</a>
+        <div style="clear:both;"></div>
+      </div>
+    </div>
+
+    <!-- 📌 Paper 6 -->
+    <div class="project-card">
+      <div class="project-content">
+        <img src="files/pubs/cheng2025_photoacoustics_skinloc.png" alt="thumbnail" style="width:150px; float:left; margin-right:15px; border-radius:8px; border:1px solid #ccc;">
+        <h3><strong>Enhanced clinical photoacoustic vascular imaging through a skin localization network and adaptive weighting</strong></h3>
+        <p><strong>Yanda Cheng</strong>, Chuqin Huang, et al.</p>
+        <p><em>Photoacoustics, 2025</em></p>
+        <a class="btn btn-red" href="files/papers/cheng2025_photoacoustics_skinnet.pdf" target="_blank">PDF</a>
+        <div style="clear:both;"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 🔹 Footer -->
+  <div class="footer">
+    Publications © Yanda Cheng | Last updated May 2025
+  </div>
+
 </body>
 </html>
-"""
-
-# Insert all publication blocks
-publication_blocks = """
-<div class="publication row clearfix">
-  <img class="row-image" src="files/pubs/cheng2021_job_blood_flow.png" />
-  <div class="row-text">
-    <a href="#"><strong>Simultaneous measurements of tissue blood flow and oxygenation using a wearable fiber-free optical sensor</strong></a><br/>
-    Yanda Cheng, et al.<br/>
-    <span class="italic">Journal of Biomedical Optics, 2021</span><br/>
-    <a class="btn btn-red" href="#">PDF</a>
-    <a class="btn" href="#">BibTeX</a>
-    <a class="btn" href="#">Journal</a>
-  </div>
-</div>
-
-<div class="publication row clearfix">
-  <img class="row-image" src="files/pubs/cheng2023_tuffc_foot_scan.png" />
-  <div class="row-text">
-    <a href="https://ieeexplore.ieee.org/abstract/document/10144407" target="_blank"><strong>Dual-scan photoacoustic tomography for the imaging of vascular structure on foot</strong></a><br/>
-    Yanda Cheng, et al.<br/>
-    <span class="italic">IEEE Transactions on UFFC, 2023</span><br/>
-    <a class="btn btn-red" href="https://ieeexplore.ieee.org/abstract/document/10144407">PDF</a>
-    <a class="btn" href="#">BibTeX</a>
-    <a class="btn" href="https://ieeexplore.ieee.org/abstract/document/10144407">Journal</a>
-  </div>
-</div>
-
-<div class="publication row clearfix">
-  <img class="row-image" src="files/pubs/cheng2024_boe_n2n.png" />
-  <div class="row-text">
-    <a href="https://opg.optica.org/abstract.cfm?uri=boe-15-8-4390" target="_blank"><strong>Unsupervised denoising of photoacoustic images based on the Noise2Noise network</strong></a><br/>
-    Yanda Cheng, Peizhou Huang, Leslie Ying, Jun Xia<br/>
-    <span class="italic">Biomedical Optics Express, 2024</span><br/>
-    <a class="btn btn-red" href="https://opg.optica.org/abstract.cfm?uri=boe-15-8-4390">PDF</a>
-    <a class="btn" href="#">BibTeX</a>
-    <a class="btn" href="https://opg.optica.org/abstract.cfm?uri=boe-15-8-4390">Journal</a>
-  </div>
-</div>
-
-<div class="publication row clearfix">
-  <img class="row-image" src="files/pubs/cheng2025_iotj_mmskin.png" />
-  <div class="row-text">
-    <a href="https://ieeexplore.ieee.org/abstract/document/10934061" target="_blank"><strong>mmSkin: An Over-Gauze Wound Assessment System Using Radio Frequency Technologies</strong></a><br/>
-    Xiaoyu Zhang, Zhengxiong Li, Yanda Cheng, et al.<br/>
-    <span class="italic">IEEE Internet of Things Journal, 2025</span><br/>
-    <a class="btn btn-red" href="https://ieeexplore.ieee.org/abstract/document/10934061">PDF</a>
-    <a class="btn" href="#">BibTeX</a>
-    <a class="btn" href="https://ieeexplore.ieee.org/abstract/document/10934061">Journal</a>
-  </div>
-</div>
-
-<div class="publication row clearfix">
-  <img class="row-image" src="files/pubs/cheng2025_photoacoustics_skinloc.png" />
-  <div class="row-text">
-    <a href="https://www.sciencedirect.com/science/article/pii/S2213597924000585" target="_blank"><strong>Enhanced clinical photoacoustic vascular imaging through a skin localization network and adaptive weighting</strong></a><br/>
-    Chuqin Huang, Emily Zheng, Yanda Cheng, Linda M. Harris, et al.<br/>
-    <span class="italic">Photoacoustics, 2025</span><br/>
-    <a class="btn btn-red" href="https://www.sciencedirect.com/science/article/pii/S2213597924000585">PDF</a>
-    <a class="btn" href="#">BibTeX</a>
-    <a class="btn" href="https://www.sciencedirect.com/science/article/pii/S2213597924000585">Journal</a>
-  </div>
-</div>
