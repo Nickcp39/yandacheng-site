@@ -1,0 +1,8 @@
+@article{huang2025enhanced,
+  title={Enhanced clinical photoacoustic vascular imaging through a skin localization network and adaptive weighting},
+  author={Huang, Chuqin and Zheng, Emily and Zheng, Wenhan and Zhang, Huijuan and Cheng, Yanda and Zhang, Xiaoyu and Shijo, Varun and Bing, Robert W and Komornicki, Isabel and Harris, Linda M and others},
+  journal={Photoacoustics},
+  pages={100690},
+  year={2025},
+  publisher={Elsevier}
+}
