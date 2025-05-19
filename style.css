@@ -233,3 +233,28 @@ h2 {
   border-radius: 8px;
   border: 1px solid #ccc;
 }
+.experience-card {
+  display: flex;
+  gap: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 25px;
+  align-items: flex-start;
+}
+
+.experience-card img {
+  width: 120px;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.experience-content {
+  flex: 1;
+}
+
+.experience-content h3 {
+  margin-top: 0;
+}
