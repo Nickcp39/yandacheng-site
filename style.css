@@ -51,81 +51,75 @@ h2 {
   margin-top: 40px;
 }
 
-/* === Profile Card === */
-.profile-card {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 20px 0;
-}
-.profile-card img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  border: 3px solid #ddd;
-  object-fit: cover;
-}
-.profile-info h1 {
-  margin: 0;
-  font-size: 26px;
-}
-.profile-info p {
-  margin: 4px 0;
-}
-
-/* === News List === */
-.news-list p {
-  margin: 8px 0;
-  line-height: 1.5em;
-}
-
-/* === Project Filter Buttons === */
-.project-filter {
-  margin-bottom: 20px;
-}
-.project-filter button {
-  background-color: #eee;
-  border: none;
-  padding: 8px 12px;
-  margin: 4px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-.project-filter button.active {
-  background-color: #007bff;
-  color: white;
-}
-
-/* === Project Card Layout === */
-.project-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-.project-card {
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
-  width: calc(50% - 10px);
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-}
+/* === Project Card Layout (used for Publications section thumbnails) === */
 .project-card img {
-  max-width: 120px;
+  width: 300px;
+  float: left;
+  margin-right: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+/* === Publications with Image Left and Text Right === */
+.publication {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.publication img.row-image {
+  width: 160px;
   height: auto;
   object-fit: contain;
+  border: 1px solid #ccc;
+  border-radius: 8px;
 }
-.project-content {
-  padding: 12px;
+
+.publication .row-text {
+  flex: 1;
 }
-.project-content h3 {
-  margin: 0 0 6px 0;
-  font-size: 16px;
+
+.publication .row-text .btn {
+  margin-top: 6px;
+  margin-right: 5px;
 }
-.project-content p {
-  font-size: 14px;
+
+/* === Experience Cards === */
+.experience-card {
+  display: flex;
+  gap: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 25px;
+  align-items: flex-start;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease-in-out;
+}
+
+.experience-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.experience-card img {
+  max-width: 150px;
+  max-height: 120px;
+  object-fit: contain;
+  border-radius: 10px;
+  border: 1px solid #aaa;
+  background-color: white;
+  padding: 4px;
+}
+
+.experience-content {
+  flex: 1;
+}
+
+.experience-content h3 {
+  margin-top: 0;
 }
 
 /* === Buttons === */
@@ -169,92 +163,4 @@ h2 {
     width: 100%;
     height: auto;
   }
-  .profile-card {
-    flex-direction: column;
-    text-align: center;
-  }
-  .profile-card img {
-    width: 100px;
-    height: 100px;
-  }
-}
-/* === Publications with Image Left and Text Right === */
-.publication {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  margin-bottom: 30px;
-}
-
-.publication img.row-image {
-  width: 160px;
-  height: auto;
-  object-fit: contain;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-}
-
-.publication .row-text {
-  flex: 1;
-}
-
-.publication .row-text .btn {
-  margin-top: 6px;
-  margin-right: 5px;
-}
-
-/* 🔍 Enlarged publication thumbnails */
-.project-card img {
-  width: 300px;
-  float: left;
-  margin-right: 15px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-}
-
-
-.experience-flex {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 20px;
-  margin-bottom: 40px;
-  border-left: 3px solid #aaa;
-  padding-left: 10px;
-}
-
-.experience-left {
-  flex: 1;
-}
-
-.experience-right img {
-  width: 120px;
-  height: auto;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-}
-.experience-card {
-  display: flex;
-  gap: 20px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 25px;
-  align-items: flex-start;
-}
-
-.experience-card img {
-  width: 120px;
-  height: auto;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-}
-
-.experience-content {
-  flex: 1;
-}
-
-.experience-content h3 {
-  margin-top: 0;
 }
