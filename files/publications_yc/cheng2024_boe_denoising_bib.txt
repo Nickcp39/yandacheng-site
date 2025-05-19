@@ -1,0 +1,10 @@
+@article{cheng2024unsupervised,
+  title={Unsupervised denoising of photoacoustic images based on the Noise2Noise network},
+  author={Cheng, Yanda and Zheng, Wenhan and Bing, Robert and Zhang, Huijuan and Huang, Chuqin and Huang, Peizhou and Ying, Leslie and Xia, Jun},
+  journal={Biomedical Optics Express},
+  volume={15},
+  number={8},
+  pages={4390--4405},
+  year={2024},
+  publisher={Optica Publishing Group}
+}

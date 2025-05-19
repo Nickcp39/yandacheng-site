@@ -1,0 +1,10 @@
+@article{huang2023dual,
+  title={Dual-scan photoacoustic tomography for the imaging of vascular structure on foot},
+  author={Huang, Chuqin and Cheng, Yanda and Zheng, Wenhan and Bing, Robert W and Zhang, Huijuan and Komornicki, Isabel and Harris, Linda M and Arany, Praveen R and Chakraborty, Saptarshi and Zhou, Qifa and others},
+  journal={IEEE Transactions on Ultrasonics, Ferroelectrics, and Frequency Control},
+  volume={70},
+  number={12},
+  pages={1703--1713},
+  year={2023},
+  publisher={IEEE}
+}
