@@ -202,3 +202,12 @@ h2 {
   margin-top: 6px;
   margin-right: 5px;
 }
+
+/* 🔍 Enlarged publication thumbnails */
+.project-card img {
+  width: 200px;
+  float: left;
+  margin-right: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
