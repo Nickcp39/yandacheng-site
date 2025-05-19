@@ -1,0 +1,7 @@
+@inproceedings{zhang2025through,
+  title={Through-dressing Wound Monitoring Based on The mmWave Sensor},
+  author={Zhang, Xiaoyu and Li, Zhengxiong and Cheng, Yanda and Xu, Chenhan and Huang, Chuqin and Zhang, Emma and Zhan, Ye and Bo, Wei and Xia, Jun and Xu, Wenyao},
+  booktitle={Proceedings of the 3rd International Workshop on Human-Centered Sensing, Modeling, and Intelligent Systems},
+  pages={41--46},
+  year={2025}
+}
