@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Projects | Lu Dong</title>
+  <title>Projects | Yanda Cheng</title>
   <link rel="stylesheet" href="style.css">
   <script src="scripts.js" defer></script>
 </head>
@@ -32,90 +32,60 @@
     <div class="project-filter">
       <button class="filter-btn active" data-category="all">All</button>
       <button class="filter-btn" data-category="AI">AI</button>
-      <button class="filter-btn" data-category="SignLanguage">Sign Language</button>
-      <button class="filter-btn" data-category="3D">3D Modeling</button>
-      <button class="filter-btn" data-category="Others">Others</button>
+      <button class="filter-btn" data-category="Signal">Signal Processing</button>
+      <button class="filter-btn" data-category="Robotics">Robotics</button>
     </div>
 
     <!-- 🔸 Project Cards -->
     <div class="project-grid">
 
-
-      <div class="project-card" data-category="AI">
-        <img src="files/projects/auto_car.png" alt="CornellRobot">
+      <!-- Project 1 -->
+      <div class="project-card" data-category="Robotics">
+        <img src="files/projects/auto_car.png" alt="AutoCarRobot">
         <div class="project-content">
-          <h3>Autonomous Coin-Picking Robot</h3>
+          <h3>Autonomous Coin-Picking & Trace Robot</h3>
           <p><strong>2021 · Cornell University</strong><br>
-          Developed an obstacle-avoiding robot capable of autonomously navigating environments and collecting virtual coins using sensor feedback and path-planning algorithms.</p>
+          Developed a mobile robot integrating obstacle avoidance and vision-based path tracking. It autonomously navigates environments, detects coins using onboard sensors and collects them through precise motor control and imaging feedback.</p>
         </div>
       </div>
-      
-      <div class="project-card" data-category="Others">
-        <img src="files/projects/rf_radio" alt="RadioReceiver">
+
+      <!-- Project 2 -->
+      <div class="project-card" data-category="Signal">
+        <img src="files/projects/rf_radio.png" alt="RFReceiver">
         <div class="project-content">
-          <h3>Wireless Signal Receiver for Airborne Broadcast</h3>
+          <h3>Wireless Signal Receiver & GNU Radio Analysis</h3>
           <p><strong>2020 · University of Kentucky</strong><br>
-          Designed and built a wireless receiver capable of capturing a wide range of airborne electromagnetic signals and converting them into audible broadcast using real-time demodulation techniques.</p>
+          Built a real-time signal acquisition and demodulation device to intercept airborne EM signals. The system was coupled with GNU Radio and MATLAB for signal classification and analysis under Linux environment.</p>
         </div>
       </div>
 
-
-      <div class="project-card" data-category="AI">
+      <!-- Project 3 -->
+      <div class="project-card" data-category="Robotics">
         <img src="files/projects/auto_aim.png" alt="PingPongShooter">
         <div class="project-content">
           <h3>Auto-Targeting Ping Pong Shooter</h3>
           <p><strong>2019 · University of Kentucky</strong><br>
-          Built an AI-controlled ping pong launcher capable of real-time tracking and predicting moving targets, enabling precise automated firing with dynamic trajectory adjustments.</p>
+          Designed an AI-powered robotic system that identifies and locks onto moving targets, then launches ping pong balls via dynamic motor calibration and prediction-based aiming algorithms.</p>
         </div>
       </div>
-      
-      
 
+      <!-- Project 4 -->
       <div class="project-card" data-category="AI">
-        <img src="files/projects/autoMisty.png" alt="AutoMisty">
+        <img src="files/projects/target_analysis.png" alt="TargetAnalysis">
         <div class="project-content">
-          <h3>AutoMisty: LLM Framework for Misty Robot</h3>
-          <p>Multi-agent LLM system enabling autonomous behavior generation in social robots.</p>
+          <h3>Image Processing Target Analysis System</h3>
+          <p><strong>2019 · University of Kentucky</strong><br>
+          Developed a MATLAB-based motion analysis system to identify and track multiple objects in video feeds using morphological filters, centroid tracking, and bounding box classification logic.</p>
         </div>
       </div>
 
-      <div class="project-card" data-category="SignLanguage">
-        <img src="files/pubs/EMNLP.gif" alt="wSignGen">
-        <div class="project-content">
-          <h3>wSignGen: Word-Conditioned 3D Sign Language</h3>
-          <p>Sign language motion generation using natural language input and 3D modeling.</p>
-        </div>
-      </div>
-
-      <div class="project-card" data-category="3D">
-        <img src="files/pubs/ECCVW.gif" alt="Ig3D">
-        <div class="project-content">
-          <h3>Ig3D: 3D Face Integration for Expression Inference</h3>
-          <p>3D-aware model for robust facial emotion estimation across subjects and poses.</p>
-        </div>
-      </div>
-
-      <div class="project-card" data-category="SignLanguage">
-        <img src="files/pubs/SignAvatar_Quick.gif" alt="SignAvatar">
-        <div class="project-content">
-          <h3>SignAvatar</h3>
-          <p>Real-time 3D reconstruction and animation system for ASL motion generation.</p>
-        </div>
-      </div>
-
+      <!-- Project 5 -->
       <div class="project-card" data-category="AI">
-        <img src="files/pubs/MMPG.gif" alt="MultiMotion">
+        <img src="files/projects/voice_motor.png" alt="VoiceMotor">
         <div class="project-content">
-          <h3>Multi-Person Motion Generation</h3>
-          <p>Open-domain text-driven motion generation for multi-human interactions.</p>
-        </div>
-      </div>
-
-      <div class="project-card" data-category="Others">
-        <img src="files/pubs/Music.gif" alt="XinTianYou">
-        <div class="project-content">
-          <h3>XinTianYou Melody Modeling</h3>
-          <p>Melodic structure analysis of traditional folk songs using machine learning.</p>
+          <h3>Voice-Driven Motor via Neural Network</h3>
+          <p><strong>2019 · University of Kentucky</strong><br>
+          Created a system that activates motors via spoken commands. Integrated LabVIEW and MATLAB with a neural network classifier to process voice features and convert them into real-time control signals.</p>
         </div>
       </div>
 
@@ -124,7 +94,7 @@
 
   <!-- 🔹 Footer -->
   <div class="footer">
-    Projects © Lu Dong | Last updated May 2025
+    Projects © Yanda Cheng | Last updated May 2025
   </div>
 
 </body>
