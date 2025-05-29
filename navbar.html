@@ -25,9 +25,13 @@
   function googleTranslateElementInit() {
     new google.translate.TranslateElement({
       pageLanguage: 'en',
-      includedLanguages: 'en,zh-CN',
+      includedLanguages: 'auto,en,zh-CN,zh-TW,ja,fr,de,es,ko,ru',
       layout: google.translate.TranslateElement.InlineLayout.SIMPLE
     }, 'translate-control');
   }
 </script>
+
+<small style="color: #888;">🌐 Select language above to translate | 语言选择在上方</small>
+
+
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
