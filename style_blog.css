@@ -1,0 +1,88 @@
+/* 🔹 General Layout */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #fdfdfd;
+  color: #333;
+}
+
+a {
+  color: #0055aa;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* 🔹 Navbar */
+.navbar {
+  background: #333;
+  color: white;
+  padding: 10px 0;
+}
+.nav-container {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+.nav-left a,
+.nav-right a {
+  color: white;
+  margin-left: 20px;
+  font-weight: 500;
+}
+.nav-right a.active {
+  text-decoration: underline;
+}
+
+/* 🔹 Blog Container */
+.blog-container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 0 20px;
+}
+
+.blog-title {
+  font-size: 2.2em;
+  margin-bottom: 10px;
+  color: #222;
+}
+.blog-subtitle {
+  font-size: 1em;
+  color: #777;
+  margin-bottom: 30px;
+}
+
+/* 🔸 Blog Post List */
+.post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.post-item {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 15px;
+}
+.post-item h3 {
+  margin: 0;
+  font-size: 1.2em;
+}
+.post-meta {
+  font-size: 0.9em;
+  color: #666;
+  margin-top: 5px;
+}
+
+/* 🔻 Footer */
+.footer {
+  margin-top: 60px;
+  padding: 20px;
+  text-align: center;
+  font-size: 0.9em;
+  background-color: #f1f1f1;
+  color: #555;
+}
