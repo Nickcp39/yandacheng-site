@@ -1,24 +1,22 @@
 {
   "btc_regulation.html": {
-  "title": "BTC 的内在价值",
-  "date": "2025-05-29",
-  "summary": "比特币作为数字黄金，在政府放水过程中可能经历类似黄金的剧烈波动，高点出现在2025Q3，底部将在2028年附近。"
-},
-
+    "title": "BTC 的内在价值/The Intrinsic Value of Bitcoin",
+    "date": "2025-05-29",
+    "summary": "Bitcoin acts as digital gold. In an era of monetary expansion, it may experience a gold-like price surge, peaking in Q3 2025 and bottoming around 2028."
+  },
   "value_lessons.html": {
-    "title": "价值投资的四条核心心法",
+    "title": "价值投资的四条核心心法/Four Core Principles of Value Investing",
     "date": "2024-05-21",
-    "summary": "从巴菲特、芒格到邓普顿，历史经验告诉我们——价值投资的成功在于克服人性。"
+    "summary": "From Buffett and Munger to Templeton, history shows that mastering value investing requires overcoming human nature."
   },
   "staff_engineer.html": {
-    "title": "【职场分享】资深工程师的挑战和策略",
+    "title": "[Career Talk] Challenges and Strategies of Being a Staff Engineer",
     "date": "2024-04-30",
-    "summary": "横向影响力、技术战略思维与信任建立，是成为一名Staff Engineer的核心挑战。"
+    "summary": "Influence, strategic technical vision, and trust-building are key challenges on the path to becoming a successful Staff Engineer."
   },
   "phd_possibilities.html": {
-    "title": "PhD的无限可能性：不止是教职",
+    "title": "The Infinite Possibilities of a PhD: More Than Academia",
     "date": "2024-04-15",
-    "summary": "从工业界到医疗AI，从量化投资到政策战略，博士学位其实有远比你想象更宽广的应用边界。"
+    "summary": "From industry to medical AI, from quant finance to policy strategy, a PhD opens doors far beyond traditional academic paths."
   }
 }
-

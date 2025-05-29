@@ -1,6 +1,4 @@
 {
-  "btc_regulation.html": ["比特币", "股市"],
-  "value_lessons.html": ["价值投资心得"],
-  "staff_engineer.html": ["工作心得"],
-  "phd_possibilities.html": ["PhD的无限可能性", "工作心得"]
+  "Investment": ["Bitcoin", "Real Estate", "Stock Market", "Value Investing"],
+  "Career": ["Tech Innovation", "Industry News", "Workplace Insights", "PhD Possibilities"]
 }
