@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style_blog.css" />
 </head>
 <body>
+
   <!-- 🔹 动态导航栏 -->
   <div id="navbar-placeholder"></div>
   <script>
@@ -17,17 +18,30 @@
       });
   </script>
 
-  <!-- 🔸 博客分类展示 -->
-  <div class="blog-container">
-    <h1 class="blog-title">📚 Yanda's Blog</h1>
-    <p class="blog-subtitle">按分类浏览所有博文</p>
-    <div id="blog-category-list"></div>
-    <script src="scripts/render_hierarchical_tags.js"></script>
+  <!-- 🔸 双栏博客主区域 -->
+  <div class="blog-container" style="display: flex; gap: 40px; align-items: flex-start; flex-wrap: wrap;">
+    
+    <!-- ⬅ 左栏：分类结构 -->
+    <div style="flex: 1; min-width: 320px;">
+      <h1 class="blog-title">📚 Yanda's Blog</h1>
+      <p class="blog-subtitle">按分类浏览所有博文</p>
+      <div id="blog-category-list"></div>
+    </div>
+
+    <!-- ➡ 右栏：时间线结构 -->
+    <div style="flex: 1; min-width: 320px;">
+      <h2>🕒 按时间排序</h2>
+      <div id="blog-timeline-list"></div>
+    </div>
+
   </div>
 
   <!-- 🔻 Footer -->
   <div class="footer">
     Blog © Yanda Cheng | Last updated May 2025
   </div>
+
+  <!-- 🔧 渲染脚本 -->
+  <script src="scripts/render_blog_dual.js"></script>
 </body>
 </html>
