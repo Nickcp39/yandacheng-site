@@ -1,4 +1,6 @@
 {
-  "Investment": ["Bitcoin", "Real Estate", "Stock Market", "Value Investing"],
-  "Career": ["Tech Innovation", "Industry News", "Workplace Insights", "PhD Possibilities"]
+  "btc_regulation.html": ["Bitcoin", "Stock Market"],
+  "value_lessons.html": ["Value Investing"],
+  "staff_engineer.html": ["Workplace Insights"],
+  "phd_possibilities.html": ["PhD Possibilities"]
 }
