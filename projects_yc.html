@@ -8,22 +8,15 @@
 </head>
 <body>
 
-  <!-- 🔹 Navbar -->
-  <div class="navbar">
-    <div class="nav-container">
-      <div class="nav-left">
-        <a href="index_yc.html">Home</a>
-      </div>
-      <div class="nav-right">
-        <a href="about_yc.html">About</a>
-        <a href="projects_yc.html">Projects</a>
-        <a href="publications_yc.html">Publications</a>
-        <a href="experience_yc.html">Experience</a>
-        <a href="awards_yc.html">Awards</a>
-        <a href="photos_yc.html">Photos</a>
-      </div>
-    </div>
-  </div>
+  <div id="navbar-placeholder"></div>
+<script>
+  fetch('navbar.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('navbar-placeholder').innerHTML = data;
+    });
+</script>
+
 
   <div class="container">
     <h2>Selected Projects</h2>
