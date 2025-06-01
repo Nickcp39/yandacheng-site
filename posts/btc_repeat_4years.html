@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>为什么比特币四年一轮回，但你依然赚不到钱？</title>
+  <link rel="stylesheet" href="../style_blog.css">
+</head>
+<body>
+  <!-- 🔹 Google Translate 控制按钮 -->
+  <div id="translate-control" style="position: fixed; top: 10px; right: 10px; z-index: 999;"></div>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'auto,en,zh-CN,zh-TW,ja,fr,de,es,ko,ru',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'translate-control');
+    }
+  </script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+  <!-- 🔹 Navbar -->
+  <div id="navbar-placeholder"></div>
+  <script>
+    fetch('../navbar.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('navbar-placeholder').innerHTML = data;
+      });
+  </script>
+
+  <!-- 🔸 Blog Layout -->
+  <div class="blog-container" style="display: flex; gap: 40px; align-items: flex-start;">
+
+    <!-- ⬅ Left Sidebar -->
+    <aside style="flex: 0 0 150px; font-size: 0.9em; color: #666;">
+      <p><strong>Written by</strong><br>Yanda Cheng</p>
+      <p><strong>Date</strong><br>May 31st, 2025</p>
+      <p><a href="#disqus_thread">💬 Leave a comment</a></p>
+    </aside>
+
+    <!-- 🔳 Main Content -->
+    <main style="flex: 1;">
+      <p style="color: #888; font-size: 0.9em;">投资 · 比特币 · 心理陷阱</p>
+      <h1>为什么比特币四年一轮回<br><span style="font-weight: normal; font-size: 0.9em;">但你依然赚不到钱？</span></h1>
+
+      <p>比特币已经走过三轮完整周期，几乎每四年减半一次，伴随着一次暴涨和一次暴跌。但令人惊讶的是，大多数人即使提前知道了这一点，依然没有赚到钱。</p>
+
+      <h2>① 人性无法承受剧烈波动</h2>
+      <p>比特币并不温柔。它上涨不是缓慢爬升，而是**每天上下10%甚至20%的波动**。绝大多数人承受不了这种日内心理折磨，明明一年涨了50%，三年翻几倍，但在过程中早早下车，甚至反手做空。</p>
+      <p>而且，许多人把买入赚钱归功于自己的判断力，把亏钱归咎于时运不济。这种<strong>盲目自信和事后懊悔</strong>，本质上忽略了一点：<strong>BTC 的价格并不受人的意志控制</strong>。</p>
+      <p>比特币是一种通缩资产，是全球货币超发的蓄水池。它体现的是世界的印钞节奏、央行政策、流动性泛滥，甚至是**富人对“不可控资产”的渴望**。正如2000年代富人藏字画，未来的比特币，也将成为**无国界、免税、自由流通的“数字藏品”**。</p>
+
+      <h2>② 你以为你在投资，其实你在“追星”</h2>
+      <p>很多人嘲笑追韩星的少女，但从行为逻辑看，不少中年男人追财经博主，其实更加危险。</p>
+      <p>他们在小区楼下听了几句小道消息，就把一生积蓄all in某个股票；他们看了视频里一个“K线分析大师”的推演，就真信了“这一波不会止步于10万美元”。</p>
+      <p>所谓“财经博主”，多数并无实质投资能力，更多是“贩卖情绪”的内容创作者。<strong>他们不是趋势的发现者，只是流量的放大器</strong>。</p>
+      <blockquote>盲目跟随KOL，不是理性投资，是披着财经皮的娱乐行为。</blockquote>
+
+      <h2>③ 国家不希望你变富</h2>
+      <p>现实是：大多数人终其一生都无法实现财务自由。</p>
+      <p>这是设计好的。国家依赖税收和劳动力，<strong>需要大部分人处在“饿不死但富不了”的状态</strong>——这样才容易管理。</p>
+      <p>一个人自由了，就不可控了。一个社会人人都富有，那就很难服从稳定结构。</p>
+      <p>比特币恰恰在挑战这个结构：它不受监管、不容易冻结、可以跨国交易、不依赖任何国家信用。</p>
+      <p>而你是否能赚到钱，不取决于你是否看懂了K线，而取决于你是否真的理解了这个游戏的本质。</p>
+
+      <!-- 🔻 评论区域 -->
+      <div id="disqus_thread" style="margin-top: 60px;"></div>
+      <script>
+        var disqus_config = function () {
+          this.page.url = window.location.href;
+          this.page.identifier = window.location.pathname;
+        };
+        (function() {
+          var d = document, s = d.createElement('script');
+          s.src = 'https://yanda-cheng.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    </main>
+
+    <!-- ➡ Right Sidebar -->
+    <aside style="flex: 0 0 250px;">
+      <div style="margin-bottom: 30px;">
+        <input type="text" placeholder="Search ..." style="width: 100%; padding: 6px;">
+      </div>
+
+      <div style="font-size: 0.9em; color: #555; margin-bottom: 30px;">
+        <h3>Disclaimer</h3>
+        <p>本文观点仅代表作者个人，不构成任何投资建议。比特币价格波动较大，请独立判断。</p>
+      </div>
+
+      <div style="font-size: 0.9em; color: #555;">
+        <h3>Recent Posts</h3>
+        <ul style="list-style-type: none; padding-left: 0;">
+          <li><a href="etf_fall.html">ETF通过后比特币为何反而大跌？</a></li>
+          <li><a href="staff_engineer.html">【职场分享】资深工程师的挑战和策略</a></li>
+          <li><a href="phd_possibilities.html">PhD的无限可能性：不止是教职</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <!-- 🔻 Footer -->
+  <div class="footer">
+    Blog © Yanda Cheng | Last updated May 2025
+  </div>
+</body>
+</html>
