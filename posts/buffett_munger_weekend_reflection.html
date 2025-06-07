@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>每周往返的高速路上，我听巴菲特和芒格</title>
+  <link rel="stylesheet" href="../style_blog.css" />
+</head>
+<body>
+
+  <!-- 🔹 Google Translate 控制按钮 -->
+  <div id="translate-control" style="position: fixed; top: 10px; right: 10px; z-index: 999;"></div>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'auto,en,zh-CN,zh-TW,ja,fr,de,es,ko,ru',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'translate-control');
+    }
+  </script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+  <!-- 🔹 Navbar -->
+  <div id="navbar-placeholder"></div>
+  <script>
+    fetch('../navbar.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('navbar-placeholder').innerHTML = data;
+      });
+  </script>
+
+  <!-- 🔸 Blog Layout -->
+  <div class="blog-container" style="display: flex; gap: 40px; align-items: flex-start;">
+    
+    <!-- ⬅ Left Sidebar -->
+    <aside style="flex: 0 0 150px; font-size: 0.9em; color: #666;">
+      <p><strong>Written by</strong><br>Yanda Cheng</p>
+      <p><strong>Date</strong><br>June 7th, 2025</p>
+      <p><a href="#disqus_thread">💬 Leave a comment</a></p>
+    </aside>
+
+    <!-- 🔳 Main Content -->
+    <main style="flex: 1;">
+      <p style="color: #888; font-size: 0.9em;">投资 · 价值投资心得 · 博士生涯</p>
+      <h1>每周往返的高速路上，我听巴菲特和芒格<br><span style="font-weight: normal; font-size: 0.9em;">孤独中的精神陪伴</span></h1>
+
+      <p>自从进入博士的最后阶段，我每周末都会从 Buffalo 前往多伦多。两小时的高速，笔直，没有多少岔路口。是通向城市的路，也像通向成年世界的一段心理旅程。</p>
+
+      <p>在这漫长又规律的高速路上，我听的不是什么流行音乐，而是伯克希尔的股东大会录音，是巴菲特年轻时的演讲，是芒格在各大高校对学生的真诚告白，偶尔也有他们与身边合伙人之间闲聊般的语音记录。也包括段永平、李某某等他们中国学生在北大的讲座。</p>
+
+      <p>这些声音陪伴了我整个博士生涯的后半程。他们不仅仅是投资大师，而是我人生阶段的隐形导师。</p>
+
+      <h2>导师，不一定要身边才能影响你</h2>
+      <p>巴菲特常说：“选择一个影响你深远的导师，是人生的关键一步。”</p>
+      <p>父母当然对你影响巨大，但你无法选择他们。重要的是学会辨别父母的优点与不足，然后汲取养分。</p>
+      <p>而如果你没有机会身边有人引导你，也没有关系——<strong>隐形的精神导师</strong>一样可以塑造你。他们的话语、他们的行为方式、他们对这个世界的判断力，都会在你耳边留下回响。</p>
+
+      <h2>我是精神追星族</h2>
+      <p>我不是去看演唱会的“小太妹”，但我一样“追星”。我的偶像是巴菲特，是芒格，是那些用理性与常识雕刻人生轨迹的人。</p>
+      <p>巴菲特教会我如何用格雷厄姆的价值法则去寻找伟大的企业，芒格则教我如何在这个金迷纸醉的世界里保持内心的秩序和克制。</p>
+      <p>我幸运，也孤独。这种孤独不是悲观的，而是一种有价值的陪伴。它像北美的高速公路，直，长，但通向远方。</p>
+
+      <h2>未来最大的挑战：保留这份孤独</h2>
+      <p>当博士毕业步入社会，也许996、房租、医保、家庭将围绕我。但最难的，是如何在成年世界里继续保留这份孤独感，不被琐碎打败。</p>
+      <p>不是谁都能一直像个理性的人活着，但我想继续靠近那群清醒的人——即便只是在车载音响里。</p>
+
+      <blockquote>本篇写于2025年6月7日，28岁生日的前夜。</blockquote>
+
+      <!-- 🔻 评论区域 -->
+      <div id="disqus_thread" style="margin-top: 60px;"></div>
+      <script>
+        var disqus_config = function () {
+          this.page.url = window.location.href;
+          this.page.identifier = window.location.pathname;
+        };
+        (function() {
+          var d = document, s = d.createElement('script');
+          s.src = 'https://yanda-cheng.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    </main>
+
+    <!-- ➡ Right Sidebar -->
+    <aside style="flex: 0 0 250px;">
+      <div style="margin-bottom: 30px;">
+        <input type="text" placeholder="Search ..." style="width: 100%; padding: 6px;">
+      </div>
+
+      <div style="font-size: 0.9em; color: #555; margin-bottom: 30px;">
+        <h3>Disclaimer</h3>
+        <p>本文仅为作者个人成长记录，不构成投资建议或心理建议。</p>
+      </div>
+
+      <div style="font-size: 0.9em; color: #555;">
+        <h3>Recent Posts</h3>
+        <ul style="list-style-type: none; padding-left: 0;">
+          <li><a href="btc_repeat_4years.html">为什么比特币四年一轮回，但你依然赚不到钱？</a></li>
+          <li><a href="etf_fall.html">ETF通过后比特币为何反而大跌？</a></li>
+          <li><a href="phd_possibilities.html">PhD的无限可能性：不止是教职</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <!-- 🔻 Footer -->
+  <div class="footer">
+    Blog © Yanda Cheng | Last updated June 2025
+  </div>
+
+</body>
+</html>
