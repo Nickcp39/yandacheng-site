@@ -196,3 +196,24 @@ h2 {
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
+
+
+.news-scroller {
+  height: 160px;       /* 可根据内容高度微调 */
+  overflow: hidden;
+  position: relative;
+}
+
+.news-list {
+  display: inline-block;
+  animation: scroll-up 30s linear infinite;  /* 30s = 滚动一轮的时间 */
+}
+
+.news-list li {
+  margin-bottom: 10px;
+}
+
+@keyframes scroll-up {
+  0% { transform: translateY(0%); }
+  100% { transform: translateY(-100%); }
+}
