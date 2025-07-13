@@ -198,15 +198,22 @@ h2 {
 }
 
 
+.news-list {
+  display: inline-block;
+  animation: scroll-up 30s linear infinite;  /* 30s = 滚动一轮的时间 */
+}
+
+
 .news-scroller {
-  height: 160px;       /* 可根据内容高度微调 */
+  height: 180px;  /* 根据需要微调 */
   overflow: hidden;
   position: relative;
 }
 
-.news-list {
-  display: inline-block;
-  animation: scroll-up 30s linear infinite;  /* 30s = 滚动一轮的时间 */
+.scroll-content {
+  display: flex;
+  flex-direction: column;
+  animation: scroll-up 30s linear infinite;  /* 30s = 滚动一轮时间 */
 }
 
 .news-list li {
@@ -214,7 +221,6 @@ h2 {
 }
 
 @keyframes scroll-up {
-  0% { transform: translateY(0%); }
-  100% { transform: translateY(-100%); }
+  0%   { transform: translateY(0%); }
+  100% { transform: translateY(-50%); }  /* 因为有两份内容，只需滚动一半 */
 }
-
