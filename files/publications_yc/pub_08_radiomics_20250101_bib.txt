@@ -1,0 +1,9 @@
+@article{huang2025radiomics,
+  title={Radiomics-driven perfusion prediction in clinical photoacoustic foot imaging},
+  author={Huang, Chuqin and Cheng, Yanda and Zhang, Xiaoyu and Zhan, Ye and Zheng, Wenhan and Komornicki, Isabel and Harris, Linda M and Xu, Wenyao and Xia, Jun},
+  journal={Photoacoustics},
+  pages={100776},
+  year={2025},
+  publisher={Elsevier}
+}
+
