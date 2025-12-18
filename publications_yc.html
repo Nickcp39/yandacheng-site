@@ -7,23 +7,47 @@
   <title>Publications | Yanda Cheng</title>
   <link rel="stylesheet" href="style.css" />
   <style>
+    .container {
+      max-width: 1200px !important;
+      margin: 0 auto;
+      padding: 20px 40px;
+    }
     .project-card {
       display: flex;
       flex-direction: column;
-      margin-bottom: 40px; /* ✅ 增加间距 */
+      margin-bottom: 40px;
       border-bottom: 1px solid #ddd;
       padding-bottom: 20px;
     }
+    .project-content {
+      width: 100%;
+    }
     .project-content img {
       width: 100%;
-      max-width: 800px;
+      max-width: 700px;
       max-height: 350px;
       height: auto;
       object-fit: contain;
-      margin: 0 auto 15px auto;
+      margin: 0 auto 20px auto;
       display: block;
       border: 1px solid #e0e0e0;
       border-radius: 4px;
+    }
+    .project-content h3 {
+      font-size: 1.3em;
+      line-height: 1.4;
+      margin-bottom: 10px;
+      color: #222;
+    }
+    .project-content p {
+      font-size: 1em;
+      line-height: 1.6;
+      margin-bottom: 8px;
+      color: #444;
+    }
+    .project-content em {
+      font-size: 0.95em;
+      color: #666;
     }
   </style>
 </head>
