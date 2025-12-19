@@ -40,6 +40,11 @@
     "title": "BTC 2026年价格预测：站在周期拐点的思考",
     "date": "2025-12-18",
     "summary": "预测稳定币将在2026年Q1-Q2暴雷，导致BTC深度回调。预计在10月左右见底，价格区间5.7-6.6万美元，中位数约6万美元。基于稳定币风险、技术分析和历史周期的综合判断。"
+  },
+  "sglang_kyc_pipeline.html": {
+    "title": "Building Production-Ready KYC Pipeline with SGLang: A Deep Dive",
+    "date": "2025-01-15",
+    "summary": "A technical deep dive into building a KYC document intelligence pipeline using SGLang inference server. Covers architecture, performance optimization, and production deployment considerations."
   }
 
 }
