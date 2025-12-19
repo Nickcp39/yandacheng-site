@@ -10,9 +10,9 @@
     "summary": "From Buffett and Munger to Templeton, history shows that mastering value investing requires overcoming human nature."
   },
   "staff_engineer.html": {
-    "title": "[Career Talk] Challenges and Strategies of Being a Staff Engineer",
-    "date": "2024-04-30",
-    "summary": "Influence, strategic technical vision, and trust-building are key challenges on the path to becoming a successful Staff Engineer."
+    "title": "【职场分享】资深工程师的挑战和策略 / Challenges and Strategies of Being a Staff Engineer",
+    "date": "2025-12-19",
+    "summary": "在 Hydrotech 工作的经历让我明白：最难的不是技术，而是与人交流。分享如何获得客户信任、快速反应，以及在压力下保持冷静的真实案例。"
   },
   "phd_possibilities.html": {
     "title": "The Infinite Possibilities of a PhD: More Than Academia",
@@ -41,10 +41,10 @@
     "date": "2025-12-18",
     "summary": "预测稳定币将在2026年Q1-Q2暴雷，导致BTC深度回调。预计在10月左右见底，价格区间5.7-6.6万美元，中位数约6万美元。基于稳定币风险、技术分析和历史周期的综合判断。"
   },
-  "sglang_kyc_pipeline.html": {
-    "title": "Building Production-Ready KYC Pipeline with SGLang: A Deep Dive",
-    "date": "2025-01-15",
-    "summary": "A technical deep dive into building a KYC document intelligence pipeline using SGLang inference server. Covers architecture, performance optimization, and production deployment considerations."
+  "sglang_llm_agent_id_scanner.html": {
+    "title": "Building LLM Agent ID Scanner with SGLang: A Deep Dive",
+    "date": "2025-12-15",
+    "summary": "A technical deep dive into building an LLM Agent ID Scanner using SGLang inference server. Covers architecture, performance optimization, and production deployment considerations."
   }
 
 }
