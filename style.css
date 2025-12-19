@@ -52,12 +52,14 @@ h2 {
 }
 
 /* === Project Card Layout (used for Publications section thumbnails) === */
-.project-card img {
+.project-card img,
+.project-card video {
   width: 300px;
   float: left;
   margin-right: 15px;
   border-radius: 8px;
   border: 1px solid #ccc;
+  display: block;
 }
 
 /* === Publications with Image Left and Text Right === */
