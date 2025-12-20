@@ -41,9 +41,18 @@ a:hover {
 
 /* 🔹 Blog Container */
 .blog-container {
-  max-width: 800px;
+  max-width: 1400px !important;
   margin: 50px auto;
-  padding: 0 20px;
+  padding: 0 40px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 🔹 Main Content Area */
+.blog-container main {
+  max-width: none !important;
+  flex: 1;
+  min-width: 0; /* Allow flex item to shrink below content size */
 }
 
 .blog-title {

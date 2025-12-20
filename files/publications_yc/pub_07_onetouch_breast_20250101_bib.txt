@@ -1,0 +1,8 @@
+@article{zhang2025onetouch,
+  title={OneTouch Automated Photoacoustic and Ultrasound Imaging of Breast in Standing Pose},
+  author={Zhang, Huijuan and Zheng, Emily and Zheng, Wenhan and Huang, Chuqin and Xi, Yunqi and Cheng, Yanda and Yu, Shuliang and Chakraborty, Saptarshi and Bonaccio, Ermelinda and Takabe, Kazuaki and others},
+  journal={IEEE Transactions on Medical Imaging},
+  year={2025},
+  publisher={IEEE}
+}
+
