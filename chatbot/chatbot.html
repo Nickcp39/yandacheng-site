@@ -1,0 +1,1063 @@
+<!-- Chatbot Widget - 使用 Hugging Face 公开模型 -->
+<div id="chatbot-container">
+  <!-- Chatbot Button -->
+  <button id="chatbot-toggle" class="chatbot-btn" aria-label="Open Chatbot">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+    </svg>
+    <span class="chatbot-badge" id="chatbot-badge" style="display: none;">1</span>
+  </button>
+
+  <!-- Chatbot Window -->
+  <div id="chatbot-window" class="chatbot-window">
+    <div class="chatbot-header">
+      <div class="chatbot-header-content">
+        <h3>🤖 AI Assistant</h3>
+        <p class="chatbot-subtitle">Ask me about Yanda's work, research, or experience</p>
+      </div>
+      <button id="chatbot-close" class="chatbot-close" aria-label="Close Chatbot">×</button>
+    </div>
+    
+    <div class="chatbot-messages" id="chatbot-messages">
+      <div class="chatbot-message chatbot-message-bot">
+        <div class="chatbot-avatar">🤖</div>
+        <div class="chatbot-text">
+          <p>Hi! I'm Yanda's AI assistant. I can help you learn about:</p>
+          <ul style="margin: 8px 0; padding-left: 20px; font-size: 13px;">
+            <li>Research interests (IoT, ML, CV, LLM)</li>
+            <li>Projects and publications</li>
+            <li>Work experience at HydroTech</li>
+            <li>Technical expertise (AWS, sensors, hardware)</li>
+          </ul>
+          <p style="font-size: 12px; color: #666; margin-top: 8px;">
+            ⚠️ I can only answer questions about Yanda's work and research.
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="chatbot-input-container">
+      <div class="chatbot-suggestions" id="chatbot-suggestions">
+        <button class="suggestion-btn" data-query="Tell me about your IoT and sensor work">IoT & Sensors</button>
+        <button class="suggestion-btn" data-query="What ML projects have you worked on?">ML Projects</button>
+        <button class="suggestion-btn" data-query="Tell me about your AWS cloud experience">AWS Experience</button>
+      </div>
+      <div class="chatbot-input-wrapper">
+        <input 
+          type="text" 
+          id="chatbot-input" 
+          class="chatbot-input" 
+          placeholder="Type your message..."
+          autocomplete="off"
+          maxlength="500"
+        />
+        <button id="chatbot-send" class="chatbot-send-btn" aria-label="Send Message">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </div>
+      <div class="chatbot-rate-limit-info" id="rate-limit-info" style="display: none;"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+/* Chatbot Container */
+#chatbot-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Chatbot Toggle Button */
+.chatbot-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.chatbot-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.chatbot-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #ff4444;
+  color: white;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* Chatbot Window */
+.chatbot-window {
+  position: absolute;
+  bottom: 80px;
+  right: 0;
+  width: 380px;
+  height: 600px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  animation: slideUp 0.3s ease;
+}
+
+.chatbot-window.active {
+  display: flex;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Chatbot Header */
+.chatbot-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.chatbot-header-content h3 {
+  margin: 0 0 4px 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.chatbot-subtitle {
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.chatbot-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.chatbot-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Chatbot Messages */
+.chatbot-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  background: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.chatbot-message {
+  display: flex;
+  gap: 12px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chatbot-message-user {
+  flex-direction: row-reverse;
+}
+
+.chatbot-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.chatbot-message-user .chatbot-avatar {
+  background: #007bff;
+}
+
+.chatbot-text {
+  max-width: 75%;
+  background: white;
+  padding: 12px 16px;
+  border-radius: 18px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.chatbot-message-user .chatbot-text {
+  background: #007bff;
+  color: white;
+}
+
+.chatbot-text p {
+  margin: 0 0 8px 0;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+.chatbot-text p:last-child {
+  margin-bottom: 0;
+}
+
+.chatbot-text ul {
+  margin: 8px 0;
+  padding-left: 20px;
+  font-size: 13px;
+}
+
+.chatbot-text code {
+  background: rgba(0, 0, 0, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.chatbot-message-user .chatbot-text code {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Typing Indicator */
+.chatbot-typing {
+  display: flex;
+  gap: 4px;
+  padding: 12px 16px;
+}
+
+.chatbot-typing span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #667eea;
+  animation: typing 1.4s infinite;
+}
+
+.chatbot-typing span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.chatbot-typing span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typing {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+  30% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+}
+
+/* Chatbot Input */
+.chatbot-input-container {
+  background: white;
+  border-top: 1px solid #e0e0e0;
+  padding: 12px;
+}
+
+.chatbot-suggestions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.suggestion-btn {
+  background: #f0f0f0;
+  border: 1px solid #e0e0e0;
+  border-radius: 16px;
+  padding: 6px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #333;
+}
+
+.suggestion-btn:hover {
+  background: #e0e0e0;
+  border-color: #667eea;
+  color: #667eea;
+}
+
+.chatbot-input-wrapper {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.chatbot-input {
+  flex: 1;
+  border: 1px solid #e0e0e0;
+  border-radius: 24px;
+  padding: 10px 16px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.chatbot-input:focus {
+  border-color: #667eea;
+}
+
+.chatbot-input:disabled {
+  background: #f5f5f5;
+  cursor: not-allowed;
+}
+
+.chatbot-send-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+
+.chatbot-send-btn:hover:not(:disabled) {
+  transform: scale(1.1);
+}
+
+.chatbot-send-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.chatbot-rate-limit-info {
+  margin-top: 8px;
+  padding: 8px;
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 8px;
+  font-size: 12px;
+  color: #856404;
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .chatbot-window {
+    width: calc(100vw - 40px);
+    height: calc(100vh - 100px);
+    bottom: 80px;
+    right: 20px;
+    left: 20px;
+  }
+  
+  #chatbot-container {
+    right: 20px;
+    bottom: 20px;
+  }
+}
+
+/* Scrollbar Styling */
+.chatbot-messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chatbot-messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chatbot-messages::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+
+.chatbot-messages::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+</style>
+
+<script>
+(function() {
+  'use strict';
+  
+  // ==================== 配置区域 ====================
+  const CONFIG = {
+    // Hugging Face API 配置
+    HF_API_URL: 'https://api-inference.huggingface.co/models',
+    HF_MODEL: 'microsoft/DialoGPT-medium', // 公开模型，无需 API key
+    // 如果以后要使用 API key，取消下面的注释并填入你的 token
+    // ⚠️ 警告：如果使用 API key，强烈建议通过后端代理，不要在前端直接暴露！
+    // HF_API_TOKEN: 'your_huggingface_token_here', // 可选：从环境变量或配置读取
+    
+    // API 请求配置
+    API_TIMEOUT: 30000,        // 请求超时 30 秒
+    MAX_RETRIES: 3,           // 最大重试次数
+    RETRY_DELAY: 2000,        // 重试延迟 2 秒（用于 503 错误）
+    
+    // 速率限制配置（前端）
+    RATE_LIMIT: {
+      MIN_INTERVAL: 3000,        // 最小间隔 3 秒
+      MAX_PER_MINUTE: 10,        // 每分钟最多 10 次
+      MAX_PER_HOUR: 50,          // 每小时最多 50 次
+      COOLDOWN_AFTER_LIMIT: 60000 // 超过限制后冷却 60 秒
+    },
+    
+    // 内容限制配置
+    CONTENT_FILTER: {
+      // 允许的关键词（白名单）- 至少包含一个才能通过
+      ALLOWED_KEYWORDS: [
+        'yanda', 'research', 'project', 'publication', 'paper', 'work', 'experience',
+        'iot', 'sensor', 'aws', 'cloud', 'ml', 'machine learning', 'deep learning',
+        'cv', 'computer vision', 'llm', 'language model', 'ai', 'artificial intelligence',
+        'hydrotech', 'hydro tech', 'university', 'buffalo', 'cornell', 'education',
+        'hardware', 'software', 'engineering', 'phd', 'ph.d', 'biomedical',
+        'photoacoustic', 'imaging', 'data', 'analytics', 'infrastructure',
+        'skill', 'expertise', 'technology', 'system', 'development'
+      ],
+      
+      // 禁止的关键词（黑名单）- 包含任何一个就拒绝
+      BLOCKED_KEYWORDS: [
+        'politics', 'political', 'election', 'vote', 'government',
+        'medical advice', 'diagnosis', 'treatment', 'prescription', 'medicine',
+        'legal advice', 'lawyer', 'lawsuit', 'court',
+        'financial advice', 'investment advice', 'stock tip', 'trading',
+        'personal information', 'private', 'password', 'credit card',
+        'hack', 'crack', 'illegal', 'porn', 'sex', 'adult'
+      ],
+      
+      // 超出范围的回复模板
+      OUT_OF_SCOPE_MESSAGE: `I can only answer questions about Yanda's work, research, projects, and experience. Please ask about topics like:
+• Research interests (IoT, ML, CV, LLM)
+• Work experience at HydroTech
+• Projects and publications
+• Technical skills and expertise
+• Education background
+
+If you have questions outside this scope, I won't be able to help.`
+    },
+    
+    // 系统提示词（用于构建上下文）
+    SYSTEM_CONTEXT: `You are Yanda Cheng's AI assistant. Yanda is a Senior Engineer and Team Manager with 8 years of experience at HydroTech, specializing in IoT sensor development, hardware engineering, and AWS cloud-based data analytics. He is also pursuing a Ph.D. in Biomedical Engineering at the University at Buffalo, focusing on AI infrastructure for photoacoustic imaging and LLM-based clinical applications.
+
+Key information:
+- Research: IoT & Sensor Systems, Cloud Infrastructure (AWS), ML & Data Analytics, Computer Vision, LLM & AI Infrastructure
+- Experience: 8 years at HydroTech, Team Manager, Senior Engineer
+- Skills: IoT, AWS, sensor hardware, ML, data analytics, cloud infrastructure
+- Education: Ph.D. candidate at University at Buffalo, M.Eng. from Cornell University
+
+Answer questions about Yanda's work and research professionally. Keep answers concise and relevant.`
+  };
+  
+  // ==================== 状态管理 ====================
+  let isOpen = false;
+  let messageHistory = [];
+  let rateLimitState = {
+    requests: [],
+    lastRequestTime: 0,
+    isCooldown: false
+  };
+  let outOfScopeCount = 0; // 连续超出范围的次数
+  let currentRequest = null; // 当前进行中的请求（用于取消）
+  let isRequestPending = false; // 防止重复请求
+  
+  // ==================== DOM 元素 ====================
+  const toggleBtn = document.getElementById('chatbot-toggle');
+  const closeBtn = document.getElementById('chatbot-close');
+  const window = document.getElementById('chatbot-window');
+  const messagesContainer = document.getElementById('chatbot-messages');
+  const input = document.getElementById('chatbot-input');
+  const sendBtn = document.getElementById('chatbot-send');
+  const suggestions = document.querySelectorAll('.suggestion-btn');
+  const rateLimitInfo = document.getElementById('rate-limit-info');
+  
+  // ==================== 初始化 ====================
+  function init() {
+    // 加载速率限制历史
+    loadRateLimitState();
+    
+    // 事件监听
+    toggleBtn.addEventListener('click', toggleChatbot);
+    closeBtn.addEventListener('click', toggleChatbot);
+    sendBtn.addEventListener('click', sendMessage);
+    input.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+      }
+    });
+    
+    suggestions.forEach(btn => {
+      btn.addEventListener('click', () => {
+        input.value = btn.getAttribute('data-query');
+        sendMessage();
+      });
+    });
+  }
+  
+  // ==================== 速率限制 ====================
+  function loadRateLimitState() {
+    try {
+      const saved = localStorage.getItem('chatbot_rate_limit');
+      if (saved) {
+        const data = JSON.parse(saved);
+        // 清理过期记录（超过1小时）
+        const oneHourAgo = Date.now() - 3600000;
+        rateLimitState.requests = (data.requests || []).filter(time => time > oneHourAgo);
+        rateLimitState.lastRequestTime = data.lastRequestTime || 0;
+        rateLimitState.isCooldown = data.isCooldown || false;
+        
+        // 检查冷却状态
+        if (rateLimitState.isCooldown && Date.now() - rateLimitState.lastRequestTime < CONFIG.RATE_LIMIT.COOLDOWN_AFTER_LIMIT) {
+          const remaining = Math.ceil((CONFIG.RATE_LIMIT.COOLDOWN_AFTER_LIMIT - (Date.now() - rateLimitState.lastRequestTime)) / 1000);
+          showRateLimit(`Please wait ${remaining} seconds before sending another message.`);
+        }
+      }
+      
+      // 定期清理 localStorage（每天清理一次）
+      const lastCleanup = localStorage.getItem('chatbot_last_cleanup');
+      const now = Date.now();
+      if (!lastCleanup || now - parseInt(lastCleanup) > 86400000) { // 24小时
+        cleanupLocalStorage();
+        localStorage.setItem('chatbot_last_cleanup', now.toString());
+      }
+    } catch (e) {
+      console.error('Failed to load rate limit state:', e);
+      // localStorage 可能已满，尝试清理
+      try {
+        cleanupLocalStorage();
+      } catch (cleanupError) {
+        console.error('Failed to cleanup localStorage:', cleanupError);
+      }
+    }
+  }
+  
+  function cleanupLocalStorage() {
+    try {
+      // 清理所有超过7天的数据
+      const sevenDaysAgo = Date.now() - 7 * 24 * 3600000;
+      const saved = localStorage.getItem('chatbot_rate_limit');
+      if (saved) {
+        const data = JSON.parse(saved);
+        data.requests = (data.requests || []).filter(time => time > sevenDaysAgo);
+        localStorage.setItem('chatbot_rate_limit', JSON.stringify(data));
+      }
+    } catch (e) {
+      console.error('Cleanup failed:', e);
+    }
+  }
+  
+  function saveRateLimitState() {
+    try {
+      localStorage.setItem('chatbot_rate_limit', JSON.stringify(rateLimitState));
+    } catch (e) {
+      console.error('Failed to save rate limit state:', e);
+    }
+  }
+  
+  function checkRateLimit() {
+    const now = Date.now();
+    
+    // 检查冷却状态
+    if (rateLimitState.isCooldown) {
+      const cooldownRemaining = CONFIG.RATE_LIMIT.COOLDOWN_AFTER_LIMIT - (now - rateLimitState.lastRequestTime);
+      if (cooldownRemaining > 0) {
+        const seconds = Math.ceil(cooldownRemaining / 1000);
+        return { allowed: false, message: `Please wait ${seconds} seconds before sending another message.` };
+      } else {
+        rateLimitState.isCooldown = false;
+      }
+    }
+    
+    // 检查最小间隔
+    if (now - rateLimitState.lastRequestTime < CONFIG.RATE_LIMIT.MIN_INTERVAL) {
+      const waitTime = Math.ceil((CONFIG.RATE_LIMIT.MIN_INTERVAL - (now - rateLimitState.lastRequestTime)) / 1000);
+      return { allowed: false, message: `Please wait ${waitTime} seconds between messages.` };
+    }
+    
+    // 清理过期请求（超过1分钟）
+    const oneMinuteAgo = now - 60000;
+    rateLimitState.requests = rateLimitState.requests.filter(time => time > oneMinuteAgo);
+    
+    // 检查每分钟限制
+    if (rateLimitState.requests.length >= CONFIG.RATE_LIMIT.MAX_PER_MINUTE) {
+      rateLimitState.isCooldown = true;
+      rateLimitState.lastRequestTime = now;
+      saveRateLimitState();
+      return { allowed: false, message: `Too many requests. Please wait 60 seconds.` };
+    }
+    
+    // 检查每小时限制
+    const oneHourAgo = now - 3600000;
+    const hourlyRequests = rateLimitState.requests.filter(time => time > oneHourAgo);
+    if (hourlyRequests.length >= CONFIG.RATE_LIMIT.MAX_PER_HOUR) {
+      rateLimitState.isCooldown = true;
+      rateLimitState.lastRequestTime = now;
+      saveRateLimitState();
+      return { allowed: false, message: `Hourly limit reached. Please try again later.` };
+    }
+    
+    // 通过检查，记录请求
+    rateLimitState.requests.push(now);
+    rateLimitState.lastRequestTime = now;
+    saveRateLimitState();
+    
+    return { allowed: true };
+  }
+  
+  function showRateLimit(message) {
+    rateLimitInfo.textContent = message;
+    rateLimitInfo.style.display = 'block';
+    setTimeout(() => {
+      rateLimitInfo.style.display = 'none';
+    }, 5000);
+  }
+  
+  // ==================== 内容过滤 ====================
+  function checkContentAllowed(message) {
+    const lowerMessage = message.toLowerCase();
+    
+    // 检查黑名单
+    for (const blocked of CONFIG.CONTENT_FILTER.BLOCKED_KEYWORDS) {
+      if (lowerMessage.includes(blocked.toLowerCase())) {
+        return { allowed: false, reason: 'blocked_keyword' };
+      }
+    }
+    
+    // 检查白名单（至少包含一个允许的关键词）
+    const hasAllowedKeyword = CONFIG.CONTENT_FILTER.ALLOWED_KEYWORDS.some(keyword => 
+      lowerMessage.includes(keyword.toLowerCase())
+    );
+    
+    if (!hasAllowedKeyword) {
+      return { allowed: false, reason: 'out_of_scope' };
+    }
+    
+    return { allowed: true };
+  }
+  
+  // ==================== 核心功能 ====================
+  function toggleChatbot() {
+    isOpen = !isOpen;
+    window.classList.toggle('active', isOpen);
+    if (isOpen) {
+      input.focus();
+      scrollToBottom();
+    } else {
+      // 关闭时取消进行中的请求
+      if (currentRequest) {
+        currentRequest.abort();
+        currentRequest = null;
+        isRequestPending = false;
+      }
+    }
+  }
+  
+  // 监听网络状态
+  window.addEventListener('online', () => {
+    if (isOpen) {
+      addMessage('Connection restored. You can continue chatting.', 'bot');
+    }
+  });
+  
+  window.addEventListener('offline', () => {
+    if (isOpen) {
+      addMessage('Connection lost. Please check your network.', 'bot');
+    }
+  });
+  
+  // 页面卸载时取消请求
+  window.addEventListener('beforeunload', () => {
+    if (currentRequest) {
+      currentRequest.abort();
+    }
+  });
+  
+  async function sendMessage() {
+    const message = input.value.trim();
+    if (!message) return;
+    
+    // 防止重复请求
+    if (isRequestPending) {
+      return;
+    }
+    
+    // 输入验证
+    if (message.length > 500) {
+      addMessage('Message is too long. Please keep it under 500 characters.', 'bot');
+      return;
+    }
+    
+    // 检查网络连接
+    if (!navigator.onLine) {
+      addMessage('No internet connection. Please check your network and try again.', 'bot');
+      return;
+    }
+    
+    // 速率限制检查
+    const rateCheck = checkRateLimit();
+    if (!rateCheck.allowed) {
+      showRateLimit(rateCheck.message);
+      addMessage(rateCheck.message, 'bot');
+      return;
+    }
+    
+    // 内容过滤检查
+    const contentCheck = checkContentAllowed(message);
+    if (!contentCheck.allowed) {
+      outOfScopeCount++;
+      addMessage(CONFIG.CONTENT_FILTER.OUT_OF_SCOPE_MESSAGE, 'bot');
+      
+      // 连续3次超出范围，暂停对话
+      if (outOfScopeCount >= 3) {
+        addMessage('You have asked multiple out-of-scope questions. Please focus on topics about Yanda\'s work and research.', 'bot');
+        input.disabled = true;
+        sendBtn.disabled = true;
+        setTimeout(() => {
+          input.disabled = false;
+          sendBtn.disabled = false;
+          outOfScopeCount = 0;
+        }, 60000); // 暂停1分钟
+      }
+      return;
+    }
+    
+    // 重置超出范围计数
+    outOfScopeCount = 0;
+    
+    // 添加用户消息
+    addMessage(message, 'user');
+    input.value = '';
+    input.disabled = true;
+    sendBtn.disabled = true;
+    isRequestPending = true;
+    
+    // 显示打字指示器
+    const typingId = showTyping();
+    
+    try {
+      // 调用 Hugging Face API（带重试机制）
+      const response = await getAIResponseWithRetry(message);
+      
+      // 移除打字指示器
+      removeTyping(typingId);
+      
+      // 后处理验证回答
+      const responseCheck = checkContentAllowed(response);
+      if (!responseCheck.allowed) {
+        addMessage(CONFIG.CONTENT_FILTER.OUT_OF_SCOPE_MESSAGE, 'bot');
+      } else {
+        addMessage(response, 'bot');
+      }
+    } catch (error) {
+      removeTyping(typingId);
+      console.error('Chatbot error:', error);
+      
+      if (error.name === 'AbortError') {
+        addMessage('Request was cancelled.', 'bot');
+      } else if (error.message.includes('timeout')) {
+        addMessage('Request timed out. The service may be busy. Please try again in a moment.', 'bot');
+      } else if (error.message.includes('rate limit') || error.message.includes('429')) {
+        addMessage('The service is temporarily unavailable due to high demand. Please try again in a few moments.', 'bot');
+      } else if (error.message.includes('CORS') || error.message.includes('network')) {
+        addMessage('Network error. Please check your connection and try again.', 'bot');
+      } else {
+        addMessage('Sorry, I encountered an error. Please try again later.', 'bot');
+      }
+    } finally {
+      input.disabled = false;
+      sendBtn.disabled = false;
+      isRequestPending = false;
+      currentRequest = null;
+      input.focus();
+    }
+  }
+  
+  // 带重试机制的 API 调用
+  async function getAIResponseWithRetry(message, retryCount = 0) {
+    try {
+      return await getAIResponse(message);
+    } catch (error) {
+      // 如果是 503 错误（模型加载中），自动重试
+      if (error.message.includes('503') && retryCount < CONFIG.MAX_RETRIES) {
+        const delay = CONFIG.RETRY_DELAY * (retryCount + 1); // 递增延迟
+        addMessage(`Model is loading, please wait ${Math.ceil(delay/1000)} seconds...`, 'bot');
+        await new Promise(resolve => setTimeout(resolve, delay));
+        return getAIResponseWithRetry(message, retryCount + 1);
+      }
+      throw error;
+    }
+  }
+  
+  async function getAIResponse(message) {
+    // 构建对话历史（最近5条）
+    const recentHistory = messageHistory.slice(-5);
+    const conversationText = recentHistory.map(m => 
+      `${m.role === 'user' ? 'User' : 'Assistant'}: ${m.content}`
+    ).join('\n') + `\nUser: ${message}\nAssistant:`;
+    
+    // 构建完整提示词
+    const fullPrompt = `${CONFIG.SYSTEM_CONTEXT}\n\nConversation:\n${conversationText}`;
+    
+    // 准备 API 请求
+    const headers = {
+      'Content-Type': 'application/json'
+    };
+    
+    // 如果配置了 API token，添加认证头
+    // ⚠️ 警告：在生产环境中，API key 应该通过后端代理，不要在前端暴露！
+    if (CONFIG.HF_API_TOKEN) {
+      headers['Authorization'] = `Bearer ${CONFIG.HF_API_TOKEN}`;
+      console.warn('⚠️ API token is exposed in frontend code. Consider using a backend proxy for security.');
+    }
+    
+    const apiUrl = `${CONFIG.HF_API_URL}/${CONFIG.HF_MODEL}`;
+    
+    // 创建 AbortController 用于取消请求
+    const controller = new AbortController();
+    currentRequest = controller;
+    
+    // 创建超时 Promise
+    const timeoutId = setTimeout(() => {
+      controller.abort();
+    }, CONFIG.API_TIMEOUT);
+    
+    try {
+      // 调用 Hugging Face API
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify({
+          inputs: fullPrompt,
+          parameters: {
+            max_length: 200,
+            temperature: 0.7,
+            do_sample: true,
+            return_full_text: false
+          }
+        }),
+        signal: controller.signal
+      });
+      
+      clearTimeout(timeoutId);
+      
+      if (!response.ok) {
+        if (response.status === 429) {
+          throw new Error('Rate limit exceeded');
+        } else if (response.status === 503) {
+          throw new Error('503 - Model is loading');
+        } else if (response.status === 0 || response.status === 'failed') {
+          throw new Error('CORS or network error');
+        }
+        throw new Error(`API request failed: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      
+      // 更健壮的响应解析（处理不同模型格式）
+      let generatedText = '';
+      
+      // 处理数组格式
+      if (Array.isArray(data)) {
+        if (data.length > 0) {
+          const firstItem = data[0];
+          if (typeof firstItem === 'string') {
+            generatedText = firstItem;
+          } else if (firstItem.generated_text) {
+            generatedText = firstItem.generated_text;
+          } else if (firstItem.text) {
+            generatedText = firstItem.text;
+          }
+        }
+      }
+      // 处理对象格式
+      else if (typeof data === 'object') {
+        generatedText = data.generated_text || data.text || data.output || '';
+      }
+      // 处理字符串格式
+      else if (typeof data === 'string') {
+        generatedText = data;
+      }
+      
+      // 清理文本（移除提示词部分）
+      generatedText = generatedText.replace(fullPrompt, '').trim();
+      
+      // 如果没有生成文本，使用备用回复
+      if (!generatedText || generatedText.length < 10) {
+        return getFallbackResponse(message);
+      }
+      
+      return generatedText;
+      
+    } catch (error) {
+      clearTimeout(timeoutId);
+      if (error.name === 'AbortError') {
+        throw new Error('timeout');
+      }
+      throw error;
+    }
+  }
+  
+  function getFallbackResponse(message) {
+    const lowerMessage = message.toLowerCase();
+    
+    // 基于关键词的简单回复
+    if (lowerMessage.includes('iot') || lowerMessage.includes('sensor')) {
+      return 'Yanda specializes in IoT sensor development and hardware engineering at HydroTech, building end-to-end sensor systems from hardware prototyping to AWS cloud infrastructure deployment.';
+    }
+    
+    if (lowerMessage.includes('aws') || lowerMessage.includes('cloud')) {
+      return 'Yanda has extensive experience with AWS cloud infrastructure, building scalable data pipelines and ML systems for real-time sensor data processing and analytics.';
+    }
+    
+    if (lowerMessage.includes('ml') || lowerMessage.includes('machine learning') || lowerMessage.includes('deep learning')) {
+      return 'Yanda applies machine learning to solve sensor data problems, including time-series analysis, anomaly detection, and predictive modeling for industrial IoT applications.';
+    }
+    
+    if (lowerMessage.includes('research') || lowerMessage.includes('phd') || lowerMessage.includes('ph.d')) {
+      return 'Yanda\'s research focuses on AI infrastructure for photoacoustic imaging and LLM-based clinical applications at the University at Buffalo.';
+    }
+    
+    if (lowerMessage.includes('experience') || lowerMessage.includes('work') || lowerMessage.includes('hydrotech')) {
+      return 'Yanda has 8 years of experience at HydroTech as a Senior Engineer and Team Manager, specializing in IoT sensor development, hardware engineering, and AWS cloud-based data analytics.';
+    }
+    
+    return 'I can help you learn about Yanda\'s work in IoT, AWS, ML, sensor development, and research. What specific aspect would you like to know more about?';
+  }
+  
+  // ==================== UI 辅助函数 ====================
+  function addMessage(text, type) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `chatbot-message chatbot-message-${type}`;
+    
+    const avatar = document.createElement('div');
+    avatar.className = 'chatbot-avatar';
+    avatar.textContent = type === 'user' ? '👤' : '🤖';
+    
+    const textDiv = document.createElement('div');
+    textDiv.className = 'chatbot-text';
+    textDiv.innerHTML = formatMessage(text);
+    
+    messageDiv.appendChild(avatar);
+    messageDiv.appendChild(textDiv);
+    messagesContainer.appendChild(messageDiv);
+    
+    // 更新历史
+    messageHistory.push({ role: type, content: text });
+    
+    scrollToBottom();
+  }
+  
+  function formatMessage(text) {
+    // 转义 HTML
+    text = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    
+    // 转换换行
+    text = text.replace(/\n/g, '<br>');
+    
+    // 转换 **粗体**
+    text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    
+    // 转换 `代码`
+    text = text.replace(/`([^`]+)`/g, '<code>$1</code>');
+    
+    // 转换 URL
+    text = text.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
+    
+    return `<p>${text}</p>`;
+  }
+  
+  function showTyping() {
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'chatbot-message chatbot-message-bot';
+    typingDiv.id = 'typing-indicator';
+    
+    const avatar = document.createElement('div');
+    avatar.className = 'chatbot-avatar';
+    avatar.textContent = '🤖';
+    
+    const typing = document.createElement('div');
+    typing.className = 'chatbot-typing';
+    typing.innerHTML = '<span></span><span></span><span></span>';
+    
+    typingDiv.appendChild(avatar);
+    typingDiv.appendChild(typing);
+    messagesContainer.appendChild(typingDiv);
+    
+    scrollToBottom();
+    return 'typing-indicator';
+  }
+  
+  function removeTyping(id) {
+    const typing = document.getElementById(id);
+    if (typing) {
+      typing.remove();
+    }
+  }
+  
+  function scrollToBottom() {
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
+  
+  // ==================== 初始化 ====================
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>

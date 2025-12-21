@@ -108,5 +108,15 @@
 </script>
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
+  <!-- 🤖 AI Chatbot Widget -->
+  <script>
+    fetch('chatbot/chatbot.html')
+      .then(res => res.text())
+      .then(html => {
+        document.body.insertAdjacentHTML('beforeend', html);
+      })
+      .catch(err => console.error('Failed to load chatbot:', err));
+  </script>
+
 </body>
 </html>
