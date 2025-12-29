@@ -100,58 +100,58 @@
       <p style="color: #888; font-size: 0.9em;">AI · Medical AI · LLM · SGLang · Production Systems</p>
       <h1><span data-i18n="article.llm_hospital_rad_linter.title">使用SGLang构建Rad-Linter：医院端跨模态质控系统的生产实践</span><br><span style="font-weight: normal; font-size: 0.9em;" data-i18n="article.llm_hospital_rad_linter.subtitle">Building Rad-Linter with SGLang: Production Experience of Cross-Modal Quality Control in Hospital Settings</span></h1>
 
-      <p style="font-size: 1.1em; color: #555; margin: 20px 0;">
+      <p style="font-size: 1.1em; color: #555; margin: 20px 0;" data-i18n="article.llm_hospital_rad_linter.intro">
         最近在医院端部署了一个基于SGLang的放射科报告质控系统（Rad-Linter）。这是一个<strong>内网部署、强合规约束</strong>的真实生产场景，
         与常见的"报告生成"任务不同，我们做的是<strong>跨模态事实核查（cross-modal fact-checking）</strong>。
         本文将分享技术选型、生产挑战，以及SGLang在医疗场景下的实践心得。
       </p>
 
-      <h2>🎯 Rad-Linter的定位：不是报告生成，而是质控审计</h2>
+      <h2 data-i18n="article.llm_hospital_rad_linter.section1.title">🎯 Rad-Linter的定位：不是报告生成，而是质控审计</h2>
       
-      <p>
+      <p data-i18n="article.llm_hospital_rad_linter.section1.para1">
         在讨论技术细节之前，需要先明确<strong>Rad-Linter与报告生成任务的根本区别</strong>：
       </p>
 
       <div class="tech-highlight">
-        <p><strong>Rad-Linter的核心定位：</strong></p>
-        <p>
+        <p><strong data-i18n="article.llm_hospital_rad_linter.section1.highlight.title">Rad-Linter的核心定位：</strong></p>
+        <p data-i18n="article.llm_hospital_rad_linter.section1.highlight.para1">
           给定一份<strong>已写好的radiology report</strong> + 一组从影像侧提取的<strong>视觉证据（visual_facts，病种概率/提示）</strong>，
           让模型输出<strong>QA结论</strong>（是否错误/错误类型/证据解释）。
         </p>
-        <p style="margin-top: 10px; font-style: italic;">
+        <p style="margin-top: 10px; font-style: italic;" data-i18n="article.llm_hospital_rad_linter.section1.highlight.para2">
           <strong>关键点：</strong>我们不生成报告，我们审计既有报告。输出是错误判定+分型+证据，而不是生成一段Findings/Impression。
         </p>
       </div>
 
-      <h3>临床工作流中的位置</h3>
-      <p>
+      <h3 data-i18n="article.llm_hospital_rad_linter.section1.subsection1.title">临床工作流中的位置</h3>
+      <p data-i18n="article.llm_hospital_rad_linter.section1.subsection1.para1">
         在临床工作流中，<strong>Radiology Report</strong>和<strong>Medical Note</strong>是两种不同的文档：
       </p>
       <ul>
-        <li><strong>Radiology Report</strong>：由放射科医生撰写，专门描述医学影像的发现、诊断意见，是专业影像解读</li>
-        <li><strong>Medical Note</strong>：更广泛的临床文档，包含病史、检查结果、诊断、治疗计划等，是完整的患者记录</li>
-        <li><strong>生成关系</strong>：Radiology Report通常作为Medical Note的一部分，提供影像学专业见解</li>
+        <li data-i18n="article.llm_hospital_rad_linter.section1.subsection1.li1"><strong>Radiology Report</strong>：由放射科医生撰写，专门描述医学影像的发现、诊断意见，是专业影像解读</li>
+        <li data-i18n="article.llm_hospital_rad_linter.section1.subsection1.li2"><strong>Medical Note</strong>：更广泛的临床文档，包含病史、检查结果、诊断、治疗计划等，是完整的患者记录</li>
+        <li data-i18n="article.llm_hospital_rad_linter.section1.subsection1.li3"><strong>生成关系</strong>：Radiology Report通常作为Medical Note的一部分，提供影像学专业见解</li>
       </ul>
 
-      <p>
+      <p data-i18n="article.llm_hospital_rad_linter.section1.subsection1.para2">
         目前LLM在临床工作流中的研究主要集中在：
       </p>
       <ul>
-        <li><strong>报告生成</strong>：从影像→生成完整报告（R2Gen、TRRG、RadAlign等）</li>
-        <li><strong>临床文档生成</strong>：自动生成和总结医疗记录</li>
-        <li><strong>临床决策支持</strong>：辅助分诊、转诊和诊断预测</li>
-        <li><strong>医学视觉问答</strong>：基于视觉和语言的问答系统</li>
+        <li data-i18n="article.llm_hospital_rad_linter.section1.subsection1.li4"><strong>报告生成</strong>：从影像→生成完整报告（R2Gen、TRRG、RadAlign等）</li>
+        <li data-i18n="article.llm_hospital_rad_linter.section1.subsection1.li5"><strong>临床文档生成</strong>：自动生成和总结医疗记录</li>
+        <li data-i18n="article.llm_hospital_rad_linter.section1.subsection1.li6"><strong>临床决策支持</strong>：辅助分诊、转诊和诊断预测</li>
+        <li data-i18n="article.llm_hospital_rad_linter.section1.subsection1.li7"><strong>医学视觉问答</strong>：基于视觉和语言的问答系统</li>
       </ul>
 
-      <p>
+      <p data-i18n="article.llm_hospital_rad_linter.section1.subsection1.para3">
         <strong>Rad-Linter填补的空白</strong>：在报告生成之后，需要一个独立的<strong>质控环节</strong>。
         就像代码需要linter检查一样，医疗报告也需要"第二读者"来发现遗漏、矛盾和不一致。
         这个需求是<strong>独立存在的</strong>——即使不使用自动生成，医生手写的报告同样需要QA。
       </p>
 
-      <h2>📹 项目演示视频</h2>
+      <h2 data-i18n="article.llm_hospital_rad_linter.section2.title">📹 项目演示视频</h2>
       
-      <p>以下是Rad-Linter系统的演示视频，展示了跨模态事实核查的工作流程：</p>
+      <p data-i18n="article.llm_hospital_rad_linter.section2.para1">以下是Rad-Linter系统的演示视频，展示了跨模态事实核查的工作流程：</p>
       
       <!-- 视频嵌入区域 - 可以替换为实际的Bilibili或YouTube链接 -->
       <!-- 
@@ -184,15 +184,15 @@
       <p class="video-caption">Rad-Linter系统演示视频（YouTube）</p>
       -->
       
-      <p style="color: #888; font-style: italic;">
+      <p style="color: #888; font-style: italic;" data-i18n="article.llm_hospital_rad_linter.section2.para2">
         💡 <strong>提示</strong>：如需嵌入视频，请取消注释上面的代码块，并将VIDEO_ID替换为实际的视频ID。
         <br>Bilibili视频ID格式：BV1xx411c7mu（从视频URL中获取）
         <br>YouTube视频ID格式：dQw4w9WgXcQ（从视频URL中获取）
       </p>
 
-      <h2>🏗️ 技术架构：为什么选择SGLang作为中间层？</h2>
+      <h2 data-i18n="article.llm_hospital_rad_linter.section3.title">🏗️ 技术架构：为什么选择SGLang作为中间层？</h2>
 
-      <h3>1. 系统架构概览</h3>
+      <h3 data-i18n="article.llm_hospital_rad_linter.section3.subsection1.title">1. 系统架构概览</h3>
       <pre style="background: #f5f5f5; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>┌─────────────────────┐
 │  医院HIS系统          │
 │  (Radiology Report)  │
@@ -225,30 +225,30 @@
 │   Evidence)         │
 └─────────────────────┘</code></pre>
 
-      <h3>2. 为什么选择SGLang？</h3>
+      <h3 data-i18n="article.llm_hospital_rad_linter.section3.subsection2.title">2. 为什么选择SGLang？</h3>
       
-      <p>
+      <p data-i18n="article.llm_hospital_rad_linter.section3.subsection2.para1">
         在医疗场景下，我们面临几个关键约束：
       </p>
       <ul>
-        <li><strong>并发量不大</strong>：医院内网环境，请求量相对可控</li>
-        <li><strong>可观测性要求极高</strong>：医学需要精准和可解释性，每一步都要可审计</li>
-        <li><strong>本地计算性能优化</strong>：内网部署，不能依赖云端API</li>
-        <li><strong>结构化输出</strong>：需要严格的JSON Schema输出（错误类型、证据定位）</li>
+        <li data-i18n="article.llm_hospital_rad_linter.section3.subsection2.li1"><strong>并发量不大</strong>：医院内网环境，请求量相对可控</li>
+        <li data-i18n="article.llm_hospital_rad_linter.section3.subsection2.li2"><strong>可观测性要求极高</strong>：医学需要精准和可解释性，每一步都要可审计</li>
+        <li data-i18n="article.llm_hospital_rad_linter.section3.subsection2.li3"><strong>本地计算性能优化</strong>：内网部署，不能依赖云端API</li>
+        <li data-i18n="article.llm_hospital_rad_linter.section3.subsection2.li4"><strong>结构化输出</strong>：需要严格的JSON Schema输出（错误类型、证据定位）</li>
       </ul>
 
-      <p>
+      <p data-i18n="article.llm_hospital_rad_linter.section3.subsection2.para2">
         <strong>SGLang的优势</strong>：
       </p>
       <ul>
-        <li><strong>本地部署友好</strong>：支持on-prem部署，满足医疗数据隐私要求</li>
-        <li><strong>结构化输出原生支持</strong>：JSON Schema约束，确保输出格式严格符合要求</li>
-        <li><strong>性能优化</strong>：RadixAttention、连续批处理等特性，在低并发场景下也能充分利用GPU</li>
-        <li><strong>可观测性</strong>：支持详细的metrics和tracing，便于审计和调试</li>
-        <li><strong>低延迟</strong>：对于医疗场景的实时反馈需求，SGLang的优化效果显著</li>
+        <li data-i18n="article.llm_hospital_rad_linter.section3.subsection2.li5"><strong>本地部署友好</strong>：支持on-prem部署，满足医疗数据隐私要求</li>
+        <li data-i18n="article.llm_hospital_rad_linter.section3.subsection2.li6"><strong>结构化输出原生支持</strong>：JSON Schema约束，确保输出格式严格符合要求</li>
+        <li data-i18n="article.llm_hospital_rad_linter.section3.subsection2.li7"><strong>性能优化</strong>：RadixAttention、连续批处理等特性，在低并发场景下也能充分利用GPU</li>
+        <li data-i18n="article.llm_hospital_rad_linter.section3.subsection2.li8"><strong>可观测性</strong>：支持详细的metrics和tracing，便于审计和调试</li>
+        <li data-i18n="article.llm_hospital_rad_linter.section3.subsection2.li9"><strong>低延迟</strong>：对于医疗场景的实时反馈需求，SGLang的优化效果显著</li>
       </ul>
 
-      <h3>3. 与报告生成任务的对比</h3>
+      <h3 data-i18n="article.llm_hospital_rad_linter.section3.subsection3.title">3. 与报告生成任务的对比</h3>
       
       <table class="comparison-table">
         <thead>
@@ -287,23 +287,23 @@
         </tbody>
       </table>
 
-      <h2>💻 生产挑战与SGLang实践</h2>
+      <h2 data-i18n="article.llm_hospital_rad_linter.section4.title">💻 生产挑战与SGLang实践</h2>
 
-      <h3>挑战1：可观测性（Observability）</h3>
-      <p>
+      <h3 data-i18n="article.llm_hospital_rad_linter.section4.subsection1.title">挑战1：可观测性（Observability）</h3>
+      <p data-i18n="article.llm_hospital_rad_linter.section4.subsection1.para1">
         <strong>医疗场景的特殊性</strong>：医学需要精准和可解释性。每一步决策都要可审计、可追溯。
       </p>
       
-      <p><strong>我们的解决方案：</strong></p>
+      <p data-i18n="article.llm_hospital_rad_linter.section4.subsection1.para2"><strong>我们的解决方案：</strong></p>
       <ul>
-        <li><strong>结构化输出追踪</strong>：SGLang的JSON Schema输出让我们能够精确追踪每个字段的来源</li>
-        <li><strong>证据链记录</strong>：记录visual_facts的输入、LLM的推理过程、最终QA判定</li>
-        <li><strong>Metrics收集</strong>：TTFT、tokens/s、queue time、batch size、KV cache使用情况</li>
-        <li><strong>错误分类统计</strong>：按错误类型（omission/contradiction/laterality等）统计，便于持续优化</li>
+        <li data-i18n="article.llm_hospital_rad_linter.section4.subsection1.li1"><strong>结构化输出追踪</strong>：SGLang的JSON Schema输出让我们能够精确追踪每个字段的来源</li>
+        <li data-i18n="article.llm_hospital_rad_linter.section4.subsection1.li2"><strong>证据链记录</strong>：记录visual_facts的输入、LLM的推理过程、最终QA判定</li>
+        <li data-i18n="article.llm_hospital_rad_linter.section4.subsection1.li3"><strong>Metrics收集</strong>：TTFT、tokens/s、queue time、batch size、KV cache使用情况</li>
+        <li data-i18n="article.llm_hospital_rad_linter.section4.subsection1.li4"><strong>错误分类统计</strong>：按错误类型（omission/contradiction/laterality等）统计，便于持续优化</li>
       </ul>
 
       <div class="tech-highlight">
-        <p><strong>可观测性最佳实践：</strong></p>
+        <p><strong data-i18n="article.llm_hospital_rad_linter.section4.subsection1.highlight.title">可观测性最佳实践：</strong></p>
         <pre style="background: #fff; padding: 10px; border-radius: 4px; overflow-x: auto;"><code># 示例：SGLang结构化输出 + 证据追踪
 {
   "error_detected": true,
@@ -318,31 +318,31 @@
 }</code></pre>
       </div>
 
-      <h3>挑战2：本地计算性能优化</h3>
-      <p>
+      <h3 data-i18n="article.llm_hospital_rad_linter.section4.subsection2.title">挑战2：本地计算性能优化</h3>
+      <p data-i18n="article.llm_hospital_rad_linter.section4.subsection2.para1">
         内网部署意味着不能依赖云端API，必须在本地GPU上高效运行。
       </p>
 
-      <p><strong>SGLang的性能优势：</strong></p>
+      <p data-i18n="article.llm_hospital_rad_linter.section4.subsection2.para2"><strong>SGLang的性能优势：</strong></p>
       <ul>
-        <li><strong>RadixAttention</strong>：对于相似的prompt结构（我们的QA任务有固定模板），缓存效果显著</li>
-        <li><strong>连续批处理</strong>：即使并发量不大，也能充分利用GPU资源</li>
-        <li><strong>KV Cache优化</strong>：减少重复计算，降低延迟</li>
-        <li><strong>结构化输出优化</strong>：相比后处理JSON解析，原生支持减少了开销</li>
+        <li data-i18n="article.llm_hospital_rad_linter.section4.subsection2.li1"><strong>RadixAttention</strong>：对于相似的prompt结构（我们的QA任务有固定模板），缓存效果显著</li>
+        <li data-i18n="article.llm_hospital_rad_linter.section4.subsection2.li2"><strong>连续批处理</strong>：即使并发量不大，也能充分利用GPU资源</li>
+        <li data-i18n="article.llm_hospital_rad_linter.section4.subsection2.li3"><strong>KV Cache优化</strong>：减少重复计算，降低延迟</li>
+        <li data-i18n="article.llm_hospital_rad_linter.section4.subsection2.li4"><strong>结构化输出优化</strong>：相比后处理JSON解析，原生支持减少了开销</li>
       </ul>
 
-      <h3>挑战3：错误类型分类与证据定位</h3>
-      <p>
+      <h3 data-i18n="article.llm_hospital_rad_linter.section4.subsection3.title">挑战3：错误类型分类与证据定位</h3>
+      <p data-i18n="article.llm_hospital_rad_linter.section4.subsection3.para1">
         与纯文本proofreading不同，Rad-Linter需要处理<strong>跨模态不一致</strong>：
       </p>
       <ul>
-        <li><strong>Omission（遗漏）</strong>：影像显示异常，但报告中未提及</li>
-        <li><strong>Contradiction（矛盾）</strong>：报告描述与视觉证据不一致</li>
-        <li><strong>Laterality（侧别错误）</strong>：左右侧描述错误</li>
-        <li><strong>Severity mismatch（严重程度不匹配）</strong>：报告中的严重程度与影像证据不符</li>
+        <li data-i18n="article.llm_hospital_rad_linter.section4.subsection3.li1"><strong>Omission（遗漏）</strong>：影像显示异常，但报告中未提及</li>
+        <li data-i18n="article.llm_hospital_rad_linter.section4.subsection3.li2"><strong>Contradiction（矛盾）</strong>：报告描述与视觉证据不一致</li>
+        <li data-i18n="article.llm_hospital_rad_linter.section4.subsection3.li3"><strong>Laterality（侧别错误）</strong>：左右侧描述错误</li>
+        <li data-i18n="article.llm_hospital_rad_linter.section4.subsection3.li4"><strong>Severity mismatch（严重程度不匹配）</strong>：报告中的严重程度与影像证据不符</li>
       </ul>
 
-      <p>
+      <p data-i18n="article.llm_hospital_rad_linter.section4.subsection3.para2">
         SGLang的结构化输出让我们能够<strong>精确控制</strong>错误类型的分类和证据的定位，
         这对于医疗场景的<strong>可解释性</strong>至关重要。
       </p>
