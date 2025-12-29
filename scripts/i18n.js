@@ -30,7 +30,7 @@ const translations = {
     'home.footer.copyright': '© Yanda Cheng',
     
     // 博客
-    'blog.title': "Yanda's Blog",
+    'blog.title': 'Yanda的博客',
     'blog.subtitle': '按分类浏览所有博文',
     'blog.timeline': '按时间排序',
     'blog.footer.copyright': 'Blog © Yanda Cheng',
