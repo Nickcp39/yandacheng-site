@@ -41,46 +41,46 @@
       <p style="color: #888; font-size: 0.9em;">AI · LLM Inference · Production Systems</p>
       <h1><span data-i18n="article.sglang_llm_agent.title">Building LLM Agent ID Scanner with SGLang: A Deep Dive</span><br><span style="font-weight: normal; font-size: 0.9em;" data-i18n="article.sglang_llm_agent.subtitle">使用 SGLang 构建 LLM Agent 身份证扫描系统</span></h1>
 
-      <p style="font-size: 1.1em; color: #555; margin: 20px 0;">
+      <p style="font-size: 1.1em; color: #555; margin: 20px 0;" data-i18n="article.sglang_llm_agent.intro">
         In this article, I'll share my experience building an LLM Agent ID Scanner powered by <strong>SGLang inference server</strong> in just 3 days. 
         We'll explore why SGLang was the game-changer, dive into its technical architecture, and discuss real-world production considerations.
       </p>
 
-      <h2>🎯 Why SGLang? The Problem with Traditional LLM Inference</h2>
+      <h2 data-i18n="article.sglang_llm_agent.section1.title">🎯 Why SGLang? The Problem with Traditional LLM Inference</h2>
       
-      <p>When building a document processing system, we faced several critical challenges:</p>
+      <p data-i18n="article.sglang_llm_agent.section1.para1">When building a document processing system, we faced several critical challenges:</p>
       <ul>
-        <li><strong>Structured Output Requirements</strong>: We needed reliable JSON schema extraction from passport/driver's license images</li>
-        <li><strong>Low Latency</strong>: Real-time processing for user-facing applications</li>
-        <li><strong>High Throughput</strong>: Batch processing capabilities for production workloads</li>
-        <li><strong>Cost Efficiency</strong>: Optimize GPU utilization and reduce inference costs</li>
+        <li data-i18n="article.sglang_llm_agent.section1.li1"><strong>Structured Output Requirements</strong>: We needed reliable JSON schema extraction from passport/driver's license images</li>
+        <li data-i18n="article.sglang_llm_agent.section1.li2"><strong>Low Latency</strong>: Real-time processing for user-facing applications</li>
+        <li data-i18n="article.sglang_llm_agent.section1.li3"><strong>High Throughput</strong>: Batch processing capabilities for production workloads</li>
+        <li data-i18n="article.sglang_llm_agent.section1.li4"><strong>Cost Efficiency</strong>: Optimize GPU utilization and reduce inference costs</li>
       </ul>
 
-      <p>Traditional LLM inference frameworks often struggle with:</p>
+      <p data-i18n="article.sglang_llm_agent.section1.para2">Traditional LLM inference frameworks often struggle with:</p>
       <ul>
-        <li>High latency overhead for structured outputs (JSON parsing, validation)</li>
-        <li>Inefficient batching that wastes GPU resources</li>
-        <li>Limited support for schema-first design patterns</li>
-        <li>Complex deployment pipelines</li>
+        <li data-i18n="article.sglang_llm_agent.section1.li5">High latency overhead for structured outputs (JSON parsing, validation)</li>
+        <li data-i18n="article.sglang_llm_agent.section1.li6">Inefficient batching that wastes GPU resources</li>
+        <li data-i18n="article.sglang_llm_agent.section1.li7">Limited support for schema-first design patterns</li>
+        <li data-i18n="article.sglang_llm_agent.section1.li8">Complex deployment pipelines</li>
       </ul>
 
-      <p><strong>SGLang</strong> addresses these pain points through its high-performance runtime and native structured output support.</p>
+      <p data-i18n="article.sglang_llm_agent.section1.para3"><strong>SGLang</strong> addresses these pain points through its high-performance runtime and native structured output support.</p>
 
-      <h2>⚡ SGLang's Core Technologies</h2>
+      <h2 data-i18n="article.sglang_llm_agent.section2.title">⚡ SGLang's Core Technologies</h2>
 
-      <h3>1. RadixAttention: The Memory Efficiency Game-Changer</h3>
-      <p>
+      <h3 data-i18n="article.sglang_llm_agent.section2.subsection1.title">1. RadixAttention: The Memory Efficiency Game-Changer</h3>
+      <p data-i18n="article.sglang_llm_agent.section2.subsection1.para1">
         SGLang's <strong>RadixAttention</strong> mechanism uses a radix tree to cache common prompt prefixes, dramatically reducing memory usage and improving throughput. 
         For our ID scanner use case with similar prompt structures, this meant:
       </p>
       <ul>
-        <li>Reduced memory footprint per request</li>
-        <li>Faster inference for batch processing</li>
-        <li>Better GPU utilization</li>
+        <li data-i18n="article.sglang_llm_agent.section2.subsection1.li1">Reduced memory footprint per request</li>
+        <li data-i18n="article.sglang_llm_agent.section2.subsection1.li2">Faster inference for batch processing</li>
+        <li data-i18n="article.sglang_llm_agent.section2.subsection1.li3">Better GPU utilization</li>
       </ul>
 
-      <h3>2. Native Structured Output Support</h3>
-      <p>
+      <h3 data-i18n="article.sglang_llm_agent.section2.subsection2.title">2. Native Structured Output Support</h3>
+      <p data-i18n="article.sglang_llm_agent.section2.subsection2.para1">
         Unlike frameworks that require post-processing JSON parsing, SGLang provides <strong>native JSON schema support</strong>. 
         This was crucial for our schema-first design:
       </p>
@@ -94,24 +94,24 @@
   },
   "required": ["document_type", "name"]
 }</code></pre>
-      <p>
+      <p data-i18n="article.sglang_llm_agent.section2.subsection2.para2">
         SGLang ensures the model output strictly adheres to this schema, eliminating parsing errors and validation overhead.
       </p>
 
-      <h3>3. Continuous Batching & Zero-Overhead Scheduling</h3>
-      <p>
+      <h3 data-i18n="article.sglang_llm_agent.section2.subsection3.title">3. Continuous Batching & Zero-Overhead Scheduling</h3>
+      <p data-i18n="article.sglang_llm_agent.section2.subsection3.para1">
         SGLang's continuous batching allows dynamic request queuing without waiting for entire batches to complete. 
         Combined with zero-overhead CPU scheduling, this enables:
       </p>
       <ul>
-        <li>Higher GPU utilization (often 2-3x improvement)</li>
-        <li>Lower latency for individual requests</li>
-        <li>Better handling of variable-length inputs</li>
+        <li data-i18n="article.sglang_llm_agent.section2.subsection3.li1">Higher GPU utilization (often 2-3x improvement)</li>
+        <li data-i18n="article.sglang_llm_agent.section2.subsection3.li2">Lower latency for individual requests</li>
+        <li data-i18n="article.sglang_llm_agent.section2.subsection3.li3">Better handling of variable-length inputs</li>
       </ul>
 
-      <h2>🏗️ Architecture: SGLang + Fireworks AI + Llama 3.2 Vision</h2>
+      <h2 data-i18n="article.sglang_llm_agent.section3.title">🏗️ Architecture: SGLang + Fireworks AI + Llama 3.2 Vision</h2>
 
-      <p>Our LLM Agent ID Scanner architecture:</p>
+      <p data-i18n="article.sglang_llm_agent.section3.para1">Our LLM Agent ID Scanner architecture:</p>
       <pre style="background: #f5f5f5; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>┌─────────────────┐
 │  Client Request │
 └────────┬────────┘
@@ -135,17 +135,17 @@
 │   Risk Scoring) │
 └─────────────────┘</code></pre>
 
-      <h3>Key Design Decisions</h3>
+      <h3 data-i18n="article.sglang_llm_agent.section3.subsection1.title">Key Design Decisions</h3>
       <ul>
-        <li><strong>Schema-First Design</strong>: Define JSON schema upfront, ensuring auditability and type safety</li>
-        <li><strong>Confidence-Based Routing</strong>: Low-confidence outputs route to human review</li>
-        <li><strong>Multi-Mode Deployment</strong>: Support serverless, on-demand, and batch processing</li>
-        <li><strong>Error Handling</strong>: Comprehensive corner case handling (blur, glare, rotation, low resolution)</li>
+        <li data-i18n="article.sglang_llm_agent.section3.subsection1.li1"><strong>Schema-First Design</strong>: Define JSON schema upfront, ensuring auditability and type safety</li>
+        <li data-i18n="article.sglang_llm_agent.section3.subsection1.li2"><strong>Confidence-Based Routing</strong>: Low-confidence outputs route to human review</li>
+        <li data-i18n="article.sglang_llm_agent.section3.subsection1.li3"><strong>Multi-Mode Deployment</strong>: Support serverless, on-demand, and batch processing</li>
+        <li data-i18n="article.sglang_llm_agent.section3.subsection1.li4"><strong>Error Handling</strong>: Comprehensive corner case handling (blur, glare, rotation, low resolution)</li>
       </ul>
 
-      <h2>💻 Implementation Highlights</h2>
+      <h2 data-i18n="article.sglang_llm_agent.section4.title">💻 Implementation Highlights</h2>
 
-      <h3>Connecting to SGLang Server</h3>
+      <h3 data-i18n="article.sglang_llm_agent.section4.subsection1.title">Connecting to SGLang Server</h3>
       <pre style="background: #f5f5f5; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>import sglang as sgl
 
 # Initialize SGLang runtime
@@ -190,50 +190,50 @@ def process_id_document(image_base64, schema):
         response_format={"type": "json_object", "schema": schema}
     )</code></pre>
 
-      <h3>Production Considerations</h3>
+      <h3 data-i18n="article.sglang_llm_agent.section4.subsection2.title">Production Considerations</h3>
       <ul>
-        <li><strong>Error Handling</strong>: Graceful degradation for low-quality images</li>
-        <li><strong>Rate Limiting</strong>: Prevent API abuse</li>
-        <li><strong>Monitoring</strong>: Track latency, throughput, and error rates</li>
-        <li><strong>Cost Optimization</strong>: Batch processing for non-real-time workloads</li>
+        <li data-i18n="article.sglang_llm_agent.section4.subsection2.li1"><strong>Error Handling</strong>: Graceful degradation for low-quality images</li>
+        <li data-i18n="article.sglang_llm_agent.section4.subsection2.li2"><strong>Rate Limiting</strong>: Prevent API abuse</li>
+        <li data-i18n="article.sglang_llm_agent.section4.subsection2.li3"><strong>Monitoring</strong>: Track latency, throughput, and error rates</li>
+        <li data-i18n="article.sglang_llm_agent.section4.subsection2.li4"><strong>Cost Optimization</strong>: Batch processing for non-real-time workloads</li>
       </ul>
 
-      <h2>📊 Performance Results</h2>
+      <h2 data-i18n="article.sglang_llm_agent.section5.title">📊 Performance Results</h2>
 
-      <p>Our implementation achieved:</p>
+      <p data-i18n="article.sglang_llm_agent.section5.para1">Our implementation achieved:</p>
       <ul>
-        <li><strong>Latency</strong>: ~200-300ms per document (including image preprocessing)</li>
-        <li><strong>Throughput</strong>: 50+ documents/second with batch processing</li>
-        <li><strong>Accuracy</strong>: 95%+ structured output compliance (no parsing errors)</li>
-        <li><strong>GPU Utilization</strong>: 70-80% (vs. 30-40% with standard inference)</li>
+        <li data-i18n="article.sglang_llm_agent.section5.li1"><strong>Latency</strong>: ~200-300ms per document (including image preprocessing)</li>
+        <li data-i18n="article.sglang_llm_agent.section5.li2"><strong>Throughput</strong>: 50+ documents/second with batch processing</li>
+        <li data-i18n="article.sglang_llm_agent.section5.li3"><strong>Accuracy</strong>: 95%+ structured output compliance (no parsing errors)</li>
+        <li data-i18n="article.sglang_llm_agent.section5.li4"><strong>GPU Utilization</strong>: 70-80% (vs. 30-40% with standard inference)</li>
       </ul>
 
-      <p><strong>Key Insight</strong>: SGLang's structured output support eliminated all JSON parsing errors, which was a major pain point with traditional approaches.</p>
+      <p data-i18n="article.sglang_llm_agent.section5.para2"><strong>Key Insight</strong>: SGLang's structured output support eliminated all JSON parsing errors, which was a major pain point with traditional approaches.</p>
 
-      <h2>🎓 Lessons Learned & Best Practices</h2>
+      <h2 data-i18n="article.sglang_llm_agent.section6.title">🎓 Lessons Learned & Best Practices</h2>
 
-      <h3>When to Use SGLang</h3>
+      <h3 data-i18n="article.sglang_llm_agent.section6.subsection1.title">When to Use SGLang</h3>
       <ul>
-        <li>✅ Production LLM applications requiring structured outputs</li>
-        <li>✅ High-throughput batch processing workloads</li>
-        <li>✅ Applications with similar prompt patterns (benefits from RadixAttention)</li>
-        <li>✅ Cost-sensitive deployments (better GPU utilization)</li>
+        <li data-i18n="article.sglang_llm_agent.section6.subsection1.li1">✅ Production LLM applications requiring structured outputs</li>
+        <li data-i18n="article.sglang_llm_agent.section6.subsection1.li2">✅ High-throughput batch processing workloads</li>
+        <li data-i18n="article.sglang_llm_agent.section6.subsection1.li3">✅ Applications with similar prompt patterns (benefits from RadixAttention)</li>
+        <li data-i18n="article.sglang_llm_agent.section6.subsection1.li4">✅ Cost-sensitive deployments (better GPU utilization)</li>
       </ul>
 
-      <h3>Deployment Recommendations</h3>
+      <h3 data-i18n="article.sglang_llm_agent.section6.subsection2.title">Deployment Recommendations</h3>
       <ul>
-        <li>Start with a single GPU instance, scale horizontally as needed</li>
-        <li>Use continuous batching for mixed real-time and batch workloads</li>
-        <li>Monitor memory usage carefully—RadixAttention helps but still requires tuning</li>
-        <li>Implement proper error handling and fallback mechanisms</li>
+        <li data-i18n="article.sglang_llm_agent.section6.subsection2.li1">Start with a single GPU instance, scale horizontally as needed</li>
+        <li data-i18n="article.sglang_llm_agent.section6.subsection2.li2">Use continuous batching for mixed real-time and batch workloads</li>
+        <li data-i18n="article.sglang_llm_agent.section6.subsection2.li3">Monitor memory usage carefully—RadixAttention helps but still requires tuning</li>
+        <li data-i18n="article.sglang_llm_agent.section6.subsection2.li4">Implement proper error handling and fallback mechanisms</li>
       </ul>
 
-      <h3>Common Pitfalls</h3>
+      <h3 data-i18n="article.sglang_llm_agent.section6.subsection3.title">Common Pitfalls</h3>
       <ul>
-        <li>❌ Over-optimizing schema before understanding actual use cases</li>
-        <li>❌ Ignoring corner cases in document quality</li>
-        <li>❌ Not implementing proper confidence thresholds</li>
-        <li>❌ Skipping human-in-the-loop for critical decisions</li>
+        <li data-i18n="article.sglang_llm_agent.section6.subsection3.li1">❌ Over-optimizing schema before understanding actual use cases</li>
+        <li data-i18n="article.sglang_llm_agent.section6.subsection3.li2">❌ Ignoring corner cases in document quality</li>
+        <li data-i18n="article.sglang_llm_agent.section6.subsection3.li3">❌ Not implementing proper confidence thresholds</li>
+        <li data-i18n="article.sglang_llm_agent.section6.subsection3.li4">❌ Skipping human-in-the-loop for critical decisions</li>
       </ul>
 
       <h2>🔗 Resources & Next Steps</h2>
