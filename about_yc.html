@@ -26,23 +26,30 @@
     .then(res => res.text())
     .then(data => {
       document.getElementById('navbar-placeholder').innerHTML = data;
+      // navbar 加载完成后，触发语言按钮事件绑定
+      if (window.attachLanguageButtonListeners) {
+        window.attachLanguageButtonListeners();
+      }
     });
 </script>
 
+  <!-- 🌐 i18n 翻译脚本 -->
+  <script src="scripts/i18n.js"></script>
+
 
   <div class="container">
-    <h2>About Me</h2>
+    <h2 data-i18n="about.title">About Me</h2>
     <img src="files/yandacheng_profieimage.jpg" alt="Yanda Cheng" class="profile-pic">
 
-    <p>
+    <p data-i18n="about.intro.para1">
       I am a Senior Engineer and Team Manager with 8 years of experience at HydroTech, specializing in <strong>IoT sensor development</strong>, <strong>hardware engineering</strong>, and <strong>cloud-based data analytics</strong>. I lead cross-functional teams in designing and deploying high-performance sensor systems, developing end-to-end solutions from hardware prototyping to <strong>AWS cloud infrastructure</strong> deployment.
     </p>
 
-    <p>
+    <p data-i18n="about.intro.para2">
       My core expertise includes <strong>sensor hardware development</strong>, <strong>IoT system architecture</strong>, <strong>cloud data pipelines</strong> on AWS, and <strong>data analytics</strong> using machine learning. I build scalable ML systems that process sensor data in real-time, enabling predictive maintenance, anomaly detection, and intelligent monitoring for industrial IoT applications.
     </p>
 
-    <p>
+    <p data-i18n="about.intro.para3">
       In parallel, I am pursuing a Ph.D. in Biomedical Engineering at the University at Buffalo, focusing on AI infrastructure for medical imaging and LLM-based clinical applications. This research complements my industry work by advancing scalable AI systems and data processing frameworks.
     </p>
 
@@ -50,27 +57,27 @@
       📎 <a href="https://www.linkedin.com/in/yanda-cheng-4888a216b/" target="_blank">Connect on LinkedIn</a>
     </p>
 
-    <h2>Education</h2>
+    <h2 data-i18n="about.education.title">Education</h2>
     <ul>
-      <li><strong>Ph.D., Biomedical Engineering</strong> — University at Buffalo, 2021–2025 (expected)</li>
-      <li><strong>M.Eng., Biomedical Engineering</strong> — Cornell University, 2020–2021</li>
-      <li><strong>Visiting Research</strong> — Chinese Academy of Sciences, 2018–2020</li>
-      <li><strong>Undergraduate Research</strong> — University of Kentucky, 2018–2019</li>
+      <li data-i18n="about.education.phd"><strong>Ph.D., Biomedical Engineering</strong> — University at Buffalo, 2021–2025 (expected)</li>
+      <li data-i18n="about.education.meng"><strong>M.Eng., Biomedical Engineering</strong> — Cornell University, 2020–2021</li>
+      <li data-i18n="about.education.visiting"><strong>Visiting Research</strong> — Chinese Academy of Sciences, 2018–2020</li>
+      <li data-i18n="about.education.undergrad"><strong>Undergraduate Research</strong> — University of Kentucky, 2018–2019</li>
     </ul>
 
-    <h2>Research Interests</h2>
+    <h2 data-i18n="about.research.title">Research Interests</h2>
     <ul>
-      <li><strong>IoT & Sensor Systems</strong> - Hardware development, embedded systems, and sensor data processing</li>
-      <li><strong>Cloud Infrastructure (AWS)</strong> - Scalable data pipelines, real-time analytics, and ML deployment</li>
-      <li><strong>Machine Learning & Data Analytics</strong> - Time-series analysis, anomaly detection, and predictive modeling</li>
-      <li><strong>Computer Vision</strong> - Medical imaging, image processing, and visual analytics</li>
-      <li><strong>LLM & AI Infrastructure</strong> - Large language models for clinical applications and automated systems</li>
+      <li data-i18n="about.research.iot"><strong>IoT & Sensor Systems</strong> - Hardware development, embedded systems, and sensor data processing</li>
+      <li data-i18n="about.research.cloud"><strong>Cloud Infrastructure (AWS)</strong> - Scalable data pipelines, real-time analytics, and ML deployment</li>
+      <li data-i18n="about.research.ml"><strong>Machine Learning & Data Analytics</strong> - Time-series analysis, anomaly detection, and predictive modeling</li>
+      <li data-i18n="about.research.vision"><strong>Computer Vision</strong> - Medical imaging, image processing, and visual analytics</li>
+      <li data-i18n="about.research.llm"><strong>LLM & AI Infrastructure</strong> - Large language models for clinical applications and automated systems</li>
     </ul>
   </div>
 
   <!-- 🔹 Footer -->
   <div class="footer">
-    About © Yanda Cheng | Last updated May 2025
+    <span data-i18n="about.footer.copyright">About © Yanda Cheng</span> | <span data-i18n="about.footer.updated">Last updated</span> May 2025
   </div>
 
 </body>

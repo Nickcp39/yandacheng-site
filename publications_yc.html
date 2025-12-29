@@ -63,12 +63,19 @@
     .then(res => res.text())
     .then(data => {
       document.getElementById('navbar-placeholder').innerHTML = data;
+      // navbar 加载完成后，触发语言按钮事件绑定
+      if (window.attachLanguageButtonListeners) {
+        window.attachLanguageButtonListeners();
+      }
     });
 </script>
 
+<!-- 🌐 i18n 翻译脚本 -->
+<script src="scripts/i18n.js"></script>
+
 
 <div class="container">
-  <h2>Selected Publications</h2>
+  <h2 data-i18n="publications.title">Selected Publications</h2>
 
   <!-- 📌 Paper 9 - pub_09: Med-X 2025 (最新) -->
   <div class="project-card">
@@ -210,7 +217,7 @@
 
 <!-- 🔹 Footer -->
 <div class="footer">
-  Publications © Yanda Cheng | Last updated May 2025
+  <span data-i18n="publications.footer.copyright">Publications © Yanda Cheng</span> | <span data-i18n="publications.footer.updated">Last updated</span> May 2025
 </div>
 
 </body>

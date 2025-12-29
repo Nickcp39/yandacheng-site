@@ -15,23 +15,30 @@
     .then(res => res.text())
     .then(data => {
       document.getElementById('navbar-placeholder').innerHTML = data;
+      // navbar 加载完成后，触发语言按钮事件绑定
+      if (window.attachLanguageButtonListeners) {
+        window.attachLanguageButtonListeners();
+      }
     });
 </script>
 
+  <!-- 🌐 i18n 翻译脚本 -->
+  <script src="scripts/i18n.js"></script>
+
 
   <div class="container">
-    <h2>Awards & Honors</h2>
+    <h2 data-i18n="awards.title">Awards & Honors</h2>
     <ul>
-      <li><strong>Reviewer Recognition</strong>, Journal of Biomedical Optics (JBO)</li>
-      <li><strong>Reviewer Recognition</strong>, Biomedical Optics Express (BOE)</li>
-      <li><strong>Reviewer Recognition</strong>, Journal of Biomedical Engineering</li>
-      <li><strong>Reviewer Recognition</strong>, Photoacoustics</li>
-      <li><strong>Reviewer Recognition</strong>, IEEE Transactions on Medical Imaging (TMI)</li>
+      <li data-i18n="awards.honors.jbo"><strong>Reviewer Recognition</strong>, Journal of Biomedical Optics (JBO)</li>
+      <li data-i18n="awards.honors.boe"><strong>Reviewer Recognition</strong>, Biomedical Optics Express (BOE)</li>
+      <li data-i18n="awards.honors.jbe"><strong>Reviewer Recognition</strong>, Journal of Biomedical Engineering</li>
+      <li data-i18n="awards.honors.photoacoustics"><strong>Reviewer Recognition</strong>, Photoacoustics</li>
+      <li data-i18n="awards.honors.tmi"><strong>Reviewer Recognition</strong>, IEEE Transactions on Medical Imaging (TMI)</li>
     </ul>
 
-    <h2>Academic Services</h2>
+    <h2 data-i18n="awards.services.title">Academic Services</h2>
 
-    <h3>Journal Reviewer</h3>
+    <h3 data-i18n="awards.services.reviewer.title">Journal Reviewer</h3>
     <ul>
       <li><a href="https://www.spiedigitallibrary.org/journals/journal-of-biomedical-optics">Journal of Biomedical Optics (JBO)</a></li>
       <li><a href="https://opg.optica.org/boe/">Biomedical Optics Express (BOE)</a></li>
@@ -40,33 +47,33 @@
       <li><a href="https://ieeetmi.org/">IEEE Transactions on Medical Imaging (TMI)</a></li>
     </ul>
 
-    <h3>Memberships</h3>
+    <h3 data-i18n="awards.services.memberships.title">Memberships</h3>
     <ul>
-      <li>IEEE Student Member</li>
-      <li>IEEE Engineering in Medicine and Biology Society (EMBS) Member</li>
+      <li data-i18n="awards.services.memberships.ieee">IEEE Student Member</li>
+      <li data-i18n="awards.services.memberships.embs">IEEE Engineering in Medicine and Biology Society (EMBS) Member</li>
     </ul>
 
-    <h2>Invited Talks & Presentations</h2>
+    <h2 data-i18n="awards.talks.title">Invited Talks & Presentations</h2>
     <ul>
-      <li>
+      <li data-i18n="awards.talks.sawc2025">
         <strong>SAWC Spring | WHS 2025</strong>, May 2025, Grapevine, TX — <em>Poster Presenter</em><br>
         <em>Quantitative Photoacoustic Feature Analysis for Vascular Monitoring in Foot Ulcers</em><br>
         <span style="font-size: 0.9em; color: #666;">Presented quantitative feature analysis using 44 features extracted from photoacoustic images, achieving 83.33% classification accuracy and 93.78% macro-AUC for healing, worsening, and healthy outcomes.</span>
       </li>
-      <li>
+      <li data-i18n="awards.talks.rcbu2025">
         <strong>RCBU Biomedical Ultrasound Symposium</strong>, November 2025, Rochester, NY — <em>Oral Presenter</em><br>
         <em>Wound Healing and Tissue Perfusion Assessed by Photoacoustic Imaging</em><br>
         <span style="font-size: 0.9em; color: #666;">Chronic leg ulcers, a common disease associated with peripheral vascular disorders, are affecting approximately 6.5 million Americans. Patients with ulcers commonly suffer from decreased mobility and lower quality of life. Revascularization surgery is one of the most effective treatments for ischemia-related foot ulcers, as it restores blood flow and perfusion to the ulcer region. Thus, the ability to monitor the perfusion change before and after surgery is important for physicians to evaluate the success of the surgery. However, current clinical tests fail to meet this need. We present longitudinal photoacoustic imaging for chronic foot ulcers in peripheral vascular disease. Compared with ABI and near-infrared spectroscopy, our noninvasive method offers tracking of vascular dynamics. A dorsal-foot system with expanded field of view and skin-artifact suppression enhances visualization. From 2D/3D images we computed 45 features spanning intensity, texture, and morphology; LASSO selected 12. Multi-seed cross-validation yielded 83.3% accuracy and 93.78% macro-AUC classifying healing, worsening, and healthy outcomes, supporting robust monitoring and risk stratification.</span>
       </li>
-      <li><strong>RCBU Biomedical Ultrasound Symposium</strong>, September 2024 — <em>Poster Presenter</em></li>
-      <li><strong>SPIE BIOS | Photons Plus Ultrasound</strong>, January 2024 — <em>Poster Presenter</em></li>
-      <li><strong>RCBU Biomedical Ultrasound Symposium</strong>, November 2023 — <em>Poster Presenter</em></li>
+      <li data-i18n="awards.talks.rcbu2024"><strong>RCBU Biomedical Ultrasound Symposium</strong>, September 2024 — <em>Poster Presenter</em></li>
+      <li data-i18n="awards.talks.spie2024"><strong>SPIE BIOS | Photons Plus Ultrasound</strong>, January 2024 — <em>Poster Presenter</em></li>
+      <li data-i18n="awards.talks.rcbu2023"><strong>RCBU Biomedical Ultrasound Symposium</strong>, November 2023 — <em>Poster Presenter</em></li>
     </ul>
   </div>
 
   <!-- 🔹 Footer -->
   <div class="footer">
-    Awards © Yanda Cheng | Last updated May 2025
+    <span data-i18n="awards.footer.copyright">Awards © Yanda Cheng</span> | <span data-i18n="awards.footer.updated">Last updated</span> May 2025
   </div>
 
 </body>

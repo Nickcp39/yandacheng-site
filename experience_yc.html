@@ -15,23 +15,30 @@
     .then(res => res.text())
     .then(data => {
       document.getElementById('navbar-placeholder').innerHTML = data;
+      // navbar 加载完成后，触发语言按钮事件绑定
+      if (window.attachLanguageButtonListeners) {
+        window.attachLanguageButtonListeners();
+      }
     });
 </script>
 
+<!-- 🌐 i18n 翻译脚本 -->
+<script src="scripts/i18n.js"></script>
+
 
 <div class="container">
-  <h2>Experience</h2>
+  <h2 data-i18n="experience.title">Experience</h2>
 
   <!-- Present -->
   <div class="experience-card">
     <img src="files/experience/ub_research.png" alt="UB Research">
     <div class="experience-content">
-      <h3>Research Assistant</h3>
-      <p><strong>University at Buffalo</strong> – Buffalo, NY</p>
-      <p><em>Sep 2021 – Present</em></p>
+      <h3 data-i18n="experience.ub.title">Research Assistant</h3>
+      <p><strong data-i18n="experience.ub.location">University at Buffalo</strong> – Buffalo, NY</p>
+      <p><em data-i18n="experience.ub.period">Sep 2021 – Present</em></p>
       <ul>
-        <li>PhD research on photoacoustic imaging and AI-assisted diagnostics.</li>
-        <li>Published in IEEE TUFFC, Optica, BOE; led NIH-funded projects.</li>
+        <li data-i18n="experience.ub.desc1">PhD research on photoacoustic imaging and AI-assisted diagnostics.</li>
+        <li data-i18n="experience.ub.desc2">Published in IEEE TUFFC, Optica, BOE; led NIH-funded projects.</li>
       </ul>
     </div>
   </div>
@@ -39,12 +46,12 @@
   <div class="experience-card">
     <img src="files/experience/sensor_company.png" alt="Startup">
     <div class="experience-content">
-      <h3>Co-founder & Core Engineer</h3>
-      <p><strong>High-Precision Sensor Company</strong> – Beijing / Buffalo</p>
-      <p><em>2015 – Present (Part-time)</em></p>
+      <h3 data-i18n="experience.startup.title">Co-founder & Core Engineer</h3>
+      <p><strong data-i18n="experience.startup.location">High-Precision Sensor Company</strong> – Beijing / Buffalo</p>
+      <p><em data-i18n="experience.startup.period">2015 – Present (Part-time)</em></p>
       <ul>
-        <li>Designed high-precision sensors for weather and medical applications.</li>
-        <li>Built firmware (C, Python, GPT), expanded business to 5+ countries.</li>
+        <li data-i18n="experience.startup.desc1">Designed high-precision sensors for weather and medical applications.</li>
+        <li data-i18n="experience.startup.desc2">Built firmware (C, Python, GPT), expanded business to 5+ countries.</li>
       </ul>
     </div>
   </div>
@@ -53,11 +60,11 @@
   <div class="experience-card">
     <img src="files/experience/ta_bme503.gif" alt="TA 503">
     <div class="experience-content">
-      <h3>Teaching Assistant – BME 503: Image Processing</h3>
-      <p><strong>University at Buffalo</strong></p>
-      <p><em>Spring 2023</em></p>
+      <h3 data-i18n="experience.ta503.title">Teaching Assistant – BME 503: Image Processing</h3>
+      <p><strong data-i18n="experience.ta503.location">University at Buffalo</strong></p>
+      <p><em data-i18n="experience.ta503.period">Spring 2023</em></p>
       <ul>
-        <li>Assisted in graduate-level image segmentation, filtering, and coding labs.</li>
+        <li data-i18n="experience.ta503.desc">Assisted in graduate-level image segmentation, filtering, and coding labs.</li>
       </ul>
     </div>
   </div>
@@ -65,11 +72,11 @@
   <div class="experience-card">
     <img src="files/experience/ta_bme302.gif" alt="TA 302">
     <div class="experience-content">
-      <h3>Teaching Assistant – BME 302: Medical Devices</h3>
-      <p><strong>University at Buffalo</strong></p>
-      <p><em>Fall 2022</em></p>
+      <h3 data-i18n="experience.ta302.title">Teaching Assistant – BME 302: Medical Devices</h3>
+      <p><strong data-i18n="experience.ta302.location">University at Buffalo</strong></p>
+      <p><em data-i18n="experience.ta302.period">Fall 2022</em></p>
       <ul>
-        <li>Supervised prototyping projects and biomedical sensor lab sessions.</li>
+        <li data-i18n="experience.ta302.desc">Supervised prototyping projects and biomedical sensor lab sessions.</li>
       </ul>
     </div>
   </div>
@@ -77,12 +84,12 @@
   <div class="experience-card">
     <img src="files/experience/cornell02.png" alt="Cornell">
     <div class="experience-content">
-      <h3>Research Assistant</h3>
-      <p><strong>Cornell University</strong> – Ithaca, NY</p>
-      <p><em>Sep 2020 – Jun 2021</em></p>
+      <h3 data-i18n="experience.cornell.title">Research Assistant</h3>
+      <p><strong data-i18n="experience.cornell.location">Cornell University</strong> – Ithaca, NY</p>
+      <p><em data-i18n="experience.cornell.period">Sep 2020 – Jun 2021</em></p>
       <ul>
-        <li>Developed musculoskeletal protocols using multiphoton microscopy.</li>
-        <li>Analyzed Ca2+ signals from osteocytes under mechanical stress.</li>
+        <li data-i18n="experience.cornell.desc1">Developed musculoskeletal protocols using multiphoton microscopy.</li>
+        <li data-i18n="experience.cornell.desc2">Analyzed Ca2+ signals from osteocytes under mechanical stress.</li>
       </ul>
     </div>
   </div>
@@ -90,12 +97,12 @@
   <div class="experience-card">
     <img src="files/experience/cas.png" alt="CAS">
     <div class="experience-content">
-      <h3>Research & Development Engineer</h3>
-      <p><strong>Chinese Academy of Sciences</strong> – Beijing</p>
-      <p><em>May 2018 – Sep 2020</em></p>
+      <h3 data-i18n="experience.cas.title">Research & Development Engineer</h3>
+      <p><strong data-i18n="experience.cas.location">Chinese Academy of Sciences</strong> – Beijing</p>
+      <p><em data-i18n="experience.cas.period">May 2018 – Sep 2020</em></p>
       <ul>
-        <li>Led development of rocket signal communication systems.</li>
-        <li>Wrote embedded software for real-time telemetry.</li>
+        <li data-i18n="experience.cas.desc1">Led development of rocket signal communication systems.</li>
+        <li data-i18n="experience.cas.desc2">Wrote embedded software for real-time telemetry.</li>
       </ul>
     </div>
   </div>
@@ -103,12 +110,12 @@
   <div class="experience-card">
     <img src="files/experience/kentucky.png" alt="UKY">
     <div class="experience-content">
-      <h3>Undergraduate Research Assistant</h3>
-      <p><strong>University of Kentucky</strong> – Lexington, KY</p>
-      <p><em>Jan 2018 – Jan 2019</em></p>
+      <h3 data-i18n="experience.uky.title">Undergraduate Research Assistant</h3>
+      <p><strong data-i18n="experience.uky.location">University of Kentucky</strong> – Lexington, KY</p>
+      <p><em data-i18n="experience.uky.period">Jan 2018 – Jan 2019</em></p>
       <ul>
-        <li>Developed GUIs and image-processing pipelines using C# and LabView.</li>
-        <li>Enhanced neonatal device interfaces for clinical reliability.</li>
+        <li data-i18n="experience.uky.desc1">Developed GUIs and image-processing pipelines using C# and LabView.</li>
+        <li data-i18n="experience.uky.desc2">Enhanced neonatal device interfaces for clinical reliability.</li>
       </ul>
     </div>
   </div>
@@ -117,7 +124,7 @@
 
 <!-- 🔹 Footer -->
 <div class="footer">
-  Experience © Yanda Cheng | Last updated May 2025
+  <span data-i18n="experience.footer.copyright">Experience © Yanda Cheng</span> | <span data-i18n="experience.footer.updated">Last updated</span> May 2025
 </div>
 
 </body>

@@ -48,12 +48,19 @@
     .then(res => res.text())
     .then(data => {
       document.getElementById('navbar-placeholder').innerHTML = data;
+      // navbar 加载完成后，触发语言按钮事件绑定
+      if (window.attachLanguageButtonListeners) {
+        window.attachLanguageButtonListeners();
+      }
     });
 </script>
 
+  <!-- 🌐 i18n 翻译脚本 -->
+  <script src="scripts/i18n.js"></script>
+
 
   <div class="container">
-    <h2>Photo Highlights of Yanda Cheng</h2>
+    <h2 data-i18n="photos.title">Photo Highlights of Yanda Cheng</h2>
 
     <!-- Event: SAWC Spring 2025 -->
     <div class="photo-section">
@@ -167,7 +174,7 @@
 
   <!-- 🔹 Footer -->
   <div class="footer">
-    Photos © Yanda Cheng | Last updated May 2025
+    <span data-i18n="photos.footer.copyright">Photos © Yanda Cheng</span> | <span data-i18n="photos.footer.updated">Last updated</span> May 2025
   </div>
 
 </body>
