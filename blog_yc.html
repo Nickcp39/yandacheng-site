@@ -8,9 +8,6 @@
 </head>
 <body>
 
-  <!-- 🔹 Google Translate 控制按钮 -->
-  <div id="translate-control" style="position: fixed; top: 10px; right: 10px; z-index: 999;"></div>
-
   <!-- 🔹 动态导航栏 -->
   <div id="navbar-placeholder"></div>
   <script>
@@ -18,6 +15,10 @@
       .then(res => res.text())
       .then(data => {
         document.getElementById('navbar-placeholder').innerHTML = data;
+        // navbar 加载完成后，触发语言按钮事件绑定
+        if (window.attachLanguageButtonListeners) {
+          window.attachLanguageButtonListeners();
+        }
       });
   </script>
 
@@ -26,14 +27,14 @@
     
     <!-- ⬅ 左栏：分类结构 -->
     <div style="flex: 1; min-width: 320px;">
-      <h1 class="blog-title">📚 Yanda's Blog</h1>
-      <p class="blog-subtitle">Browse posts by category/按分类浏览所有博文</p>
+      <h1 class="blog-title">📚 <span data-i18n="blog.title">Yanda's Blog</span></h1>
+      <p class="blog-subtitle" data-i18n="blog.subtitle">Browse posts by category</p>
       <div id="blog-category-list"></div>
     </div>
 
     <!-- ➡ 右栏：时间线结构 -->
     <div style="flex: 1; min-width: 320px;">
-      <h2>🕒Sorted by date/ 按时间排序</h2>
+      <h2>🕒 <span data-i18n="blog.timeline">Sorted by date</span></h2>
       <div id="blog-timeline-list"></div>
     </div>
 
@@ -41,14 +42,14 @@
 
   <!-- 🔻 Footer -->
   <div class="footer">
-    Blog © Yanda Cheng | Last updated May 2025
+    <span data-i18n="blog.footer.copyright">Blog © Yanda Cheng</span> | <span data-i18n="blog.footer.updated">Last updated</span> May 2025
   </div>
 
   <!-- 🔧 渲染脚本 -->
   <script src="scripts/render_blog_dual.js"></script>
 
-  <!-- 🌐 自动翻译脚本 -->
-  <script src="scripts/auto-translate.js"></script>
+  <!-- 🌐 i18n 翻译脚本 -->
+  <script src="scripts/i18n.js"></script>
 
 </body>
 </html>

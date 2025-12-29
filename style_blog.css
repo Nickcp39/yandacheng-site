@@ -39,6 +39,37 @@ a:hover {
   text-decoration: underline;
 }
 
+/* 🔹 Language Switcher */
+.lang-switcher {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 15px;
+}
+.lang-btn {
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+.lang-btn:hover {
+  background-color: #555;
+  border-color: #555;
+}
+.lang-btn.active {
+  background-color: #555;
+  border-color: #555;
+}
+.lang-switcher span {
+  color: white;
+  margin: 0 2px;
+}
+
 /* 🔹 Blog Container */
 .blog-container {
   max-width: 1400px !important;

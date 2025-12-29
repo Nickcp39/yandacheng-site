@@ -9,19 +9,21 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<div id="translate-control" style="position: fixed; top: 12px; right: 12px; z-index: 999;"></div>
-
 <div id="navbar-placeholder"></div>
 <script>
   fetch('navbar.html')
     .then(res => res.text())
     .then(data => {
       document.getElementById('navbar-placeholder').innerHTML = data;
+      // navbar 加载完成后，触发语言按钮事件绑定
+      if (window.attachLanguageButtonListeners) {
+        window.attachLanguageButtonListeners();
+      }
     });
 </script>
 
-<!-- 🌐 自动翻译脚本 -->
-<script src="scripts/auto-translate.js"></script>
+<!-- 🌐 i18n 翻译脚本 -->
+<script src="scripts/i18n.js"></script>
 
 
   <div class="container">
@@ -35,7 +37,7 @@
         <p>University at Buffalo, SUNY</p>
         <p>Email: yandache@buffalo.edu</p>
         <p>
-          <a href="files/yandacheng_cv.pdf">📄 Resume</a> |
+          <a href="files/yandacheng_cv.pdf">📄 <span data-i18n="common.resume">Resume</span></a> |
           <a href="https://github.com/nickcp39">GitHub</a> |
           <a href="https://scholar.google.com/citations?user=XXXXX">Google Scholar</a> |
           <a href="https://www.linkedin.com/in/yanda-cheng-4888a216b/">Linkedin</a> 
@@ -44,13 +46,13 @@
     </div>
 
     <!-- 📌 About Me -->
-    <h2>About Me</h2>
+    <h2 data-i18n="home.about.title">About Me</h2>
     <p>
       I am a Senior Engineer and Team Manager with 8 years of experience at HydroTech, specializing in <strong>IoT sensor development</strong>, <strong>hardware engineering</strong>, and <strong>AWS cloud-based data analytics</strong>. I lead teams in building end-to-end sensor systems—from hardware prototyping to cloud infrastructure deployment—using machine learning for real-time data processing and predictive analytics.
     </p>
 
         <h2>
-          News 
+          <span data-i18n="home.news.title">News</span>
           <img src="files/amazing_photo/update_news.gif" alt="Update" style="height:16px; vertical-align: middle;">
         </h2>
 
@@ -70,17 +72,17 @@
 
 
     <ul>
-      <li><a href="projects_yc.html">🧠 Selected Projects</a></li>
-      <li><a href="publications_yc.html">📚 Publications</a></li>
-      <li><a href="experience_yc.html">💼 Experience</a></li>
-      <li><a href="awards_yc.html">🏆 Awards</a></li>
-      <li><a href="photos_yc.html">📸 Photo Gallery</a></li>
+      <li><a href="projects_yc.html">🧠 <span data-i18n="home.projects">Selected Projects</span></a></li>
+      <li><a href="publications_yc.html">📚 <span data-i18n="home.publications">Publications</span></a></li>
+      <li><a href="experience_yc.html">💼 <span data-i18n="home.experience">Experience</span></a></li>
+      <li><a href="awards_yc.html">🏆 <span data-i18n="home.awards">Awards</span></a></li>
+      <li><a href="photos_yc.html">📸 <span data-i18n="home.photos">Photo Gallery</span></a></li>
     </ul>
   </div>
 
   <!-- 🔻 Footer -->
   <div class="footer">
-    Last updated: January 2025 | © Yanda Cheng
+    <span data-i18n="home.footer.updated">Last updated</span>: January 2025 | <span data-i18n="home.footer.copyright">© Yanda Cheng</span>
   </div>
 
   <!-- 👣 BTC + Visitor Map -->
@@ -90,7 +92,7 @@
     </div>
 
     <div style="text-align: center;">
-        <h3>Visitor Map</h3>
+        <h3 data-i18n="home.visitor_map">Visitor Map</h3>
         <div id="clustrmaps-widget" style="margin: 0 auto;"></div>
         <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=xj5ZWnwte7YeAZD7K7_8TpdIaEVZhU0szNMLG_AmptI&cl=ffffff&w=200"></script>
     </div>
@@ -99,8 +101,6 @@
         <img src="files/experience/btc.gif" alt="BTC GIF" style="max-width: 100px; height: auto; display: block; margin: 0 auto;">
     </div>
   </div>
-  
-<!-- Google Translate 由 auto-translate.js 自动初始化 -->
 
   <!-- 🤖 AI Chatbot Widget - Temporarily disabled for testing -->
   <!--

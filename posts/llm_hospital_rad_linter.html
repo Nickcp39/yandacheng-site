@@ -68,12 +68,6 @@
   </style>
 </head>
 <body>
-  <!-- 🔹 Google Translate 控制按钮 -->
-  <div id="translate-control" style="position: fixed; top: 10px; right: 10px; z-index: 999;"></div>
-
-  <!-- 🌐 自动翻译脚本 -->
-  <script src="../scripts/auto-translate.js"></script>
-
   <!-- 🔹 Navbar -->
   <div id="navbar-placeholder"></div>
   <script>
@@ -81,8 +75,15 @@
       .then(res => res.text())
       .then(data => {
         document.getElementById('navbar-placeholder').innerHTML = data;
+        // navbar 加载完成后，触发语言按钮事件绑定
+        if (window.attachLanguageButtonListeners) {
+          window.attachLanguageButtonListeners();
+        }
       });
   </script>
+
+  <!-- 🌐 i18n 翻译脚本 -->
+  <script src="../scripts/i18n.js"></script>
 
   <!-- 🔸 Blog Layout -->
   <div class="blog-container" style="display: flex; gap: 40px; align-items: flex-start;">
