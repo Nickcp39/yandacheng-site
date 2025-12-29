@@ -7,29 +7,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Yanda Cheng</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style_loading.css" />
 </head>
 <body>
 <div id="navbar-placeholder"></div>
 <script>
-  fetch('navbar.html')
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById('navbar-placeholder').innerHTML = data;
-      // navbar 加载完成后，触发语言按钮事件绑定
-      if (window.attachLanguageButtonListeners) {
-        window.attachLanguageButtonListeners();
-      }
-    });
+  (function() {
+    const container = document.getElementById('navbar-placeholder');
+    if (window.LoadingManager) {
+      window.LoadingManager.show(container, 'navbar');
+    }
+    
+    fetch('navbar.html')
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to load navbar');
+        return res.text();
+      })
+      .then(data => {
+        if (window.LoadingManager) {
+          window.LoadingManager.hide(container, data, true);
+        } else {
+          container.innerHTML = data;
+        }
+        // navbar 加载完成后，触发语言按钮事件绑定
+        if (window.attachLanguageButtonListeners) {
+          window.attachLanguageButtonListeners();
+        }
+      })
+      .catch(err => {
+        console.error('Error loading navbar:', err);
+        if (window.LoadingManager) {
+          window.LoadingManager.error(container, '导航栏加载失败');
+        }
+      });
+  })();
 </script>
 
 <!-- 🌐 i18n 翻译脚本 -->
 <script src="scripts/i18n.js"></script>
 
+<!-- 📦 加载动画脚本 -->
+<script src="scripts/loading.js"></script>
+
 
   <div class="container">
 
     <!-- 🧑 Profile Card -->
-    <div class="profile-card">
+    <div class="profile-card fade-in-on-scroll">
       <img src="files/yandacheng_profieimage.jpg" alt="Yanda Cheng" class="home-profile-pic">
       <div class="profile-info">
         <h1>Yanda Cheng</h1>
@@ -46,8 +70,8 @@
     </div>
 
     <!-- 📌 About Me -->
-    <h2 data-i18n="home.about.title">About Me</h2>
-    <p>
+    <h2 data-i18n="home.about.title" class="fade-in-on-scroll">About Me</h2>
+    <p class="fade-in-on-scroll">
       I am a Senior Engineer and Team Manager with 8 years of experience at HydroTech, specializing in <strong>IoT sensor development</strong>, <strong>hardware engineering</strong>, and <strong>AWS cloud-based data analytics</strong>. I lead teams in building end-to-end sensor systems—from hardware prototyping to cloud infrastructure deployment—using machine learning for real-time data processing and predictive analytics.
     </p>
 
@@ -61,12 +85,32 @@
         </div>
 
         <script>
-          const timestamp = new Date().getTime();
-          fetch(`news.html?t=${timestamp}`)
-            .then(res => res.text())
-            .then(data => {
-              document.getElementById('news-placeholder').innerHTML = data;
-            });
+          (function() {
+            const container = document.getElementById('news-placeholder');
+            if (window.LoadingManager) {
+              window.LoadingManager.show(container, 'news');
+            }
+            
+            const timestamp = new Date().getTime();
+            fetch(`news.html?t=${timestamp}`)
+              .then(res => {
+                if (!res.ok) throw new Error('Failed to load news');
+                return res.text();
+              })
+              .then(data => {
+                if (window.LoadingManager) {
+                  window.LoadingManager.hide(container, data, true);
+                } else {
+                  container.innerHTML = data;
+                }
+              })
+              .catch(err => {
+                console.error('Error loading news:', err);
+                if (window.LoadingManager) {
+                  window.LoadingManager.error(container, '新闻加载失败');
+                }
+              });
+          })();
         </script>
 
 
