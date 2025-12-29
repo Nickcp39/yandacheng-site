@@ -36,6 +36,19 @@ const translations = {
     'blog.footer.copyright': 'Blog © Yanda Cheng',
     'blog.footer.updated': '最后更新',
     
+    // 博客分类翻译
+    'blog.category.investment': '投资',
+    'blog.category.bitcoin': '比特币',
+    'blog.category.real_estate': '房地产',
+    'blog.category.stock_market': '股票市场',
+    'blog.category.value_investing': '价值投资',
+    'blog.category.career': '职场',
+    'blog.category.tech_innovation': '技术创新',
+    'blog.category.industry_news': '行业新闻',
+    'blog.category.workplace_insights': '职场洞察',
+    'blog.category.phd_possibilities': 'PhD可能性',
+    'blog.category.medical_ai': '医疗AI',
+    
     // 通用
     'common.resume': '简历',
     'common.read_more': '了解更多',
@@ -480,6 +493,19 @@ const translations = {
     'blog.timeline': 'Sorted by date',
     'blog.footer.copyright': 'Blog © Yanda Cheng',
     'blog.footer.updated': 'Last updated',
+    
+    // Blog category translations
+    'blog.category.investment': 'Investment',
+    'blog.category.bitcoin': 'Bitcoin',
+    'blog.category.real_estate': 'Real Estate',
+    'blog.category.stock_market': 'Stock Market',
+    'blog.category.value_investing': 'Value Investing',
+    'blog.category.career': 'Career',
+    'blog.category.tech_innovation': 'Tech Innovation',
+    'blog.category.industry_news': 'Industry News',
+    'blog.category.workplace_insights': 'Workplace Insights',
+    'blog.category.phd_possibilities': 'PhD Possibilities',
+    'blog.category.medical_ai': 'Medical AI',
     
     // Common
     'common.resume': 'Resume',

@@ -18,22 +18,60 @@ Promise.all([
 
   // 分类视图渲染
   const catRoot = document.getElementById('blog-category-list');
+  
+  // 分类名称到翻译键的映射
+  const categoryKeyMap = {
+    'Investment': 'blog.category.investment',
+    'Bitcoin': 'blog.category.bitcoin',
+    'Real Estate': 'blog.category.real_estate',
+    'Stock Market': 'blog.category.stock_market',
+    'Value Investing': 'blog.category.value_investing',
+    'Career': 'blog.category.career',
+    'Tech Innovation': 'blog.category.tech_innovation',
+    'Industry News': 'blog.category.industry_news',
+    'Workplace Insights': 'blog.category.workplace_insights',
+    'PhD Possibilities': 'blog.category.phd_possibilities',
+    'Medical AI': 'blog.category.medical_ai'
+  };
+  
   for (const [main, subs] of Object.entries(categoryTree)) {
     const section = document.createElement('section');
-    section.innerHTML = `<h2>${main}</h2>`;
+    const mainKey = categoryKeyMap[main] || main;
+    const h2 = document.createElement('h2');
+    h2.setAttribute('data-i18n', mainKey);
+    h2.textContent = main; // 默认显示英文，翻译系统会替换
+    section.appendChild(h2);
+    
     subs.forEach(sub => {
       const items = byTag[sub];
       if (items?.length) {
         const block = document.createElement('div');
-        block.innerHTML = `<h3>${sub}</h3><ul>` + items.map(a => `
-          <li>
+        const subKey = categoryKeyMap[sub] || sub;
+        const h3 = document.createElement('h3');
+        h3.setAttribute('data-i18n', subKey);
+        h3.textContent = sub; // 默认显示英文，翻译系统会替换
+        block.appendChild(h3);
+        
+        const ul = document.createElement('ul');
+        items.forEach(a => {
+          const li = document.createElement('li');
+          li.innerHTML = `
             <a href="posts/${a.file}" style="font-weight: bold;">${a.title}</a><br>
             <span style="font-size: 0.85em; color: #888;">${a.date || ''}</span>
-          </li>`).join('') + `</ul>`;
+          `;
+          ul.appendChild(li);
+        });
+        block.appendChild(ul);
         section.appendChild(block);
       }
     });
     catRoot.appendChild(section);
+  }
+  
+  // 渲染完成后，触发翻译更新
+  if (window.switchLanguage) {
+    const currentLang = localStorage.getItem('language') || 'en';
+    window.switchLanguage(currentLang);
   }
 
   // 时间线视图渲染
