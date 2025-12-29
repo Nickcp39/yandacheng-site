@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>使用SGLang构建Rad-Linter：医院端跨模态质控系统的生产实践</title>
+  <link rel="stylesheet" href="../style_blog.css">
+  <style>
+    /* 视频嵌入样式 */
+    .video-container {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: 30px auto;
+      padding-bottom: 56.25%; /* 16:9 宽高比 */
+      height: 0;
+      overflow: hidden;
+      background: #000;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    
+    .video-caption {
+      text-align: center;
+      color: #666;
+      font-size: 0.9em;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+
+    /* 技术细节样式 */
+    .tech-highlight {
+      background: #f0f7ff;
+      border-left: 4px solid #007bff;
+      padding: 15px;
+      margin: 20px 0;
+      border-radius: 4px;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
+
+    .comparison-table th {
+      background-color: #f5f5f5;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <!-- 🔹 Google Translate 控制按钮 -->
+  <div id="translate-control" style="position: fixed; top: 10px; right: 10px; z-index: 999;"></div>
+
+  <!-- 🌐 自动翻译脚本 -->
+  <script src="../scripts/auto-translate.js"></script>
+
+  <!-- 🔹 Navbar -->
+  <div id="navbar-placeholder"></div>
+  <script>
+    fetch('../navbar.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('navbar-placeholder').innerHTML = data;
+      });
+  </script>
+
+  <!-- 🔸 Blog Layout -->
+  <div class="blog-container" style="display: flex; gap: 40px; align-items: flex-start;">
+
+    <!-- ⬅ Left Sidebar -->
+    <aside style="flex: 0 0 150px; font-size: 0.9em; color: #666;">
+      <p><strong>Written by</strong><br>Yanda Cheng</p>
+      <p><strong>Date</strong><br>January 2025</p>
+      <p><a href="#disqus_thread">💬 Leave a comment</a></p>
+    </aside>
+
+    <!-- 🔳 Main Content -->
+    <main style="flex: 1;">
+      <p style="color: #888; font-size: 0.9em;">AI · Medical AI · LLM · SGLang · Production Systems</p>
+      <h1>使用SGLang构建Rad-Linter：医院端跨模态质控系统的生产实践<br><span style="font-weight: normal; font-size: 0.9em;">Building Rad-Linter with SGLang: Production Experience of Cross-Modal Quality Control in Hospital Settings</span></h1>
+
+      <p style="font-size: 1.1em; color: #555; margin: 20px 0;">
+        最近在医院端部署了一个基于SGLang的放射科报告质控系统（Rad-Linter）。这是一个<strong>内网部署、强合规约束</strong>的真实生产场景，
+        与常见的"报告生成"任务不同，我们做的是<strong>跨模态事实核查（cross-modal fact-checking）</strong>。
+        本文将分享技术选型、生产挑战，以及SGLang在医疗场景下的实践心得。
+      </p>
+
+      <h2>🎯 Rad-Linter的定位：不是报告生成，而是质控审计</h2>
+      
+      <p>
+        在讨论技术细节之前，需要先明确<strong>Rad-Linter与报告生成任务的根本区别</strong>：
+      </p>
+
+      <div class="tech-highlight">
+        <p><strong>Rad-Linter的核心定位：</strong></p>
+        <p>
+          给定一份<strong>已写好的radiology report</strong> + 一组从影像侧提取的<strong>视觉证据（visual_facts，病种概率/提示）</strong>，
+          让模型输出<strong>QA结论</strong>（是否错误/错误类型/证据解释）。
+        </p>
+        <p style="margin-top: 10px; font-style: italic;">
+          <strong>关键点：</strong>我们不生成报告，我们审计既有报告。输出是错误判定+分型+证据，而不是生成一段Findings/Impression。
+        </p>
+      </div>
+
+      <h3>临床工作流中的位置</h3>
+      <p>
+        在临床工作流中，<strong>Radiology Report</strong>和<strong>Medical Note</strong>是两种不同的文档：
+      </p>
+      <ul>
+        <li><strong>Radiology Report</strong>：由放射科医生撰写，专门描述医学影像的发现、诊断意见，是专业影像解读</li>
+        <li><strong>Medical Note</strong>：更广泛的临床文档，包含病史、检查结果、诊断、治疗计划等，是完整的患者记录</li>
+        <li><strong>生成关系</strong>：Radiology Report通常作为Medical Note的一部分，提供影像学专业见解</li>
+      </ul>
+
+      <p>
+        目前LLM在临床工作流中的研究主要集中在：
+      </p>
+      <ul>
+        <li><strong>报告生成</strong>：从影像→生成完整报告（R2Gen、TRRG、RadAlign等）</li>
+        <li><strong>临床文档生成</strong>：自动生成和总结医疗记录</li>
+        <li><strong>临床决策支持</strong>：辅助分诊、转诊和诊断预测</li>
+        <li><strong>医学视觉问答</strong>：基于视觉和语言的问答系统</li>
+      </ul>
+
+      <p>
+        <strong>Rad-Linter填补的空白</strong>：在报告生成之后，需要一个独立的<strong>质控环节</strong>。
+        就像代码需要linter检查一样，医疗报告也需要"第二读者"来发现遗漏、矛盾和不一致。
+        这个需求是<strong>独立存在的</strong>——即使不使用自动生成，医生手写的报告同样需要QA。
+      </p>
+
+      <h2>📹 项目演示视频</h2>
+      
+      <p>以下是Rad-Linter系统的演示视频，展示了跨模态事实核查的工作流程：</p>
+      
+      <!-- 视频嵌入区域 - 可以替换为实际的Bilibili或YouTube链接 -->
+      <!-- 
+      使用说明：
+      1. Bilibili视频：将视频ID替换到 src="https://player.bilibili.com/player.html?bvid=VIDEO_ID"
+      2. YouTube视频：将视频ID替换到 src="https://www.youtube.com/embed/VIDEO_ID"
+      -->
+      
+      <!-- 示例：Bilibili视频嵌入 -->
+      <!-- 
+      <div class="video-container">
+        <iframe src="https://player.bilibili.com/player.html?bvid=BV1xx411c7mu&page=1" 
+                scrolling="no" 
+                frameborder="no" 
+                allowfullscreen="true">
+        </iframe>
+      </div>
+      <p class="video-caption">Rad-Linter系统演示视频（Bilibili）</p>
+      -->
+      
+      <!-- 示例：YouTube视频嵌入 -->
+      <!-- 
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+        </iframe>
+      </div>
+      <p class="video-caption">Rad-Linter系统演示视频（YouTube）</p>
+      -->
+      
+      <p style="color: #888; font-style: italic;">
+        💡 <strong>提示</strong>：如需嵌入视频，请取消注释上面的代码块，并将VIDEO_ID替换为实际的视频ID。
+        <br>Bilibili视频ID格式：BV1xx411c7mu（从视频URL中获取）
+        <br>YouTube视频ID格式：dQw4w9WgXcQ（从视频URL中获取）
+      </p>
+
+      <h2>🏗️ 技术架构：为什么选择SGLang作为中间层？</h2>
+
+      <h3>1. 系统架构概览</h3>
+      <pre style="background: #f5f5f5; padding: 15px; border-radius: 5px; overflow-x: auto;"><code>┌─────────────────────┐
+│  医院HIS系统          │
+│  (Radiology Report)  │
+└──────────┬───────────┘
+           │
+           ▼
+┌─────────────────────┐
+│  Visual Facts       │
+│  (TorchXRayVision)  │
+│  (病种概率/提示)     │
+└──────────┬───────────┘
+           │
+           ▼
+┌─────────────────────┐
+│  API Gateway        │
+│  (FastAPI)          │
+└──────────┬───────────┘
+           │
+           ▼
+┌─────────────────────┐      ┌──────────────┐
+│  SGLang Server      │◄─────┤ LLM Model   │
+│  (Inference Layer)   │      │  (Local/On-Prem)│
+└──────────┬───────────┘      └──────────────┘
+           │
+           ▼
+┌─────────────────────┐
+│  Rad-Linter Engine  │
+│  (QA Decision +     │
+│   Error Type +      │
+│   Evidence)         │
+└─────────────────────┘</code></pre>
+
+      <h3>2. 为什么选择SGLang？</h3>
+      
+      <p>
+        在医疗场景下，我们面临几个关键约束：
+      </p>
+      <ul>
+        <li><strong>并发量不大</strong>：医院内网环境，请求量相对可控</li>
+        <li><strong>可观测性要求极高</strong>：医学需要精准和可解释性，每一步都要可审计</li>
+        <li><strong>本地计算性能优化</strong>：内网部署，不能依赖云端API</li>
+        <li><strong>结构化输出</strong>：需要严格的JSON Schema输出（错误类型、证据定位）</li>
+      </ul>
+
+      <p>
+        <strong>SGLang的优势</strong>：
+      </p>
+      <ul>
+        <li><strong>本地部署友好</strong>：支持on-prem部署，满足医疗数据隐私要求</li>
+        <li><strong>结构化输出原生支持</strong>：JSON Schema约束，确保输出格式严格符合要求</li>
+        <li><strong>性能优化</strong>：RadixAttention、连续批处理等特性，在低并发场景下也能充分利用GPU</li>
+        <li><strong>可观测性</strong>：支持详细的metrics和tracing，便于审计和调试</li>
+        <li><strong>低延迟</strong>：对于医疗场景的实时反馈需求，SGLang的优化效果显著</li>
+      </ul>
+
+      <h3>3. 与报告生成任务的对比</h3>
+      
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>维度</th>
+            <th>报告生成（Report Generation）</th>
+            <th>Rad-Linter（质控审计）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>输入</strong></td>
+            <td>医学影像</td>
+            <td>已写好的报告 + 视觉证据</td>
+          </tr>
+          <tr>
+            <td><strong>输出</strong></td>
+            <td>完整的Findings/Impression文本</td>
+            <td>QA判定 + 错误类型 + 证据解释</td>
+          </tr>
+          <tr>
+            <td><strong>任务性质</strong></td>
+            <td>生成（Generation）</td>
+            <td>审计（Audit/Linting）</td>
+          </tr>
+          <tr>
+            <td><strong>典型研究</strong></td>
+            <td>R2Gen, TRRG, RadAlign</td>
+            <td>ATARI (laterality), Phrase-grounded fact-checking</td>
+          </tr>
+          <tr>
+            <td><strong>技术重点</strong></td>
+            <td>多模态对齐、生成质量</td>
+            <td>跨模态一致性、可解释性、可观测性</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>💻 生产挑战与SGLang实践</h2>
+
+      <h3>挑战1：可观测性（Observability）</h3>
+      <p>
+        <strong>医疗场景的特殊性</strong>：医学需要精准和可解释性。每一步决策都要可审计、可追溯。
+      </p>
+      
+      <p><strong>我们的解决方案：</strong></p>
+      <ul>
+        <li><strong>结构化输出追踪</strong>：SGLang的JSON Schema输出让我们能够精确追踪每个字段的来源</li>
+        <li><strong>证据链记录</strong>：记录visual_facts的输入、LLM的推理过程、最终QA判定</li>
+        <li><strong>Metrics收集</strong>：TTFT、tokens/s、queue time、batch size、KV cache使用情况</li>
+        <li><strong>错误分类统计</strong>：按错误类型（omission/contradiction/laterality等）统计，便于持续优化</li>
+      </ul>
+
+      <div class="tech-highlight">
+        <p><strong>可观测性最佳实践：</strong></p>
+        <pre style="background: #fff; padding: 10px; border-radius: 4px; overflow-x: auto;"><code># 示例：SGLang结构化输出 + 证据追踪
+{
+  "error_detected": true,
+  "error_type": "omission",
+  "evidence": {
+    "visual_fact": "pneumonia_probability: 0.85",
+    "report_mention": false,
+    "explanation": "影像模型检测到高概率肺炎，但报告中未提及"
+  },
+  "confidence": 0.92,
+  "trace_id": "rad-linter-2025-01-20-001"
+}</code></pre>
+      </div>
+
+      <h3>挑战2：本地计算性能优化</h3>
+      <p>
+        内网部署意味着不能依赖云端API，必须在本地GPU上高效运行。
+      </p>
+
+      <p><strong>SGLang的性能优势：</strong></p>
+      <ul>
+        <li><strong>RadixAttention</strong>：对于相似的prompt结构（我们的QA任务有固定模板），缓存效果显著</li>
+        <li><strong>连续批处理</strong>：即使并发量不大，也能充分利用GPU资源</li>
+        <li><strong>KV Cache优化</strong>：减少重复计算，降低延迟</li>
+        <li><strong>结构化输出优化</strong>：相比后处理JSON解析，原生支持减少了开销</li>
+      </ul>
+
+      <h3>挑战3：错误类型分类与证据定位</h3>
+      <p>
+        与纯文本proofreading不同，Rad-Linter需要处理<strong>跨模态不一致</strong>：
+      </p>
+      <ul>
+        <li><strong>Omission（遗漏）</strong>：影像显示异常，但报告中未提及</li>
+        <li><strong>Contradiction（矛盾）</strong>：报告描述与视觉证据不一致</li>
+        <li><strong>Laterality（侧别错误）</strong>：左右侧描述错误</li>
+        <li><strong>Severity mismatch（严重程度不匹配）</strong>：报告中的严重程度与影像证据不符</li>
+      </ul>
+
+      <p>
+        SGLang的结构化输出让我们能够<strong>精确控制</strong>错误类型的分类和证据的定位，
+        这对于医疗场景的<strong>可解释性</strong>至关重要。
+      </p>
+
+      <h2>📊 生产实践成果</h2>
+
+      <p>
+        经过几个月的部署和优化，Rad-Linter系统取得了以下成果：
+      </p>
+      <ul>
+        <li><strong>可观测性提升</strong>：完整的证据链追踪，所有QA判定可审计</li>
+        <li><strong>性能优化</strong>：SGLang的本地部署在低并发场景下表现优异，延迟稳定</li>
+        <li><strong>错误检测准确率</strong>：跨模态不一致检测准确率达到预期水平</li>
+        <li><strong>医生接受度</strong>：可解释的证据展示让医生更容易理解和信任系统</li>
+      </ul>
+
+      <h2>🎓 关键经验与可复用结论</h2>
+
+      <h3>1. 医疗AI项目的可观测性优先</h3>
+      <p>
+        在医疗场景下，<strong>可观测性比性能更重要</strong>。医生需要理解AI的判断依据，
+        审计人员需要追溯每一步决策。SGLang的结构化输出和metrics支持让我们能够满足这些要求。
+      </p>
+
+      <h3>2. 本地部署的性能优化</h3>
+      <p>
+        对于内网部署场景，SGLang的RadixAttention和连续批处理等特性，
+        即使在低并发场景下也能充分利用GPU资源，这是选择SGLang的关键原因之一。
+      </p>
+
+      <h3>3. 任务定位的清晰性</h3>
+      <p>
+        <strong>明确区分"生成"和"审计"</strong>：Rad-Linter不是报告生成系统，而是质控审计系统。
+        这个定位的清晰性对于避免与现有研究混淆、明确技术路线至关重要。
+      </p>
+
+      <h3>4. 跨模态事实核查的独特价值</h3>
+      <p>
+        与纯文本proofreading不同，Rad-Linter利用视觉证据进行跨模态一致性检查，
+        能够发现"报告与影像不一致"的问题，这是其独特价值所在。
+      </p>
+
+      <h2>🔮 未来方向</h2>
+
+      <p>
+        基于当前实践，我们看到了几个可能的改进方向：
+      </p>
+      <ul>
+        <li><strong>更细粒度的证据定位</strong>：从报告级别到短语级别的证据定位</li>
+        <li><strong>更多错误类型</strong>：扩展错误分类体系，覆盖更多临床场景</li>
+        <li><strong>可复现实验框架</strong>：建立标准化的评估流程，便于持续优化</li>
+        <li><strong>与报告生成的协同</strong>：虽然任务不同，但可以与报告生成系统形成闭环，提升整体质量</li>
+      </ul>
+
+      <h2>💭 总结</h2>
+
+      <p>
+        这个项目让我深刻体会到，在医疗AI场景下，<strong>技术选型不仅要考虑性能，更要考虑可观测性、可解释性和合规性</strong>。
+        SGLang作为中间层，在满足这些要求的同时，也提供了优秀的性能表现。
+      </p>
+
+      <p>
+        Rad-Linter的定位——跨模态事实核查质控系统——填补了临床工作流中的一个重要空白。
+        它不是报告生成的替代品，而是报告生成（或手写报告）之后的<strong>独立质控环节</strong>，
+        这个需求是刚需，也是我们项目的核心价值。
+      </p>
+
+      <blockquote style="border-left: 4px solid #007bff; padding-left: 20px; margin: 30px 0; font-style: italic; color: #555;">
+        "We do not generate reports; we audit existing reports using auxiliary visual evidence."
+        <br>— Rad-Linter的核心定位
+      </blockquote>
+
+      <p style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; color: #888; font-size: 0.9em;">
+        如有问题或建议，欢迎通过 <a href="https://github.com/nickcp39">GitHub</a> 或 
+        <a href="https://www.linkedin.com/in/yanda-cheng-4888a216b/">LinkedIn</a> 联系我。
+      </p>
+
+      <!-- 🔻 Disqus 评论区域 -->
+      <div id="disqus_thread" style="margin-top: 60px;"></div>
+      <script>
+        var disqus_config = function () {
+          this.page.url = window.location.href;
+          this.page.identifier = window.location.pathname;
+        };
+        (function() {
+          var d = document, s = d.createElement('script');
+          s.src = 'https://yanda-cheng.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    </main>
+
+    <!-- ➡ Right Sidebar -->
+    <aside style="flex: 0 0 250px;">
+      <div style="margin-bottom: 30px;">
+        <input type="text" placeholder="Search ..." style="width: 100%; padding: 6px;">
+      </div>
+
+      <div style="font-size: 0.9em; color: #555; margin-bottom: 30px;">
+        <h3>Tech Stack</h3>
+        <ul style="list-style-type: none; padding-left: 0;">
+          <li>• SGLang</li>
+          <li>• TorchXRayVision</li>
+          <li>• FastAPI</li>
+          <li>• Local LLM</li>
+        </ul>
+      </div>
+
+      <div style="font-size: 0.9em; color: #555; margin-bottom: 30px;">
+        <h3>Key Features</h3>
+        <ul style="list-style-type: none; padding-left: 0;">
+          <li>• Cross-modal QA</li>
+          <li>• Observability</li>
+          <li>• On-prem Deployment</li>
+          <li>• Structured Output</li>
+        </ul>
+      </div>
+
+      <div style="font-size: 0.9em; color: #555; margin-bottom: 30px;">
+        <h3>Related Projects</h3>
+        <ul style="list-style-type: none; padding-left: 0;">
+          <li><a href="sglang_llm_agent_id_scanner.html">SGLang LLM Agent</a></li>
+        </ul>
+      </div>
+
+      <div style="font-size: 0.9em; color: #555;">
+        <h3>Recent Posts</h3>
+        <ul style="list-style-type: none; padding-left: 0;">
+          <li><a href="sglang_llm_agent_id_scanner.html">SGLang LLM Agent</a></li>
+          <li><a href="staff_engineer.html">Staff Engineer</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <!-- 🔻 Footer -->
+  <div class="footer">
+    Blog © Yanda Cheng | Last updated January 2025
+  </div>
+</body>
+</html>
