@@ -227,6 +227,20 @@ const translations = {
     'article.btc_repeat.section3.para4': '比特币恰恰在挑战这个结构：它不受监管、不容易冻结、可以跨国交易、不依赖任何国家信用。',
     'article.btc_repeat.section3.para5': '而你是否能赚到钱，不取决于你是否看懂了K线，而取决于你是否真的理解了这个游戏的本质。',
     'article.btc_repeat.disclaimer': '本文观点仅代表作者个人，不构成任何投资建议。比特币价格波动较大，请独立判断。',
+    
+    // 文章标题翻译 - 所有文章
+    'article.staff_engineer.title': '【职场分享】资深工程师的挑战和策略',
+    'article.staff_engineer.subtitle': 'Challenges and Strategies of Being a Staff Engineer',
+    'article.btc_2026_prediction.title': 'BTC 2026年价格预测：站在周期拐点的思考',
+    'article.btc_2026_prediction.subtitle': 'BTC Price Prediction for 2026: Reflections at a Cycle Inflection Point',
+    'article.sglang_llm_agent.title': 'Building LLM Agent ID Scanner with SGLang: A Deep Dive',
+    'article.sglang_llm_agent.subtitle': '使用 SGLang 构建 LLM Agent 身份证扫描系统',
+    'article.llm_hospital_rad_linter.title': '使用SGLang构建Rad-Linter：医院端跨模态质控系统的生产实践',
+    'article.llm_hospital_rad_linter.subtitle': 'Building Rad-Linter with SGLang: Production Experience of Cross-Modal Quality Control in Hospital Settings',
+    'article.phd_possibilities.title': 'The Infinite Possibilities of a PhD: More Than Academia',
+    'article.phd_possibilities.subtitle': 'PhD的无限可能性：不止是教职',
+    'article.value_lessons.title': '价值投资的四条核心心法',
+    'article.value_lessons.subtitle': 'Four Core Principles of Value Investing',
   },
   en: {
     // Navigation
@@ -449,6 +463,20 @@ const translations = {
     'article.btc_repeat.section3.para4': 'Bitcoin challenges this structure: it\'s unregulated, hard to freeze, can be traded across borders, and doesn\'t rely on any national credit.',
     'article.btc_repeat.section3.para5': 'Whether you can make money doesn\'t depend on whether you understand K-lines, but on whether you truly understand the essence of this game.',
     'article.btc_repeat.disclaimer': 'The views in this article represent only the author\'s personal opinion and do not constitute any investment advice. Bitcoin prices are highly volatile; please make independent judgments.',
+    
+    // Article title translations - all articles
+    'article.staff_engineer.title': 'Challenges and Strategies of Being a Staff Engineer',
+    'article.staff_engineer.subtitle': '【职场分享】资深工程师的挑战和策略',
+    'article.btc_2026_prediction.title': 'BTC Price Prediction for 2026: Reflections at a Cycle Inflection Point',
+    'article.btc_2026_prediction.subtitle': 'BTC 2026年价格预测：站在周期拐点的思考',
+    'article.sglang_llm_agent.title': 'Building LLM Agent ID Scanner with SGLang: A Deep Dive',
+    'article.sglang_llm_agent.subtitle': '使用 SGLang 构建 LLM Agent 身份证扫描系统',
+    'article.llm_hospital_rad_linter.title': 'Building Rad-Linter with SGLang: Production Experience of Cross-Modal Quality Control in Hospital Settings',
+    'article.llm_hospital_rad_linter.subtitle': '使用SGLang构建Rad-Linter：医院端跨模态质控系统的生产实践',
+    'article.phd_possibilities.title': 'The Infinite Possibilities of a PhD: More Than Academia',
+    'article.phd_possibilities.subtitle': 'PhD的无限可能性：不止是教职',
+    'article.value_lessons.title': 'Four Core Principles of Value Investing',
+    'article.value_lessons.subtitle': '价值投资的四条核心心法',
   }
 };
 

@@ -10,18 +10,21 @@
 </head>
 <body>
   <!-- 🔹 Navbar -->
-  <div class="navbar">
-    <div class="nav-container">
-      <div class="nav-left">
-        <a href="../index.html">Home</a>
-      </div>
-      <div class="nav-right">
-        <a href="../about_yc.html">About</a>
-        <a href="../projects_yc.html">Projects</a>
-        <a href="../blog_yc.html" class="active">Blog</a>
-      </div>
-    </div>
-  </div>
+  <div id="navbar-placeholder"></div>
+  <script>
+    fetch('../navbar.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('navbar-placeholder').innerHTML = data;
+        // navbar 加载完成后，触发语言按钮事件绑定
+        if (window.attachLanguageButtonListeners) {
+          window.attachLanguageButtonListeners();
+        }
+      });
+  </script>
+
+  <!-- 🌐 i18n 翻译脚本 -->
+  <script src="../scripts/i18n.js"></script>
 
   <!-- 🔸 Blog Layout -->
   <div class="blog-container" style="display: flex; gap: 40px; align-items: flex-start;">
@@ -36,7 +39,7 @@
     <!-- 🔳 Main Content -->
     <main style="flex: 1;">
       <p style="color: #888; font-size: 0.9em;">Career, Chinese</p>
-      <h1>【职场分享】资深工程师的挑战和策略<br><span style="font-weight: normal; font-size: 0.9em;">Challenges and Strategies of Being a Staff Engineer</span></h1>
+      <h1><span data-i18n="article.staff_engineer.title">【职场分享】资深工程师的挑战和策略</span><br><span style="font-weight: normal; font-size: 0.9em;" data-i18n="article.staff_engineer.subtitle">Challenges and Strategies of Being a Staff Engineer</span></h1>
 
       <img src="../files/amazing_photo/staff_engineer_hero.png" alt="Staff Engineer" style="max-width: 100%; margin: 20px 0;">
 
