@@ -255,6 +255,18 @@ const translations = {
     'article.value_lessons.title': '价值投资的四条核心心法',
     'article.value_lessons.subtitle': 'Four Core Principles of Value Investing',
     
+    // 文章摘要翻译
+    'article.btc_regulation.summary': '比特币作为数字黄金，在货币扩张时代可能经历类似黄金的价格暴涨，预计在2025年Q3达到高点，2028年左右见底。',
+    'article.value_lessons.summary': '从巴菲特和芒格到坦普尔顿，历史表明掌握价值投资需要克服人性。',
+    'article.staff_engineer.summary': '在 Hydrotech 工作的经历让我明白：最难的不是技术，而是与人交流。分享如何获得客户信任、快速反应，以及在压力下保持冷静的真实案例。',
+    'article.phd_possibilities.summary': '从工业到医疗AI，从量化金融到政策策略，PhD打开了远超传统学术路径的大门。',
+    'article.btc_repeat.summary': '从情绪波动、盲目追星到系统性压迫，剖析为什么多数人在比特币周期中仍旧难以盈利。',
+    'article.buffett.summary': '在Buffalo到多伦多的孤独旅途中，我靠巴菲特与芒格的演讲保持精神秩序，也思考着如何守住博士毕业后的那份独处与清醒。',
+    'article.btc_4year.summary': '四年过去，比特币再创新高，却让我在持仓与心态之间倍感复杂。这是一篇反思当前市场周期的个人感悟。',
+    'article.btc_2026_prediction.summary': '预测稳定币将在2026年Q1-Q2暴雷，导致BTC深度回调。预计在10月左右见底，价格区间5.7-6.6万美元，中位数约6万美元。基于稳定币风险、技术分析和历史周期的综合判断。',
+    'article.sglang_llm_agent.summary': 'A technical deep dive into building an LLM Agent ID Scanner using SGLang inference server. Covers architecture, performance optimization, and production deployment considerations.',
+    'article.llm_hospital_rad_linter.summary': '分享使用SGLang在医院端部署跨模态事实核查质控系统（Rad-Linter）的生产经验。聚焦可观测性、本地计算性能优化，以及Rad-Linter与报告生成任务的根本区别。',
+    
     // 文章翻译 - btc_2026_prediction.html (完整内容)
     'article.btc_2026.para1': '站在2025年12月的节点，回望这一年BTC的走势，从年初的震荡到年中的突破，再到年末的反复，市场情绪已经发生了微妙的变化。2026年即将到来，作为一个长期观察者和参与者，我想分享一些基于历史周期、技术结构和宏观环境的思考。',
     'article.btc_2026.section1.title': '🔢 BTC价格的本质：纯粹的数学',
@@ -712,6 +724,18 @@ const translations = {
     'article.phd_possibilities.subtitle': 'PhD的无限可能性：不止是教职',
     'article.value_lessons.title': 'Four Core Principles of Value Investing',
     'article.value_lessons.subtitle': '价值投资的四条核心心法',
+    
+    // Article summary translations
+    'article.btc_regulation.summary': 'Bitcoin acts as digital gold. In an era of monetary expansion, it may experience a gold-like price surge, peaking in Q3 2025 and bottoming around 2028.',
+    'article.value_lessons.summary': 'From Buffett and Munger to Templeton, history shows that mastering value investing requires overcoming human nature.',
+    'article.staff_engineer.summary': 'My experience working at Hydrotech taught me: the hardest part is not technology, but communication. Sharing real cases of how to gain customer trust, react quickly, and stay calm under pressure.',
+    'article.phd_possibilities.summary': 'From industry to medical AI, from quant finance to policy strategy, a PhD opens doors far beyond traditional academic paths.',
+    'article.btc_repeat.summary': 'From emotional fluctuations, blind idolization to systemic oppression, analyzing why most people still struggle to profit in the Bitcoin cycle.',
+    'article.buffett.summary': 'On lonely commutes from Buffalo to Toronto, I rely on Buffett and Munger\'s speeches to maintain mental order, and also ponder how to preserve the solitude and clarity after graduating with a Ph.D.',
+    'article.btc_4year.summary': 'Four years have passed, Bitcoin has reached a new high again, but it makes me feel complex between holding and mindset. This is a personal reflection on the current market cycle.',
+    'article.btc_2026_prediction.summary': 'Predicting stablecoins will crash in Q1-Q2 2026, leading to a deep BTC correction. Expected to bottom around October, price range $57,000-$66,000, median around $60,000. Based on stablecoin risk, technical analysis, and historical cycle comprehensive judgment.',
+    'article.sglang_llm_agent.summary': '在这篇文章中，我将分享我在3天内使用SGLang推理服务器构建LLM Agent身份证扫描系统的经验。涵盖架构、性能优化和生产部署考虑。',
+    'article.llm_hospital_rad_linter.summary': 'Sharing production experience of deploying a cross-modal fact-checking quality control system (Rad-Linter) using SGLang in hospital settings. Focus on observability, local computing performance optimization, and the fundamental differences between Rad-Linter and report generation tasks.',
     
     // Article translations - btc_2026_prediction.html (full content)
     'article.btc_2026.para1': 'Standing at December 2025, looking back at BTC\'s trajectory this year—from early volatility to mid-year breakthroughs, then year-end fluctuations—market sentiment has shifted subtly. As 2026 approaches, as a long-term observer and participant, I want to share some reflections based on historical cycles, technical structure, and macro environment.',

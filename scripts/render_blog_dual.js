@@ -48,6 +48,20 @@ Promise.all([
     'value_lessons.html': 'article.value_lessons.title'
   };
   
+  // 文件名到文章摘要翻译键的映射
+  const articleSummaryKeyMap = {
+    'btc_4year_high_no_joy.html': 'article.btc_4year.summary',
+    'buffett_munger_weekend_reflection.html': 'article.buffett.summary',
+    'btc_regulation.html': 'article.btc_regulation.summary',
+    'btc_repeat_4years.html': 'article.btc_repeat.summary',
+    'staff_engineer.html': 'article.staff_engineer.summary',
+    'btc_2026_prediction.html': 'article.btc_2026_prediction.summary',
+    'sglang_llm_agent_id_scanner.html': 'article.sglang_llm_agent.summary',
+    'llm_hospital_rad_linter.html': 'article.llm_hospital_rad_linter.summary',
+    'phd_possibilities.html': 'article.phd_possibilities.summary',
+    'value_lessons.html': 'article.value_lessons.summary'
+  };
+  
   for (const [main, subs] of Object.entries(categoryTree)) {
     const section = document.createElement('section');
     const mainKey = categoryKeyMap[main] || main;
@@ -134,16 +148,26 @@ Promise.all([
         p.appendChild(dateSpan);
         p.appendChild(document.createElement('br'));
         
+        const summaryKey = articleSummaryKeyMap[a.file];
         const summarySpan = document.createElement('span');
         summarySpan.style.fontSize = '0.95em';
-        summarySpan.textContent = a.summary || '';
+        if (summaryKey) {
+          summarySpan.setAttribute('data-i18n', summaryKey);
+          summarySpan.textContent = a.summary || ''; // 默认显示，翻译系统会替换
+        } else {
+          summarySpan.textContent = a.summary || '';
+        }
         p.appendChild(summarySpan);
       } else {
         // 没有翻译键，直接显示
+        const summaryKey = articleSummaryKeyMap[a.file];
+        const summaryHtml = summaryKey 
+          ? `<span style="font-size: 0.95em;" data-i18n="${summaryKey}">${a.summary || ''}</span>`
+          : `<span style="font-size: 0.95em;">${a.summary || ''}</span>`;
         p.innerHTML = `
           <strong><a href="posts/${a.file}">${a.title}</a></strong><br>
           <span style="font-size: 0.85em; color: #999;">${a.date}</span><br>
-          <span style="font-size: 0.95em;">${a.summary || ''}</span>
+          ${summaryHtml}
         `;
       }
       el.appendChild(p);
