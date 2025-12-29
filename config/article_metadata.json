@@ -43,12 +43,12 @@
   },
   "sglang_llm_agent_id_scanner.html": {
     "title": "Building LLM Agent ID Scanner with SGLang: A Deep Dive",
-    "date": "2025-12-15",
+    "date": "2025-12-28",
     "summary": "A technical deep dive into building an LLM Agent ID Scanner using SGLang inference server. Covers architecture, performance optimization, and production deployment considerations."
   },
   "llm_hospital_rad_linter.html": {
     "title": "使用SGLang构建Rad-Linter：医院端跨模态质控系统的生产实践",
-    "date": "2025-01-20",
+    "date": "2025-12-29",
     "summary": "分享使用SGLang在医院端部署跨模态事实核查质控系统（Rad-Linter）的生产经验。聚焦可观测性、本地计算性能优化，以及Rad-Linter与报告生成任务的根本区别。"
   }
 
