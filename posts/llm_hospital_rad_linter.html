@@ -253,36 +253,36 @@
       <table class="comparison-table">
         <thead>
           <tr>
-            <th>维度</th>
-            <th>报告生成（Report Generation）</th>
-            <th>Rad-Linter（质控审计）</th>
+            <th data-i18n="article.llm_hospital_rad_linter.section3.subsection3.table.header1">维度</th>
+            <th data-i18n="article.llm_hospital_rad_linter.section3.subsection3.table.header2">报告生成（Report Generation）</th>
+            <th data-i18n="article.llm_hospital_rad_linter.section3.subsection3.table.header3">Rad-Linter（质控审计）</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><strong>输入</strong></td>
-            <td>医学影像</td>
-            <td>已写好的报告 + 视觉证据</td>
+            <td data-i18n="article.llm_hospital_rad_linter.section3.subsection3.table.row1.label"><strong>输入</strong></td>
+            <td data-i18n="article.llm_hospital_rad_linter.section3.subsection3.table.row1.col1">医学影像</td>
+            <td data-i18n="article.llm_hospital_rad_linter.section3.subsection3.table.row1.col2">已写好的报告 + 视觉证据</td>
           </tr>
           <tr>
-            <td><strong>输出</strong></td>
-            <td>完整的Findings/Impression文本</td>
-            <td>QA判定 + 错误类型 + 证据解释</td>
+            <td data-i18n="article.llm_hospital_rad_linter.section3.subsection3.table.row2.label"><strong>输出</strong></td>
+            <td data-i18n="article.llm_hospital_rad_linter.section3.subsection3.table.row2.col1">完整的Findings/Impression文本</td>
+            <td data-i18n="article.llm_hospital_rad_linter.section3.subsection3.table.row2.col2">QA判定 + 错误类型 + 证据解释</td>
           </tr>
           <tr>
-            <td><strong>任务性质</strong></td>
-            <td>生成（Generation）</td>
-            <td>审计（Audit/Linting）</td>
+            <td data-i18n="article.llm_hospital_rad_linter.section3.subsection3.table.row3.label"><strong>任务性质</strong></td>
+            <td data-i18n="article.llm_hospital_rad_linter.section3.subsection3.table.row3.col1">生成（Generation）</td>
+            <td data-i18n="article.llm_hospital_rad_linter.section3.subsection3.table.row3.col2">审计（Audit/Linting）</td>
           </tr>
           <tr>
-            <td><strong>典型研究</strong></td>
-            <td>R2Gen, TRRG, RadAlign</td>
-            <td>ATARI (laterality), Phrase-grounded fact-checking</td>
+            <td data-i18n="article.llm_hospital_rad_linter.section3.subsection3.table.row4.label"><strong>典型研究</strong></td>
+            <td data-i18n="article.llm_hospital_rad_linter.section3.subsection3.table.row4.col1">R2Gen, TRRG, RadAlign</td>
+            <td data-i18n="article.llm_hospital_rad_linter.section3.subsection3.table.row4.col2">ATARI (laterality), Phrase-grounded fact-checking</td>
           </tr>
           <tr>
-            <td><strong>技术重点</strong></td>
-            <td>多模态对齐、生成质量</td>
-            <td>跨模态一致性、可解释性、可观测性</td>
+            <td data-i18n="article.llm_hospital_rad_linter.section3.subsection3.table.row5.label"><strong>技术重点</strong></td>
+            <td data-i18n="article.llm_hospital_rad_linter.section3.subsection3.table.row5.col1">多模态对齐、生成质量</td>
+            <td data-i18n="article.llm_hospital_rad_linter.section3.subsection3.table.row5.col2">跨模态一致性、可解释性、可观测性</td>
           </tr>
         </tbody>
       </table>
@@ -347,75 +347,75 @@
         这对于医疗场景的<strong>可解释性</strong>至关重要。
       </p>
 
-      <h2>📊 生产实践成果</h2>
+      <h2 data-i18n="article.llm_hospital_rad_linter.section5.title">📊 生产实践成果</h2>
 
-      <p>
+      <p data-i18n="article.llm_hospital_rad_linter.section5.para1">
         经过几个月的部署和优化，Rad-Linter系统取得了以下成果：
       </p>
       <ul>
-        <li><strong>可观测性提升</strong>：完整的证据链追踪，所有QA判定可审计</li>
-        <li><strong>性能优化</strong>：SGLang的本地部署在低并发场景下表现优异，延迟稳定</li>
-        <li><strong>错误检测准确率</strong>：跨模态不一致检测准确率达到预期水平</li>
-        <li><strong>医生接受度</strong>：可解释的证据展示让医生更容易理解和信任系统</li>
+        <li data-i18n="article.llm_hospital_rad_linter.section5.li1"><strong>可观测性提升</strong>：完整的证据链追踪，所有QA判定可审计</li>
+        <li data-i18n="article.llm_hospital_rad_linter.section5.li2"><strong>性能优化</strong>：SGLang的本地部署在低并发场景下表现优异，延迟稳定</li>
+        <li data-i18n="article.llm_hospital_rad_linter.section5.li3"><strong>错误检测准确率</strong>：跨模态不一致检测准确率达到预期水平</li>
+        <li data-i18n="article.llm_hospital_rad_linter.section5.li4"><strong>医生接受度</strong>：可解释的证据展示让医生更容易理解和信任系统</li>
       </ul>
 
-      <h2>🎓 关键经验与可复用结论</h2>
+      <h2 data-i18n="article.llm_hospital_rad_linter.section6.title">🎓 关键经验与可复用结论</h2>
 
-      <h3>1. 医疗AI项目的可观测性优先</h3>
-      <p>
+      <h3 data-i18n="article.llm_hospital_rad_linter.section6.subsection1.title">1. 医疗AI项目的可观测性优先</h3>
+      <p data-i18n="article.llm_hospital_rad_linter.section6.subsection1.para1">
         在医疗场景下，<strong>可观测性比性能更重要</strong>。医生需要理解AI的判断依据，
         审计人员需要追溯每一步决策。SGLang的结构化输出和metrics支持让我们能够满足这些要求。
       </p>
 
-      <h3>2. 本地部署的性能优化</h3>
-      <p>
+      <h3 data-i18n="article.llm_hospital_rad_linter.section6.subsection2.title">2. 本地部署的性能优化</h3>
+      <p data-i18n="article.llm_hospital_rad_linter.section6.subsection2.para1">
         对于内网部署场景，SGLang的RadixAttention和连续批处理等特性，
         即使在低并发场景下也能充分利用GPU资源，这是选择SGLang的关键原因之一。
       </p>
 
-      <h3>3. 任务定位的清晰性</h3>
-      <p>
+      <h3 data-i18n="article.llm_hospital_rad_linter.section6.subsection3.title">3. 任务定位的清晰性</h3>
+      <p data-i18n="article.llm_hospital_rad_linter.section6.subsection3.para1">
         <strong>明确区分"生成"和"审计"</strong>：Rad-Linter不是报告生成系统，而是质控审计系统。
         这个定位的清晰性对于避免与现有研究混淆、明确技术路线至关重要。
       </p>
 
-      <h3>4. 跨模态事实核查的独特价值</h3>
-      <p>
+      <h3 data-i18n="article.llm_hospital_rad_linter.section6.subsection4.title">4. 跨模态事实核查的独特价值</h3>
+      <p data-i18n="article.llm_hospital_rad_linter.section6.subsection4.para1">
         与纯文本proofreading不同，Rad-Linter利用视觉证据进行跨模态一致性检查，
         能够发现"报告与影像不一致"的问题，这是其独特价值所在。
       </p>
 
-      <h2>🔮 未来方向</h2>
+      <h2 data-i18n="article.llm_hospital_rad_linter.section7.title">🔮 未来方向</h2>
 
-      <p>
+      <p data-i18n="article.llm_hospital_rad_linter.section7.para1">
         基于当前实践，我们看到了几个可能的改进方向：
       </p>
       <ul>
-        <li><strong>更细粒度的证据定位</strong>：从报告级别到短语级别的证据定位</li>
-        <li><strong>更多错误类型</strong>：扩展错误分类体系，覆盖更多临床场景</li>
-        <li><strong>可复现实验框架</strong>：建立标准化的评估流程，便于持续优化</li>
-        <li><strong>与报告生成的协同</strong>：虽然任务不同，但可以与报告生成系统形成闭环，提升整体质量</li>
+        <li data-i18n="article.llm_hospital_rad_linter.section7.li1"><strong>更细粒度的证据定位</strong>：从报告级别到短语级别的证据定位</li>
+        <li data-i18n="article.llm_hospital_rad_linter.section7.li2"><strong>更多错误类型</strong>：扩展错误分类体系，覆盖更多临床场景</li>
+        <li data-i18n="article.llm_hospital_rad_linter.section7.li3"><strong>可复现实验框架</strong>：建立标准化的评估流程，便于持续优化</li>
+        <li data-i18n="article.llm_hospital_rad_linter.section7.li4"><strong>与报告生成的协同</strong>：虽然任务不同，但可以与报告生成系统形成闭环，提升整体质量</li>
       </ul>
 
-      <h2>💭 总结</h2>
+      <h2 data-i18n="article.llm_hospital_rad_linter.section8.title">💭 总结</h2>
 
-      <p>
+      <p data-i18n="article.llm_hospital_rad_linter.section8.para1">
         这个项目让我深刻体会到，在医疗AI场景下，<strong>技术选型不仅要考虑性能，更要考虑可观测性、可解释性和合规性</strong>。
         SGLang作为中间层，在满足这些要求的同时，也提供了优秀的性能表现。
       </p>
 
-      <p>
+      <p data-i18n="article.llm_hospital_rad_linter.section8.para2">
         Rad-Linter的定位——跨模态事实核查质控系统——填补了临床工作流中的一个重要空白。
         它不是报告生成的替代品，而是报告生成（或手写报告）之后的<strong>独立质控环节</strong>，
         这个需求是刚需，也是我们项目的核心价值。
       </p>
 
-      <blockquote style="border-left: 4px solid #007bff; padding-left: 20px; margin: 30px 0; font-style: italic; color: #555;">
+      <blockquote style="border-left: 4px solid #007bff; padding-left: 20px; margin: 30px 0; font-style: italic; color: #555;" data-i18n="article.llm_hospital_rad_linter.section8.quote">
         "We do not generate reports; we audit existing reports using auxiliary visual evidence."
         <br>— Rad-Linter的核心定位
       </blockquote>
 
-      <p style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; color: #888; font-size: 0.9em;">
+      <p style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; color: #888; font-size: 0.9em;" data-i18n="article.llm_hospital_rad_linter.section8.contact">
         如有问题或建议，欢迎通过 <a href="https://github.com/nickcp39">GitHub</a> 或 
         <a href="https://www.linkedin.com/in/yanda-cheng-4888a216b/">LinkedIn</a> 联系我。
       </p>
