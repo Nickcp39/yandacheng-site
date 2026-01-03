@@ -76,18 +76,41 @@ Promise.all([
     h2.textContent = main; // 默认显示英文，翻译系统会替换
     section.appendChild(h2);
     
-    subs.forEach(sub => {
-      const items = byTag[sub];
-      if (items?.length) {
-        const block = document.createElement('div');
-        const subKey = categoryKeyMap[sub] || sub;
-        const h3 = document.createElement('h3');
-        h3.setAttribute('data-i18n', subKey);
-        h3.textContent = sub; // 默认显示英文，翻译系统会替换
-        block.appendChild(h3);
+    // 计算每个tag的最新文章日期，并排序
+    const subsWithDates = subs
+      .map(sub => {
+        const items = byTag[sub];
+        if (!items || items.length === 0) return null;
         
-        const ul = document.createElement('ul');
-        items.forEach(a => {
+        // 找到该tag下最新文章的日期
+        const latestDate = items
+          .map(a => a.date ? new Date(a.date) : new Date(0))
+          .reduce((latest, date) => date > latest ? date : latest, new Date(0));
+        
+        return { sub, items, latestDate };
+      })
+      .filter(item => item !== null)
+      // 按最新日期倒序排序（最新的在前）
+      .sort((a, b) => b.latestDate - a.latestDate);
+    
+    // 按照排序后的顺序渲染tag
+    subsWithDates.forEach(({ sub, items }) => {
+      const block = document.createElement('div');
+      const subKey = categoryKeyMap[sub] || sub;
+      const h3 = document.createElement('h3');
+      h3.setAttribute('data-i18n', subKey);
+      h3.textContent = sub; // 默认显示英文，翻译系统会替换
+      block.appendChild(h3);
+      
+      const ul = document.createElement('ul');
+      // 文章也按日期倒序排序
+      items
+        .sort((a, b) => {
+          const dateA = a.date ? new Date(a.date) : new Date(0);
+          const dateB = b.date ? new Date(b.date) : new Date(0);
+          return dateB - dateA;
+        })
+        .forEach(a => {
           const li = document.createElement('li');
           const titleKey = articleTitleKeyMap[a.file];
           if (titleKey) {
@@ -113,9 +136,8 @@ Promise.all([
           }
           ul.appendChild(li);
         });
-        block.appendChild(ul);
-        section.appendChild(block);
-      }
+      block.appendChild(ul);
+      section.appendChild(block);
     });
     catRoot.appendChild(section);
   }
