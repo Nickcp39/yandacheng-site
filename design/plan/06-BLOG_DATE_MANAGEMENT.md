@@ -162,6 +162,263 @@ node scripts/add_article.js "my_new_article.html" "My Article Title" "Article su
 
 ---
 
+## 🌐 翻译更新流程（重要）
+
+### 📍 翻译文件位置
+
+**核心文件**：`scripts/i18n.js`
+
+这个文件包含所有页面的中英文翻译，采用键值对结构：
+- `zh` 对象：中文翻译
+- `en` 对象：英文翻译
+
+### 🔑 翻译键命名规范
+
+对于博客文章，翻译键的命名格式为：
+```
+article.{文章文件名（不含.html）}.{元素路径}
+```
+
+**示例**：
+- 文章文件：`posts/sglang_llm_agent_id_scanner.html`
+- 翻译键前缀：`article.sglang_llm_agent`
+- 标题翻译键：`article.sglang_llm_agent.title`
+- 副标题翻译键：`article.sglang_llm_agent.subtitle`
+- 章节标题：`article.sglang_llm_agent.section1.title`
+- 段落内容：`article.sglang_llm_agent.section1.para1`
+- 列表项：`article.sglang_llm_agent.section1.li1`
+
+### 📝 添加新文章翻译的步骤
+
+#### 步骤1：在HTML文件中添加 `data-i18n` 属性
+
+对于需要翻译的元素，添加 `data-i18n` 属性：
+
+```html
+<!-- 标题 -->
+<h1>
+  <span data-i18n="article.my_article.title">English Title</span>
+  <br>
+  <span data-i18n="article.my_article.subtitle">English Subtitle</span>
+</h1>
+
+<!-- 段落 -->
+<p data-i18n="article.my_article.intro">English paragraph text...</p>
+
+<!-- 章节标题 -->
+<h2 data-i18n="article.my_article.section1.title">Section Title</h2>
+
+<!-- 列表项 -->
+<ul>
+  <li data-i18n="article.my_article.section1.li1">List item 1</li>
+  <li data-i18n="article.my_article.section1.li2">List item 2</li>
+</ul>
+```
+
+#### 步骤2：在 `scripts/i18n.js` 中添加翻译
+
+**位置1：中文翻译部分（`zh` 对象）**
+
+找到 `// 文章翻译 - {文章名}.html` 注释，在对应位置添加：
+
+```javascript
+const translations = {
+  zh: {
+    // ... 其他翻译 ...
+    
+    // 文章翻译 - my_article.html (完整内容)
+    'article.my_article.title': '我的文章标题',
+    'article.my_article.subtitle': '我的文章副标题',
+    'article.my_article.intro': '这是文章的介绍段落...',
+    'article.my_article.section1.title': '第一章：介绍',
+    'article.my_article.section1.para1': '这是第一段的正文内容...',
+    'article.my_article.section1.li1': '列表项1的内容',
+    'article.my_article.section1.li2': '列表项2的内容',
+    // ... 更多翻译键 ...
+    
+    'article.my_article.summary': '文章摘要（用于博客列表页）',
+  },
+```
+
+**位置2：英文翻译部分（`en` 对象）**
+
+在 `en` 对象中的对应位置添加英文翻译：
+
+```javascript
+  en: {
+    // ... 其他翻译 ...
+    
+    // Article translations - my_article.html (full content)
+    'article.my_article.title': 'My Article Title',
+    'article.my_article.subtitle': 'My Article Subtitle',
+    'article.my_article.intro': 'This is the introduction paragraph...',
+    'article.my_article.section1.title': 'Section 1: Introduction',
+    'article.my_article.section1.para1': 'This is the first paragraph content...',
+    'article.my_article.section1.li1': 'List item 1 content',
+    'article.my_article.section1.li2': 'List item 2 content',
+    // ... 更多翻译键 ...
+    
+    'article.my_article.summary': 'Article summary (for blog list page)',
+  }
+}
+```
+
+### ✅ 翻译检查清单
+
+添加翻译时，确保：
+
+- [ ] **HTML文件中的所有需要翻译的元素都添加了 `data-i18n` 属性**
+  - 标题（h1, h2, h3）
+  - 段落（p）
+  - 列表项（li）
+  - 按钮文本
+  - 其他需要翻译的文本
+
+- [ ] **`scripts/i18n.js` 中同时添加了中文和英文翻译**
+  - 中文翻译在 `zh` 对象中
+  - 英文翻译在 `en` 对象中
+  - 翻译键名称完全一致
+
+- [ ] **翻译键命名遵循规范**
+  - 格式：`article.{文件名}.{元素路径}`
+  - 文件名不包含 `.html` 后缀
+  - 使用小写字母和下划线
+
+- [ ] **所有翻译键都有对应的值**
+  - 不能有空的翻译值
+  - 中英文翻译都要完整
+
+- [ ] **特殊字符正确转义**
+  - HTML标签使用 `&lt;` 和 `&gt;`
+  - 引号正确转义
+  - 换行符使用 `<br>` 或保留在翻译中
+
+### 🎯 翻译最佳实践
+
+#### 1. 翻译键的组织结构
+
+按照文章结构组织翻译键，使用清晰的层级：
+
+```
+article.{文件名}
+  ├── title          # 文章标题
+  ├── subtitle       # 副标题
+  ├── intro          # 介绍段落
+  ├── summary        # 摘要（用于列表页）
+  ├── section1       # 第一章节
+  │   ├── title      # 章节标题
+  │   ├── para1      # 第一段
+  │   ├── para2      # 第二段
+  │   ├── li1        # 列表项1
+  │   └── li2        # 列表项2
+  ├── section2       # 第二章节
+  └── ...
+```
+
+#### 2. 保持翻译一致性
+
+- 使用相同的术语翻译（如"SGLang"、"LLM"等专有名词）
+- 保持语气和风格一致
+- 技术术语统一翻译
+
+#### 3. 处理HTML标签
+
+如果翻译中包含HTML标签，确保在翻译中正确保留：
+
+```javascript
+// 正确
+'article.my_article.intro': '这是<strong>重要</strong>的内容'
+
+// 错误（标签被转义）
+'article.my_article.intro': '这是&lt;strong&gt;重要&lt;/strong&gt;的内容'
+```
+
+#### 4. 处理特殊格式
+
+- **加粗文本**：使用 `<strong>` 标签
+- **代码**：使用 `<code>` 标签
+- **链接**：保留完整的 `<a>` 标签
+- **换行**：使用 `<br>` 或保留段落结构
+
+### 🔍 常见问题排查
+
+#### 问题1：翻译不显示
+
+**可能原因**：
+- `data-i18n` 属性拼写错误
+- 翻译键在 `i18n.js` 中不存在
+- JavaScript 加载顺序问题
+
+**解决方法**：
+1. 检查浏览器控制台是否有错误
+2. 确认翻译键名称完全匹配
+3. 确认 `i18n.js` 已正确加载
+
+#### 问题2：翻译显示为键名
+
+**可能原因**：
+- 翻译键在 `i18n.js` 中未定义
+- 翻译键拼写错误
+
+**解决方法**：
+1. 在 `i18n.js` 中搜索翻译键
+2. 确认中英文翻译都已添加
+3. 检查键名是否完全匹配（大小写敏感）
+
+#### 问题3：部分内容未翻译
+
+**可能原因**：
+- 某些元素忘记添加 `data-i18n` 属性
+- 翻译键未在 `i18n.js` 中定义
+
+**解决方法**：
+1. 检查HTML中所有需要翻译的元素
+2. 确认每个元素都有对应的翻译键
+3. 使用浏览器开发者工具检查元素
+
+### 📋 完整翻译工作流示例
+
+假设要为新文章 `my_new_article.html` 添加翻译：
+
+1. **在HTML文件中标记需要翻译的元素**
+   ```html
+   <h1 data-i18n="article.my_new_article.title">My New Article</h1>
+   <p data-i18n="article.my_new_article.intro">Introduction text...</p>
+   ```
+
+2. **在 `scripts/i18n.js` 的 `zh` 对象中添加中文翻译**
+   ```javascript
+   'article.my_new_article.title': '我的新文章',
+   'article.my_new_article.intro': '介绍文本...',
+   ```
+
+3. **在 `scripts/i18n.js` 的 `en` 对象中添加英文翻译**
+   ```javascript
+   'article.my_new_article.title': 'My New Article',
+   'article.my_new_article.intro': 'Introduction text...',
+   ```
+
+4. **测试翻译**
+   - 刷新页面
+   - 切换语言按钮
+   - 确认所有翻译正确显示
+
+### 🚨 重要提醒
+
+1. **每次添加新文章时，必须同时更新翻译**
+   - 不要只添加英文或只添加中文
+   - 确保所有需要翻译的内容都有对应的翻译键
+
+2. **翻译键命名要一致**
+   - 使用统一的命名规范
+   - 保持与文章结构对应
+
+3. **定期检查翻译完整性**
+   - 确保没有遗漏的翻译
+   - 确保翻译质量
+
+---
+
 ## 🔍 日期格式规范
 
 ### 1. `config/article_metadata.json`
@@ -226,7 +483,11 @@ node scripts/add_article.js "my_new_article.html" "My Article Title" "Article su
 - [ ] **`config/article_metadata.json`** - 添加条目，日期设为今天（YYYY-MM-DD格式）
 - [ ] **`posts/xxx.html`** - 创建文章文件，侧边栏日期设为今天
 - [ ] **`config/article_tags.json`** - 添加标签
-- [ ] **`scripts/i18n.js`** - 添加翻译键值对（如果需要翻译）
+- [ ] **`scripts/i18n.js`** - 添加翻译键值对（**必须完成，详见"翻译更新流程"章节**）
+  - [ ] 在HTML文件中为所有需要翻译的元素添加 `data-i18n` 属性
+  - [ ] 在 `scripts/i18n.js` 的 `zh` 对象中添加中文翻译
+  - [ ] 在 `scripts/i18n.js` 的 `en` 对象中添加英文翻译
+  - [ ] 测试翻译切换功能，确保所有翻译正确显示
 
 ### 可选步骤
 
@@ -253,6 +514,12 @@ node scripts/add_article.js "my_new_article.html" "My Article Title" "Article su
 - 提交前检查日期是否正确
 - 使用Git Hook自动验证
 
+### 5. 翻译完整性
+- 每次添加新文章时，必须同时添加中英文翻译
+- 确保所有需要翻译的元素都添加了 `data-i18n` 属性
+- 测试语言切换功能，确保翻译正确显示
+- 遵循翻译键命名规范，保持一致性
+
 ---
 
 ## 📚 相关文件
@@ -267,7 +534,10 @@ node scripts/add_article.js "my_new_article.html" "My Article Title" "Article su
 - `posts/*.html` - 所有文章文件
 
 ### 翻译文件
-- `scripts/i18n.js` - 翻译键值对
+- `scripts/i18n.js` - 翻译键值对（**重要：每次添加新文章必须更新**）
+  - 包含所有页面的中英文翻译
+  - 使用 `data-i18n` 属性在HTML中引用
+  - 详细使用说明见"翻译更新流程"章节
 
 ---
 
