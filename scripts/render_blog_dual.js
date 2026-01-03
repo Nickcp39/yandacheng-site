@@ -45,7 +45,9 @@ Promise.all([
     'sglang_llm_agent_id_scanner.html': 'article.sglang_llm_agent.title',
     'llm_hospital_rad_linter.html': 'article.llm_hospital_rad_linter.title',
     'phd_possibilities.html': 'article.phd_possibilities.title',
-    'value_lessons.html': 'article.value_lessons.title'
+    'value_lessons.html': 'article.value_lessons.title',
+    '20260102rad_linter_clinical_qa.html': 'article.rad_linter_clinical_qa.title',
+    'btc_yield_spread_crash.html': 'article.btc_yield_spread_crash.title'
   };
   
   // 文件名到文章摘要翻译键的映射
@@ -59,7 +61,9 @@ Promise.all([
     'sglang_llm_agent_id_scanner.html': 'article.sglang_llm_agent.summary',
     'llm_hospital_rad_linter.html': 'article.llm_hospital_rad_linter.summary',
     'phd_possibilities.html': 'article.phd_possibilities.summary',
-    'value_lessons.html': 'article.value_lessons.summary'
+    'value_lessons.html': 'article.value_lessons.summary',
+    '20260102rad_linter_clinical_qa.html': 'article.rad_linter_clinical_qa.summary',
+    'btc_yield_spread_crash.html': 'article.btc_yield_spread_crash.summary'
   };
   
   for (const [main, subs] of Object.entries(categoryTree)) {

@@ -8,6 +8,8 @@
   "btc_4year_high_no_joy.html": ["Bitcoin"],
   "btc_2026_prediction.html": ["Bitcoin", "Value Investing"],
   "sglang_llm_agent_id_scanner.html": ["Tech Innovation"],
-  "llm_hospital_rad_linter.html": ["Tech Innovation", "Medical AI"]
+  "llm_hospital_rad_linter.html": ["Tech Innovation", "Medical AI"],
+  "20260102rad_linter_clinical_qa.html": ["Medical AI"],
+  "btc_yield_spread_crash.html": ["Bitcoin", "Stock Market"]
 
 }
