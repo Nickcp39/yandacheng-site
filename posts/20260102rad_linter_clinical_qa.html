@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rad-Linter：为什么临床签发前的跨模态质控是刚需</title>
+  <link rel="stylesheet" href="../style_blog.css">
+  <style>
+    .highlight-box {
+      background: #f0f7ff;
+      border-left: 4px solid #007bff;
+      padding: 20px;
+      margin: 25px 0;
+      border-radius: 4px;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
+
+    .comparison-table th {
+      background-color: #f5f5f5;
+      font-weight: bold;
+    }
+
+    .warning-box {
+      background: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: 15px;
+      margin: 20px 0;
+      border-radius: 4px;
+    }
+
+    .key-point {
+      background: #e8f5e9;
+      border-left: 4px solid #4caf50;
+      padding: 15px;
+      margin: 20px 0;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 🔹 Navbar -->
+  <div id="navbar-placeholder"></div>
+  <script>
+    fetch('../navbar.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('navbar-placeholder').innerHTML = data;
+        if (window.attachLanguageButtonListeners) {
+          window.attachLanguageButtonListeners();
+        }
+      });
+  </script>
+
+  <!-- 🌐 i18n 翻译脚本 -->
+  <script src="../scripts/i18n.js"></script>
+
+  <!-- 🔸 Blog Layout -->
+  <div class="blog-container" style="display: flex; gap: 40px; align-items: flex-start;">
+
+    <!-- ⬅ Left Sidebar -->
+    <aside style="flex: 0 0 150px; font-size: 0.9em; color: #666;">
+      <p><strong>Written by</strong><br>Yanda Cheng</p>
+      <p><strong>Date</strong><br>January 2nd, 2026</p>
+      <p><a href="#disqus_thread">💬 Leave a comment</a></p>
+    </aside>
+
+    <!-- 🔳 Main Content -->
+    <main style="flex: 1;">
+      <p style="color: #888; font-size: 0.9em;">Medical AI · Clinical QA · Healthcare Systems · Regulatory Compliance</p>
+      <h1><span data-i18n="article.rad_linter_clinical_qa.title">Rad-Linter：为什么临床签发前的跨模态质控是刚需</span><br><span style="font-weight: normal; font-size: 0.9em;" data-i18n="article.rad_linter_clinical_qa.subtitle">Rad-Linter: Why Cross-Modal Quality Control Before Clinical Sign-Off is a Critical Need</span></h1>
+
+      <p style="font-size: 1.1em; color: #555; margin: 20px 0;" data-i18n="article.rad_linter_clinical_qa.intro">
+        在医院端部署Rad-Linter系统后，我越来越意识到，这个系统的核心价值不在于技术细节，而在于<strong>它解决了一个真实存在的、高价值的临床痛点</strong>。本文不谈技术实现，只谈<strong>为什么Rad-Linter有意义、为什么这个方向值得做</strong>。技术细节请参考<a href="llm_hospital_rad_linter.html">另一篇文章</a>。
+      </p>
+
+      <h2 data-i18n="article.rad_linter_clinical_qa.section1.title">🎯 核心定位：我们解决的不是"生成报告"，而是"签发前的质量与安全（QA）"</h2>
+
+      <p data-i18n="article.rad_linter_clinical_qa.section1.para1">
+        在讨论Rad-Linter的价值之前，需要先明确它在医疗AI生态系统中的位置。当前LLM在放射科的应用主要集中在三类：
+      </p>
+
+      <div class="highlight-box">
+        <p><strong data-i18n="article.rad_linter_clinical_qa.section1.highlight.title">当前研究的三大类：</strong></p>
+        <ul>
+          <li data-i18n="article.rad_linter_clinical_qa.section1.highlight.li1"><strong>报告→标签/结构化</strong>：CheXbert、RadGraph等，本质是"从报告里抽信息/做数据集"</li>
+          <li data-i18n="article.rad_linter_clinical_qa.section1.highlight.li2"><strong>报告生成</strong>：TRRG、RadAlign、semantic reward、phrase-grounded等，目标是"让生成更像真的"</li>
+          <li data-i18n="article.rad_linter_clinical_qa.section1.highlight.li3"><strong>文本层面的错误检测</strong>：多-pass LLM、GPT-4检错、laterality errors等，很多是"只看报告文本/人工插错"</li>
+        </ul>
+      </div>
+
+      <p data-i18n="article.rad_linter_clinical_qa.section1.para2">
+        <strong>Rad-Linter的定位更像"放射科的CI/lint/preflight check"</strong>：给定（报告文本 + 可核验的视觉证据），输出：是否有错、错类型、证据、可审计解释，并能嵌进签发工作流。
+      </p>
+
+      <div class="key-point">
+        <p><strong data-i18n="article.rad_linter_clinical_qa.section1.key_point.title">关键区别：</strong></p>
+        <p data-i18n="article.rad_linter_clinical_qa.section1.key_point.content">
+          这件事在真实医院里非常刚需：错不是"模型好不好看"，而是<strong>患者安全 + 返工成本 + 法律风险</strong>。
+          一个漏写的异常发现可能导致误诊，一个左右侧错误可能导致手术做错位置，一个严重程度不匹配可能导致过度治疗或延误治疗。
+        </p>
+      </div>
+
+      <h2 data-i18n="article.rad_linter_clinical_qa.section2.title">🔍 我们做的是"跨模态一致性审计"，不是"再做一个VLM诊断"</h2>
+
+      <p data-i18n="article.rad_linter_clinical_qa.section2.para1">
+        Rad-Linter的关键设计是：<strong>不让LLM直接"读图下诊断"</strong>，而是用一个相对稳定、可追溯的视觉证据层（例如XRV输出的pathology概率/visual_facts）去核对报告是否漏写/写反/左右侧错。
+      </p>
+
+      <p data-i18n="article.rad_linter_clinical_qa.section2.para2">
+        这条路线在临床上更容易落地，因为它更像<strong>"第二读者/审阅器"</strong>，而不是"替医生判读"。
+      </p>
+
+      <div class="comparison-table">
+        <thead>
+          <tr>
+            <th data-i18n="article.rad_linter_clinical_qa.section2.table.header1">维度</th>
+            <th data-i18n="article.rad_linter_clinical_qa.section2.table.header2">VLM直接读图诊断</th>
+            <th data-i18n="article.rad_linter_clinical_qa.section2.table.header3">Rad-Linter（跨模态审计）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-i18n="article.rad_linter_clinical_qa.section2.table.row1.label"><strong>定位</strong></td>
+            <td data-i18n="article.rad_linter_clinical_qa.section2.table.row1.col1">替代医生做诊断</td>
+            <td data-i18n="article.rad_linter_clinical_qa.section2.table.row1.col2">辅助医生做QA</td>
+          </tr>
+          <tr>
+            <td data-i18n="article.rad_linter_clinical_qa.section2.table.row2.label"><strong>责任归属</strong></td>
+            <td data-i18n="article.rad_linter_clinical_qa.section2.table.row2.col1">模糊（谁负责？）</td>
+            <td data-i18n="article.rad_linter_clinical_qa.section2.table.row2.col2">清晰（医生最终决定）</td>
+          </tr>
+          <tr>
+            <td data-i18n="article.rad_linter_clinical_qa.section2.table.row3.label"><strong>可追溯性</strong></td>
+            <td data-i18n="article.rad_linter_clinical_qa.section2.table.row3.col1">黑箱（为什么这样判断？）</td>
+            <td data-i18n="article.rad_linter_clinical_qa.section2.table.row3.col2">可审计（基于视觉证据的解释）</td>
+          </tr>
+          <tr>
+            <td data-i18n="article.rad_linter_clinical_qa.section2.table.row4.label"><strong>监管接受度</strong></td>
+            <td data-i18n="article.rad_linter_clinical_qa.section2.table.row4.col1">低（监管阻力大）</td>
+            <td data-i18n="article.rad_linter_clinical_qa.section2.table.row4.col2">高（辅助工具，不替代决策）</td>
+          </tr>
+          <tr>
+            <td data-i18n="article.rad_linter_clinical_qa.section2.table.row5.label"><strong>临床采用阻力</strong></td>
+            <td data-i18n="article.rad_linter_clinical_qa.section2.table.row5.col1">高（医生抵触、责任风险）</td>
+            <td data-i18n="article.rad_linter_clinical_qa.section2.table.row5.col2">低（医生保留最终控制权）</td>
+          </tr>
+        </tbody>
+      </div>
+
+      <p data-i18n="article.rad_linter_clinical_qa.section2.para3">
+        报告确实来自影像，但错误依然大量存在：漏写、左右侧、模板拷贝、否定范围、印象段总结偏移等。这也是为什么GPT-4的"报告错误检测"会被认真研究，且能做到接近放射科医生平均水平的检错率。
+      </p>
+
+      <div class="warning-box">
+        <p><strong data-i18n="article.rad_linter_clinical_qa.section2.warning.title">为什么不做"LLM直接读图"？</strong></p>
+        <p data-i18n="article.rad_linter_clinical_qa.section2.warning.para1">
+          更关键的是：<strong>VLM/多模态LLM直接判读影像目前仍不稳定且会幻觉</strong>。RSNA报道的研究显示GPT-4V在含图问题上准确率显著下降，并出现"基于错误影像理解却给出看似合理答案"的风险。
+        </p>
+        <p data-i18n="article.rad_linter_clinical_qa.section2.warning.para2">
+          再叠加责任问题：在美国现阶段，很多诊断类AI并非autonomous；ACR也明确讨论了"责任仍主要在放射科医生"，这会让"让模型直接读图下结论"的落地阻力极大。
+        </p>
+      </div>
+
+      <p data-i18n="article.rad_linter_clinical_qa.section2.para4">
+        所以我们的策略更像：<strong>不把AI放在"做最终诊断"的位置，而是放在"签发前的QA审计/提示"位置</strong>——医生复核、可追溯、可解释、可控风险。这条路线在临床风险、监管与adoption上更现实。
+      </p>
+
+      <h2 data-i18n="article.rad_linter_clinical_qa.section3.title">🏥 为什么"本地化部署"非常重要（不是锦上添花，是准入门槛）</h2>
+
+      <p data-i18n="article.rad_linter_clinical_qa.section3.para1">
+        医院端涉及ePHI/PHI（受保护健康信息），很多系统默认不能把原始报告、结构化字段、日志、乃至影像相关元数据发到外部云。即使你做脱敏，也常常需要：
+      </p>
+
+      <ul>
+        <li data-i18n="article.rad_linter_clinical_qa.section3.li1"><strong>最小必要原则</strong>：能不外发就不外发</li>
+        <li data-i18n="article.rad_linter_clinical_qa.section3.li2"><strong>HHS合规要求</strong>：如果用第三方云服务处理ePHI，云厂商通常会被视为Business Associate，需要签BAA（Business Associate Agreement），并且医院还要做风险评估与审计闭环</li>
+      </ul>
+
+      <div class="key-point">
+        <p data-i18n="article.rad_linter_clinical_qa.section3.key_point.title"><strong>所以"本地化/内网/可审计"不是工程偏好，而是很多医院的合规与采购前置条件。</strong></p>
+        <p data-i18n="article.rad_linter_clinical_qa.section3.key_point.content">
+          很多医院的信息安全团队和合规部门在评估AI系统时，第一个问题就是："数据会离开医院网络吗？"如果答案是"会"，那么无论技术多先进，都可能直接进入"不予考虑"的清单。
+        </p>
+      </div>
+
+      <h2 data-i18n="article.rad_linter_clinical_qa.section4.title">⚙️ 为什么这里用SGLang比"直接调用某个云API"更合适</h2>
+
+      <p data-i18n="article.rad_linter_clinical_qa.section4.para1">
+        核心不是"谁更聪明"，而是谁更适合医院端的约束：
+      </p>
+
+      <h3 data-i18n="article.rad_linter_clinical_qa.section4.subsection1.title">1. 数据不出院、可控可审计</h3>
+      <p data-i18n="article.rad_linter_clinical_qa.section4.subsection1.content">
+        本地跑推理/打分/日志留存，天然更贴合医院合规与安全团队的要求（相对外部API传输与第三方依赖）。
+      </p>
+
+      <h3 data-i18n="article.rad_linter_clinical_qa.section4.subsection2.title">2. 可复现、可冻结版本</h3>
+      <p data-i18n="article.rad_linter_clinical_qa.section4.subsection2.content">
+        论文与临床PoC都很看重"同样输入→同样输出"，SGLang作为自托管框架更容易把模型、runtime、prompt、schema都锁死。
+      </p>
+
+      <h3 data-i18n="article.rad_linter_clinical_qa.section4.subsection3.title">3. 工程特性对"Lint工作流"非常友好</h3>
+      <p data-i18n="article.rad_linter_clinical_qa.section4.subsection3.content">
+        Rad-Linter这种QA任务典型会用到：结构化输出（JSON）、批量请求、前缀缓存、持续batching、低延迟吞吐、可插拔模型后端等；这些正是SGLang的强项（prefix caching / RadixAttention、continuous batching、structured outputs等）。
+      </p>
+
+      <h3 data-i18n="article.rad_linter_clinical_qa.section4.subsection4.title">4. 成本与性能可预测</h3>
+      <p data-i18n="article.rad_linter_clinical_qa.section4.subsection4.content">
+        在医院端，<strong>"成本可预测 + 峰值可承受 + 延迟可控"往往比"单次效果"更重要</strong>。自托管推理框架通常更容易做容量规划与SLO。
+      </p>
+
+      <div class="highlight-box">
+        <p><strong data-i18n="article.rad_linter_clinical_qa.section4.highlight.title">技术选型的核心逻辑：</strong></p>
+        <p data-i18n="article.rad_linter_clinical_qa.section4.highlight.content">
+          我们不是在选择"最好的模型"，而是在选择"最符合医院约束的推理框架"。
+          云API可能在单次推理上更简单，但在医院的合规、安全、可追溯性要求下，自托管方案往往更合适。
+        </p>
+      </div>
+
+      <h2 data-i18n="article.rad_linter_clinical_qa.section5.title">💡 Rad-Linter的独特价值：填补临床工作流的空白</h2>
+
+      <p data-i18n="article.rad_linter_clinical_qa.section5.para1">
+        在临床工作流中，报告生成之后、签发之前，有一个关键的质控环节。这个环节目前主要依赖人工二次审阅，但：
+      </p>
+
+      <ul>
+        <li data-i18n="article.rad_linter_clinical_qa.section5.li1"><strong>人工审阅成本高</strong>：需要另一位放射科医生花时间审阅每一份报告</li>
+        <li data-i18n="article.rad_linter_clinical_qa.section5.li2"><strong>审阅质量不稳定</strong>：不同医生的审阅标准、细致程度、疲劳程度都会影响质量</li>
+        <li data-i18n="article.rad_linter_clinical_qa.section5.li3"><strong>无法做到全覆盖</strong>：在报告量大的情况下，往往只能抽检，无法覆盖所有报告</li>
+        <li data-i18n="article.rad_linter_clinical_qa.section5.li4"><strong>跨模态一致性难以人工检查</strong>：人工审阅时，医生需要同时看报告和影像，但这种方式很难系统性地检查所有可能的遗漏或矛盾</li>
+      </ul>
+
+      <p data-i18n="article.rad_linter_clinical_qa.section5.para2">
+        Rad-Linter填补的就是这个空白：<strong>自动化、全覆盖、可追溯的跨模态一致性审计</strong>。
+      </p>
+
+      <div class="key-point">
+        <p><strong data-i18n="article.rad_linter_clinical_qa.section5.key_point.title">关键洞察：</strong></p>
+        <p data-i18n="article.rad_linter_clinical_qa.section5.key_point.content">
+          这个需求是<strong>独立存在的</strong>——即使不使用自动生成，医生手写的报告同样需要QA。
+          即使医院不采用AI报告生成系统，Rad-Linter仍然有价值，因为它解决的是"报告质量"问题，而不是"报告生成"问题。
+        </p>
+      </div>
+
+      <h2 data-i18n="article.rad_linter_clinical_qa.section6.title">🎯 为什么这个方向值得做：临床价值、监管可行性、技术可行性</h2>
+
+      <h3 data-i18n="article.rad_linter_clinical_qa.section6.subsection1.title">临床价值：真实的痛点，真实的需求</h3>
+      <p data-i18n="article.rad_linter_clinical_qa.section6.subsection1.para1">
+        放射科报告的错误（遗漏、左右侧错误、严重程度不匹配等）是真实存在的临床问题，会导致：
+      </p>
+      <ul>
+        <li data-i18n="article.rad_linter_clinical_qa.section6.subsection1.li1"><strong>患者安全风险</strong>：漏诊或误诊可能延误治疗</li>
+        <li data-i18n="article.rad_linter_clinical_qa.section6.subsection1.li2"><strong>医疗责任风险</strong>：报告错误可能导致医疗纠纷</li>
+        <li data-i18n="article.rad_linter_clinical_qa.section6.subsection1.li3"><strong>返工成本</strong>：发现错误后需要召回患者、重新检查、重新写报告</li>
+      </ul>
+
+      <h3 data-i18n="article.rad_linter_clinical_qa.section6.subsection2.title">监管可行性：辅助工具，不是替代工具</h3>
+      <p data-i18n="article.rad_linter_clinical_qa.section6.subsection2.para1">
+        Rad-Linter的定位是"辅助工具"而不是"替代工具"，这在监管上更容易被接受：
+      </p>
+      <ul>
+        <li data-i18n="article.rad_linter_clinical_qa.section6.subsection2.li1">医生保留最终决策权</li>
+        <li data-i18n="article.rad_linter_clinical_qa.section6.subsection2.li2">系统提供可解释的提示和建议</li>
+        <li data-i18n="article.rad_linter_clinical_qa.section6.subsection2.li3">所有决策可追溯、可审计</li>
+        <li data-i18n="article.rad_linter_clinical_qa.section6.subsection2.li4">不替代医生的专业判断，只是帮助发现可能的错误</li>
+      </ul>
+
+      <h3 data-i18n="article.rad_linter_clinical_qa.section6.subsection3.title">技术可行性：现有技术栈已经足够</h3>
+      <p data-i18n="article.rad_linter_clinical_qa.section6.subsection3.para1">
+        虽然LLM直接读图还不稳定，但现有的技术栈（视觉模型提取证据 + LLM做跨模态一致性检查）已经足够实现Rad-Linter的核心功能：
+      </p>
+      <ul>
+        <li data-i18n="article.rad_linter_clinical_qa.section6.subsection3.li1">视觉模型（如XRV）可以提供相对稳定的视觉证据</li>
+        <li data-i18n="article.rad_linter_clinical_qa.section6.subsection3.li2">LLM可以理解报告文本并与视觉证据做一致性检查</li>
+        <li data-i18n="article.rad_linter_clinical_qa.section6.subsection3.li3">SGLang等框架可以满足医院端的部署要求</li>
+      </ul>
+
+      <h2 data-i18n="article.rad_linter_clinical_qa.section7.title">💭 总结：为什么Rad-Linter有意义</h2>
+
+      <p data-i18n="article.rad_linter_clinical_qa.section7.para1">
+        Rad-Linter的价值不在于技术的新颖性，而在于<strong>它解决了一个真实存在的、高价值的临床痛点</strong>：
+      </p>
+
+      <ol>
+        <li data-i18n="article.rad_linter_clinical_qa.section7.li1"><strong>解决了"签发前QA"这个刚需</strong>：不是锦上添花，而是实实在在的质量与安全问题</li>
+        <li data-i18n="article.rad_linter_clinical_qa.section7.li2"><strong>定位清晰</strong>：跨模态一致性审计，不是VLM诊断，更容易被临床和监管接受</li>
+        <li data-i18n="article.rad_linter_clinical_qa.section7.li3"><strong>符合医院约束</strong>：本地化部署、可追溯、可审计，满足合规要求</li>
+        <li data-i18n="article.rad_linter_clinical_qa.section7.li4"><strong>填补工作流空白</strong>：在报告生成之后、签发之前，提供自动化、全覆盖的质控</li>
+        <li data-i18n="article.rad_linter_clinical_qa.section7.li5"><strong>技术可行</strong>：现有技术栈已经足够，不需要等待"完美的VLM"</li>
+      </ol>
+
+      <blockquote style="border-left: 4px solid #007bff; padding-left: 20px; margin: 30px 0; font-style: italic; color: #555;" data-i18n="article.rad_linter_clinical_qa.section7.quote">
+        "We do not generate reports; we audit existing reports using auxiliary visual evidence. We do not replace radiologists; we assist them in quality control before sign-off."
+        <br>— Rad-Linter的核心定位
+      </blockquote>
+
+      <p data-i18n="article.rad_linter_clinical_qa.section7.para2">
+        在这个定位下，Rad-Linter不是"又一个报告生成系统"，而是<strong>放射科工作流中的一个关键质控环节</strong>，这个环节的价值不依赖于是否使用AI生成报告，而是依赖于"报告质量"这个永恒的需求。
+      </p>
+
+      <p style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; color: #888; font-size: 0.9em;" data-i18n="article.rad_linter_clinical_qa.footer">
+        技术实现细节请参考 <a href="llm_hospital_rad_linter.html">《使用SGLang构建Rad-Linter：医院端跨模态质控系统的生产实践》</a>。
+        <br>如有问题或建议，欢迎通过 <a href="https://github.com/nickcp39">GitHub</a> 或 
+        <a href="https://www.linkedin.com/in/yanda-cheng-4888a216b/">LinkedIn</a> 联系我。
+      </p>
+
+      <!-- 🔻 Disqus 评论区域 -->
+      <div id="disqus_thread" style="margin-top: 60px;"></div>
+      <script>
+        var disqus_config = function () {
+          this.page.url = window.location.href;
+          this.page.identifier = window.location.pathname;
+        };
+        (function() {
+          var d = document, s = d.createElement('script');
+          s.src = 'https://yanda-cheng.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    </main>
+
+    <!-- ➡ Right Sidebar -->
+    <aside style="flex: 0 0 250px;">
+      <div style="margin-bottom: 30px;">
+        <input type="text" placeholder="Search ..." style="width: 100%; padding: 6px;">
+      </div>
+
+      <div style="font-size: 0.9em; color: #555; margin-bottom: 30px;">
+        <h3>Key Points</h3>
+        <ul style="list-style-type: none; padding-left: 0;">
+          <li>• Clinical QA, not report generation</li>
+          <li>• Cross-modal audit, not VLM diagnosis</li>
+          <li>• On-prem deployment required</li>
+          <li>• Regulatory feasibility</li>
+        </ul>
+      </div>
+
+      <div style="font-size: 0.9em; color: #555; margin-bottom: 30px;">
+        <h3>Related Articles</h3>
+        <ul style="list-style-type: none; padding-left: 0;">
+          <li><a href="llm_hospital_rad_linter.html">技术实现细节</a></li>
+        </ul>
+      </div>
+
+      <div style="font-size: 0.9em; color: #555;">
+        <h3>Recent Posts</h3>
+        <ul style="list-style-type: none; padding-left: 0;">
+          <li><a href="llm_hospital_rad_linter.html">SGLang构建Rad-Linter</a></li>
+          <li><a href="sglang_llm_agent_id_scanner.html">SGLang LLM Agent</a></li>
+          <li><a href="staff_engineer.html">Staff Engineer</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <!-- 🔻 Footer -->
+  <div class="footer">
+    Blog © Yanda Cheng | Last updated January 2026
+  </div>
+</body>
+</html>
+
