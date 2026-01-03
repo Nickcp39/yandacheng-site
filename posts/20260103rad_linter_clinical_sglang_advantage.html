@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rad-Linter：为什么SGLang是最佳选择</title>
+  <link rel="stylesheet" href="../style_blog.css">
+  <style>
+    .highlight-box {
+      background: #f0f7ff;
+      border-left: 4px solid #007bff;
+      padding: 20px;
+      margin: 25px 0;
+      border-radius: 4px;
+    }
+
+    .key-point {
+      background: #e8f5e9;
+      border-left: 4px solid #4caf50;
+      padding: 15px;
+      margin: 20px 0;
+      border-radius: 4px;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
+
+    .comparison-table th {
+      background-color: #f5f5f5;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <!-- 🔹 Navbar -->
+  <div id="navbar-placeholder"></div>
+  <script>
+    fetch('../navbar.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('navbar-placeholder').innerHTML = data;
+        if (window.attachLanguageButtonListeners) {
+          window.attachLanguageButtonListeners();
+        }
+      });
+  </script>
+
+  <!-- 🌐 i18n 翻译脚本 -->
+  <script src="../scripts/i18n.js"></script>
+
+  <!-- 🔸 Blog Layout -->
+  <div class="blog-container" style="display: flex; gap: 40px; align-items: flex-start;">
+
+    <!-- ⬅ Left Sidebar -->
+    <aside style="flex: 0 0 150px; font-size: 0.9em; color: #666;">
+      <p><strong>Written by</strong><br>Yanda Cheng</p>
+      <p><strong>Date</strong><br>January 3rd, 2026</p>
+      <p><a href="#disqus_thread">💬 Leave a comment</a></p>
+    </aside>
+
+    <!-- 🔳 Main Content -->
+    <main style="flex: 1;">
+      <p style="color: #888; font-size: 0.9em;" data-i18n="article.rad_linter_sglang_advantage.tags">Medical AI · SGLang · Healthcare Systems · Local Deployment</p>
+      <h1><span data-i18n="article.rad_linter_sglang_advantage.title">Rad-Linter：用 SGLang 搭一个"签发前"的跨模态质控层（可插拔）</span><br><span style="font-weight: normal; font-size: 0.9em;" data-i18n="article.rad_linter_sglang_advantage.subtitle">Rad-Linter: Building a Pre-Sign-Off Cross-Modal Quality Control Layer with SGLang</span></h1>
+
+      <p style="font-size: 1.1em; color: #555; margin: 20px 0;" data-i18n="article.rad_linter_sglang_advantage.intro1">
+        最近我在医院场景里落地了一个系统：<strong>Radiology Report Linter（Rad-Linter）</strong>。
+        它不是做报告生成，而是更像 <strong>radiology CI / preflight check</strong>：在医生签发前，对 (report text + 可核验的视觉证据/visual facts) 做一致性审计，提前拦截遗漏、写反、左右侧等高风险问题。
+      </p>
+
+      <p style="font-size: 1.1em; color: #555; margin: 20px 0;" data-i18n="article.rad_linter_sglang_advantage.intro2">
+        这套系统之所以能"真落地"，关键是底层用了 <strong>SGLang</strong> 做 serving / judge runtime——它非常适合这种 "结构化输出 + 高并发批量 + 低延迟 + 可控可审计" 的 QA 工作流。
+      </p>
+
+      <div style="text-align: center; margin: 30px 0;">
+        <img src="../files/amazing_photo/rad_linter_work_flow.png" alt="Rad-Linter工作流程" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" data-i18n="article.rad_linter_sglang_advantage.image.workflow.alt">
+        <p style="margin-top: 10px; font-size: 0.9em; color: #666; font-style: italic;" data-i18n="article.rad_linter_sglang_advantage.image.workflow.caption">Rad-Linter系统工作流程图</p>
+      </div>
+
+      <div class="key-point">
+        <p><strong data-i18n="article.rad_linter_sglang_advantage.key_point.title">核心结论：</strong></p>
+        <p data-i18n="article.rad_linter_sglang_advantage.key_point.content">
+          <strong>Rad-Linter项目的所有核心优势都来自SGLang</strong>：本地化部署能力、跨平台兼容性、简单易用的API、稳定的性能表现、以及完美匹配QA工作流的工程特性。如果没有SGLang，Rad-Linter可能只是一个"技术上可行但难以落地"的原型；有了SGLang，它才真正成为一个"可以在真实医院环境中部署和使用"的生产系统。
+        </p>
+      </div>
+
+      <h2 data-i18n="article.rad_linter_sglang_advantage.section1.title">🎯 为什么选择SGLang？核心原因</h2>
+
+      <p data-i18n="article.rad_linter_sglang_advantage.section1.intro">
+        在评估Rad-Linter的技术栈时，我们对比了多种方案：云API、自托管推理框架、以及直接调用模型。最终选择SGLang，<strong>不是因为它在某个单一维度上最优，而是因为它完美契合了医疗场景的所有约束条件</strong>。
+      </p>
+
+      <h3 data-i18n="article.rad_linter_sglang_advantage.section1.subsection1.title">1. 完全本地化：不涉及云端API，数据不出院</h3>
+      <p data-i18n="article.rad_linter_sglang_advantage.section1.subsection1.intro">
+        <strong>这是医疗场景的硬性要求，不是可选项</strong>。SGLang作为自托管推理框架，所有计算都在本地完成：
+      </p>
+      <ul>
+        <li data-i18n="article.rad_linter_sglang_advantage.section1.subsection1.li1"><strong>零云端依赖</strong>：不需要调用任何外部API，不涉及数据传输，天然满足HIPAA/ePHI合规要求</li>
+        <li data-i18n="article.rad_linter_sglang_advantage.section1.subsection1.li2"><strong>训练也可本地化</strong>：如果需要fine-tuning，SGLang支持本地训练，整个pipeline都可以在医院内网完成</li>
+        <li data-i18n="article.rad_linter_sglang_advantage.section1.subsection1.li3"><strong>可审计性</strong>：所有日志、推理过程、模型版本都在本地，便于合规审计和问题追溯</li>
+      </ul>
+
+      <div class="highlight-box">
+        <p><strong data-i18n="article.rad_linter_sglang_advantage.section1.subsection1.highlight.title">医疗合规的关键：</strong></p>
+        <p data-i18n="article.rad_linter_sglang_advantage.section1.subsection1.highlight.content">
+          医院端涉及ePHI/PHI（受保护健康信息），很多系统默认不能把原始报告、结构化字段、日志、乃至影像相关元数据发到外部云。即使你做脱敏，也常常需要遵循"最小必要原则"：能不外发就不外发。SGLang的本地化特性让Rad-Linter天然满足这些合规要求。
+        </p>
+      </div>
+
+      <h3 data-i18n="article.rad_linter_sglang_advantage.section1.subsection2.title">2. 跨平台兼容：适配各种硬件和操作系统</h3>
+      <p data-i18n="article.rad_linter_sglang_advantage.section1.subsection2.intro">
+        医院IT环境极其复杂，不同科室可能使用不同的硬件配置和操作系统。SGLang的跨平台特性让Rad-Linter能够轻松嵌入各种医疗系统：
+      </p>
+      <ul>
+        <li data-i18n="article.rad_linter_sglang_advantage.section1.subsection2.li1"><strong>硬件兼容性</strong>：支持NVIDIA GPU（各种型号）、CPU推理、甚至混合部署，无论医院有什么硬件都能跑起来</li>
+        <li data-i18n="article.rad_linter_sglang_advantage.section1.subsection2.li2"><strong>操作系统支持</strong>：Windows、macOS、Linux全平台支持，适配医院现有的IT基础设施</li>
+        <li data-i18n="article.rad_linter_sglang_advantage.section1.subsection2.li3"><strong>资源要求灵活</strong>：从高端GPU服务器到普通工作站，SGLang都能稳定运行，让Rad-Linter可以部署在各种规模的医院</li>
+      </ul>
+
+      <div class="key-point">
+        <p><strong data-i18n="article.rad_linter_sglang_advantage.section1.subsection2.key_point.title">关键优势：</strong></p>
+        <p data-i18n="article.rad_linter_sglang_advantage.section1.subsection2.key_point.content">
+          这意味着Rad-Linter不需要医院为了部署系统而采购特定硬件或升级IT基础设施。无论是三甲医院的高性能服务器，还是社区医院的普通工作站，都能无缝集成。这种"即插即用"的特性大大降低了部署门槛。
+        </p>
+      </div>
+
+      <h3 data-i18n="article.rad_linter_sglang_advantage.section1.subsection3.title">3. 简单易用：上手轻松，降低部署门槛</h3>
+      <p data-i18n="article.rad_linter_sglang_advantage.section1.subsection3.intro">
+        SGLang的设计哲学是"简单但强大"，这让Rad-Linter的部署和维护变得非常容易：
+      </p>
+      <ul>
+        <li data-i18n="article.rad_linter_sglang_advantage.section1.subsection3.li1"><strong>安装简单</strong>：<code>pip install sglang</code> 即可，不需要复杂的依赖管理或环境配置</li>
+        <li data-i18n="article.rad_linter_sglang_advantage.section1.subsection3.li2"><strong>配置直观</strong>：API设计清晰，JSON Schema约束、批处理、缓存等特性都有简洁的配置接口</li>
+        <li data-i18n="article.rad_linter_sglang_advantage.section1.subsection3.li3"><strong>文档完善</strong>：官方文档详细，社区活跃，遇到问题容易找到解决方案</li>
+        <li data-i18n="article.rad_linter_sglang_advantage.section1.subsection3.li4"><strong>可插拔架构</strong>：可以轻松切换不同的模型后端，适配不同的医疗场景需求</li>
+      </ul>
+
+      <p data-i18n="article.rad_linter_sglang_advantage.section1.subsection3.para2">
+        对于医院IT团队来说，这意味着：
+      </p>
+      <ul>
+        <li data-i18n="article.rad_linter_sglang_advantage.section1.subsection3.li5">不需要深度学习专家就能部署和维护系统</li>
+        <li data-i18n="article.rad_linter_sglang_advantage.section1.subsection3.li6">遇到问题时有清晰的文档和社区支持</li>
+        <li data-i18n="article.rad_linter_sglang_advantage.section1.subsection3.li7">可以根据实际需求灵活调整配置，不需要重新设计架构</li>
+      </ul>
+
+      <h3 data-i18n="article.rad_linter_sglang_advantage.section1.subsection4.title">4. 性能稳定：即使在低端GPU上也能稳定运行</h3>
+      <p data-i18n="article.rad_linter_sglang_advantage.section1.subsection4.intro">
+        虽然医院场景的并发量通常不会很高，但SGLang的性能优化让Rad-Linter即使在资源受限的环境下也能稳定工作：
+      </p>
+      <ul>
+        <li data-i18n="article.rad_linter_sglang_advantage.section1.subsection4.li1"><strong>RadixAttention + Prefix Caching</strong>：对于Rad-Linter这种prompt模板化的QA任务，KV cache复用效果显著，大幅降低内存占用和延迟</li>
+        <li data-i18n="article.rad_linter_sglang_advantage.section1.subsection4.li2"><strong>Continuous Batching</strong>：即使并发量不大，也能充分利用GPU资源，避免资源浪费</li>
+        <li data-i18n="article.rad_linter_sglang_advantage.section1.subsection4.li3"><strong>低资源友好</strong>：在较差的GPU上也能稳定运行，不会因为硬件限制而无法部署</li>
+        <li data-i18n="article.rad_linter_sglang_advantage.section1.subsection4.li4"><strong>结构化输出优化</strong>：原生JSON Schema支持，避免了后处理的开销，提升整体性能</li>
+      </ul>
+
+      <div class="highlight-box">
+        <p><strong data-i18n="article.rad_linter_sglang_advantage.section1.subsection4.highlight.title">性能优势的实际意义：</strong></p>
+        <p data-i18n="article.rad_linter_sglang_advantage.section1.subsection4.highlight.content">
+          这意味着Rad-Linter不需要医院投入大量硬件成本。即使在资源受限的环境下，SGLang也能保证系统稳定运行，让更多医院能够部署和使用这个系统。虽然医院本身应该不会有太高的并发，但是即使在很差的GPU上，SGLang也很稳定。
+        </p>
+      </div>
+
+      <h3 data-i18n="article.rad_linter_sglang_advantage.section1.subsection5.title">5. 工程特性完美匹配QA工作流</h3>
+      <p data-i18n="article.rad_linter_sglang_advantage.section1.subsection5.intro">
+        Rad-Linter的核心是"结构化QA审计"，SGLang的工程特性完美匹配这个需求：
+      </p>
+
+      <h4 data-i18n="article.rad_linter_sglang_advantage.section1.subsection5.h4_1">Structured Outputs（JSON Schema 约束）</h4>
+      <p data-i18n="article.rad_linter_sglang_advantage.section1.subsection5.para1">
+        输出可以被强约束成合法JSON（schema/regex/EBNF），非常适合医疗QA的可审计流水线与自动落库。Rad-Linter需要输出错误类型、证据定位、置信度等结构化信息，SGLang的原生支持让这一切变得简单可靠。
+      </p>
+
+      <h4 data-i18n="article.rad_linter_sglang_advantage.section1.subsection5.h4_2">Prefix caching / RadixAttention + continuous batching</h4>
+      <p data-i18n="article.rad_linter_sglang_advantage.section1.subsection5.para2">
+        QA场景里prompt很"模板化"（大量共享前缀），SGLang的KV cache复用 + 连续batching能把吞吐/延迟压下来。这对于Rad-Linter这种需要处理大量报告的批量任务特别重要。
+      </p>
+
+      <h4 data-i18n="article.rad_linter_sglang_advantage.section1.subsection5.h4_3">"可编排的多步LLM程序"</h4>
+      <p data-i18n="article.rad_linter_sglang_advantage.section1.subsection5.para3">
+        我们不是一次性问答，而是多步抽取→检查→仲裁→生成解释；SGLang的设计目标就是高效执行这种结构化LLM program。这让Rad-Linter能够实现复杂的多步骤QA流程，同时保持高性能。
+      </p>
+
+      <h2 data-i18n="article.rad_linter_sglang_advantage.section2.title">📊 技术选型对比</h2>
+
+      <p data-i18n="article.rad_linter_sglang_advantage.section2.intro">
+        为了更清晰地说明为什么SGLang是最佳选择，我们对比了几种主要方案：
+      </p>
+
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th data-i18n="article.rad_linter_sglang_advantage.section2.table.header1">维度</th>
+            <th data-i18n="article.rad_linter_sglang_advantage.section2.table.header2">云API（如OpenAI/Anthropic）</th>
+            <th data-i18n="article.rad_linter_sglang_advantage.section2.table.header3">其他自托管框架</th>
+            <th data-i18n="article.rad_linter_sglang_advantage.section2.table.header4">SGLang</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-i18n="article.rad_linter_sglang_advantage.section2.table.row1.label"><strong>本地化部署</strong></td>
+            <td data-i18n="article.rad_linter_sglang_advantage.section2.table.row1.col1">❌ 需要网络连接，数据外发</td>
+            <td data-i18n="article.rad_linter_sglang_advantage.section2.table.row1.col2">✅ 支持</td>
+            <td data-i18n="article.rad_linter_sglang_advantage.section2.table.row1.col3">✅ 完全本地化</td>
+          </tr>
+          <tr>
+            <td data-i18n="article.rad_linter_sglang_advantage.section2.table.row2.label"><strong>跨平台兼容</strong></td>
+            <td data-i18n="article.rad_linter_sglang_advantage.section2.table.row2.col1">✅ 不依赖本地硬件</td>
+            <td data-i18n="article.rad_linter_sglang_advantage.section2.table.row2.col2">⚠️ 通常需要特定环境</td>
+            <td data-i18n="article.rad_linter_sglang_advantage.section2.table.row2.col3">✅ Windows/Mac/Linux全支持</td>
+          </tr>
+          <tr>
+            <td data-i18n="article.rad_linter_sglang_advantage.section2.table.row3.label"><strong>硬件要求</strong></td>
+            <td data-i18n="article.rad_linter_sglang_advantage.section2.table.row3.col1">✅ 无要求</td>
+            <td data-i18n="article.rad_linter_sglang_advantage.section2.table.row3.col2">⚠️ 通常需要高端GPU</td>
+            <td data-i18n="article.rad_linter_sglang_advantage.section2.table.row3.col3">✅ 低端GPU也能稳定运行</td>
+          </tr>
+          <tr>
+            <td data-i18n="article.rad_linter_sglang_advantage.section2.table.row4.label"><strong>易用性</strong></td>
+            <td data-i18n="article.rad_linter_sglang_advantage.section2.table.row4.col1">✅ 简单</td>
+            <td data-i18n="article.rad_linter_sglang_advantage.section2.table.row4.col2">⚠️ 配置复杂</td>
+            <td data-i18n="article.rad_linter_sglang_advantage.section2.table.row4.col3">✅ 安装配置简单</td>
+          </tr>
+          <tr>
+            <td data-i18n="article.rad_linter_sglang_advantage.section2.table.row5.label"><strong>结构化输出</strong></td>
+            <td data-i18n="article.rad_linter_sglang_advantage.section2.table.row5.col1">⚠️ 需要后处理</td>
+            <td data-i18n="article.rad_linter_sglang_advantage.section2.table.row5.col2">⚠️ 支持有限</td>
+            <td data-i18n="article.rad_linter_sglang_advantage.section2.table.row5.col3">✅ 原生JSON Schema支持</td>
+          </tr>
+          <tr>
+            <td data-i18n="article.rad_linter_sglang_advantage.section2.table.row6.label"><strong>性能优化</strong></td>
+            <td data-i18n="article.rad_linter_sglang_advantage.section2.table.row6.col1">✅ 云端优化</td>
+            <td data-i18n="article.rad_linter_sglang_advantage.section2.table.row6.col2">⚠️ 需要手动优化</td>
+            <td data-i18n="article.rad_linter_sglang_advantage.section2.table.row6.col3">✅ RadixAttention + Continuous Batching</td>
+          </tr>
+          <tr>
+            <td data-i18n="article.rad_linter_sglang_advantage.section2.table.row7.label"><strong>医疗合规</strong></td>
+            <td data-i18n="article.rad_linter_sglang_advantage.section2.table.row7.col1">❌ 数据外发，需要BAA</td>
+            <td data-i18n="article.rad_linter_sglang_advantage.section2.table.row7.col2">✅ 本地处理</td>
+            <td data-i18n="article.rad_linter_sglang_advantage.section2.table.row7.col3">✅ 完全本地，天然合规</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 data-i18n="article.rad_linter_sglang_advantage.section3.title">💡 实际部署经验</h2>
+
+      <p data-i18n="article.rad_linter_sglang_advantage.section3.intro">
+        在实际部署Rad-Linter的过程中，SGLang的这些优势得到了充分验证：
+      </p>
+
+      <h3 data-i18n="article.rad_linter_sglang_advantage.section3.scenario1.title">场景1：三甲医院的高性能服务器</h3>
+      <p data-i18n="article.rad_linter_sglang_advantage.section3.scenario1.content">
+        在一家三甲医院，我们部署在配备了高端GPU的服务器上。SGLang的RadixAttention和Continuous Batching让系统能够高效处理批量报告，即使在高负载下也能保持低延迟。
+      </p>
+
+      <h3 data-i18n="article.rad_linter_sglang_advantage.section3.scenario2.title">场景2：社区医院的普通工作站</h3>
+      <p data-i18n="article.rad_linter_sglang_advantage.section3.scenario2.content">
+        在另一家社区医院，我们部署在一台配置较低的GPU工作站上。虽然硬件资源有限，但SGLang的优化让系统依然能够稳定运行，满足了日常QA需求。这证明了SGLang在低资源环境下的稳定性。
+      </p>
+
+      <h3 data-i18n="article.rad_linter_sglang_advantage.section3.scenario3.title">场景3：混合环境部署</h3>
+      <p data-i18n="article.rad_linter_sglang_advantage.section3.scenario3.content">
+        有些医院需要在Windows和Linux系统上同时部署。SGLang的跨平台特性让同一套代码可以在不同操作系统上无缝运行，大大简化了部署和维护工作。
+      </p>
+
+      <h2 data-i18n="article.rad_linter_sglang_advantage.section4.title">🎯 总结：为什么SGLang是Rad-Linter的最佳选择</h2>
+
+      <p data-i18n="article.rad_linter_sglang_advantage.section4.intro">
+        总结一下，SGLang之所以是Rad-Linter的最佳选择，是因为它完美解决了医疗场景的所有关键约束：
+      </p>
+
+      <ol>
+        <li data-i18n="article.rad_linter_sglang_advantage.section4.li1"><strong>本地化部署</strong>：不涉及云端API，数据不出院，满足医疗合规要求</li>
+        <li data-i18n="article.rad_linter_sglang_advantage.section4.li2"><strong>跨平台兼容</strong>：适配各种GPU/CPU和操作系统，降低部署门槛</li>
+        <li data-i18n="article.rad_linter_sglang_advantage.section4.li3"><strong>简单易用</strong>：上手轻松，不需要深度学习专家就能部署和维护</li>
+        <li data-i18n="article.rad_linter_sglang_advantage.section4.li4"><strong>性能稳定</strong>：即使在低端GPU上也能稳定运行，不担心高并发问题</li>
+        <li data-i18n="article.rad_linter_sglang_advantage.section4.li5"><strong>工程特性匹配</strong>：Structured Outputs、多步LLM程序编排等特性完美匹配QA工作流</li>
+      </ol>
+
+      <div class="key-point">
+        <p><strong data-i18n="article.rad_linter_sglang_advantage.section4.conclusion.title">最终结论：</strong></p>
+        <p data-i18n="article.rad_linter_sglang_advantage.section4.conclusion.para1">
+          <strong>整个Rad-Linter项目的优势都是SGLang带来的</strong>。如果没有SGLang，我们可能需要：
+        </p>
+        <ul>
+          <li data-i18n="article.rad_linter_sglang_advantage.section4.conclusion.li1">为了满足合规要求而放弃云API，但找不到合适的本地化替代方案</li>
+          <li data-i18n="article.rad_linter_sglang_advantage.section4.conclusion.li2">为了适配不同医院的硬件环境而维护多套代码</li>
+          <li data-i18n="article.rad_linter_sglang_advantage.section4.conclusion.li3">为了优化性能而投入大量工程资源</li>
+          <li data-i18n="article.rad_linter_sglang_advantage.section4.conclusion.li4">为了处理结构化输出而编写复杂的后处理逻辑</li>
+        </ul>
+        <p data-i18n="article.rad_linter_sglang_advantage.section4.conclusion.para2">
+          有了SGLang，所有这些挑战都迎刃而解。Rad-Linter能够"真落地"，SGLang功不可没。
+        </p>
+      </div>
+
+      <p style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; color: #888; font-size: 0.9em;" data-i18n="article.rad_linter_sglang_advantage.footer">
+        如果你对Rad-Linter的临床价值感兴趣，请参考 <a href="20260102rad_linter_clinical_qa.html">《Rad-Linter：为什么临床签发前的跨模态质控是刚需》</a>。
+        <br>技术实现细节请参考 <a href="llm_hospital_rad_linter.html">《使用SGLang构建Rad-Linter：医院端跨模态质控系统的生产实践》</a>。
+        <br>如有问题或建议，欢迎通过 <a href="https://github.com/nickcp39">GitHub</a> 或 
+        <a href="https://www.linkedin.com/in/yanda-cheng-4888a216b/">LinkedIn</a> 联系我。
+      </p>
+
+      <!-- 🔻 Disqus 评论区域 -->
+      <div id="disqus_thread" style="margin-top: 60px;"></div>
+      <script>
+        var disqus_config = function () {
+          this.page.url = window.location.href;
+          this.page.identifier = window.location.pathname;
+        };
+        (function() {
+          var d = document, s = d.createElement('script');
+          s.src = 'https://yanda-cheng.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    </main>
+
+    <!-- ➡ Right Sidebar -->
+    <aside style="flex: 0 0 250px;">
+      <div style="margin-bottom: 30px;">
+        <input type="text" placeholder="Search ..." style="width: 100%; padding: 6px;">
+      </div>
+
+      <div style="font-size: 0.9em; color: #555; margin-bottom: 30px;">
+        <h3>Key Points</h3>
+        <ul style="list-style-type: none; padding-left: 0;">
+          <li>• Local deployment</li>
+          <li>• Cross-platform support</li>
+          <li>• Easy to use</li>
+          <li>• Stable performance</li>
+          <li>• Perfect for QA workflow</li>
+        </ul>
+      </div>
+
+      <div style="font-size: 0.9em; color: #555; margin-bottom: 30px;">
+        <h3>Related Articles</h3>
+        <ul style="list-style-type: none; padding-left: 0;">
+          <li><a href="20260102rad_linter_clinical_qa.html">Rad-Linter临床价值</a></li>
+          <li><a href="llm_hospital_rad_linter.html">技术实现细节</a></li>
+          <li><a href="sglang_llm_agent_id_scanner.html">SGLang LLM Agent</a></li>
+        </ul>
+      </div>
+
+      <div style="font-size: 0.9em; color: #555;">
+        <h3>Recent Posts</h3>
+        <ul style="list-style-type: none; padding-left: 0;">
+          <li><a href="20260102rad_linter_clinical_qa.html">Rad-Linter临床价值</a></li>
+          <li><a href="sglang_llm_agent_id_scanner.html">SGLang LLM Agent</a></li>
+          <li><a href="staff_engineer.html">Staff Engineer</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <!-- 🔻 Footer -->
+  <div class="footer">
+    Blog © Yanda Cheng | Last updated January 2026
+  </div>
+</body>
+</html>
+
