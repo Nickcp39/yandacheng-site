@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>家族族谱</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* 密码保护样式 */
+    #password-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+    }
+    
+    #password-overlay.hidden {
+      display: none;
+    }
+    
+    .password-box {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    
+    .password-input {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      margin: 10px;
+      width: 200px;
+    }
+    
+    .password-btn {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .password-btn:hover {
+      background: #0056b3;
+    }
+    
+    .error-message {
+      color: red;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    /* 族谱样式 */
+    #protected-content {
+      display: none;
+    }
+    
+    #protected-content.visible {
+      display: block;
+    }
+
+    .family-tree-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .family-title {
+      text-align: center;
+      font-size: 2.5em;
+      margin: 30px 0;
+      color: #333;
+      border-bottom: 3px solid #8B4513;
+      padding-bottom: 15px;
+    }
+
+    .generation {
+      margin: 40px 0;
+    }
+
+    .generation-title {
+      font-size: 1.5em;
+      color: #8B4513;
+      margin-bottom: 20px;
+      padding-left: 20px;
+      border-left: 4px solid #8B4513;
+    }
+
+    .members-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .member-card {
+      background: #fff;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .member-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    .member-name {
+      font-size: 1.3em;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 10px;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 8px;
+    }
+
+    .member-info {
+      margin: 8px 0;
+      color: #666;
+      font-size: 0.95em;
+    }
+
+    .member-info strong {
+      color: #8B4513;
+      margin-right: 8px;
+    }
+
+    .note {
+      background: #f9f9f9;
+      border-left: 4px solid #007bff;
+      padding: 15px;
+      margin: 30px 0;
+      border-radius: 4px;
+    }
+
+    .note p {
+      margin: 5px 0;
+      color: #555;
+    }
+
+    /* 未来公开时，删除密码部分即可 */
+  </style>
+</head>
+<body>
+<div id="translate-control" style="position: fixed; top: 12px; right: 12px; z-index: 999;"></div>
+
+<!-- 密码保护层 -->
+<div id="password-overlay">
+  <div class="password-box">
+    <h3>请输入密码查看族谱</h3>
+    <input 
+      type="password" 
+      id="password-input" 
+      class="password-input" 
+      placeholder="密码"
+      autocomplete="off"
+    />
+    <br>
+    <button class="password-btn" onclick="checkPassword()">进入</button>
+    <div class="error-message" id="error-message"></div>
+  </div>
+</div>
+
+<!-- 族谱内容 -->
+<div id="protected-content">
+  <div id="navbar-placeholder"></div>
+  <script>
+    fetch('navbar.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('navbar-placeholder').innerHTML = data;
+      });
+  </script>
+
+  <div class="family-tree-container">
+    <h1 class="family-title">家族族谱</h1>
+
+    <!-- 说明 -->
+    <div class="note">
+      <p><strong>谱序说明：</strong></p>
+      <p>本谱为家族口述与已知出生信息之汇总，先立骨架、后补细节。家族祖居与迁徙跨越山东、四川、辽宁等地，后辈在外发展，然根脉可追。今立此谱，以便后续续修：补齐姓名、字辈、排行、婚配、子女、迁徙原因、墓葬信息及文献来源。</p>
+      <p><strong>迁徙脉络：</strong>父系：山东济南（大刘庄）↔ 四川自贡富顺 → 汉中（待核）；母系：辽宁阜新（外祖父母居地）→ 母亲出生阜新 → 后续迁居【待补】</p>
+      <p><em>未来此页面将公开访问，供家族成员查阅。</em></p>
+    </div>
+
+    <!-- 第一代（祖辈） -->
+    <div class="generation">
+      <h2 class="generation-title">第一代（祖辈）</h2>
+      
+      <h3 style="margin-top: 20px; color: #666; font-size: 1.2em;">父系</h3>
+      <div class="members-grid">
+        <div class="member-card">
+          <div class="member-name">祖母（奶奶）【姓名待补】</div>
+          <div class="member-info"><strong>籍贯/祖居：</strong>山东省济南市大刘庄</div>
+          <div class="member-info"><strong>生辰：</strong>公历 1942年2月28日（农历 壬午年 正月十四）</div>
+          <div class="member-info"><strong>婚配：</strong>配【祖父姓名待补】，婚期【待补】</div>
+          <div class="member-info"><strong>子女：</strong>父亲【姓名待补】等【待补】</div>
+          <div class="member-info"><strong>备注：</strong>待补（排行、迁徙、事迹等）</div>
+        </div>
+        
+        <div class="member-card">
+          <div class="member-name">祖父（爷爷）【姓名待补】</div>
+          <div class="member-info"><strong>籍贯/祖居：</strong>四川省自贡市富顺县</div>
+          <div class="member-info"><strong>生辰：</strong>【待补】</div>
+          <div class="member-info"><strong>婚配：</strong>配【祖母姓名待补】，婚期【待补】</div>
+          <div class="member-info"><strong>子女：</strong>父亲【姓名待补】等【待补】</div>
+          <div class="member-info"><strong>备注：</strong>待补</div>
+        </div>
+      </div>
+
+      <h3 style="margin-top: 30px; color: #666; font-size: 1.2em;">母系</h3>
+      <div class="members-grid">
+        <div class="member-card">
+          <div class="member-name">外祖母（姥姥）【姓名待补】</div>
+          <div class="member-info"><strong>籍贯/居地：</strong>辽宁省阜新市</div>
+          <div class="member-info"><strong>民族：</strong>蒙古族</div>
+          <div class="member-info"><strong>生辰：</strong>农历 1942年8月18日（阴历）</div>
+          <div class="member-info"><strong>婚配：</strong>配【外祖父姓名待补】，婚期【待补】</div>
+          <div class="member-info"><strong>子女：</strong>母亲【姓名待补】等【待补】</div>
+          <div class="member-info"><strong>备注：</strong>待补（职业、迁居、家族口述等）</div>
+        </div>
+        
+        <div class="member-card">
+          <div class="member-name">外祖父（姥爷）【姓名待补】</div>
+          <div class="member-info"><strong>籍贯/居地：</strong>辽宁省阜新市</div>
+          <div class="member-info"><strong>生辰：</strong>公历 1939年3月22日（阳历）</div>
+          <div class="member-info"><strong>婚配：</strong>配【外祖母姓名待补】，婚期【待补】</div>
+          <div class="member-info"><strong>子女：</strong>母亲【姓名待补】等【待补】</div>
+          <div class="member-info"><strong>事迹：</strong>据口述为阜新当地历史人物，阜新博物馆据称有相关材料（待补：展陈名称/展厅/文献编号/照片等具体信息）</div>
+          <div class="member-info"><strong>备注：</strong>建议以史料措辞记录，后续核实博物馆资料</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 第二代（父母辈） -->
+    <div class="generation">
+      <h2 class="generation-title">第二代（父母辈）</h2>
+      <div class="members-grid">
+        <div class="member-card">
+          <div class="member-name">父亲【姓名待补】</div>
+          <div class="member-info"><strong>生辰：</strong>公历 1971年8月7日</div>
+          <div class="member-info"><strong>出生地：</strong>汉中（口述"山西汉中"，待核实）</div>
+          <div class="member-info"><strong>籍贯：</strong>待补</div>
+          <div class="member-info"><strong>婚配：</strong>配【母亲姓名待补】，婚期【待补】</div>
+          <div class="member-info"><strong>子女：</strong>【姓名待补】等【待补】</div>
+          <div class="member-info"><strong>备注：</strong>待补（学业/职业/迁徙/事迹等）</div>
+        </div>
+        
+        <div class="member-card">
+          <div class="member-name">母亲【姓名待补】</div>
+          <div class="member-info"><strong>生辰：</strong>公历 1972年2月19日</div>
+          <div class="member-info"><strong>籍贯/出生地：</strong>辽宁省阜新市</div>
+          <div class="member-info"><strong>关系：</strong>外祖父母之女</div>
+          <div class="member-info"><strong>婚配：</strong>配【父亲姓名待补】，婚期【待补】</div>
+          <div class="member-info"><strong>子女：</strong>【姓名待补】等【待补】</div>
+          <div class="member-info"><strong>备注：</strong>待补（职业、迁徙等）</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 第三代（你这一代） -->
+    <div class="generation">
+      <h2 class="generation-title">第三代（你这一代）</h2>
+      <div class="members-grid">
+        <div class="member-card">
+          <div class="member-name">【姓名待补】</div>
+          <div class="member-info"><strong>生辰：</strong>【待补】</div>
+          <div class="member-info"><strong>出生地：</strong>【待补】</div>
+          <div class="member-info"><strong>现居地：</strong>【待补】</div>
+          <div class="member-info"><strong>关系：</strong>父母之子/女</div>
+          <div class="member-info"><strong>职业/学业：</strong>【待补】</div>
+          <div class="member-info"><strong>婚配：</strong>【待补】</div>
+          <div class="member-info"><strong>子女：</strong>【待补】</div>
+          <div class="member-info"><strong>备注：</strong>待补</div>
+        </div>
+        
+        <!-- 如果有兄弟姐妹，复制上面的 member-card 并修改信息 -->
+        <!--
+        <div class="member-card">
+          <div class="member-name">【兄弟姐妹姓名待补】</div>
+          <div class="member-info"><strong>生辰：</strong>【待补】</div>
+          <div class="member-info"><strong>关系：</strong>父母之子/女（排行第X）</div>
+          <div class="member-info"><strong>备注：</strong>待补</div>
+        </div>
+        -->
+      </div>
+    </div>
+
+    <!-- 可以继续添加更多世代 -->
+    <!--
+    <div class="generation">
+      <h2 class="generation-title">第五代</h2>
+      <div class="members-grid">
+        <div class="member-card">
+          <div class="member-name">姓名</div>
+          <div class="member-info"><strong>出生：</strong>XXXX年</div>
+          <div class="member-info"><strong>关系：</strong>XXX之子/女</div>
+        </div>
+      </div>
+    </div>
+    -->
+
+    <!-- 家族照片区域（可选） -->
+    <!--
+    <div class="generation">
+      <h2 class="generation-title">家族照片</h2>
+      <div style="text-align: center; margin-top: 20px;">
+        <p>可以在这里添加家族合影照片</p>
+        <img src="files/family_photo.jpg" alt="家族合影" style="max-width: 100%; border-radius: 8px; margin-top: 15px;">
+      </div>
+    </div>
+    -->
+
+  </div>
+
+    <!-- 资料来源说明 -->
+    <div class="generation">
+      <h2 class="generation-title">资料来源说明</h2>
+      <div class="note">
+        <p><strong>信息收集方式：</strong></p>
+        <ul style="color: #555; line-height: 1.8;">
+          <li>家族口述传承</li>
+          <li>出生证明/户口本等证件信息</li>
+          <li>阜新博物馆相关展陈资料（待核实具体展品名称、展厅位置、文献编号）</li>
+          <li>其他档案资料【待补】</li>
+        </ul>
+        <p><strong>待补充信息清单：</strong></p>
+        <ul style="color: #555; line-height: 1.8;">
+          <li>所有成员的姓名（大名/曾用名/乳名/字辈）</li>
+          <li>排行（长子/次子/第几女等）</li>
+          <li>婚配年份与配偶完整信息</li>
+          <li>子女名单（按排行列出）</li>
+          <li>迁徙原因（工作/参军/婚嫁/政策等）</li>
+          <li>阜新博物馆展品/展厅/文字说明/照片（如有）</li>
+          <li>祖辈字辈（辈分字）</li>
+          <li>墓地/祠堂/祖屋位置（如有）</li>
+          <li>家族重要节点：参军、上学、经商、重大事件</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer" style="margin-top: 50px;">
+    Last updated: May 2025 | 家族族谱记录 | （山东济南大刘庄—四川自贡富顺—辽宁阜新—汉中支系）
+  </div>
+</div>
+
+<script>
+  // ============ 修改这里的密码 ============
+  const CORRECT_PASSWORD = "family2025"; // 改成您想要的密码
+  // =======================================
+
+  function checkPassword() {
+    const input = document.getElementById('password-input').value;
+    const errorMsg = document.getElementById('error-message');
+    
+    if (input === CORRECT_PASSWORD) {
+      document.getElementById('password-overlay').classList.add('hidden');
+      document.getElementById('protected-content').classList.add('visible');
+    } else {
+      errorMsg.textContent = '密码错误';
+      document.getElementById('password-input').value = '';
+    }
+  }
+
+  // 回车键提交
+  document.getElementById('password-input').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      checkPassword();
+    }
+  });
+</script>
+
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'zh-CN',
+      includedLanguages: 'en,zh-CN',
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'translate-control');
+  }
+</script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>
