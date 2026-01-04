@@ -107,15 +107,15 @@
         <strong>这是医疗场景的硬性要求，不是可选项</strong>。SGLang作为自托管推理框架，所有计算都在本地完成：
       </p>
       <ul>
-        <li data-i18n="article.rad_linter_sglang_advantage.section1.subsection1.li1"><strong>零云端依赖</strong>：不需要调用任何外部API，不涉及数据传输，天然满足HIPAA/ePHI合规要求</li>
-        <li data-i18n="article.rad_linter_sglang_advantage.section1.subsection1.li2"><strong>训练也可本地化</strong>：如果需要fine-tuning，SGLang支持本地训练，整个pipeline都可以在医院内网完成</li>
+        <li data-i18n="article.rad_linter_sglang_advantage.section1.subsection1.li1"><strong>零云端依赖</strong>：不需要调用任何外部API，不涉及数据传输，本地部署支持合规友好的架构设计，使ePHI保持在医院边界内；最终HIPAA合规取决于机构的安全控制措施</li>
+        <li data-i18n="article.rad_linter_sglang_advantage.section1.subsection1.li2"><strong>训练也可本地化</strong>：如果需要fine-tuning（如LoRA），可以使用标准工具（如HuggingFace/PEFT）完全在本地完成；SGLang用于在医院内网中提供模型服务和运行judge/runtime</li>
         <li data-i18n="article.rad_linter_sglang_advantage.section1.subsection1.li3"><strong>可审计性</strong>：所有日志、推理过程、模型版本都在本地，便于合规审计和问题追溯</li>
       </ul>
 
       <div class="highlight-box">
         <p><strong data-i18n="article.rad_linter_sglang_advantage.section1.subsection1.highlight.title">医疗合规的关键：</strong></p>
         <p data-i18n="article.rad_linter_sglang_advantage.section1.subsection1.highlight.content">
-          医院端涉及ePHI/PHI（受保护健康信息），很多系统默认不能把原始报告、结构化字段、日志、乃至影像相关元数据发到外部云。即使你做脱敏，也常常需要遵循"最小必要原则"：能不外发就不外发。SGLang的本地化特性让Rad-Linter天然满足这些合规要求。
+          医院端涉及ePHI/PHI（受保护健康信息），很多系统默认不能把原始报告、结构化字段、日志、乃至影像相关元数据发到外部云。即使你做脱敏，也常常需要遵循"最小必要原则"：能不外发就不外发。本地部署支持合规友好的架构设计，使ePHI保持在医院边界内；最终合规取决于机构的安全控制措施和策略。
         </p>
       </div>
 
@@ -125,7 +125,7 @@
       </p>
       <ul>
         <li data-i18n="article.rad_linter_sglang_advantage.section1.subsection2.li1"><strong>硬件兼容性</strong>：支持NVIDIA GPU（各种型号）、CPU推理、甚至混合部署，无论医院有什么硬件都能跑起来</li>
-        <li data-i18n="article.rad_linter_sglang_advantage.section1.subsection2.li2"><strong>操作系统支持</strong>：Windows、macOS、Linux全平台支持，适配医院现有的IT基础设施</li>
+        <li data-i18n="article.rad_linter_sglang_advantage.section1.subsection2.li2"><strong>操作系统支持</strong>：跨平台友好的集成方式（客户端/工具），而GPU serving通常在支持CUDA的机器上运行（常见为Linux；Windows通常通过WSL2/Docker部署）</li>
         <li data-i18n="article.rad_linter_sglang_advantage.section1.subsection2.li3"><strong>资源要求灵活</strong>：从高端GPU服务器到普通工作站，SGLang都能稳定运行，让Rad-Linter可以部署在各种规模的医院</li>
       </ul>
 
@@ -141,7 +141,7 @@
         SGLang的设计哲学是"简单但强大"，这让Rad-Linter的部署和维护变得非常容易：
       </p>
       <ul>
-        <li data-i18n="article.rad_linter_sglang_advantage.section1.subsection3.li1"><strong>安装简单</strong>：<code>pip install sglang</code> 即可，不需要复杂的依赖管理或环境配置</li>
+        <li data-i18n="article.rad_linter_sglang_advantage.section1.subsection3.li1"><strong>部署友好</strong>：SGLang提供清晰的serving接口和可复现的部署选项（包括容器化设置），相比临时脚本显著降低了运维负担</li>
         <li data-i18n="article.rad_linter_sglang_advantage.section1.subsection3.li2"><strong>配置直观</strong>：API设计清晰，JSON Schema约束、批处理、缓存等特性都有简洁的配置接口</li>
         <li data-i18n="article.rad_linter_sglang_advantage.section1.subsection3.li3"><strong>文档完善</strong>：官方文档详细，社区活跃，遇到问题容易找到解决方案</li>
         <li data-i18n="article.rad_linter_sglang_advantage.section1.subsection3.li4"><strong>可插拔架构</strong>：可以轻松切换不同的模型后端，适配不同的医疗场景需求</li>
