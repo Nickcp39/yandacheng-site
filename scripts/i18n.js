@@ -384,7 +384,7 @@ const translations = {
     'article.rad_linter_sglang_advantage.section4.conclusion.li3': '为了优化性能而投入大量工程资源',
     'article.rad_linter_sglang_advantage.section4.conclusion.li4': '为了处理结构化输出而编写复杂的后处理逻辑',
     'article.rad_linter_sglang_advantage.section4.conclusion.para2': '有了SGLang，所有这些挑战都迎刃而解。Rad-Linter能够"真落地"，SGLang功不可没。',
-    'article.rad_linter_sglang_advantage.footer': '如果你对Rad-Linter的临床价值感兴趣，请参考 <a href="20260102rad_linter_clinical_qa.html">《Rad-Linter：为什么临床签发前的跨模态质控是刚需》</a>。<br>技术实现细节请参考 <a href="llm_hospital_rad_linter.html">《使用SGLang构建Rad-Linter：医院端跨模态质控系统的生产实践》</a>。<br>如有问题或建议，欢迎通过 <a href="https://github.com/nickcp39">GitHub</a> 或 <a href="https://www.linkedin.com/in/yanda-cheng-4888a216b/">LinkedIn</a> 联系我。',
+    'article.rad_linter_sglang_advantage.footer': '如果你对Rad-Linter的临床价值感兴趣，请参考 <a href="/posts/20260102rad_linter_clinical_qa.html">《Rad-Linter：为什么临床签发前的跨模态质控是刚需》</a>。<br>技术实现细节请参考 <a href="/posts/llm_hospital_rad_linter.html">《使用SGLang构建Rad-Linter：医院端跨模态质控系统的生产实践》</a>。<br>如有问题或建议，欢迎通过 <a href="https://github.com/Nickcp39">GitHub</a> 或 <a href="https://www.linkedin.com/in/yanda-cheng-4888a216b/">LinkedIn</a> 联系我。',
     
     // 文章翻译 - btc_yield_spread_crash.html (完整内容)
     'article.btc_yield_spread.intro': '站在2026年1月的节点，我看到了一个危险的信号正在形成：<strong>10y-2y利差的史诗级倒挂后重新转正，标志着我们正处在一个类似1983年的"高通胀后敏感期"；BTC的正常四年周期下跌将触发稳定币缩表和边际买家消失，配合日本加息、外资退场和高额发债，可能在2026年年中某个国债相关环节"漏水"。</strong>我不知道哪根梁会先断，但可以大致锁定时间窗口和方向：高债务 + 利差结构重定价 + 稳定币去杠杆 → 2026年中期国债市场的薄弱环节暴露。',
@@ -765,7 +765,7 @@ const translations = {
     'article.llm_hospital_rad_linter.section8.contact': '如有问题或建议，欢迎通过 <a href="https://github.com/nickcp39">GitHub</a> 或 <a href="https://www.linkedin.com/in/yanda-cheng-4888a216b/">LinkedIn</a> 联系我。',
     
     // 文章翻译 - 20260102rad_linter_clinical_qa.html (完整内容)
-    'article.rad_linter_clinical_qa.intro': '在医院端部署Rad-Linter系统后，我越来越意识到，这个系统的核心价值不在于技术细节，而在于<strong>它解决了一个真实存在的、高价值的临床痛点</strong>。本文不谈技术实现，只谈<strong>为什么Rad-Linter有意义、为什么这个方向值得做</strong>。技术细节请参考<a href="llm_hospital_rad_linter.html">另一篇文章</a>。',
+    'article.rad_linter_clinical_qa.intro': '在医院端部署Rad-Linter系统后，我越来越意识到，这个系统的核心价值不在于技术细节，而在于<strong>它解决了一个真实存在的、高价值的临床痛点</strong>。本文不谈技术实现，只谈<strong>为什么Rad-Linter有意义、为什么这个方向值得做</strong>。技术细节请参考<a href="/posts/llm_hospital_rad_linter.html">另一篇文章</a>。',
     'article.rad_linter_clinical_qa.section1.title': '🎯 核心定位：我们解决的不是"生成报告"，而是"签发前的质量与安全（QA）"',
     'article.rad_linter_clinical_qa.section1.para1': '在讨论Rad-Linter的价值之前，需要先明确它在医疗AI生态系统中的位置。当前LLM在放射科的应用主要集中在三类：',
     'article.rad_linter_clinical_qa.section1.highlight.title': '当前研究的三大类：',
@@ -854,7 +854,7 @@ const translations = {
     'article.rad_linter_clinical_qa.section7.li5': '<strong>技术可行</strong>：现有技术栈已经足够，不需要等待"完美的VLM"',
     'article.rad_linter_clinical_qa.section7.quote': '"We do not generate reports; we audit existing reports using auxiliary visual evidence. We do not replace radiologists; we assist them in quality control before sign-off."<br>— Rad-Linter的核心定位',
     'article.rad_linter_clinical_qa.section7.para2': '在这个定位下，Rad-Linter不是"又一个报告生成系统"，而是<strong>放射科工作流中的一个关键质控环节</strong>，这个环节的价值不依赖于是否使用AI生成报告，而是依赖于"报告质量"这个永恒的需求。',
-    'article.rad_linter_clinical_qa.footer': '技术实现细节请参考 <a href="llm_hospital_rad_linter.html">《使用SGLang构建Rad-Linter：医院端跨模态质控系统的生产实践》</a>。<br>如有问题或建议，欢迎通过 <a href="https://github.com/nickcp39">GitHub</a> 或 <a href="https://www.linkedin.com/in/yanda-cheng-4888a216b/">LinkedIn</a> 联系我。',
+    'article.rad_linter_clinical_qa.footer': '技术实现细节请参考 <a href="/posts/llm_hospital_rad_linter.html">《使用SGLang构建Rad-Linter：医院端跨模态质控系统的生产实践》</a>。<br>如有问题或建议，欢迎通过 <a href="https://github.com/Nickcp39">GitHub</a> 或 <a href="https://www.linkedin.com/in/yanda-cheng-4888a216b/">LinkedIn</a> 联系我。',
   },
   en: {
     // Navigation
@@ -1233,7 +1233,7 @@ const translations = {
     'article.rad_linter_sglang_advantage.section4.conclusion.li3': 'Invest significant engineering resources to optimize performance',
     'article.rad_linter_sglang_advantage.section4.conclusion.li4': 'Write complex post-processing logic to handle structured outputs',
     'article.rad_linter_sglang_advantage.section4.conclusion.para2': 'With SGLang, all these challenges are solved. Rad-Linter can truly be deployed, and SGLang deserves the credit.',
-    'article.rad_linter_sglang_advantage.footer': 'If you are interested in the clinical value of Rad-Linter, please refer to <a href="20260102rad_linter_clinical_qa.html">《Rad-Linter: Why Cross-Modal Quality Control Before Clinical Sign-Off is a Critical Need》</a>.<br>For technical implementation details, please refer to <a href="llm_hospital_rad_linter.html">《Building Rad-Linter with SGLang: Production Experience of Cross-Modal Quality Control in Hospital Settings》</a>.<br>If you have questions or suggestions, please contact me via <a href="https://github.com/nickcp39">GitHub</a> or <a href="https://www.linkedin.com/in/yanda-cheng-4888a216b/">LinkedIn</a>.',
+    'article.rad_linter_sglang_advantage.footer': 'If you are interested in the clinical value of Rad-Linter, please refer to <a href="/posts/20260102rad_linter_clinical_qa.html">《Rad-Linter: Why Cross-Modal Quality Control Before Clinical Sign-Off is a Critical Need》</a>.<br>For technical implementation details, please refer to <a href="/posts/llm_hospital_rad_linter.html">《Building Rad-Linter with SGLang: Production Experience of Cross-Modal Quality Control in Hospital Settings》</a>.<br>If you have questions or suggestions, please contact me via <a href="https://github.com/Nickcp39">GitHub</a> or <a href="https://www.linkedin.com/in/yanda-cheng-4888a216b/">LinkedIn</a>.',
     
     // Article translations - btc_yield_spread_crash.html (full content)
     'article.btc_yield_spread.intro': 'Standing at the January 2026 juncture, I see a dangerous signal forming: <strong>the epic inversion of the 10y-2y spread turning positive again marks our position in a "post-high-inflation sensitive period" similar to 1983; BTC\'s normal four-year cycle correction will trigger stablecoin contraction and the disappearance of marginal buyers, combined with Japan\'s rate hikes, foreign capital retreat, and massive debt issuance, potentially causing a "leak" in some Treasury-related link in mid-2026.</strong> I don\'t know which beam will break first, but I can roughly identify the time window and direction: high debt + yield curve structure repricing + stablecoin deleveraging → exposure of weak links in the mid-2026 Treasury market.',
@@ -1614,7 +1614,7 @@ const translations = {
     'article.llm_hospital_rad_linter.section8.contact': 'If you have questions or suggestions, feel free to reach out via <a href="https://github.com/nickcp39">GitHub</a> or <a href="https://www.linkedin.com/in/yanda-cheng-4888a216b/">LinkedIn</a>.',
     
     // Article translations - 20260102rad_linter_clinical_qa.html (full content - English translation added)
-    'article.rad_linter_clinical_qa.intro': 'After deploying the Rad-Linter system in a hospital setting, I have increasingly realized that the core value of this system lies not in technical details, but in <strong>solving a real, high-value clinical pain point</strong>. This article does not discuss technical implementation, but focuses on <strong>why Rad-Linter is meaningful and why this direction is worth pursuing</strong>. For technical details, please refer to <a href="llm_hospital_rad_linter.html">another article</a>.',
+    'article.rad_linter_clinical_qa.intro': 'After deploying the Rad-Linter system in a hospital setting, I have increasingly realized that the core value of this system lies not in technical details, but in <strong>solving a real, high-value clinical pain point</strong>. This article does not discuss technical implementation, but focuses on <strong>why Rad-Linter is meaningful and why this direction is worth pursuing</strong>. For technical details, please refer to <a href="/posts/llm_hospital_rad_linter.html">another article</a>.',
     'article.rad_linter_clinical_qa.section1.title': '🎯 Core Positioning: We Solve "Pre-Sign-Off Quality and Safety (QA)", Not "Report Generation"',
     'article.rad_linter_clinical_qa.section1.para1': 'Before discussing the value of Rad-Linter, we need to clarify its position in the medical AI ecosystem. Current LLM applications in radiology mainly fall into three categories:',
     'article.rad_linter_clinical_qa.section1.highlight.title': 'Three Major Categories of Current Research:',
@@ -1703,7 +1703,7 @@ const translations = {
     'article.rad_linter_clinical_qa.section7.li5': '<strong>Technically Feasible</strong>: Existing technology stack is sufficient, no need to wait for "perfect VLM"',
     'article.rad_linter_clinical_qa.section7.quote': '"We do not generate reports; we audit existing reports using auxiliary visual evidence. We do not replace radiologists; we assist them in quality control before sign-off."<br>— Rad-Linter\'s Core Positioning',
     'article.rad_linter_clinical_qa.section7.para2': 'Under this positioning, Rad-Linter is not "another report generation system," but a <strong>critical quality control step in the radiology workflow</strong>. The value of this step does not depend on whether AI report generation is used, but on the eternal need for "report quality."',
-    'article.rad_linter_clinical_qa.footer': 'For technical implementation details, please refer to <a href="llm_hospital_rad_linter.html">"Building Rad-Linter with SGLang: Production Experience of Cross-Modal Quality Control in Hospital Settings"</a>.<br>If you have questions or suggestions, please contact me via <a href="https://github.com/nickcp39">GitHub</a> or <a href="https://www.linkedin.com/in/yanda-cheng-4888a216b/">LinkedIn</a>.',
+    'article.rad_linter_clinical_qa.footer': 'For technical implementation details, please refer to <a href="/posts/llm_hospital_rad_linter.html">"Building Rad-Linter with SGLang: Production Experience of Cross-Modal Quality Control in Hospital Settings"</a>.<br>If you have questions or suggestions, please contact me via <a href="https://github.com/Nickcp39">GitHub</a> or <a href="https://www.linkedin.com/in/yanda-cheng-4888a216b/">LinkedIn</a>.',
   }
 };
 
