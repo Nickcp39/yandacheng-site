@@ -189,15 +189,145 @@ h2 {
 }
 
 /* === Responsive Design === */
+/* Additional responsive adjustments for very small screens */
+@media (max-width: 480px) {
+  .container {
+    padding: 10px;
+  }
+  .nav-left a,
+  .nav-right a {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+  h2 {
+    font-size: 1.3em;
+  }
+  .experience-card,
+  .project-card {
+    padding: 15px;
+  }
+  .filter-btn {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+}
+
 @media (max-width: 768px) {
+  /* Container adjustments */
+  .container {
+    padding: 15px;
+  }
+
+  /* Navbar adjustments */
+  .navbar {
+    padding: 8px 0;
+  }
+  .navbar .nav-container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 15px;
+    gap: 10px;
+  }
+  .nav-left,
+  .nav-right {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+  .nav-left a,
+  .nav-right a {
+    margin: 0;
+    font-size: 13px;
+    padding: 6px 10px;
+    white-space: nowrap;
+  }
+  .navbar a {
+    margin: 0;
+  }
+  #translate-control {
+    margin-left: 0 !important;
+    margin-top: 5px;
+  }
+
+  /* Profile card adjustments */
+  .profile-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .home-profile-pic {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  /* Project card adjustments */
   .project-card {
     width: 100%;
     flex-direction: column;
     align-items: center;
   }
-  .project-card img {
+  .project-card img,
+  .project-card video {
     width: 100%;
+    max-width: 100%;
     height: auto;
+    float: none;
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  /* Publication adjustments */
+  .publication {
+    flex-direction: column;
+    align-items: center;
+  }
+  .publication img.row-image {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 15px;
+  }
+
+  /* Experience card adjustments */
+  .experience-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .experience-card img {
+    max-width: 100%;
+    margin-bottom: 15px;
+  }
+
+  /* Project filter adjustments */
+  .project-filter {
+    gap: 8px;
+  }
+  .filter-btn {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+
+  /* Headings */
+  h2 {
+    font-size: 1.5em;
+    margin-top: 30px;
+  }
+
+  /* Buttons */
+  .btn {
+    font-size: 11px;
+    padding: 3px 6px;
+  }
+
+  /* Footer elements adjustments for index.html */
+  .footer + div[style*="display: flex"] {
+    flex-direction: column !important;
+    gap: 15px !important;
+  }
+  .footer + div[style*="display: flex"] img {
+    max-width: 80px !important;
   }
 }
 .home-profile-pic {
@@ -231,6 +361,41 @@ h2 {
 .project-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Project filter buttons */
+.project-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.filter-btn {
+  padding: 8px 16px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.filter-btn.active {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+/* Project grid */
+.project-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 
 

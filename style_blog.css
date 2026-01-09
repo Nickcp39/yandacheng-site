@@ -126,3 +126,216 @@ a:hover {
   background-color: #f1f1f1;
   color: #555;
 }
+
+/* === Responsive Design for Blog Pages === */
+@media (max-width: 768px) {
+  /* Navbar adjustments */
+  .navbar {
+    padding: 8px 0;
+  }
+  
+  .nav-container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 15px;
+    gap: 10px;
+  }
+  
+  .nav-left,
+  .nav-right {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+  
+  .nav-left a,
+  .nav-right a {
+    margin: 0;
+    font-size: 13px;
+    padding: 6px 10px;
+    white-space: nowrap;
+  }
+
+  /* Blog container adjustments */
+  .blog-container {
+    margin: 20px auto !important;
+    padding: 0 15px !important;
+  }
+
+  /* Blog post layout - stack vertically on mobile */
+  .blog-container[style*="display: flex"] {
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
+
+  /* Sidebar adjustments */
+  .blog-container aside {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin-bottom: 15px;
+  }
+
+  /* Left sidebar specific */
+  .blog-container aside:first-of-type {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: flex-start;
+  }
+
+  .blog-container aside:first-of-type p {
+    margin: 0;
+    flex: 1 1 auto;
+    min-width: 120px;
+  }
+
+  /* Main content adjustments */
+  .blog-container main {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .blog-container main h1 {
+    font-size: 1.5em !important;
+    line-height: 1.3;
+  }
+
+  .blog-container main h2 {
+    font-size: 1.3em !important;
+  }
+
+  .blog-container main h3 {
+    font-size: 1.1em !important;
+  }
+
+  .blog-container main p,
+  .blog-container main li {
+    font-size: 0.95em;
+    line-height: 1.6;
+  }
+
+  .blog-container main img {
+    max-width: 100% !important;
+    height: auto !important;
+    margin: 15px 0 !important;
+  }
+
+  /* Blog title adjustments */
+  .blog-title {
+    font-size: 1.8em !important;
+  }
+
+  .blog-subtitle {
+    font-size: 0.9em !important;
+  }
+
+  /* Translate control adjustments */
+  #translate-control {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    margin: 10px 0;
+  }
+
+  /* Post list items */
+  .post-item h3 {
+    font-size: 1.1em !important;
+  }
+
+  /* Right sidebar - move to bottom, make it more compact */
+  .blog-container aside:last-of-type {
+    order: 3;
+    font-size: 0.85em;
+  }
+
+  .blog-container aside:last-of-type input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .blog-container aside:last-of-type ul {
+    margin-top: 10px;
+  }
+
+  .blog-container aside:last-of-type li {
+    margin-bottom: 8px;
+  }
+
+  /* Blog main page dual column layout adjustments */
+  .blog-container > div[style*="flex: 1"] {
+    flex: 1 1 100% !important;
+    min-width: 100% !important;
+    margin-bottom: 30px;
+  }
+
+  .blog-container > div[style*="flex: 1"]:first-of-type {
+    order: 1;
+  }
+
+  .blog-container > div[style*="flex: 1"]:last-of-type {
+    order: 2;
+  }
+}
+
+/* Additional adjustments for very small screens */
+@media (max-width: 480px) {
+  .nav-left a,
+  .nav-right a {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+
+  .blog-container {
+    padding: 0 10px !important;
+    margin: 15px auto !important;
+  }
+
+  .blog-container main h1 {
+    font-size: 1.3em !important;
+  }
+
+  .blog-container main h2 {
+    font-size: 1.2em !important;
+  }
+
+  .blog-container main h3 {
+    font-size: 1em !important;
+  }
+
+  .blog-container aside {
+    padding: 12px !important;
+    font-size: 0.85em !important;
+  }
+
+  .blog-container aside:first-of-type {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .blog-title {
+    font-size: 1.5em !important;
+  }
+
+  /* Blockquote adjustments */
+  .blog-container main blockquote {
+    margin: 15px 0;
+    padding: 10px 15px;
+    font-size: 0.9em;
+    border-left: 3px solid #ddd;
+  }
+
+  /* Code and pre elements */
+  .blog-container main pre,
+  .blog-container main code {
+    font-size: 0.85em;
+    overflow-x: auto;
+  }
+}

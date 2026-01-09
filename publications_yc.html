@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <base href="/">
 
   <title>Publications | Yanda Cheng</title>
@@ -52,6 +53,28 @@
     .project-content em {
       font-size: 0.95em;
       color: #666;
+    }
+    
+    /* Responsive design for publications page */
+    @media (max-width: 768px) {
+      .container {
+        padding: 15px !important;
+      }
+      .project-card {
+        flex-direction: column !important;
+        align-items: center !important;
+      }
+      .project-content {
+        width: 100%;
+      }
+      .project-content img {
+        max-width: 100% !important;
+        width: 100% !important;
+        margin-bottom: 15px;
+      }
+      .project-content h3 {
+        font-size: 1.1em;
+      }
     }
   </style>
 </head>
