@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>博士转码/转行：一次不那么成功的经验分享</title>
+  <link rel="stylesheet" href="../style_blog.css">
+</head>
+<body>
+  <!-- 🔹 Navbar -->
+  <div id="navbar-placeholder"></div>
+  <script>
+    fetch('../navbar.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('navbar-placeholder').innerHTML = data;
+        // navbar 加载完成后，触发语言按钮事件绑定
+        if (window.attachLanguageButtonListeners) {
+          window.attachLanguageButtonListeners();
+        }
+      });
+  </script>
+
+  <!-- 🌐 i18n 翻译脚本 -->
+  <script src="../scripts/i18n.js"></script>
+
+  <!-- 🔸 Blog Layout -->
+  <div class="blog-container" style="display: flex; gap: 40px; align-items: flex-start;">
+
+    <!-- ⬅ Left Sidebar -->
+    <aside style="flex: 0 0 150px; font-size: 0.9em; color: #666;">
+      <p><strong>Written by</strong><br>Yanda Cheng</p>
+      <p><strong>Date</strong><br>May 2025</p>
+      <p><a href="#disqus_thread">💬 Leave a comment</a></p>
+    </aside>
+
+    <!-- 🔳 Main Content -->
+    <main style="flex: 1;">
+      <p style="color: #888; font-size: 0.9em;">Career, PhD, Chinese</p>
+      <h1><span data-i18n="article.phd_career_transition.title">博士转码/转行：一次不那么成功的经验分享</span><br><span style="font-weight: normal; font-size: 0.9em;" data-i18n="article.phd_career_transition.subtitle">PhD Career Transition: Lessons from an Unsuccessful Journey</span></h1>
+
+      <p data-i18n="article.phd_career_transition.intro.para1"><strong>写这篇的目的很简单：给未来想转码/转行的博士一个更真实的参照，个人经验仅供参考。</strong></p>
+      
+      <p data-i18n="article.phd_career_transition.intro.para2">目前我的毕业论文要求已经满足，paper 也发够了。过去几年里，我大部分 AI 相关的合作、写作、实验和落地，基本都是靠 <strong>自学 + 自己找资源 + 自己把项目做出来</strong>。导师在 AI 方向上并不擅长，但我依然认为他是个好老板——至少在我求职、转型的阶段，他愿意给空间，不会用"必须做某某方向"把人锁死。</p>
+      
+      <p data-i18n="article.phd_career_transition.intro.para3">这半年找工暂时还完全没成功，我更想把自己踩过的坑写下来：让后来人少走弯路，更早建立适合工业界的能力结构。</p>
+
+      <h2 data-i18n="article.phd_career_transition.section1.title">一、找实习，找工作要趁早：投简历"量变出质变"</h2>
+      
+      <p data-i18n="article.phd_career_transition.section1.para1">不要等到自己觉得"完美 match"才投，也别只投几十个最 match 的就收手。</p>
+      <p data-i18n="article.phd_career_transition.section1.para2">也许业界大拿、hot PhD 可以这么做，但如果你跟我一样是普通 PhD，建议不要抱这种心态。</p>
+      <p data-i18n="article.phd_career_transition.section1.para3"><strong>时间节奏：</strong>我个人建议 8 月开始冲刺投递到 10 月；年底节假日会明显放缓；圣诞之后再开启春招节奏。</p>
+      <p data-i18n="article.phd_career_transition.section1.para4"><strong>现实原因：</strong>投简历本身很耗时间，HC 变化也快，越早开始越能让自己进入"面试—复盘—迭代"的正循环。</p>
+      <p data-i18n="article.phd_career_transition.section1.para5"><strong>keyword matching 是必须做的，不要一份简历投几千遍，那真的杯水车薪。</strong></p>
+
+      <h2 data-i18n="article.phd_career_transition.section2.title">二、内推 / refer/connect 必须做：别怕打扰</h2>
+      
+      <p data-i18n="article.phd_career_transition.section2.para1">内推、refer、connect 不是"锦上添花"，而是很多人进入流程的关键一步。</p>
+      <p data-i18n="article.phd_career_transition.section2.para2">我的做法很简单：白天工作间隙顺手在 LinkedIn 上发消息、加 connect、求 refer。</p>
+      <p data-i18n="article.phd_career_transition.section2.para3">大部分华人其实都很愿意帮忙（至少我几乎没遇到负反馈）。</p>
+      <p data-i18n="article.phd_career_transition.section2.para4">我后来还有一个更现实的体会：心态上不要把它当成"求人"，把它当成"信息交换 + 互相成就"。</p>
+      <p data-i18n="article.phd_career_transition.section2.para5">用"销售"的角度看求职——你是在"卖自己"给 HR/团队。想清楚：</p>
+      <ul>
+        <li data-i18n="article.phd_career_transition.section2.li1">你能解决什么问题？</li>
+        <li data-i18n="article.phd_career_transition.section2.li2">你能省谁的时间/钱/风险？</li>
+        <li data-i18n="article.phd_career_transition.section2.li3">你是什么"货"？最适合什么"摊位"？</li>
+      </ul>
+      <p data-i18n="article.phd_career_transition.section2.para6">在马路上追着人发传单，转化率很低；但如果你的摊位足够清晰、有特色，别人会主动停下来拿传单。</p>
+      <p data-i18n="article.phd_career_transition.section2.para7">当你开始从 HR 的 KPI 角度思考，很多事情会出现新的转机。</p>
+
+      <h2 data-i18n="article.phd_career_transition.section3.title">三、刷题要趁早：保持手感，不要断</h2>
+      
+      <p data-i18n="article.phd_career_transition.section3.para1">LeetCode 这件事，最折磨人的不是难，而是"停一阵子就忘"。</p>
+      <p data-i18n="article.phd_career_transition.section3.para2">模板题型大概就 10–20 个，目标不是刷爆，而是 <strong>刷熟刷透刷到能背出来</strong>。</p>
+      <p data-i18n="article.phd_career_transition.section3.para3"><strong>不要断：</strong>停一两个月，恢复手感往往要两周起步。</p>
+      <p data-i18n="article.phd_career_transition.section3.para4">我的体验：半年大概做了 400–500 题，但后来才意识到——很多面试并不怎么考"纯题"，更多考 dive deep + system design。题目只是帮你在压力下保持基本盘。</p>
+
+      <h2 data-i18n="article.phd_career_transition.section4.title">四、今天的技术栈太大了：不可能"学几门课就转码"</h2>
+      
+      <p data-i18n="article.phd_career_transition.section4.para1">SQL、database、LeetCode、kernel、系统设计、分布式、LLM serving……</p>
+      <p data-i18n="article.phd_career_transition.section4.para2">现在的时代不可能像以前那样：上几门课就觉得自己"懂了"。你必须接受现实：</p>
+      <ul>
+        <li data-i18n="article.phd_career_transition.section4.li1">要么选一个火热的大类，然后高效投入；</li>
+        <li data-i18n="article.phd_career_transition.section4.li2">要么就会被碎片化知识拖死。</li>
+      </ul>
+      <p data-i18n="article.phd_career_transition.section4.para3">我以前很喜欢看公开课，但说实话：课程很难跟上时代变化。实战永远是最好的老师。</p>
+      <p data-i18n="article.phd_career_transition.section4.para4">更现实一点的比喻是：公开课像教你"开枪101"，而实战是给你一把自动步枪（GPT）然后把你丢进战场，让你自己活着出来。</p>
+      <p data-i18n="article.phd_career_transition.section4.para5">在 vibe coding 时代，学习速度最快的方式通常不是啃书，而是：<strong>快速做东西 + 快速复盘</strong>。</p>
+      <p data-i18n="article.phd_career_transition.section4.para6">同理，做项目也建议用"mini repo"方式：</p>
+      <p data-i18n="article.phd_career_transition.section4.para7">先把项目跑通、理解整体框架；遇到不懂的就往后翻、再回头看。很多时候等你回头，项目已经做完了，code 也理解了，技术栈也学得差不多了。</p>
+      <p data-i18n="article.phd_career_transition.section4.para8">用 vibe coding / 第一性原理学习：问到自己问不出问题为止，这比"看完一门课"有效得多。</p>
+      <p data-i18n="article.phd_career_transition.section4.para9"><strong>LeetCode 的价值不是"刷题"，而是：做过项目后你才知道它在训练什么</strong></p>
+      <p data-i18n="article.phd_career_transition.section4.para10">LeetCode 真正训练的是三件事：</p>
+      <ol>
+        <li data-i18n="article.phd_career_transition.section4.li3"><strong>边界/约束意识：</strong>不会因为 corner case 翻车</li>
+        <li data-i18n="article.phd_career_transition.section4.li4"><strong>抽象能力：</strong>快速把问题变成可操作的pipeline</li>
+        <li data-i18n="article.phd_career_transition.section4.li5"><strong>稳定性：</strong>压力下依旧保持水平的测试</li>
+      </ol>
+
+      <h2 data-i18n="article.phd_career_transition.section4_5.title">四点五、Mock 面试非常有用</h2>
+      
+      <p data-i18n="article.phd_career_transition.section4_5.para1">即使现在 AI 的效果非常好了，但是真人的 mock interview 的感受是完全不一样的。如果有条件的情况下花点钱，不管是现在比较火的一些 interview 准备网站也好，还是 system design 也好，稍微花点钱事倍功半的效果是非常显著的。</p>
+      <p data-i18n="article.phd_career_transition.section4_5.para2">因为很多人面试机会有限，所以还是尽可能的抓住机会比较好。</p>
+
+      <h2 data-i18n="article.phd_career_transition.section5.title">五、我大量面试后才真正明白：0→1 和 1→1000 是两套能力体系</h2>
+      
+      <p data-i18n="article.phd_career_transition.section5.para1">读博士更像 0→1：定义问题、搭系统、做实验、讲故事，把未知变成可发表的结论。</p>
+      <p data-i18n="article.phd_career_transition.section5.para2">做新产品开发也更像 0→1：从需求到原型到上线，先把闭环跑起来就算成功。</p>
+      <p data-i18n="article.phd_career_transition.section5.para3">但大厂的 infra / 平台工程对应的是 1→1000：</p>
+      <p data-i18n="article.phd_career_transition.section5.para4">不是把功能"做出来"，而是让它 <strong>可复用、可审计、可灰度、可回滚、可观测、可维护、能抗峰值、能被别人接手</strong>。</p>
+      <p data-i18n="article.phd_career_transition.section5.para5">说人话就是：微信一个人用，只是聊天工具；14 亿人用，你要解决的是"系统不崩、持续迭代、可观测、可回滚、可维护"。</p>
+      <p data-i18n="article.phd_career_transition.section5.para6">我在传统硬件公司其实也经历过类似的事情，只是过去没系统学过那套"工程话术"，所以在 system design 面试里讲不出来细节。很多博士不是没做过，而是没学会用大厂能评估的方式表达：trade-offs、contracts、metrics、failure modes、rollout。</p>
+      <p data-i18n="article.phd_career_transition.section5.para7">以及我后来发现：很多人其实不需要"从零开始"。在自己原有项目上，补上几个关键工程模块（比如数据契约、监控告警、灰度回滚、压测与容量规划），再把它跑通成一个 mini repo，就已经能把 0→1 的项目"翻译"成 1→1000 的叙事。</p>
+      <p data-i18n="article.phd_career_transition.section5.para8">顺带一提，这也是为什么统计/数学背景的 PhD 往 quant 或 data scientist 转型的成功率往往更高：他们更习惯用数据口径、实验设计、指标解释来表达自己的工作成果——这套表达在工业界天然更容易对齐。</p>
+
+      <h2 data-i18n="article.phd_career_transition.section6.title">六、在聊技术的时候不要做产品经理</h2>
+      
+      <p data-i18n="article.phd_career_transition.section6.para1">我个人有多年创业/产品视角，习惯从"用户/销售/产品"角度思考问题。这个思维在很多场景很有价值，但在某些美国 tech lead 的技术面里，反而会导致 vibe 对不上：对方要你讲"contracts / metrics / failure modes / rollout"，你讲成了"需求与商业价值"。</p>
+      <p data-i18n="article.phd_career_transition.section6.para2">技术面最重要的是：<strong>先回答问题，再扩展视角</strong>，否则很容易发散、答非所问。business impact 很重要，但在 infra / system design 面试中，它更多是背景动机而不是核心。核心还是：系统是否能规模化落地、是否可维护、是否可监控、是否能稳定迭代。</p>
+
+      <h2 data-i18n="article.phd_career_transition.section7.title">七、最后一句：转码要趁早，别被学术路径绑架</h2>
+      
+      <p data-i18n="article.phd_career_transition.section7.para1">这句可能有点刺，但我是真心的：转码要趁早。与其说转码，不如说，<strong>如果你想做 1-1000，就转 engineer</strong>，不管是 data engineer, AI engineer, infra engineer。Engineer 是一门复杂的学问，是要下苦工的。</p>
+      <p data-i18n="article.phd_career_transition.section7.para2">别只听"发 paper 就够了"。paper 能发 AI 就发 AI，不让发就挂 arXiv。学术体系的激励、就业市场的现实、以及未来几年的人口趋势摆在那儿——你要为自己的人生负责。</p>
+      <p data-i18n="article.phd_career_transition.section7.para3">当然，如果你喜欢做 0-1 的开放问题，喜欢创新，喜欢研究别人没研究过的东西，享受那种日日夜夜挑灯夜战然后自我突破的学术环境，那教职是非常好的。想清楚自己要的是哪一种人生，落子无悔。</p>
+
+      <h2 data-i18n="article.phd_career_transition.section8.title">八、我最感谢的一件事：华人社区的互相帮助，开放，包容，以及 AI infra 社区</h2>
+      
+      <p data-i18n="article.phd_career_transition.section8.para1">这一路上帮助过我的人很多：完全不认识的同学之间的内推，老同学的搭把手，LinkedIn 内推、找工建议、经验分享……我都很感激。</p>
+      <p data-i18n="article.phd_career_transition.section8.para2">我最近学的基本都是 LLM / serving / infra。打个广告并且非常感谢 SGLang 团队尤其是几位对外的负责人的包容性，也感谢社区维护者写了大量 blog 和实践经验——这是我见过社区维护比较好的之一。对很多"背景不完美、但愿意投入"的人来说，这种开放性非常珍贵。</p>
+
+      <h2 data-i18n="article.phd_career_transition.section9.title">九、但我也必须承认：我实力不济，这半年没转成功</h2>
+      
+      <p data-i18n="article.phd_career_transition.section9.para1">该补的短板确实不少：无论是 system design、LeetCode，还是一些更偏工程化的表达方式，我都还在补课阶段。再加上每周一两个面试，白天还得 PhD 正常工作，长期下来精力被不断切碎，确实没能完成期待的目标。</p>
+      <p data-i18n="article.phd_career_transition.section9.para2">最痛的不是失败，而是你以为自己准备对了，却发现面试在考另一套体系——比如准备 Python 结果要求必须 C++，准备 coding 结果只考 SD，准备 SD 结果全程考 domain knowledge，然后你开始怀疑自己是不是不适合。有时候别太否定自己，失败是常态，一直失败更是常态，大部分论文也都是需要无数次打磨才能发表到好的 journal 上的，这一点我相信大部分 PhD 应该都是可以苦中作乐的哈哈</p>
+      <p data-i18n="article.phd_career_transition.section9.para3">这些都是我当下的理解，可能不完整也可能有偏差。欢迎批评指正和补充交流，我会认真吸收，也希望后来人少踩坑。谨以此贴，记录我不那么成功的转码路。</p>
+
+      <div style="background-color: #e7f3ff; border-left: 4px solid #007bff; padding: 20px; margin-top: 40px; border-radius: 4px;">
+        <h3 data-i18n="article.phd_career_transition.conclusion.title">结语</h3>
+        <p data-i18n="article.phd_career_transition.conclusion.para1"><strong>中文：</strong>希望这篇文章能为正在考虑转码或转行的 PhD 朋友们提供一些参考。记住，每个人的路径都不同，重要的是找到适合自己的方向，并为之持续努力。</p>
+        <p data-i18n="article.phd_career_transition.conclusion.para2"><strong>English:</strong> I hope this article can provide some reference for PhD friends considering a transition to coding or tech careers. Remember, everyone's path is different. What matters is finding the direction that suits you and persistently working toward it.</p>
+      </div>
+
+      <!-- 🔻 Disqus 评论区域 -->
+      <div id="disqus_thread" style="margin-top: 60px;"></div>
+      <script>
+        var disqus_config = function () {
+          this.page.url = window.location.href;
+          this.page.identifier = window.location.pathname;
+        };
+        (function() {
+          var d = document, s = d.createElement('script');
+          s.src = 'https://yanda-cheng.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    </main>
+
+    <!-- ➡ Right Sidebar -->
+    <aside style="flex: 0 0 250px;">
+      <div style="margin-bottom: 30px;">
+        <input type="text" placeholder="Search ..." style="width: 100%; padding: 6px;">
+      </div>
+
+      <div style="font-size: 0.9em; color: #555; margin-bottom: 30px;">
+        <h3>Disclaimer</h3>
+        <p data-i18n="article.phd_career_transition.disclaimer">All posts represent my personal experience only. Opinions expressed are solely my own and do not express the views or opinions of any organization or group.</p>
+      </div>
+
+      <div style="font-size: 0.9em; color: #555;">
+        <h3>Recent Posts</h3>
+        <ul style="list-style-type: none; padding-left: 0;">
+          <li><a href="/posts/phd_career_transition.html">博士转码/转行：一次不那么成功的经验分享</a></li>
+          <li><a href="/posts/staff_engineer.html">【职场分享】资深工程师的挑战和策略</a></li>
+          <li><a href="/posts/phd_possibilities.html">PhD的无限可能性：不止是教职</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <!-- 🔻 Footer -->
+  <div class="footer">
+    Blog © Yanda Cheng | Last updated May 2025
+  </div>
+</body>
+</html>
