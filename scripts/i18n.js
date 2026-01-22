@@ -1593,7 +1593,7 @@ const translations = {
     'article.phd_career_transition.section9.para3': 'These are my current understandings, which may be incomplete or biased. I welcome criticism, corrections, and supplementary discussions. I\'ll seriously absorb feedback and hope future readers can avoid these pitfalls. This post documents my not-so-successful coding transition journey.',
     'article.phd_career_transition.conclusion.title': 'Conclusion',
     'article.phd_career_transition.conclusion.para1': 'I hope this article can provide some reference for PhD friends considering a transition to coding or tech careers. Remember, everyone\'s path is different. What matters is finding the direction that suits you and persistently working toward it.',
-    'article.phd_career_transition.conclusion.para2': '',
+    'article.phd_career_transition.conclusion.para2': ' ',
     'article.phd_career_transition.disclaimer': 'All posts represent my personal experience only. Opinions expressed are solely my own and do not express the views or opinions of any organization or group.',
     
     // Article translations - sglang_llm_agent_id_scanner.html (full content - Chinese translation added)
