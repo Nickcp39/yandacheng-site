@@ -66,9 +66,9 @@
     "date": "2026-01-03",
     "summary": "这套系统之所以能\"真落地\"，关键是底层用了 SGLang 做 serving / judge runtime。SGLang 不涉及云端API的问题，训练也都可以在本地做，而且适配大量的不同的GPU/CPU，Windows/Mac/Linux系统也都很容易适配，所以对大部分的医疗系统场景都容易嵌入。"
   },
-  "phd_career_transition.html": {
+  "20260122phd_career_transition.html": {
     "title": "博士转码/转行：一次不那么成功的经验分享 / PhD Career Transition: Lessons from an Unsuccessful Journey",
-    "date": "2025-05-01",
+    "date": "2026-01-22",
     "summary": "给未来想转码/转行的博士一个更真实的参照。分享半年找工过程中的经验教训：从投简历、内推、刷题到理解0→1和1→1000的区别，以及为什么转码要趁早。"
   }
 
