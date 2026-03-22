@@ -393,6 +393,8 @@ const translations = {
     'article.rad_linter_sglang_advantage.subtitle': 'Rad-Linter: Building a Pre-Sign-Off Cross-Modal Quality Control Layer with SGLang',
     'article.phd_career_transition.title': '博士转码/转行：一次不那么成功的经验分享',
     'article.phd_career_transition.subtitle': 'PhD Career Transition: Lessons from an Unsuccessful Journey',
+    'article.startup_ten_years.title': '创业十年，所有的坑都踩了，居然都活下来了',
+    'article.startup_ten_years.subtitle': '十年创业复盘：选人、资本与启动条件',
     
     // 文章摘要翻译
     'article.btc_regulation.summary': '比特币作为数字黄金，在货币扩张时代可能经历类似黄金的价格暴涨，预计在2025年Q3达到高点，2028年左右见底。',
@@ -409,6 +411,8 @@ const translations = {
     'article.rad_linter_clinical_qa.summary': 'Rad-Linter解决的不是"生成报告/抽取信息/打标签"，而是临床签发前的质量与安全（QA）。本文探讨为什么跨模态一致性审计是刚需，为什么本地化部署是准入门槛，以及为什么这个方向值得做。',
     'article.rad_linter_sglang_advantage.summary': '这套系统之所以能"真落地"，关键是底层用了SGLang做serving/judge runtime。SGLang不涉及云端API的问题，训练也都可以在本地做，而且适配大量的不同的GPU/CPU，Windows/Mac/Linux系统也都很容易适配，所以对大部分的医疗系统场景都容易嵌入。',
     'article.phd_career_transition.summary': '给未来想转码/转行的博士一个更真实的参照。分享半年找工过程中的经验教训：从投简历、内推、刷题到理解0→1和1→1000的区别，以及为什么转码要趁早。',
+    'article.startup_ten_years.summary': '十年创业复盘：如何选创始人、是否拿融资、何时算真正具备启动条件；以及行业生态、现金流与山姆·奥特曼式公开课里踩过的坑。',
+    'article.startup_ten_years.disclaimer': '本文为作者个人经验与观点，不构成投资或法律建议。',
     
     // 文章翻译 - rad_linter_sglang_advantage.html (完整内容)
     'article.rad_linter_sglang_advantage.tags': 'Medical AI · SGLang · Healthcare Systems · Local Deployment',
@@ -1453,6 +1457,8 @@ const translations = {
     'article.rad_linter_sglang_advantage.subtitle': 'Rad-Linter: Building a Pre-Sign-Off Cross-Modal Quality Control Layer with SGLang',
     'article.phd_career_transition.title': 'PhD Career Transition: Lessons from an Unsuccessful Journey',
     'article.phd_career_transition.subtitle': 'PhD Career Transition: Lessons from an Unsuccessful Journey',
+    'article.startup_ten_years.title': 'Ten Years of Startups: Every Pitfall, Still Standing',
+    'article.startup_ten_years.subtitle': 'Founders, capital, and when you are truly ready to launch',
     
     // Article summary translations
     'article.btc_regulation.summary': 'Bitcoin acts as digital gold. In an era of monetary expansion, it may experience a gold-like price surge, peaking in Q3 2025 and bottoming around 2028.',
@@ -1469,6 +1475,8 @@ const translations = {
     'article.rad_linter_clinical_qa.summary': 'Rad-Linter solves not "report generation/information extraction/labeling," but pre-clinical sign-off quality and safety (QA). This article explores why cross-modal consistency audit is a critical need, why localized deployment is an entry requirement, and why this direction is worth pursuing.',
     'article.rad_linter_sglang_advantage.summary': 'The key reason this system can truly be deployed is that it uses SGLang as the serving/judge runtime. SGLang does not involve cloud API issues, training can be done locally, and it adapts to a wide variety of GPUs/CPUs. Windows/Mac/Linux systems are all easily compatible, making it easy to embed into most healthcare system scenarios.',
     'article.phd_career_transition.summary': 'Providing a more realistic reference for PhDs who want to transition into coding/tech careers. Sharing lessons learned from six months of job searching: from applying, referrals, LeetCode to understanding the difference between 0→1 and 1→1000, and why transitioning early matters.',
+    'article.startup_ten_years.summary': 'A decade-in review: choosing founders, taking outside capital, and what “ready to start” really means—plus industry context, cash flow, and the pitfalls even Sam Altman’s startup course warned about.',
+    'article.startup_ten_years.disclaimer': 'This post reflects personal experience and opinions only; it is not investment or legal advice.',
     
     // Article translations - rad_linter_sglang_advantage.html (full content)
     'article.rad_linter_sglang_advantage.tags': 'Medical AI · SGLang · Healthcare Systems · Local Deployment',
