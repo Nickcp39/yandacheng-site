@@ -1,5 +1,8 @@
 *.DS_Store
 
+# Claude Code (local)
+.claude/
+
 # Password protected files (should not be in public repo)
 密码保护使用说明.md
 protected_page_template.html

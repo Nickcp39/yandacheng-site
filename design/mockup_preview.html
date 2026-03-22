@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Redesign Mockup v2 — Floating Island Navigation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-bg: #ffffff;
+    --color-bg-alt: #f5f5f7;
+    --color-text: #1d1d1f;
+    --color-text-secondary: #86868b;
+    --color-border: #d2d2d7;
+    --color-accent: #0071e3;
+    --color-accent-hover: #0077ed;
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 18px;
+    --radius-full: 980px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+  }
+
+  a { color: var(--color-accent); text-decoration: none; }
+  a:hover { color: var(--color-accent-hover); }
+
+  /* ===== Floating Island Base ===== */
+  .floating-island {
+    position: fixed;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow:
+      0 2px 20px rgba(0, 0, 0, 0.06),
+      0 0 0 1px rgba(0, 0, 0, 0.04);
+    border-radius: 16px;
+    transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+
+  /* ===== Top Nav Island ===== */
+  .nav-island {
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 32px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .nav-island .nav-logo {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-text);
+    letter-spacing: -0.02em;
+    margin-right: 16px;
+    white-space: nowrap;
+  }
+  .nav-island .nav-link {
+    color: var(--color-text-secondary);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 10px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .nav-island .nav-link:hover {
+    color: var(--color-text);
+    background: rgba(0, 0, 0, 0.04);
+  }
+  .nav-island .nav-link.active {
+    color: var(--color-accent);
+    background: rgba(0, 113, 227, 0.08);
+  }
+  .nav-island .lang-switcher {
+    display: flex;
+    gap: 4px;
+    margin-left: 10px;
+    padding-left: 14px;
+    border-left: 1px solid var(--color-border);
+  }
+  .lang-btn {
+    background: transparent;
+    border: none;
+    color: var(--color-text-secondary);
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+  }
+  .lang-btn:hover { background: rgba(0,0,0,0.04); color: var(--color-text); }
+  .lang-btn.active { background: var(--color-text); color: #fff; }
+
+  /* Nav island scroll shrink */
+  .nav-island.scrolled {
+    padding: 10px 28px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0,0,0,0.06);
+  }
+
+  /* ===== Side Island (TOC) ===== */
+  .side-island {
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 20px 16px;
+    width: 180px;
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+  .side-island-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+  .side-island a {
+    display: block;
+    padding: 6px 10px;
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    border-radius: 8px;
+    transition: all 0.2s;
+    margin-bottom: 2px;
+    line-height: 1.4;
+  }
+  .side-island a:hover {
+    background: rgba(0, 0, 0, 0.04);
+    color: var(--color-text);
+  }
+  .side-island a.active {
+    color: var(--color-accent);
+    background: rgba(0, 113, 227, 0.08);
+    font-weight: 600;
+  }
+  .side-island .back-link {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-accent);
+    display: block;
+    padding-left: 10px;
+  }
+
+  /* ===== Mobile: Side island → floating button ===== */
+  .side-island-toggle {
+    display: none;
+    position: fixed;
+    left: 16px;
+    bottom: 16px;
+    z-index: 1001;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.5);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--color-text);
+  }
+
+  /* ===== Container ===== */
+  .container { max-width: 980px; margin: 0 auto; padding: 0 20px; }
+
+  /* ===== Profile / Hero ===== */
+  .profile-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 100px 0 48px;
+  }
+  .profile-pic {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    margin-bottom: 20px;
+    background: var(--color-bg-alt);
+  }
+  .profile-card h1 {
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .profile-card .subtitle {
+    font-size: 17px;
+    color: var(--color-text-secondary);
+    margin-bottom: 4px;
+  }
+  .profile-links {
+    display: flex;
+    gap: 10px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .pill {
+    display: inline-block;
+    padding: 9px 22px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-accent);
+    transition: all 0.2s;
+  }
+  .pill:hover {
+    background: var(--color-accent);
+    color: #fff;
+    border-color: var(--color-accent);
+  }
+
+  /* ===== Sections ===== */
+  .section { padding: 64px 0; }
+  .section-alt { background: var(--color-bg-alt); }
+  .section-title {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+  }
+  .section p {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--color-text);
+    max-width: 720px;
+  }
+
+  /* ===== News ===== */
+  .news-scroller {
+    height: 160px;
+    overflow: hidden;
+    position: relative;
+    max-width: 720px;
+  }
+  .news-list {
+    list-style: none;
+    animation: scroll-up 25s linear infinite;
+  }
+  .news-list li {
+    padding: 10px 0;
+    font-size: 15px;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .news-list li span { color: var(--color-text-secondary); font-size: 13px; }
+  .news-scroller:hover .news-list { animation-play-state: paused; }
+  @keyframes scroll-up {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
+  }
+
+  /* ===== Quick Links Grid ===== */
+  .quick-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .quick-card {
+    background: var(--color-bg-alt);
+    border-radius: var(--radius-lg);
+    padding: 28px 24px;
+    transition: transform 0.3s ease;
+    color: var(--color-text);
+    display: block;
+  }
+  .quick-card:hover { transform: scale(1.03); color: var(--color-text); }
+  .quick-card h3 { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
+  .quick-card p { font-size: 14px; color: var(--color-text-secondary); margin: 0; }
+
+  /* ===== Experience Cards (iPhone Titanium colors) ===== */
+  .card {
+    background: var(--color-bg-alt);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+  }
+  .card-horizontal {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+  }
+  .card-horizontal .card-img {
+    width: 120px;
+    height: 90px;
+    border-radius: var(--radius-md);
+    flex-shrink: 0;
+  }
+  .card-horizontal h3 { font-size: 18px; font-weight: 600; margin-bottom: 4px; }
+  .card-horizontal .meta { font-size: 14px; color: var(--color-text-secondary); margin-bottom: 8px; }
+  .card-horizontal p, .card-horizontal li { font-size: 15px; line-height: 1.6; }
+  .card-horizontal ul { padding-left: 18px; margin: 0; }
+
+  /* ===== Filter Buttons ===== */
+  .filter-bar { display: flex; gap: 10px; margin-bottom: 28px; flex-wrap: wrap; }
+  .filter-btn {
+    padding: 8px 20px;
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+  }
+  .filter-btn:hover { color: var(--color-text); border-color: var(--color-text); }
+  .filter-btn.active { background: var(--color-text); color: #fff; border-color: var(--color-text); }
+
+  /* ===== Blog Layout ===== */
+  .blog-layout { display: flex; gap: 60px; align-items: flex-start; padding: 48px 0; }
+  .blog-col-left { flex: 1.2; }
+  .blog-col-right { flex: 1; }
+  .blog-title { font-size: 36px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 6px; }
+  .blog-subtitle { font-size: 15px; color: var(--color-text-secondary); margin-bottom: 32px; }
+  .category-section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    border-left: 3px solid var(--color-accent);
+    padding-left: 12px;
+    margin: 24px 0 10px;
+  }
+  .category-section ul { list-style: none; padding-left: 16px; }
+  .category-section li { padding: 6px 0; font-size: 15px; }
+  .category-section li a { color: var(--color-text); font-weight: 500; }
+  .category-section li a:hover { color: var(--color-accent); }
+  .category-section .date { font-size: 13px; color: var(--color-text-secondary); }
+
+  /* Timeline */
+  .timeline-item {
+    position: relative;
+    padding-left: 24px;
+    padding-bottom: 28px;
+    border-left: 1px solid var(--color-border);
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: 6px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-accent);
+  }
+  .timeline-item h4 { font-size: 16px; font-weight: 600; margin-bottom: 2px; }
+  .timeline-item h4 a { color: var(--color-text); }
+  .timeline-item h4 a:hover { color: var(--color-accent); }
+  .timeline-item .date { font-size: 13px; color: var(--color-text-secondary); }
+  .timeline-item .summary { font-size: 14px; color: var(--color-text-secondary); margin-top: 4px; }
+
+  /* ===== Article Page ===== */
+  .article-page { padding-top: 80px; }
+  .article-content {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 20px 48px;
+  }
+  /* Wide screen: shift content right to make room for side island */
+  @media (min-width: 1100px) {
+    .article-content {
+      margin-left: max(220px, calc(50% - 360px));
+    }
+  }
+  .article-content h1 {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+  .article-meta { color: var(--color-text-secondary); font-size: 15px; margin-bottom: 40px; }
+  .article-content h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-top: 48px;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+  .article-content p { font-size: 17px; line-height: 1.7; margin-bottom: 1.2em; }
+  .article-content blockquote {
+    border-left: 3px solid var(--color-accent);
+    padding-left: 20px;
+    color: var(--color-text-secondary);
+    font-style: italic;
+    margin: 32px 0;
+  }
+  .article-content .article-img {
+    width: 100%;
+    border-radius: var(--radius-md);
+    margin: 32px 0;
+    background: var(--color-bg-alt);
+    height: 300px;
+  }
+
+  /* ===== Article Nav (prev/next) ===== */
+  .article-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 48px;
+    padding-top: 28px;
+    border-top: 1px solid var(--color-border);
+  }
+  .article-nav a { color: var(--color-text); max-width: 45%; }
+  .article-nav a:hover { color: var(--color-accent); }
+  .article-nav-label { font-size: 12px; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.05em; }
+  .article-nav-title { display: block; font-weight: 600; font-size: 15px; margin-top: 4px; }
+
+  /* ===== Comments Section ===== */
+  .comments-section {
+    max-width: 720px;
+    margin: 48px auto 0;
+    padding: 0 20px;
+  }
+  @media (min-width: 1100px) {
+    .comments-section {
+      margin-left: max(220px, calc(50% - 360px));
+    }
+  }
+  .comments-section h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .comment-box {
+    background: var(--color-bg-alt);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+  }
+  .comment-box-placeholder {
+    text-align: center;
+    padding: 32px 20px;
+    color: var(--color-text-secondary);
+    font-size: 14px;
+  }
+  .comment-box-placeholder .btn {
+    margin-top: 12px;
+  }
+  .anon-form {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--color-border);
+  }
+  .anon-form summary {
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+  }
+  .anon-form input,
+  .anon-form textarea {
+    width: 100%;
+    padding: 10px 14px;
+    margin-top: 10px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-size: 15px;
+    background: #fff;
+    transition: border-color 0.2s;
+  }
+  .anon-form input:focus,
+  .anon-form textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+  }
+  .anon-form textarea { height: 100px; resize: vertical; }
+
+  /* ===== Buttons ===== */
+  .btn {
+    display: inline-block;
+    padding: 9px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    background: var(--color-accent);
+    border-radius: var(--radius-full);
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s;
+  }
+  .btn:hover { background: var(--color-accent-hover); color: #fff; }
+  .btn-secondary {
+    background: transparent;
+    color: var(--color-accent);
+    border: 1px solid var(--color-accent);
+  }
+  .btn-secondary:hover { background: var(--color-accent); color: #fff; }
+
+  /* ===== Footer ===== */
+  .footer {
+    text-align: center;
+    padding: 32px 20px;
+    color: var(--color-text-secondary);
+    font-size: 14px;
+    border-top: 1px solid var(--color-border);
+    margin-top: 64px;
+  }
+
+  /* ===== Fade In ===== */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: none; }
+
+  /* ===== Divider ===== */
+  .divider {
+    border: none;
+    border-top: 2px dashed var(--color-border);
+    margin: 80px auto;
+    max-width: 200px;
+  }
+  .page-label {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  /* Comparison banner */
+  .compare-banner {
+    background: #1d1d1f;
+    color: #f5f5f7;
+    text-align: center;
+    padding: 20px;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  /* ===== Mobile nav toggle (hamburger) ===== */
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    margin-left: 8px;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: var(--color-text);
+    margin: 4px 0;
+    border-radius: 1px;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 768px) {
+    .nav-island {
+      left: 12px;
+      right: 12px;
+      transform: none;
+      padding: 10px 16px;
+      gap: 4px;
+    }
+    .nav-island .nav-link { display: none; }
+    .nav-island .lang-switcher { border: none; padding-left: 0; margin-left: auto; }
+    .nav-toggle { display: block; }
+
+    .side-island { display: none; }
+    .side-island-toggle { display: flex; }
+
+    .profile-card { padding: 80px 0 32px; }
+    .profile-card h1 { font-size: 30px; }
+    .profile-pic { width: 140px; height: 140px; }
+    .quick-links { grid-template-columns: repeat(2, 1fr); }
+    .card-horizontal { flex-direction: column; align-items: center; text-align: center; }
+    .blog-layout { flex-direction: column; gap: 32px; }
+    .section { padding: 40px 0; }
+    .article-content { margin-left: auto !important; }
+    .comments-section { margin-left: auto !important; }
+  }
+  @media (max-width: 480px) {
+    .quick-links { grid-template-columns: 1fr; }
+    .profile-links { flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<div class="compare-banner">MOCKUP v2 — Floating Island Navigation + Side TOC + Comments</div>
+<!-- ============================================================ -->
+
+<!-- ===== TOP NAV ISLAND (always visible) ===== -->
+<nav class="nav-island floating-island" id="navIsland">
+  <a href="#page-home" class="nav-logo">Yanda Cheng</a>
+  <a href="#page-home" class="nav-link active">Home</a>
+  <a href="#page-experience" class="nav-link">Experience</a>
+  <a href="#page-projects" class="nav-link">Projects</a>
+  <a href="#page-blog" class="nav-link">Blog</a>
+  <a href="#page-article" class="nav-link">Article</a>
+  <div class="lang-switcher">
+    <button class="lang-btn">中文</button>
+    <button class="lang-btn active">EN</button>
+  </div>
+  <button class="nav-toggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ===== MOBILE SIDE ISLAND TOGGLE ===== -->
+<button class="side-island-toggle" id="sideToggle">&#9776;</button>
+
+<!-- ===================== PAGE 1: HOMEPAGE ===================== -->
+<div id="page-home">
+<div class="page-label" style="margin-top: 40px;">PAGE 1 — HOMEPAGE</div>
+
+<div class="container">
+  <div class="profile-card fade-in visible">
+    <div class="profile-pic" style="background: linear-gradient(135deg, #e0e0e0, #c0c0c0);"></div>
+    <h1>Yanda Cheng</h1>
+    <p class="subtitle">Ph.D. Candidate in Biomedical Engineering</p>
+    <p class="subtitle">University at Buffalo, SUNY</p>
+    <p class="subtitle">yandache@buffalo.edu</p>
+    <div class="profile-links">
+      <a href="#" class="pill">Resume</a>
+      <a href="#" class="pill">GitHub</a>
+      <a href="#" class="pill">Google Scholar</a>
+      <a href="#" class="pill">LinkedIn</a>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">About Me</h2>
+    <p>I am a Senior Engineer and Team Manager with 8 years of experience at HydroTech, specializing in <strong>IoT sensor development</strong>, <strong>hardware engineering</strong>, and <strong>AWS cloud-based data analytics</strong>. I lead teams in building end-to-end sensor systems from hardware prototyping to cloud infrastructure deployment.</p>
+  </div>
+</div>
+
+<div class="section-alt">
+  <div class="container">
+    <div class="section" style="padding: 48px 0;">
+      <h2 class="section-title">News</h2>
+      <div class="news-scroller">
+        <ul class="news-list">
+          <li><span>2026-01</span> &nbsp; Published new paper on AI-assisted radiology linting</li>
+          <li><span>2025-12</span> &nbsp; Presented at IEEE TUFFC conference</li>
+          <li><span>2025-11</span> &nbsp; Received NIH research funding renewal</li>
+          <li><span>2025-10</span> &nbsp; KYC Document Intelligence project launched</li>
+          <li><span>2025-09</span> &nbsp; Started new collaboration with medical imaging lab</li>
+          <li><span>2026-01</span> &nbsp; Published new paper on AI-assisted radiology linting</li>
+          <li><span>2025-12</span> &nbsp; Presented at IEEE TUFFC conference</li>
+          <li><span>2025-11</span> &nbsp; Received NIH research funding renewal</li>
+          <li><span>2025-10</span> &nbsp; KYC Document Intelligence project launched</li>
+          <li><span>2025-09</span> &nbsp; Started new collaboration with medical imaging lab</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="section">
+    <div class="quick-links">
+      <a href="#" class="quick-card"><h3>Selected Projects</h3><p>IoT, AI, Robotics, Medical Imaging</p></a>
+      <a href="#" class="quick-card"><h3>Publications</h3><p>IEEE, Optica, BOE journals</p></a>
+      <a href="#" class="quick-card"><h3>Experience</h3><p>8+ years in engineering & research</p></a>
+      <a href="#" class="quick-card"><h3>Awards</h3><p>Academic & industry recognition</p></a>
+      <a href="#" class="quick-card"><h3>Photos</h3><p>Lab, travel, and daily life</p></a>
+      <a href="#" class="quick-card"><h3>Blog</h3><p>Tech, investment, career insights</p></a>
+    </div>
+  </div>
+</div>
+
+<div class="footer">&copy; Yanda Cheng &middot; Last updated January 2026</div>
+</div>
+
+<!-- ===================== PAGE 2: EXPERIENCE =================== -->
+<hr class="divider">
+<div id="page-experience">
+<div class="page-label">PAGE 2 — EXPERIENCE</div>
+
+<div class="container">
+  <div class="section">
+    <h2 class="section-title">Experience</h2>
+
+    <div class="card card-horizontal">
+      <div class="card-img" style="background: linear-gradient(135deg, #b6b9c0, #8e929a);"></div>
+      <div>
+        <h3>Research Assistant</h3>
+        <div class="meta">University at Buffalo &mdash; Sep 2021 – Present</div>
+        <ul>
+          <li>PhD research on photoacoustic imaging and AI-assisted diagnostics</li>
+          <li>Published in IEEE TUFFC, Optica, BOE; led NIH-funded projects</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card card-horizontal">
+      <div class="card-img" style="background: linear-gradient(135deg, #c4b5a5, #a89888);"></div>
+      <div>
+        <h3>Co-founder & Core Engineer</h3>
+        <div class="meta">High-Precision Sensor Company &mdash; 2015 – Present</div>
+        <ul>
+          <li>Designed high-precision sensors for weather and medical applications</li>
+          <li>Built firmware (C, Python), expanded business to 5+ countries</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card card-horizontal">
+      <div class="card-img" style="background: linear-gradient(135deg, #a3b4c8, #8a9baf);"></div>
+      <div>
+        <h3>Visiting Researcher</h3>
+        <div class="meta">Chinese Academy of Sciences &mdash; 2018 – 2020</div>
+        <ul>
+          <li>Conducted research on advanced sensor technologies</li>
+          <li>Collaborated with international research teams</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===================== PAGE 3: PROJECTS ===================== -->
+<hr class="divider">
+<div id="page-projects">
+<div class="page-label">PAGE 3 — PROJECTS</div>
+
+<div class="container">
+  <div class="section">
+    <h2 class="section-title">Selected Projects</h2>
+
+    <div class="filter-bar">
+      <button class="filter-btn active">All</button>
+      <button class="filter-btn">AI</button>
+      <button class="filter-btn">Signal Processing</button>
+      <button class="filter-btn">Robotics</button>
+    </div>
+
+    <div class="card" style="padding: 0; overflow: hidden;">
+      <div style="height: 200px; background: linear-gradient(135deg, #1d1d1f, #3a3a3c);"></div>
+      <div style="padding: 28px;">
+        <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">KYC Document Intelligence Pipeline</h3>
+        <p style="font-size: 15px; line-height: 1.6; color: var(--color-text-secondary); margin-bottom: 16px;">
+          Built a schema-first, auditable KYC document understanding pipeline powered by SGLang inference server.
+        </p>
+        <a href="#" class="btn">View on GitHub</a>
+        <a href="#" class="btn btn-secondary" style="margin-left: 8px;">Read More</a>
+      </div>
+    </div>
+
+    <div class="card" style="padding: 0; overflow: hidden;">
+      <div style="height: 200px; background: linear-gradient(135deg, #b6b9c0, #8e929a);"></div>
+      <div style="padding: 28px;">
+        <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">Autonomous Coin Collecting Robot</h3>
+        <p style="font-size: 15px; line-height: 1.6; color: var(--color-text-secondary); margin-bottom: 16px;">
+          Designed and built an autonomous robot for real-time coin detection and collection.
+        </p>
+        <a href="#" class="btn btn-secondary">Read More</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===================== PAGE 4: BLOG ========================= -->
+<hr class="divider">
+<div id="page-blog">
+<div class="page-label">PAGE 4 — BLOG (with side island for categories)</div>
+
+<!-- Side island for blog page: category quick jump -->
+<div class="side-island floating-island" id="blogSideIsland" style="display: block;">
+  <div class="side-island-label">Categories</div>
+  <a href="#" class="active">Tech</a>
+  <a href="#" style="padding-left: 20px;">Medical AI</a>
+  <a href="#" style="padding-left: 20px;">AI Engineering</a>
+  <a href="#">Investment</a>
+  <a href="#" style="padding-left: 20px;">Bitcoin</a>
+  <a href="#" style="padding-left: 20px;">Value Investing</a>
+  <a href="#">Career</a>
+  <a href="#" style="padding-left: 20px;">PhD & Research</a>
+  <a href="#" style="padding-left: 20px;">Engineering Life</a>
+  <a href="#page-home" class="back-link">&larr; Home</a>
+</div>
+
+<div class="container">
+  <div class="blog-layout">
+    <div class="blog-col-left">
+      <h1 class="blog-title">Yanda's Blog</h1>
+      <p class="blog-subtitle">Browse posts by category</p>
+
+      <div class="category-section">
+        <h3>Medical AI</h3>
+        <ul>
+          <li><a href="#">Rad Linter: Clinical SGLang Advantage</a><br><span class="date">2026-01-03</span></li>
+          <li><a href="#">Rad Linter: Clinical QA Pipeline</a><br><span class="date">2026-01-02</span></li>
+          <li><a href="#">LLM Hospital Rad-Linter</a><br><span class="date">2025-12-29</span></li>
+        </ul>
+      </div>
+
+      <div class="category-section">
+        <h3>Bitcoin</h3>
+        <ul>
+          <li><a href="#">BTC Yield Spread Crash Analysis</a><br><span class="date">2025-12-30</span></li>
+          <li><a href="#">BTC 2026 Prediction</a><br><span class="date">2025-12-18</span></li>
+          <li><a href="#">Bitcoin 4-Year High: Why No Joy?</a><br><span class="date">2025-07-14</span></li>
+        </ul>
+      </div>
+
+      <div class="category-section">
+        <h3>PhD & Research</h3>
+        <ul>
+          <li><a href="#">PhD Career Transition</a><br><span class="date">2026-01-22</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="blog-col-right">
+      <h2 class="section-title" style="font-size: 22px;">Timeline</h2>
+      <div class="timeline-item">
+        <h4><a href="#">PhD Career Transition</a></h4>
+        <span class="date">2026-01-22</span>
+        <p class="summary">A personal reflection on transitioning from PhD research to industry...</p>
+      </div>
+      <div class="timeline-item">
+        <h4><a href="#">Rad Linter: SGLang Advantage</a></h4>
+        <span class="date">2026-01-03</span>
+        <p class="summary">Exploring how SGLang improves clinical radiology report quality...</p>
+      </div>
+      <div class="timeline-item">
+        <h4><a href="#">Rad Linter: Clinical QA</a></h4>
+        <span class="date">2026-01-02</span>
+        <p class="summary">Building a quality assurance pipeline for clinical radiology...</p>
+      </div>
+      <div class="timeline-item">
+        <h4><a href="#">BTC Yield Spread Crash</a></h4>
+        <span class="date">2025-12-30</span>
+        <p class="summary">Analyzing the relationship between yield spreads and Bitcoin...</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===================== PAGE 5: ARTICLE (with side TOC) ====== -->
+<hr class="divider">
+<div id="page-article">
+<div class="page-label">PAGE 5 — ARTICLE (with side TOC island + comments)</div>
+
+<!-- Side island for article: Table of Contents -->
+<div class="side-island floating-island" id="articleSideIsland" style="display: block;">
+  <div class="side-island-label">Contents</div>
+  <a href="#" class="active">Introduction</a>
+  <a href="#">The Academic Path</a>
+  <a href="#">Industry Transition</a>
+  <a href="#">Lessons Learned</a>
+  <a href="#">Key Takeaways</a>
+  <a href="#">Conclusion</a>
+  <a href="#page-blog" class="back-link">&larr; Back to Blog</a>
+</div>
+
+<div class="article-page">
+  <!-- Breadcrumb -->
+  <div class="article-content" style="padding-bottom: 0; margin-bottom: 0;">
+    <p style="font-size: 14px; color: var(--color-text-secondary); margin-bottom: 24px;">
+      <a href="#page-blog">Blog</a> &nbsp;/&nbsp; Career &nbsp;/&nbsp; PhD & Research
+    </p>
+  </div>
+
+  <div class="article-content">
+    <h1>PhD Career Transition: A Personal Journey</h1>
+    <div class="article-meta">January 22, 2026 &middot; Career &middot; 8 min read</div>
+
+    <h2 id="s-intro">Introduction</h2>
+    <p>The transition from a PhD program to industry is one of the most significant career shifts many researchers face. Having gone through this journey myself, I want to share some honest reflections about the challenges, surprises, and lessons learned along the way.</p>
+
+    <div class="article-img" style="background: linear-gradient(135deg, #f5f5f7, #e0e0e5);"></div>
+
+    <h2 id="s-academic">The Academic Path</h2>
+    <p>When I first started my PhD in Biomedical Engineering, I was driven by curiosity and the desire to push the boundaries of medical imaging technology. The academic environment offered freedom to explore, but it also came with its own set of challenges.</p>
+
+    <h2 id="s-transition">Industry Transition</h2>
+    <blockquote>
+      The best career decisions aren't about choosing the "right" path — they're about understanding yourself well enough to know which path will bring out your best work.
+    </blockquote>
+
+    <p>Looking back, the technical skills I developed during my PhD — from signal processing to machine learning — translated directly into my industry work. But the most valuable skills were the ones I didn't expect.</p>
+
+    <h2 id="s-lessons">Lessons Learned</h2>
+    <p>The ability to frame ambiguous problems, communicate complex ideas clearly, and persist through uncertainty proved more valuable than any specific technical skill.</p>
+
+    <h2 id="s-takeaways">Key Takeaways</h2>
+    <p>If you're considering a similar transition, start building industry connections early. The sooner you begin, the more options you'll have when the time comes.</p>
+
+    <h2 id="s-conclusion">Conclusion</h2>
+    <p>Every PhD's journey is unique, but the common thread is this: the skills you build during research — critical thinking, persistence, and the ability to learn quickly — are exactly what the industry values most.</p>
+
+    <!-- Prev / Next nav -->
+    <nav class="article-nav">
+      <a href="#">
+        <span class="article-nav-label">&larr; Previous</span>
+        <span class="article-nav-title">Rad Linter: Clinical SGLang Advantage</span>
+      </a>
+      <a href="#" style="text-align: right;">
+        <span class="article-nav-label">Next &rarr;</span>
+        <span class="article-nav-title">BTC 2026 Prediction</span>
+      </a>
+    </nav>
+
+    <div style="text-align: center; margin-top: 24px;">
+      <a href="#page-blog" class="btn btn-secondary">&larr; Back to Blog</a>
+    </div>
+  </div>
+
+  <!-- Comments Section -->
+  <div class="comments-section">
+    <h3>Comments</h3>
+    <div class="comment-box">
+      <div class="comment-box-placeholder">
+        Sign in with GitHub to leave a comment (via Giscus)
+        <br>
+        <button class="btn" style="margin-top: 12px;">Sign in with GitHub</button>
+      </div>
+      <details class="anon-form">
+        <summary>No GitHub account? Leave an anonymous message</summary>
+        <input type="text" placeholder="Your name (optional)">
+        <textarea placeholder="Your message..."></textarea>
+        <button class="btn" style="margin-top: 10px;">Send</button>
+      </details>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===================== FOOTER =============================== -->
+<div class="footer">
+  &copy; Yanda Cheng &middot; Last updated January 2026
+</div>
+
+<div class="compare-banner" style="margin-top: 0;">
+  END OF MOCKUP v2 — Scroll to see all pages. Resize for mobile view.
+</div>
+
+<!-- ===== JS: Nav island scroll effect + side island interactivity ===== -->
+<script>
+// Scroll shrink for nav island
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navIsland');
+  if (nav) nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Side island: only show the relevant one based on scroll position
+const blogIsland = document.getElementById('blogSideIsland');
+const articleIsland = document.getElementById('articleSideIsland');
+const blogSection = document.getElementById('page-blog');
+const articleSection = document.getElementById('page-article');
+
+// In real implementation, each page has its own side island.
+// For this mockup demo, we toggle visibility based on scroll.
+function updateSideIslands() {
+  if (!blogSection || !articleSection) return;
+  const scrollY = window.scrollY + window.innerHeight / 2;
+  const blogTop = blogSection.offsetTop;
+  const blogBottom = blogTop + blogSection.offsetHeight;
+  const articleTop = articleSection.offsetTop;
+  const articleBottom = articleTop + articleSection.offsetHeight;
+
+  if (blogIsland) blogIsland.style.display = (scrollY >= blogTop && scrollY < blogBottom) ? 'block' : 'none';
+  if (articleIsland) articleIsland.style.display = (scrollY >= articleTop && scrollY < articleBottom) ? 'block' : 'none';
+}
+window.addEventListener('scroll', updateSideIslands);
+updateSideIslands();
+
+// Scroll spy for article TOC
+const tocLinks = articleIsland ? articleIsland.querySelectorAll('a:not(.back-link)') : [];
+const headings = document.querySelectorAll('.article-content h2[id]');
+if (headings.length && tocLinks.length) {
+  const spyObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const idx = Array.from(headings).indexOf(entry.target);
+        tocLinks.forEach((a, i) => a.classList.toggle('active', i === idx));
+      }
+    });
+  }, { rootMargin: '-100px 0px -60% 0px' });
+  headings.forEach(h => spyObserver.observe(h));
+}
+
+// Nav link active state
+const navLinks = document.querySelectorAll('.nav-island .nav-link');
+const pages = document.querySelectorAll('[id^="page-"]');
+const navObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { rootMargin: '-40% 0px -40% 0px' });
+pages.forEach(p => navObserver.observe(p));
+
+// Fade in
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); fadeObserver.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
+</script>
+
+</body>
+</html>
