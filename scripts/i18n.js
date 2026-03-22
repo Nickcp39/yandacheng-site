@@ -17,8 +17,12 @@ const translations = {
     'nav.awards': '奖项',
     'nav.photos': '照片',
     'nav.blog': '博客',
+    'nav.contact': '联系',
     
     // 主页
+    'home.profile.role': 'HydroSense 机器学习工程师',
+    'home.profile.credentials': '博士 · 康奈尔校友',
+    'home.profile.email': 'nickcp39@gmail.com',
     'home.about.title': '关于我',
     'home.news.title': '新闻',
     'home.projects': '精选项目',
@@ -50,6 +54,35 @@ const translations = {
     'page.title.experience': '经历 | 程彦达',
     'page.title.awards': '奖项与服务 | 程彦达',
     'page.title.photos': '照片 | 程彦达',
+    'page.title.contact': '联系 | 程彦达',
+
+    // 联系页
+    'contact.title': '联系方式',
+    'contact.lead': '可通过 LinkedIn 或下方表单联系。',
+    'contact.phone.label': '手机',
+    'contact.phone': '+1 (716) 249-2121',
+    'contact.email.label': '邮箱',
+    'contact.email': 'nickcp39@gmail.com',
+    'contact.linkedin.label': 'LinkedIn',
+    'contact.linkedin.link': '查看主页',
+    'contact.wechat.label': '微信',
+    'contact.wechat.alt': '微信二维码',
+    'contact.wechat.caption': '扫码添加微信',
+    'contact.wechat.show': '显示微信二维码',
+    'contact.wechat.hint': '点击按钮后加载二维码。',
+    'contact.wechat.missing': '二维码图片未加载成功。请确认仓库中存在 <code>files/contact/wechat_qr.jpg</code>。',
+    'contact.footer.updated': '最后更新',
+    'contact.footer.copyright': '联系 © 程彦达',
+
+    'contact.dm.title': '站内留言',
+    'contact.dm.name': '称呼',
+    'contact.dm.placeholder.name': '选填',
+    'contact.dm.your_email': '你的邮箱',
+    'contact.dm.placeholder.email': '用于回复',
+    'contact.dm.message': '留言内容',
+    'contact.dm.placeholder.message': '写点什么…',
+    'contact.dm.submit': '发送',
+    'contact.dm.success': '已提交，感谢。',
     
     // 博客
     'blog.title': '程彦达的博客',
@@ -1050,6 +1083,7 @@ const translations = {
     'nav.awards': 'Awards',
     'nav.photos': 'Photos',
     'nav.blog': 'Blog',
+    'nav.contact': 'Contact',
     
     // Page <title> (browser tab)
     'page.title.home': 'Yanda Cheng',
@@ -1059,8 +1093,41 @@ const translations = {
     'page.title.experience': 'Experience | Yanda Cheng',
     'page.title.awards': 'Awards & Service | Yanda Cheng',
     'page.title.photos': 'Photos | Yanda Cheng',
+    'page.title.contact': 'Contact | Yanda Cheng',
     
     // Home page
+    'home.profile.role': 'Machine Learning Engineer at HydroSense',
+    'home.profile.credentials': 'Ph.D. · Cornell alumnus',
+    'home.profile.email': 'nickcp39@gmail.com',
+
+    // Contact page
+    'contact.title': 'Contact',
+    'contact.lead': 'Reach me on LinkedIn or via the form below.',
+    'contact.phone.label': 'Phone',
+    'contact.phone': '+1 (716) 249-2121',
+    'contact.email.label': 'Email',
+    'contact.email': 'nickcp39@gmail.com',
+    'contact.linkedin.label': 'LinkedIn',
+    'contact.linkedin.link': 'View profile',
+    'contact.wechat.label': 'WeChat',
+    'contact.wechat.alt': 'WeChat QR code',
+    'contact.wechat.caption': 'Scan to connect on WeChat',
+    'contact.wechat.show': 'Show WeChat QR code',
+    'contact.wechat.hint': 'Tap the button below to load the QR code.',
+    'contact.wechat.missing': 'Could not load the QR image. Ensure <code>files/contact/wechat_qr.jpg</code> exists in the repo.',
+    'contact.footer.updated': 'Last updated',
+    'contact.footer.copyright': 'Contact © Yanda Cheng',
+
+    'contact.dm.title': 'Direct message',
+    'contact.dm.name': 'Name',
+    'contact.dm.placeholder.name': 'Optional',
+    'contact.dm.your_email': 'Your email',
+    'contact.dm.placeholder.email': 'For replies',
+    'contact.dm.message': 'Message',
+    'contact.dm.placeholder.message': 'Write your message…',
+    'contact.dm.submit': 'Send',
+    'contact.dm.success': 'Thanks — your message was sent.',
+
     'home.about.title': 'About Me',
     'home.news.title': 'News',
     'home.projects': 'Selected Projects',

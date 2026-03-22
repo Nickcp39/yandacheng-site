@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base href="/">
+
+  <title data-i18n="page.title.contact">Contact | Yanda Cheng</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="contact-page">
+
+  <div id="navbar-placeholder"></div>
+  <script>
+    fetch('navbar.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('navbar-placeholder').innerHTML = data;
+        if (window.attachLanguageButtonListeners) {
+          window.attachLanguageButtonListeners();
+        }
+        if (typeof window.switchLanguage === 'function' && typeof window.getCurrentLanguage === 'function') {
+          window.switchLanguage(window.getCurrentLanguage());
+        }
+      });
+  </script>
+
+  <script src="scripts/i18n.js"></script>
+  <script src="scripts/nav-island.js" defer></script>
+
+  <div class="container contact-page-inner">
+    <header class="contact-header">
+      <h1 data-i18n="contact.title">Contact</h1>
+      <p class="contact-lead" data-i18n="contact.lead"></p>
+    </header>
+
+    <section class="contact-block" aria-labelledby="contact-linkedin-heading">
+      <h2 class="contact-block__title" id="contact-linkedin-heading" data-i18n="contact.linkedin.label">LinkedIn</h2>
+      <p class="contact-block__value">
+        <a href="https://www.linkedin.com/in/yanda-cheng-4888a216b/" class="contact-external-link" target="_blank" rel="noopener noreferrer" data-i18n="contact.linkedin.link">View profile</a>
+      </p>
+    </section>
+
+    <section class="contact-block contact-block--form" aria-labelledby="contact-dm-heading">
+      <h2 class="contact-block__title" id="contact-dm-heading" data-i18n="contact.dm.title">Direct message</h2>
+      <div id="contact-form-success" class="contact-form-success" role="status" hidden data-i18n="contact.dm.success">
+        Thanks — your message was sent.
+      </div>
+      <form
+        class="contact-form"
+        id="contact-dm-form"
+        action="https://formsubmit.co/nickcp39@gmail.com"
+        method="POST"
+        accept-charset="UTF-8"
+      >
+        <input type="hidden" name="_subject" value="[yandacheng-site] Direct message">
+        <input type="hidden" name="_next" id="contact-form-next" value="">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="text" name="_gotcha" class="contact-form-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <label class="contact-form-field">
+          <span class="contact-form-label" data-i18n="contact.dm.name">Name</span>
+          <input type="text" name="name" class="contact-form-input" autocomplete="name" data-i18n-placeholder="contact.dm.placeholder.name">
+        </label>
+        <label class="contact-form-field">
+          <span class="contact-form-label" data-i18n="contact.dm.your_email">Your email</span>
+          <input type="email" name="email" class="contact-form-input" required autocomplete="email" data-i18n-placeholder="contact.dm.placeholder.email">
+        </label>
+        <label class="contact-form-field">
+          <span class="contact-form-label" data-i18n="contact.dm.message">Message</span>
+          <textarea name="message" class="contact-form-textarea" rows="5" required data-i18n-placeholder="contact.dm.placeholder.message"></textarea>
+        </label>
+        <button type="submit" class="contact-form-submit" data-i18n="contact.dm.submit">Send</button>
+      </form>
+    </section>
+
+    <!-- Archived: phone / email / WeChat — remove `hidden` on wrapper to show again -->
+    <div class="contact-sections-archived" hidden aria-hidden="true">
+      <section class="contact-block" aria-labelledby="contact-phone-heading">
+        <h2 class="contact-block__title" id="contact-phone-heading" data-i18n="contact.phone.label">Phone</h2>
+        <p class="contact-block__value">
+          <a href="tel:+17162492121" class="contact-tel-link" data-i18n="contact.phone">+1 (716) 249-2121</a>
+        </p>
+      </section>
+      <section class="contact-block" aria-labelledby="contact-email-heading">
+        <h2 class="contact-block__title" id="contact-email-heading" data-i18n="contact.email.label">Email</h2>
+        <p class="contact-block__value">
+          <a href="mailto:nickcp39@gmail.com" data-i18n="contact.email">nickcp39@gmail.com</a>
+        </p>
+      </section>
+      <section class="contact-block contact-block--wechat" aria-labelledby="contact-wechat-heading">
+        <h2 class="contact-block__title" id="contact-wechat-heading" data-i18n="contact.wechat.label">WeChat</h2>
+        <p class="contact-wechat-hint" data-i18n="contact.wechat.hint"></p>
+        <button
+          type="button"
+          class="contact-wechat-btn"
+          id="contact-wechat-show"
+          aria-controls="contact-wechat-panel"
+          aria-expanded="false"
+          data-i18n="contact.wechat.show"
+        >
+          Show WeChat QR
+        </button>
+        <div id="contact-wechat-panel" class="contact-wechat-panel" hidden>
+          <figure class="contact-wechat-figure">
+            <img
+              id="contact-wechat-qr"
+              data-src="files/contact/wechat_qr.jpg"
+              alt=""
+              width="220"
+              height="220"
+              decoding="async"
+              data-i18n-alt="contact.wechat.alt"
+            >
+            <figcaption data-i18n="contact.wechat.caption">Scan to connect on WeChat</figcaption>
+          </figure>
+        </div>
+        <p id="contact-wechat-missing" class="contact-qr-missing" hidden data-i18n="contact.wechat.missing"></p>
+      </section>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span data-i18n="contact.footer.copyright">Contact © Yanda Cheng</span> | <span data-i18n="contact.footer.updated">Last updated</span> March 2026
+  </div>
+
+  <script>
+    (function () {
+      var next = document.getElementById('contact-form-next');
+      if (next) {
+        next.value = window.location.origin + window.location.pathname + '?sent=1';
+      }
+      if (window.location.search.indexOf('sent=1') !== -1) {
+        var ok = document.getElementById('contact-form-success');
+        if (ok) ok.hidden = false;
+      }
+    })();
+  </script>
+  <script>
+    (function () {
+      var btn = document.getElementById('contact-wechat-show');
+      var panel = document.getElementById('contact-wechat-panel');
+      var img = document.getElementById('contact-wechat-qr');
+      var miss = document.getElementById('contact-wechat-missing');
+      if (!btn || !panel || !img) return;
+
+      function showMissing() {
+        panel.hidden = true;
+        if (miss) {
+          miss.hidden = false;
+          if (window.switchLanguage) {
+            window.switchLanguage(localStorage.getItem('language') || 'en');
+          }
+        }
+        btn.hidden = false;
+        btn.setAttribute('aria-expanded', 'false');
+      }
+
+      img.addEventListener('error', showMissing);
+
+      btn.addEventListener('click', function () {
+        var ds = img.getAttribute('data-src');
+        if (ds) {
+          img.src = ds;
+          img.removeAttribute('data-src');
+        }
+        panel.hidden = false;
+        btn.hidden = true;
+        btn.setAttribute('aria-expanded', 'true');
+      });
+    })();
+  </script>
+</body>
+</html>
