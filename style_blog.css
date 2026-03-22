@@ -1,23 +1,25 @@
 /* 🔹 General Layout */
+/* Note: CSS variables (--color-*, --radius-*, etc.) are defined in style.css */
+/* Blog pages must load style.css before this file */
 body {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: var(--font-primary);
   margin: 0;
   padding: 0;
-  background: #fdfdfd;
-  color: #333;
+  background: var(--color-bg);
+  color: var(--color-text);
 }
 
 a {
-  color: #0055aa;
+  color: var(--color-accent);
   text-decoration: none;
 }
 a:hover {
-  text-decoration: underline;
+  color: var(--color-accent-hover);
 }
 
 /* 🔹 Navbar */
 .navbar {
-  background: #333;
+  background: #1d1d1f;
   color: white;
   padding: 10px 0;
 }
@@ -55,15 +57,15 @@ a:hover {
   font-size: 14px;
   font-weight: 500;
   border-radius: 4px;
-  transition: all 0.2s ease;
+  transition: all var(--transition-fast);
 }
 .lang-btn:hover {
-  background-color: #555;
-  border-color: #555;
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
 }
 .lang-btn.active {
-  background-color: #555;
-  border-color: #555;
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
 }
 .lang-switcher span {
   color: white;
@@ -83,17 +85,17 @@ a:hover {
 .blog-container main {
   max-width: none !important;
   flex: 1;
-  min-width: 0; /* Allow flex item to shrink below content size */
+  min-width: 0;
 }
 
 .blog-title {
   font-size: 2.2em;
   margin-bottom: 10px;
-  color: #222;
+  color: var(--color-text);
 }
 .blog-subtitle {
   font-size: 1em;
-  color: #777;
+  color: var(--color-text-secondary);
   margin-bottom: 30px;
 }
 
@@ -104,7 +106,7 @@ a:hover {
   gap: 30px;
 }
 .post-item {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--color-border);
   padding-bottom: 15px;
 }
 .post-item h3 {
@@ -113,7 +115,7 @@ a:hover {
 }
 .post-meta {
   font-size: 0.9em;
-  color: #666;
+  color: var(--color-text-secondary);
   margin-top: 5px;
 }
 
@@ -123,8 +125,8 @@ a:hover {
   padding: 20px;
   text-align: center;
   font-size: 0.9em;
-  background-color: #f1f1f1;
-  color: #555;
+  background-color: var(--color-bg-alt);
+  color: var(--color-text-secondary);
 }
 
 /* === Responsive Design for Blog Pages === */
@@ -133,14 +135,14 @@ a:hover {
   .navbar {
     padding: 8px 0;
   }
-  
+
   .nav-container {
     flex-direction: column;
     align-items: flex-start;
     padding: 10px 15px;
     gap: 10px;
   }
-  
+
   .nav-left,
   .nav-right {
     width: 100%;
@@ -149,7 +151,7 @@ a:hover {
     gap: 8px;
     align-items: center;
   }
-  
+
   .nav-left a,
   .nav-right a {
     margin: 0;
@@ -176,8 +178,8 @@ a:hover {
     width: 100% !important;
     max-width: 100% !important;
     padding: 15px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
+    background-color: var(--color-bg-alt);
+    border-radius: var(--radius-sm);
     margin-bottom: 15px;
   }
 
@@ -329,7 +331,7 @@ a:hover {
     margin: 15px 0;
     padding: 10px 15px;
     font-size: 0.9em;
-    border-left: 3px solid #ddd;
+    border-left: 3px solid var(--color-border);
   }
 
   /* Code and pre elements */
