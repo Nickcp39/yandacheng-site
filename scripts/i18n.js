@@ -21,7 +21,6 @@ const translations = {
     
     // 主页
     'home.profile.role': 'HydroSense 机器学习工程师',
-    'home.profile.credentials': '博士 · 康奈尔校友',
     'home.profile.email': 'nickcp39@gmail.com',
     'home.about.title': '关于我',
     'home.news.title': '新闻',
@@ -132,10 +131,10 @@ const translations = {
     'about.intro.para2': '我的核心专长包括<strong>传感器硬件开发</strong>、<strong>物联网系统架构</strong>、AWS上的<strong>云数据管道</strong>，以及使用机器学习的<strong>数据分析</strong>。我构建可扩展的机器学习系统，实时处理传感器数据，为工业物联网应用实现预测性维护、异常检测和智能监控。',
     'about.intro.para3': '同时，我正在布法罗大学攻读生物医学工程博士学位，专注于医学影像的AI基础设施和基于LLM的临床应用。这项研究通过推进可扩展的AI系统和数据处理框架，补充了我的行业工作。',
     'about.education.title': '教育背景',
-    'about.education.phd': '博士，生物医学工程 — 布法罗大学，2021–2025（预计）',
-    'about.education.meng': '工程硕士，生物医学工程 — 康奈尔大学，2020–2021',
-    'about.education.visiting': '访问研究 — 中国科学院，2018–2020',
-    'about.education.undergrad': '本科研究 — 肯塔基大学，2018–2019',
+    'about.education.phd': '<span class="edu-badge edu-badge--phd">博士</span><span class="edu-line"><strong>生物医学工程</strong> — 布法罗大学，2021–2025（预计）</span>',
+    'about.education.meng': '<span class="edu-badge edu-badge--meng">工程硕士</span><span class="edu-line"><strong>生物医学工程</strong> — 康奈尔大学，2020–2021</span>',
+    'about.education.visiting': '<span class="edu-badge edu-badge--visit">访问</span><span class="edu-line"><strong>访问研究</strong> — 中国科学院，2018–2020</span>',
+    'about.education.undergrad': '<span class="edu-badge edu-badge--ug">本科</span><span class="edu-line"><strong>本科研究</strong> — 肯塔基大学，2018–2019</span>',
     'about.research.title': '研究兴趣',
     'about.research.iot': '<strong>物联网与传感器系统</strong> - 硬件开发、嵌入式系统和传感器数据处理',
     'about.research.cloud': '<strong>云基础设施（AWS）</strong> - 可扩展数据管道、实时分析和机器学习部署',
@@ -1097,7 +1096,6 @@ const translations = {
     
     // Home page
     'home.profile.role': 'Machine Learning Engineer at HydroSense',
-    'home.profile.credentials': 'Ph.D. · Cornell alumnus',
     'home.profile.email': 'nickcp39@gmail.com',
 
     // Contact page
@@ -1199,10 +1197,10 @@ const translations = {
     'about.intro.para2': 'My core expertise includes <strong>sensor hardware development</strong>, <strong>IoT system architecture</strong>, <strong>cloud data pipelines</strong> on AWS, and <strong>data analytics</strong> using machine learning. I build scalable ML systems that process sensor data in real-time, enabling predictive maintenance, anomaly detection, and intelligent monitoring for industrial IoT applications.',
     'about.intro.para3': 'In parallel, I am pursuing a Ph.D. in Biomedical Engineering at the University at Buffalo, focusing on AI infrastructure for medical imaging and LLM-based clinical applications. This research complements my industry work by advancing scalable AI systems and data processing frameworks.',
     'about.education.title': 'Education',
-    'about.education.phd': 'Ph.D., Biomedical Engineering — University at Buffalo, 2021–2025 (expected)',
-    'about.education.meng': 'M.Eng., Biomedical Engineering — Cornell University, 2020–2021',
-    'about.education.visiting': 'Visiting Research — Chinese Academy of Sciences, 2018–2020',
-    'about.education.undergrad': 'Undergraduate Research — University of Kentucky, 2018–2019',
+    'about.education.phd': '<span class="edu-badge edu-badge--phd">Ph.D.</span><span class="edu-line"><strong>Biomedical Engineering</strong> — University at Buffalo, 2021–2025 (expected)</span>',
+    'about.education.meng': '<span class="edu-badge edu-badge--meng">M.Eng.</span><span class="edu-line"><strong>Biomedical Engineering</strong> — Cornell University, 2020–2021</span>',
+    'about.education.visiting': '<span class="edu-badge edu-badge--visit">Visiting</span><span class="edu-line"><strong>Visiting Research</strong> — Chinese Academy of Sciences, 2018–2020</span>',
+    'about.education.undergrad': '<span class="edu-badge edu-badge--ug">Undergrad</span><span class="edu-line"><strong>Undergraduate Research</strong> — University of Kentucky, 2018–2019</span>',
     'about.research.title': 'Research Interests',
     'about.research.iot': '<strong>IoT & Sensor Systems</strong> - Hardware development, embedded systems, and sensor data processing',
     'about.research.cloud': '<strong>Cloud Infrastructure (AWS)</strong> - Scalable data pipelines, real-time analytics, and ML deployment',

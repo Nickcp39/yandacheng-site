@@ -561,7 +561,6 @@ body.home-page .container {
 }
 
 .home-page .profile-role,
-.home-page .profile-org,
 .home-page .profile-email {
   margin: 0 0 6px;
   font-size: 16px;
@@ -1435,4 +1434,78 @@ a.project-card-link:hover {
   width: 1px;
   height: 1px;
   opacity: 0;
+}
+
+/* === About page — education rows with label badges === */
+.education-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 640px;
+}
+
+.education-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-subtle);
+  box-shadow: var(--shadow-sm);
+}
+
+.edu-badge {
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  line-height: 1.2;
+  padding: 5px 10px;
+  border-radius: 6px;
+  margin-top: 2px;
+}
+
+.edu-badge--phd {
+  color: var(--palette-ios-blue);
+  background: var(--palette-ios-blue-soft);
+}
+
+.edu-badge--meng {
+  color: var(--palette-tesla-slate);
+  background: rgba(57, 60, 65, 0.08);
+}
+
+.edu-badge--visit {
+  color: #b45309;
+  background: rgba(180, 83, 9, 0.12);
+}
+
+.edu-badge--ug {
+  color: #0f766e;
+  background: rgba(15, 118, 110, 0.1);
+}
+
+.edu-line {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--color-text);
+}
+
+.edu-line strong {
+  font-weight: 600;
+}
+
+@media (max-width: 520px) {
+  .education-item {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .edu-badge {
+    align-self: flex-start;
+  }
 }
