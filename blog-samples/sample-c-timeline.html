@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sample C — Timeline</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Literata:opsz,wght@7..72,400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #121418;
+      --line: rgba(255,255,255,.12);
+      --dot: #7dd3fc;
+      --text: #e6e9ef;
+      --muted: #8b93a1;
+      --year: #4b5563;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; background: var(--bg); color: var(--text);
+      font-family: Literata, Georgia, serif; font-size: 1rem; line-height: 1.55;
+    }
+    .wrap { max-width: 560px; margin: 0 auto; padding: 2.75rem 1.25rem 4rem; }
+    header { margin-bottom: 2.5rem; }
+    .label {
+      font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.7rem;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin: 0 0 0.6rem;
+    }
+    h1 { font-size: 1.65rem; font-weight: 600; letter-spacing: -0.02em; margin: 0 0 0.5rem; }
+    .intro { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+    .timeline { position: relative; padding-left: 1.5rem; }
+    .timeline::before {
+      content: ""; position: absolute; left: 0.35rem; top: 0.35rem; bottom: 0.35rem;
+      width: 1px; background: linear-gradient(var(--line), transparent);
+    }
+
+    .year-block { margin-bottom: 2rem; }
+    .year-block:last-child { margin-bottom: 0; }
+    .year {
+      font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.75rem;
+      color: var(--year); margin: 0 0 1rem; letter-spacing: 0.06em;
+    }
+
+    .entry { position: relative; padding-bottom: 1.5rem; padding-left: 0.25rem; }
+    .entry:last-child { padding-bottom: 0; }
+    .entry::before {
+      content: ""; position: absolute; left: -1.18rem; top: 0.35rem;
+      width: 7px; height: 7px; border-radius: 50%; background: var(--dot);
+      box-shadow: 0 0 0 3px rgba(125,211,252,.2);
+    }
+    time {
+      font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.78rem;
+      color: var(--muted); display: block; margin-bottom: 0.35rem;
+    }
+    .entry h2 { font-size: 1.08rem; font-weight: 600; margin: 0 0 0.35rem; line-height: 1.35; }
+    .entry h2 a { color: var(--text); text-decoration: none; }
+    .entry h2 a:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .entry p { margin: 0; font-size: 0.9rem; color: var(--muted); }
+
+    footer.sample-foot {
+      margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,.08);
+      font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.75rem; color: var(--muted);
+    }
+    footer.sample-foot a { color: var(--dot); text-decoration: none; }
+    footer.sample-foot a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <p class="label">Sample C · Timeline</p>
+      <h1>Writing log</h1>
+      <p class="intro">Newest first. One line per piece—click through when you have time.</p>
+    </header>
+
+    <div class="timeline">
+      <section class="year-block" aria-labelledby="y2026">
+        <h2 class="year" id="y2026">2026</h2>
+
+        <article class="entry">
+          <time datetime="2026-01-22">2026-01-22</time>
+          <h2><a href="#">PhD to industry: what I wish I had optimized earlier</a></h2>
+          <p>Career · long read</p>
+        </article>
+
+        <article class="entry">
+          <time datetime="2026-01-03">2026-01-03</time>
+          <h2><a href="#">Why sglang matters for clinical LLM serving</a></h2>
+          <p>Systems · inference</p>
+        </article>
+      </section>
+
+      <section class="year-block" aria-labelledby="y2025">
+        <h2 class="year" id="y2025">2025</h2>
+
+        <article class="entry">
+          <time datetime="2025-12-30">2025-12-30</time>
+          <h2><a href="#">BTC yield spread and the crash window</a></h2>
+          <p>Markets · note</p>
+        </article>
+
+        <article class="entry">
+          <time datetime="2025-12-10">2025-12-10</time>
+          <h2><a href="#">Radiology linter: from demo to QA loop</a></h2>
+          <p>Healthcare AI · production</p>
+        </article>
+
+        <article class="entry">
+          <time datetime="2025-11-18">2025-11-18</time>
+          <h2><a href="#">LLM agent + ID scanner at the edge</a></h2>
+          <p>Systems · integration</p>
+        </article>
+      </section>
+    </div>
+
+    <footer class="sample-foot">
+      <a href="index.html">← back to samples</a> · dark timeline mockup
+    </footer>
+  </div>
+</body>
+</html>

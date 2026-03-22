@@ -1,0 +1,11 @@
+@article{cheng2026predictive,
+  title={Predictive modeling of chronic foot ulcer outcomes using longitudinal photoacoustic imaging},
+  author={Cheng, Yanda and Huang, Chuqin and Yu, Shuliang and Chakraborty, Saptarshi and Xi, Yunqi and Bing, Robert W and Zhang, Huijuan and Zhang, Xiaoyu and Komornicki, Isabel and Harris, Linda M and Xu, Wenyao and Xia, Jun},
+  journal={npj Imaging},
+  volume={4},
+  number={1},
+  pages={12},
+  year={2026},
+  publisher={Nature Publishing Group},
+  doi={10.1038/s44303-026-00143-0}
+}

@@ -174,6 +174,8 @@
   function initScrollAnimations() {
     if (!('IntersectionObserver' in window)) return;
 
+    document.documentElement.classList.add('js-scroll-animations');
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {

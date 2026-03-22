@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog 界面样本（预览）</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root { --bg: #0f1419; --card: #1a222d; --text: #e8eef4; --muted: #8b9aad; --accent: #6ee7c5; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; font-family: "DM Sans", system-ui, sans-serif; background: var(--bg); color: var(--text); padding: 2.5rem 1.25rem 4rem; }
+    .wrap { max-width: 640px; margin: 0 auto; }
+    h1 { font-size: 1.5rem; font-weight: 600; letter-spacing: -0.02em; margin: 0 0 0.5rem; }
+    p.lead { color: var(--muted); font-size: 0.95rem; line-height: 1.55; margin: 0 0 2rem; }
+    ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem; }
+    a {
+      display: block; padding: 1rem 1.15rem; background: var(--card); border-radius: 10px;
+      color: var(--text); text-decoration: none; border: 1px solid rgba(255,255,255,.06);
+      transition: border-color .2s, transform .15s;
+    }
+    a:hover { border-color: rgba(110,231,197,.35); transform: translateY(-1px); }
+    a strong { display: block; font-size: 1rem; margin-bottom: 0.35rem; }
+    a span { font-size: 0.82rem; color: var(--muted); line-height: 1.4; }
+    .note { margin-top: 2rem; font-size: 0.8rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Blog 界面样本</h1>
+    <p class="lead">下面是三种不同方向的静态示意页，仅用于挑选整体气质与版式。确定方向后，可把偏好告诉我，再落到正式的 <code style="color:var(--accent)">blog_yc.html</code> / <code style="color:var(--accent)">style_blog.css</code>。</p>
+    <ul>
+      <li>
+        <a href="../examples/blog-unified/index.html">
+          <strong>综合示意 · 总览 A + 分类时间线（example）</strong>
+          <span><code>#all</code> 全文时间线；<code>#main-*</code> 大类；<code>#sub-*</code> 子类时间线。尚未合并进正式 blog。</span>
+        </a>
+      </li>
+      <li>
+        <a href="sample-a-editorial.html">
+          <strong>样本 A · 杂志/编辑风</strong>
+          <span>宽栏、衬线标题、留白多；适合长文气质与「出版物」感。</span>
+        </a>
+      </li>
+      <li>
+        <a href="sample-b-cards.html">
+          <strong>样本 B · 卡片栅格</strong>
+          <span>分类标签 + 卡片网格；信息密度清晰，适合文章多、需要扫读。</span>
+        </a>
+      </li>
+      <li>
+        <a href="sample-c-timeline.html">
+          <strong>样本 C · 时间线/阅读清单</strong>
+          <span>窄栏、日期优先、竖线时间轴；偏日记/笔记流，结构一目了然。</span>
+        </a>
+      </li>
+    </ul>
+    <p class="note">本地预览：在项目根目录运行 <code style="color:#a8c4e0">python -m http.server</code>，然后打开 <code style="color:#a8c4e0">/blog-samples/</code>。</p>
+  </div>
+</body>
+</html>

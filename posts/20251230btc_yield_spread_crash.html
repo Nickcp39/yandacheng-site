@@ -28,13 +28,14 @@
 
   <!-- 🌐 i18n 翻译脚本 -->
   <script src="../scripts/i18n.js"></script>
+  <script src="../scripts/nav-island.js" defer></script>
 
   <!-- 🔸 Blog Layout -->
   <div class="blog-container" style="display: flex; gap: 40px; align-items: flex-start;">
 
     <!-- ⬅ Left Sidebar -->
     <aside style="flex: 0 0 150px; font-size: 0.9em; color: #666;">
-      <p><strong>Written by</strong><br>Yanda Cheng</p>
+      <p><strong data-i18n="article.meta.written_by_label">Written by</strong><br><span data-i18n="nav.logo">Yanda Cheng</span></p>
       <p><strong>Date</strong><br>December 30th, 2025</p>
       <p><a href="#disqus_thread">💬 Leave a comment</a></p>
     </aside>
@@ -417,7 +418,7 @@
 
   <!-- 🔻 Footer -->
   <div class="footer">
-    Blog © Yanda Cheng | Last updated December 2025
+    <span data-i18n="blog.footer.copyright">Blog © Yanda Cheng</span> | Last updated December 2025
   </div>
 </body>
 </html>

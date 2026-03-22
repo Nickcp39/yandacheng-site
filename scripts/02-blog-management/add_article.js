@@ -141,7 +141,7 @@ const htmlTemplate = `<!DOCTYPE html>
 
     <!-- ⬅ Left Sidebar -->
     <aside style="flex: 0 0 150px; font-size: 0.9em; color: #666;">
-      <p><strong>Written by</strong><br>Yanda Cheng</p>
+      <p><strong data-i18n="article.meta.written_by_label">Written by</strong><br><span data-i18n="nav.logo">Yanda Cheng</span></p>
       <p><strong>Date</strong><br>${dateEnglish}</p>
       <p><a href="#disqus_thread">💬 Leave a comment</a></p>
     </aside>
@@ -193,7 +193,7 @@ const htmlTemplate = `<!DOCTYPE html>
 
   <!-- 🔻 Footer -->
   <div class="footer">
-    Blog © Yanda Cheng | Last updated ${today.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+    <span data-i18n="blog.footer.copyright">Blog © Yanda Cheng</span> | Last updated ${today.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
   </div>
 </body>
 </html>

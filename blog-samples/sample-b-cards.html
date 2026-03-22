@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sample B — Cards</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #eef2f0;
+      --surface: #fff;
+      --text: #14221a;
+      --muted: #5a6b62;
+      --border: rgba(20, 34, 26, 0.08);
+      --accent: #0d7a5c;
+      --accent-soft: rgba(13, 122, 92, 0.12);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font-family: Outfit, system-ui, sans-serif; font-size: 0.95rem; line-height: 1.5;
+    }
+    .page { max-width: 1100px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+    .top {
+      display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between;
+      gap: 1rem; margin-bottom: 1.75rem;
+    }
+    h1 { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.03em; margin: 0; }
+    .sub { margin: 0.35rem 0 0; color: var(--muted); font-size: 0.92rem; }
+    .filters { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .chip {
+      border: 1px solid var(--border); background: var(--surface); color: var(--muted);
+      padding: 0.4rem 0.85rem; border-radius: 999px; font-size: 0.8rem; font-weight: 500; cursor: default;
+    }
+    .chip.is-active { background: var(--accent-soft); color: var(--accent); border-color: transparent; }
+    .grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem;
+    }
+    .card {
+      background: var(--surface); border-radius: 14px; padding: 1.15rem 1.2rem 1.25rem;
+      border: 1px solid var(--border); box-shadow: 0 1px 0 rgba(0,0,0,.04);
+      display: flex; flex-direction: column; min-height: 168px;
+      transition: box-shadow .2s, transform .15s;
+    }
+    .card:hover { box-shadow: 0 8px 24px rgba(20,34,26,.08); transform: translateY(-2px); }
+    .card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.65rem; }
+    .date { font-size: 0.78rem; font-weight: 600; color: var(--muted); letter-spacing: 0.02em; }
+    .pill {
+      font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;
+      color: var(--accent); background: var(--accent-soft); padding: 0.2rem 0.5rem; border-radius: 6px;
+    }
+    .card h2 { margin: 0; font-size: 1.05rem; font-weight: 600; line-height: 1.35; letter-spacing: -0.02em; }
+    .card h2 a { color: inherit; text-decoration: none; }
+    .card h2 a:hover { color: var(--accent); }
+    .card p { margin: 0.55rem 0 0; font-size: 0.88rem; color: var(--muted); flex: 1; }
+    .card-foot { margin-top: 1rem; font-size: 0.8rem; font-weight: 500; color: var(--accent); }
+    footer.sample-foot { margin-top: 2.5rem; font-size: 0.85rem; color: var(--muted); }
+    footer.sample-foot a { color: var(--accent); font-weight: 500; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="top">
+      <div>
+        <h1>Blog</h1>
+        <p class="sub">Sample B — scan by topic or skim the grid.</p>
+      </div>
+      <div class="filters" aria-label="Filter (static demo)">
+        <span class="chip is-active">All</span>
+        <span class="chip">Career</span>
+        <span class="chip">Systems</span>
+        <span class="chip">Markets</span>
+        <span class="chip">Healthcare AI</span>
+      </div>
+    </div>
+
+    <div class="grid">
+      <article class="card">
+        <div class="card-top">
+          <span class="date">Jan 22, 2026</span>
+          <span class="pill">Career</span>
+        </div>
+        <h2><a href="#">PhD to industry: what I wish I had optimized earlier</a></h2>
+        <p>Choosing problems and managers with the same rigor you bring to research.</p>
+        <div class="card-foot">Read →</div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <span class="date">Jan 3, 2026</span>
+          <span class="pill">Systems</span>
+        </div>
+        <h2><a href="#">Why sglang matters for clinical LLM serving</a></h2>
+        <p>Latency, batching, and what hospital workflows punish.</p>
+        <div class="card-foot">Read →</div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <span class="date">Dec 30, 2025</span>
+          <span class="pill">Markets</span>
+        </div>
+        <h2><a href="#">BTC yield spread and the crash window</a></h2>
+        <p>Carry, funding, and narrative lag in one chart-shaped story.</p>
+        <div class="card-foot">Read →</div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <span class="date">Dec 10, 2025</span>
+          <span class="pill">Healthcare AI</span>
+        </div>
+        <h2><a href="#">Radiology linter: from demo to QA loop</a></h2>
+        <p>Benchmarks vs. real reports—what clinicians actually trust.</p>
+        <div class="card-foot">Read →</div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <span class="date">Nov 18, 2025</span>
+          <span class="pill">Systems</span>
+        </div>
+        <h2><a href="#">LLM agent + ID scanner at the edge</a></h2>
+        <p>A narrow integration path that keeps PHI boundaries crisp.</p>
+        <div class="card-foot">Read →</div>
+      </article>
+
+      <article class="card">
+        <div class="card-top">
+          <span class="date">Nov 2, 2025</span>
+          <span class="pill">Markets</span>
+        </div>
+        <h2><a href="#">Buffett/Munger weekend: notes to self</a></h2>
+        <p>Patience as a system, not a mood.</p>
+        <div class="card-foot">Read →</div>
+      </article>
+    </div>
+
+    <footer class="sample-foot">
+      <a href="index.html">← 返回样本索引</a> · Chips are static in this demo.
+    </footer>
+  </div>
+</body>
+</html>

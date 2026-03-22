@@ -98,7 +98,7 @@ Profile hero 区域需要 `padding-top: 100px` 来避免被浮岛遮挡。
 **链接行改为 pill 按钮：**
 ```html
 <div class="profile-links">
-  <a href="files/yandacheng_cv.pdf" class="pill">Resume</a>
+  <a href="files/yanda_cheng_resume_V0312_CNEN.pdf" class="pill">Resume</a>
   <a href="https://github.com/nickcp39" class="pill">GitHub</a>
   <a href="..." class="pill">Scholar</a>
   <a href="..." class="pill">LinkedIn</a>

@@ -1,0 +1,11 @@
+@article{zhang2025survey,
+  title={A Comprehensive Survey of Research Trends in mmWave Technologies for Medical Applications},
+  author={Zhang, Xiaoyu and Liu, Chuhui and Cheng, Yanda and Li, Zhengxiong and Xu, Chenhan and Huang, Chuqin and Zhan, Ye and Bo, Wei and Xia, Jun and Xu, Wenyao},
+  journal={Sensors},
+  volume={25},
+  number={12},
+  pages={3706},
+  year={2025},
+  publisher={MDPI},
+  doi={10.3390/s25123706}
+}

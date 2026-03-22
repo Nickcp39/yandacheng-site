@@ -8,6 +8,7 @@
 const translations = {
   zh: {
     // 导航栏
+    'nav.logo': '程彦达',
     'nav.home': '首页',
     'nav.about': '关于',
     'nav.projects': '项目',
@@ -25,15 +26,50 @@ const translations = {
     'home.experience': '经历',
     'home.awards': '奖项',
     'home.photos': '照片集',
+    'home.quick.title': '浏览',
+    'home.projects.desc': 'IoT、AI、机器人与硬件',
+    'home.publications.desc': '论文与发表',
+    'home.experience.desc': '工业与学术经历',
+    'home.awards.desc': '荣誉与学术服务',
+    'home.photos.desc': '活动与影像',
+    'home.blog.desc': '随笔与思考',
+    'home.btc.alt': '比特币动图（装饰）',
+    'home.btc.blog_hint': '博客里的 BTC 随笔：',
+    'home.btc.post.4y': '又站上四年高点',
+    'home.btc.post.2026': '2026 展望',
+    'home.btc.post.rhythm': '四年周期',
     'home.visitor_map': '访客地图',
     'home.footer.updated': '最后更新',
-    'home.footer.copyright': '© Yanda Cheng',
+    'home.footer.copyright': '© 程彦达',
+    
+    // 页面 <title>（浏览器标签）
+    'page.title.home': '程彦达',
+    'page.title.about': '关于 | 程彦达',
+    'page.title.projects': '项目 | 程彦达',
+    'page.title.publications': '发表 | 程彦达',
+    'page.title.experience': '经历 | 程彦达',
+    'page.title.awards': '奖项与服务 | 程彦达',
+    'page.title.photos': '照片 | 程彦达',
     
     // 博客
-    'blog.title': 'Yanda的博客',
+    'blog.title': '程彦达的博客',
     'blog.subtitle': '按分类浏览所有博文',
+    'blog.kicker': '随笔',
+    'blog.dek': '关于科研、工程与市场——希望适合慢读。',
+    'blog.categories_heading': '按分类',
+    'blog.wheel.hint': '滚轮切换标题；仅当前篇完整显示',
+    'blog.wheel.hint_category': '点击分类筛选右侧时间线。',
+    'blog.date_filter.title': '筛选',
+    'blog.wheel.show_all': '全部文章',
+    'blog.wheel.category_meta': '分类',
+    'blog.category.all': '全部',
+    'blog.macro.markets': '市场与资本',
+    'blog.macro.career': '职场与行业',
+    'blog.macro.innovation': '创新与系统',
+    'blog.view.date': '按日期',
+    'blog.view.category': '按分类',
     'blog.timeline': '按时间排序',
-    'blog.footer.copyright': 'Blog © Yanda Cheng',
+    'blog.footer.copyright': '博客 © 程彦达',
     'blog.footer.updated': '最后更新',
     
     // 博客分类翻译
@@ -54,6 +90,9 @@ const translations = {
     'common.read_more': '了解更多',
     'common.contact': '联系我们',
     
+    // 文章侧栏（作者署名）
+    'article.meta.written_by_label': '作者',
+    
     // 关于页面
     'about.title': '关于我',
     'about.intro.para1': '我是一名在 HydroTech 拥有8年经验的高级工程师和团队经理，专注于<strong>物联网传感器开发</strong>、<strong>硬件工程</strong>和<strong>基于云的数据分析</strong>。我领导跨职能团队设计和部署高性能传感器系统，从硬件原型到<strong>AWS 云基础设施</strong>部署，开发端到端解决方案。',
@@ -70,13 +109,31 @@ const translations = {
     'about.research.ml': '<strong>机器学习与数据分析</strong> - 时间序列分析、异常检测和预测建模',
     'about.research.vision': '<strong>计算机视觉</strong> - 医学影像、图像处理和视觉分析',
     'about.research.llm': '<strong>LLM与AI基础设施</strong> - 用于临床应用和自动化系统的大语言模型',
-    'about.footer.copyright': '关于 © Yanda Cheng',
+    'about.footer.copyright': '关于 © 程彦达',
     'about.footer.updated': '最后更新',
     
     // 项目页面
+    'projects.kicker': '作品集',
     'projects.title': '精选项目',
+    'projects.dek': '硬件、成像与 AI — 按时间从新到旧。',
+    'projects.browse.label': '浏览',
+    'projects.timeline.title': '时间线 · 从新到旧',
+    'projects.pageTray.label': '本页跳转',
+    'projects.jump.kyc': 'KYC',
+    'projects.jump.metatarsal': '成像',
+    'projects.jump.autonomous': '机器人',
+    'projects.jump.rf': '射频',
+    'projects.jump.pingpong': '乒乓球',
+    'projects.jump.voice': '语音',
+    'projects.jump.label': '跳转',
+    'projects.jump.hint': '按主题分组，点击滚动到对应项目。',
+    'projects.macro.ai': 'AI',
+    'projects.macro.robotics': '机器人',
+    'projects.macro.sensing': '成像与传感',
+    'projects.filter.hint': '点击分类筛选列表。',
     'projects.filter.all': '全部',
     'projects.filter.ai': 'AI',
+    'projects.filter.imaging': '成像',
     'projects.filter.signal': '信号处理',
     'projects.filter.robotics': '机器人',
     'projects.kyc.title': 'KYC 文档智能处理管道',
@@ -91,26 +148,62 @@ const translations = {
     'projects.pingpong.desc': '设计了一个AI驱动的机器人系统，能够识别并锁定移动目标，然后通过动态电机校准和基于预测的瞄准算法发射乒乓球。',
     'projects.voice.title': '通过神经网络驱动的语音电机',
     'projects.voice.desc': '创建了一个通过语音命令激活电机的系统。将LabVIEW和MATLAB与神经网络分类器集成，处理语音特征并将其转换为实时控制信号。',
-    'projects.footer.copyright': '项目 © Yanda Cheng',
+    'projects.footer.copyright': '项目 © 程彦达',
     'projects.footer.updated': '最后更新',
     
     // 发表页面
     'publications.title': '精选发表',
-    'publications.footer.copyright': '发表 © Yanda Cheng',
+    'publications.timeline.title': '按时间排序',
+    'publications.filter.hint': '点击筛选一作或合作论文。',
+    'publications.filter.all': '全部',
+    'publications.filter.first': '一作',
+    'publications.filter.co': '合作',
+    'publications.footer.copyright': '发表 © 程彦达',
     'publications.footer.updated': '最后更新',
     
     // 经历页面
     'experience.title': '经历',
-    'experience.ub.title': '研究助理',
-    'experience.ub.location': '布法罗大学 — 布法罗，纽约',
-    'experience.ub.period': '2021年9月 – 至今',
-    'experience.ub.desc1': '博士研究专注于光声成像和AI辅助诊断。',
-    'experience.ub.desc2': '在IEEE TUFFC、Optica、BOE发表论文；领导NIH资助项目。',
+    'experience.timeline.title': '按时间排序',
+    'experience.filter.hint': '点击类型筛选经历。',
+    'experience.filter.all': '全部',
+    'experience.filter.research': '科研与学术',
+    'experience.filter.industry': '产业与创业',
+    'experience.filter.teaching': '教学',
+    'experience.sglang.title': '开源贡献者（SGLang）',
+    'experience.sglang.location': 'SGLang · 加州山景城（远程）',
+    'experience.sglang.period': '2025年8月 – 2026年2月',
+    'experience.sglang.desc1': '为 SGLang 扩散管线中的 GLM-Image 接入序列并行（SP）支持（#18077）：多 GPU 分片执行 DiT 式扩散，建立可复现的延迟/显存基线，支撑高分辨率生成。',
+    'experience.sglang.desc2': '修复 HTTP 工具中高并发场景下的文件描述符泄漏（#12047），确保成功与错误路径均关闭 urllib 响应；5000 次请求压测下 0 失败、p99 延迟稳定在约 30 ms 以内。',
+    'experience.sglang.desc3': '补齐 sglang[diffusion] 依赖（#17900 等），加入 accelerate、ftfy，使 Wan2.1、FLUX 等模型在干净环境中可 device_map 加载。',
+    'experience.sglang.desc4': '构建并分享 Qwen 等性能基准，聚焦多 SP/TP 配置下的 p99 延迟，用于并行策略对比与回归检测。',
     'experience.startup.title': '联合创始人兼核心工程师',
-    'experience.startup.location': '高精度传感器公司 — 北京 / 布法罗',
+    'experience.startup.location': 'HydroSense Tech — 北京 / 新加坡',
     'experience.startup.period': '2015 – 至今（兼职）',
-    'experience.startup.desc1': '为天气和医疗应用设计高精度传感器。',
-    'experience.startup.desc2': '构建固件（C、Python、GPT），将业务扩展到5+个国家。',
+    'experience.startup.desc1': '联合创立物联网精密传感公司，负责现场部署设备的机器学习；产品线从试点扩展至市政与工业客户，年营收达数百万美元级，覆盖 5+ 国家。',
+    'experience.startup.desc2': '端到端交付栈：STM32 上 C++ 固件 + 边缘网关 Python 服务，RS-485 与蓝牙/Wi-Fi 安全 OTA，支撑 5000+ 设备远程监控与配置。',
+    'experience.startup.desc3': '设计并部署基于 PyTorch 训练与 INT8 量化的机载 1D-CNN 温度漂移补偿，在产线 2 万+ 传感器上显著降低重量估计 MAE。',
+    'experience.startup.desc4': '搭建 AI 标定与预测框架（Python / MLflow），建模非线性与温度依赖，现场漂移降低约 30%，并跟踪长期设备健康。',
+    'experience.startup.desc5': '共同发明人：3 项已授权专利（2017–2023），涵盖降雨传感硬件与基于 ML 的漂移补偿 / EMI 抑制等。',
+    'experience.ub.title': '博士研究生 / 研究助理',
+    'experience.ub.location': '纽约州立大学布法罗分校 — 布法罗，纽约',
+    'experience.ub.period': '2021年9月 – 至今（博士在读，预计 2026）',
+    'experience.ub.desc1': '博士研究聚焦光声成像、慢性创面结局预测与医学 AI；以第一/共同作者发表论文于 npj Imaging、IEEE TMI、IEEE TUFFC、BOE 等。',
+    'experience.ub.desc2': '参与 NIH 资助项目与 IRB 审批的多中心纵向影像研究；糖尿病足溃疡等临床队列设计与数据分析。',
+    'experience.ub.desc3': '与临床团队合作开展影像–文本多模态建模、生成式建模及可复现实验跟踪（AWS 等）。',
+    'experience.seno.title': '应用机器学习工程师（实习）',
+    'experience.seno.location': 'Seno Medical · 纽约州纽约市',
+    'experience.seno.period': '2024年5月 – 2024年8月',
+    'experience.seno.desc1': '与临床团队协作整理 2000+ 医学影像 QA 数据集与标注规范；LoRA 微调 LLaMA 并搭建 RAG，显著抑制幻觉、提升 Recall@5。',
+    'experience.seno.desc2': '设计端到端评测框架（标签体系、自动指标、错误分析脚本），将幻觉率从约 30% 降至约 15%。',
+    'experience.seno.desc3': '实现模块化 RAG 后端：分块与入库、FAISS 向量库、检索/重排与 LLM 编排，FastAPI 服务、Docker 容器化，支持院内 PHI 合规部署。',
+    'experience.seno.desc4': '建立 Git 工作流与可观测性（结构化日志、延迟/错误率面板），交付可复现镜像与临床团队部署手册。',
+    'experience.roswell.title': '研究科学家',
+    'experience.roswell.location': 'Roswell Park 综合癌症中心 — 布法罗，纽约',
+    'experience.roswell.period': '2023年5月 – 2023年8月',
+    'experience.roswell.desc1': '构建多模态数据管线：影像与结构化报告对齐（去标识化、模式归一化、自动 QC），生成干净的图像–文本对用于生成式建模。',
+    'experience.roswell.desc2': '编写数据集生成任务（过滤、采样、增强、元数据标注），用于条件生成与下游训练。',
+    'experience.roswell.desc3': '实现领域相关的潜空间扩散模型（类 Stable Diffusion，DDIM/DPMS 采样），在 AWS 上训练，用于条件图文报告与数据增强。',
+    'experience.roswell.desc4': '自动化 GPU 训练与实验跟踪：统一配置、日志与对比脚本，加速在 AWS 上的模型与数据迭代。',
     'experience.ta503.title': '助教 – BME 503：图像处理',
     'experience.ta503.location': '布法罗大学',
     'experience.ta503.period': '2023年春季',
@@ -134,7 +227,7 @@ const translations = {
     'experience.uky.period': '2018年1月 – 2019年1月',
     'experience.uky.desc1': '使用C#和LabView开发GUI和图像处理管道。',
     'experience.uky.desc2': '增强新生儿设备界面以提高临床可靠性。',
-    'experience.footer.copyright': '经历 © Yanda Cheng',
+    'experience.footer.copyright': '经历 © 程彦达',
     'experience.footer.updated': '最后更新',
     
     // 奖项页面
@@ -155,12 +248,16 @@ const translations = {
     'awards.talks.rcbu2024': '<strong>RCBU生物医学超声研讨会</strong>，2024年9月 — <em>海报展示者</em>',
     'awards.talks.spie2024': '<strong>SPIE BIOS | Photons Plus Ultrasound</strong>，2024年1月 — <em>海报展示者</em>',
     'awards.talks.rcbu2023': '<strong>RCBU生物医学超声研讨会</strong>，2023年11月 — <em>海报展示者</em>',
-    'awards.footer.copyright': '奖项 © Yanda Cheng',
+    'awards.footer.copyright': '奖项 © 程彦达',
     'awards.footer.updated': '最后更新',
     
     // 照片页面
-    'photos.title': 'Yanda Cheng 的照片亮点',
-    'photos.footer.copyright': '照片 © Yanda Cheng',
+    'photos.title': '程彦达的照片亮点',
+    'photos.jump.label': '相册',
+    'photos.jump.hint': '按年份展开相册，点击条目跳转。',
+    'photos.carousel.prev': '向左滚动照片',
+    'photos.carousel.next': '向右滚动照片',
+    'photos.footer.copyright': '照片 © 程彦达',
     'photos.footer.updated': '最后更新',
     
     // 新闻页面
@@ -944,6 +1041,7 @@ const translations = {
   },
   en: {
     // Navigation
+    'nav.logo': 'Yanda Cheng',
     'nav.home': 'Home',
     'nav.about': 'About',
     'nav.projects': 'Projects',
@@ -953,6 +1051,15 @@ const translations = {
     'nav.photos': 'Photos',
     'nav.blog': 'Blog',
     
+    // Page <title> (browser tab)
+    'page.title.home': 'Yanda Cheng',
+    'page.title.about': 'About | Yanda Cheng',
+    'page.title.projects': 'Projects | Yanda Cheng',
+    'page.title.publications': 'Publications | Yanda Cheng',
+    'page.title.experience': 'Experience | Yanda Cheng',
+    'page.title.awards': 'Awards & Service | Yanda Cheng',
+    'page.title.photos': 'Photos | Yanda Cheng',
+    
     // Home page
     'home.about.title': 'About Me',
     'home.news.title': 'News',
@@ -961,6 +1068,18 @@ const translations = {
     'home.experience': 'Experience',
     'home.awards': 'Awards',
     'home.photos': 'Photo Gallery',
+    'home.quick.title': 'Explore',
+    'home.projects.desc': 'IoT, AI, robotics & hardware',
+    'home.publications.desc': 'Papers & publications',
+    'home.experience.desc': 'Industry & academia',
+    'home.awards.desc': 'Honors & service',
+    'home.photos.desc': 'Events & highlights',
+    'home.blog.desc': 'Essays & notes',
+    'home.btc.alt': 'Bitcoin GIF (decorative)',
+    'home.btc.blog_hint': 'BTC posts on the blog:',
+    'home.btc.post.4y': '4-year high, no joy',
+    'home.btc.post.2026': '2026 outlook',
+    'home.btc.post.rhythm': 'The 4-year rhythm',
     'home.visitor_map': 'Visitor Map',
     'home.footer.updated': 'Last updated',
     'home.footer.copyright': '© Yanda Cheng',
@@ -968,6 +1087,20 @@ const translations = {
     // Blog
     'blog.title': "Yanda's Blog",
     'blog.subtitle': 'Browse posts by category',
+    'blog.kicker': 'Writing',
+    'blog.dek': 'Notes on research, engineering, and markets—written to be read slowly.',
+    'blog.categories_heading': 'By category',
+    'blog.wheel.hint': 'Scroll wheel to flip titles — full title & date for the current slot only',
+    'blog.wheel.hint_category': 'Click a category to filter the timeline.',
+    'blog.date_filter.title': 'Filter',
+    'blog.wheel.show_all': 'All posts',
+    'blog.wheel.category_meta': 'Category',
+    'blog.category.all': 'All',
+    'blog.macro.markets': 'Markets & Capital',
+    'blog.macro.career': 'Career & Industry',
+    'blog.macro.innovation': 'Innovation & Systems',
+    'blog.view.date': 'By date',
+    'blog.view.category': 'By category',
     'blog.timeline': 'Sorted by date',
     'blog.footer.copyright': 'Blog © Yanda Cheng',
     'blog.footer.updated': 'Last updated',
@@ -990,6 +1123,9 @@ const translations = {
     'common.read_more': 'Read More',
     'common.contact': 'Contact Us',
     
+    // Article sidebar (byline)
+    'article.meta.written_by_label': 'Written by',
+    
     // About page
     'about.title': 'About Me',
     'about.intro.para1': 'I am a Senior Engineer and Team Manager with 8 years of experience at HydroTech, specializing in <strong>IoT sensor development</strong>, <strong>hardware engineering</strong>, and <strong>cloud-based data analytics</strong>. I lead cross-functional teams in designing and deploying high-performance sensor systems, developing end-to-end solutions from hardware prototyping to <strong>AWS cloud infrastructure</strong> deployment.',
@@ -1010,9 +1146,27 @@ const translations = {
     'about.footer.updated': 'Last updated',
     
     // Projects page
+    'projects.kicker': 'Portfolio',
     'projects.title': 'Selected Projects',
+    'projects.dek': 'Hardware, imaging, and AI — newest first.',
+    'projects.browse.label': 'Browse',
+    'projects.timeline.title': 'Timeline · newest first',
+    'projects.pageTray.label': 'On this page',
+    'projects.jump.kyc': 'KYC',
+    'projects.jump.metatarsal': 'Imaging',
+    'projects.jump.autonomous': 'Robot',
+    'projects.jump.rf': 'RF',
+    'projects.jump.pingpong': 'Ping-pong',
+    'projects.jump.voice': 'Voice',
+    'projects.jump.label': 'Jump',
+    'projects.jump.hint': 'Grouped by theme — tap to scroll.',
+    'projects.macro.ai': 'AI',
+    'projects.macro.robotics': 'Robotics',
+    'projects.macro.sensing': 'Imaging & sensing',
+    'projects.filter.hint': 'Click a category to filter the list.',
     'projects.filter.all': 'All',
     'projects.filter.ai': 'AI',
+    'projects.filter.imaging': 'Imaging',
     'projects.filter.signal': 'Signal Processing',
     'projects.filter.robotics': 'Robotics',
     'projects.kyc.title': 'KYC Document Intelligence Pipeline',
@@ -1037,16 +1191,47 @@ const translations = {
     
     // Experience page
     'experience.title': 'Experience',
-    'experience.ub.title': 'Research Assistant',
-    'experience.ub.location': 'University at Buffalo — Buffalo, NY',
-    'experience.ub.period': 'Sep 2021 – Present',
-    'experience.ub.desc1': 'PhD research on photoacoustic imaging and AI-assisted diagnostics.',
-    'experience.ub.desc2': 'Published in IEEE TUFFC, Optica, BOE; led NIH-funded projects.',
+    'experience.timeline.title': 'Sorted by date',
+    'experience.filter.hint': 'Filter by type of role.',
+    'experience.filter.all': 'All',
+    'experience.filter.research': 'Research & academic',
+    'experience.filter.industry': 'Industry & startups',
+    'experience.filter.teaching': 'Teaching',
+    'experience.sglang.title': 'Open-Source Contributor (SGLang)',
+    'experience.sglang.location': 'SGLang · Mountain View, CA (remote)',
+    'experience.sglang.period': 'Aug 2025 – Feb 2026',
+    'experience.sglang.desc1': 'Added Sequence Parallelism (SP) support for GLM-Image in the SGLang diffusion pipeline (#18077): multi-GPU sharded DiT-style diffusion, reproducible latency/VRAM baselines, and validation for high-resolution generation.',
+    'experience.sglang.desc2': 'Fixed high-concurrency file-descriptor leaks in HTTP utils (#12047) by always closing urllib responses on success and error paths; stress-tested with 5,000 requests (0 failures, stable FD count, p99 ≈ 30 ms).',
+    'experience.sglang.desc3': 'Unblocked diffusion installs via sglang[diffusion] (#17900 et al.): added accelerate and ftfy so Wan2.1 / FLUX-class models load with device_map in clean-room installs.',
+    'experience.sglang.desc4': 'Built and shared Qwen-focused benchmarks (p99 latency across SP/TP) for parallelism trade-offs and regression detection.',
     'experience.startup.title': 'Co-founder & Core Engineer',
-    'experience.startup.location': 'High-Precision Sensor Company — Beijing / Buffalo',
-    'experience.startup.period': '2015 – Present (Part-time)',
-    'experience.startup.desc1': 'Designed high-precision sensors for weather and medical applications.',
-    'experience.startup.desc2': 'Built firmware (C, Python, GPT), expanded business to 5+ countries.',
+    'experience.startup.location': 'HydroSense Tech — Beijing / Singapore',
+    'experience.startup.period': '2015 – Present (part-time)',
+    'experience.startup.desc1': 'Co-founded an IoT precision-sensing startup; led ML for field-deployed devices; scaled from pilots to multi-million-dollar annual revenue across municipal and industrial customers in 5+ countries.',
+    'experience.startup.desc2': 'End-to-end stack: C++ firmware on STM32 plus Python services on edge gateways; secure OTA over RS-485 and Bluetooth/Wi-Fi; fleet monitoring for 5,000+ devices.',
+    'experience.startup.desc3': 'Shipped on-device 1D-CNN temperature-drift compensation (PyTorch training, INT8 quantization), cutting weight-estimation MAE in production (20k+ sensors).',
+    'experience.startup.desc4': 'Built AI calibration and prediction (Python/MLflow); reduced field drift ~30% with long-term device health tracking.',
+    'experience.startup.desc5': 'Co-inventor on 3 granted patents (2017–2023) covering rainfall hardware and ML-based drift compensation / EMI mitigation.',
+    'experience.ub.title': 'PhD Research / Research Assistant',
+    'experience.ub.location': 'University at Buffalo (SUNY) — Buffalo, NY',
+    'experience.ub.period': 'Sep 2021 – Present (PhD candidate, expected 2026)',
+    'experience.ub.desc1': 'PhD research on photoacoustic imaging, chronic wound outcome prediction, and medical AI; first/co-authored papers in npj Imaging, IEEE TMI, IEEE TUFFC, BOE, and more.',
+    'experience.ub.desc2': 'NIH-funded projects; IRB-approved multi-site longitudinal imaging studies (e.g., diabetic foot ulcer cohorts).',
+    'experience.ub.desc3': 'Collaborative imaging–text multimodal modeling, generative modeling, and reproducible experiment tracking on AWS.',
+    'experience.seno.title': 'Applied ML Engineer Intern',
+    'experience.seno.location': 'Seno Medical — New York, NY',
+    'experience.seno.period': 'May 2024 – Aug 2024',
+    'experience.seno.desc1': 'Curated 2,000+ medical imaging QA datasets with clinicians; LoRA-fine-tuned LLaMA and built a RAG stack; cut hallucinations and raised Recall@5.',
+    'experience.seno.desc2': 'Designed an evaluation harness (label schema, automatic metrics, error-analysis scripts); reduced hallucination rate from ~30% to ~15%.',
+    'experience.seno.desc3': 'Modular RAG backend: chunking/ingestion, FAISS vector store, retriever/re-ranker, LLM orchestration via FastAPI; Dockerized for PHI-compliant on-prem deployment.',
+    'experience.seno.desc4': 'Git-based workflows and observability (structured logs, latency/error dashboards); reproducible images and runbooks for clinical teams.',
+    'experience.roswell.title': 'Research Scientist',
+    'experience.roswell.location': 'Roswell Park Comprehensive Cancer Center — Buffalo, NY',
+    'experience.roswell.period': 'May 2023 – Aug 2023',
+    'experience.roswell.desc1': 'Multi-modal pipeline aligning imaging with structured reports (de-identification, schema normalization, automated QC) for clean image–text pairs.',
+    'experience.roswell.desc2': 'Dataset generation jobs (filtering, sampling, augmentation, metadata tagging) for conditional generation and downstream training.',
+    'experience.roswell.desc3': 'Domain-specific latent diffusion (Stable Diffusion–style, DDIM/DPMS) trained on AWS for conditional image-to-text reports and synthetic augmentation.',
+    'experience.roswell.desc4': 'Automated GPU training and experiment tracking with standardized configs, logging, and comparison scripts on AWS.',
     'experience.ta503.title': 'Teaching Assistant – BME 503: Image Processing',
     'experience.ta503.location': 'University at Buffalo',
     'experience.ta503.period': 'Spring 2023',
@@ -1096,6 +1281,10 @@ const translations = {
     
     // Photos page
     'photos.title': 'Photo Highlights of Yanda Cheng',
+    'photos.jump.label': 'Albums',
+    'photos.jump.hint': 'Expand a year, then jump to an album.',
+    'photos.carousel.prev': 'Scroll photos left',
+    'photos.carousel.next': 'Scroll photos right',
     'photos.footer.copyright': 'Photos © Yanda Cheng',
     'photos.footer.updated': 'Last updated',
     
@@ -1930,6 +2119,20 @@ function switchLanguage(lang) {
     const key = element.getAttribute('data-i18n-placeholder');
     if (translations[lang] && translations[lang][key]) {
       element.placeholder = translations[lang][key];
+    }
+  });
+
+  document.querySelectorAll('[data-i18n-alt]').forEach(element => {
+    const key = element.getAttribute('data-i18n-alt');
+    if (translations[lang] && translations[lang][key]) {
+      element.alt = translations[lang][key];
+    }
+  });
+
+  document.querySelectorAll('[data-i18n-aria-label]').forEach(element => {
+    const key = element.getAttribute('data-i18n-aria-label');
+    if (translations[lang] && translations[lang][key]) {
+      element.setAttribute('aria-label', translations[lang][key]);
     }
   });
   

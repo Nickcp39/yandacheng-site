@@ -4,180 +4,224 @@
   <meta charset="UTF-8">
   <base href="/">
 
-  <title>Photos | Yanda Cheng</title>
+  <title data-i18n="page.title.photos">Photos | Yanda Cheng</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;600&family=Inter:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <style>
-    .photo-section {
-      margin-bottom: 40px;
-    }
-
-    .photo-title {
-      font-size: 20px;
-      font-weight: bold;
-      margin: 10px 0;
-    }
-
-    .photo-subtitle {
-      font-size: 14px;
-      color: #666;
-      margin-bottom: 8px;
-    }
-
-    .photo-scroll-wrapper {
-      overflow-x: auto;
-      white-space: nowrap;
-      padding: 10px;
-      border: 1px solid #ddd;
-    }
-
-    .photo-scroll-wrapper img {
-      max-height: 200px;
-      margin-right: 10px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      display: inline-block;
-    }
-  </style>
+  <link rel="stylesheet" href="style_blog.css">
 </head>
-<body>
+<body class="blog-page listing-page photos-page" data-listing-page="photos">
 
   <div id="navbar-placeholder"></div>
-<script>
-  fetch('navbar.html')
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById('navbar-placeholder').innerHTML = data;
-      // navbar 加载完成后，触发语言按钮事件绑定
-      if (window.attachLanguageButtonListeners) {
-        window.attachLanguageButtonListeners();
-      }
-    });
-</script>
+  <script>
+    fetch('navbar.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('navbar-placeholder').innerHTML = data;
+        if (window.attachLanguageButtonListeners) {
+          window.attachLanguageButtonListeners();
+        }
+        if (typeof window.switchLanguage === 'function' && typeof window.getCurrentLanguage === 'function') {
+          window.switchLanguage(window.getCurrentLanguage());
+        }
+      });
+  </script>
 
-  <!-- 🌐 i18n 翻译脚本 -->
-  <script src="scripts/i18n.js"></script>
+  <div class="blog-container">
+    <header class="blog-page-header">
+      <h1 class="blog-page-header__title" id="photos-heading"><span data-i18n="photos.title">Photo Highlights of Yanda Cheng</span></h1>
+    </header>
 
+    <div class="blog-below-nav">
+      <aside class="blog-left-rail" aria-label="On this page">
+        <nav class="blog-date-filter-island blog-mini-island" aria-labelledby="photos-jump-heading">
+          <p class="blog-date-filter-island__title" id="photos-jump-heading" data-i18n="photos.jump.label">Albums</p>
+          <p class="blog-date-filter-island__hint" data-i18n="photos.jump.hint">Expand a year, then jump to an album.</p>
+          <div class="listing-jump-accordion listing-jump-links--grouped" role="navigation" aria-label="Photo albums">
+            <a href="photos_yc.html#photos-heading" class="listing-jump-all-link" data-i18n="blog.category.all">All</a>
+            <details class="listing-jump-group">
+              <summary class="listing-jump-group__summary">2025</summary>
+              <nav class="listing-jump-group__links">
+                <a href="photos_yc.html#photo-sawc-2025">SAWC Spring · WHS 2025</a>
+                <a href="photos_yc.html#photo-washington-2025">Washington, DC · Feb 2025</a>
+              </nav>
+            </details>
+            <details class="listing-jump-group">
+              <summary class="listing-jump-group__summary">2024</summary>
+              <nav class="listing-jump-group__links">
+                <a href="photos_yc.html#photo-vancouver-2024">Vancouver · Dec 2024</a>
+                <a href="photos_yc.html#photo-toronto-2024">Toronto · Sep 2024</a>
+                <a href="photos_yc.html#photo-rcbu-2024">RCBU Symposium · 2024</a>
+                <a href="photos_yc.html#photo-spie-2024">SPIE BIOS · 2024</a>
+              </nav>
+            </details>
+            <details class="listing-jump-group">
+              <summary class="listing-jump-group__summary">2023</summary>
+              <nav class="listing-jump-group__links">
+                <a href="photos_yc.html#photo-rcbu-2023">RCBU Symposium · 2023</a>
+              </nav>
+            </details>
+            <details class="listing-jump-group">
+              <summary class="listing-jump-group__summary">2022</summary>
+              <nav class="listing-jump-group__links">
+                <a href="photos_yc.html#photo-neomed-2022">NEOMED &amp; Kent State · 2022</a>
+              </nav>
+            </details>
+          </div>
+        </nav>
+      </aside>
 
-  <div class="container">
-    <h2 data-i18n="photos.title">Photo Highlights of Yanda Cheng</h2>
+      <div class="blog-main-column">
 
     <!-- Event: SAWC Spring 2025 -->
-    <div class="photo-section">
+    <section id="photo-sawc-2025" class="photo-section">
       <div class="photo-title">SAWC Spring | WHS 2025</div>
       <div class="photo-subtitle">April 30–May 4, 2025 | Gaylord Texan Resort, Grapevine, TX</div>
-      <div class="photo-scroll-wrapper">
-        <img src="files/amazing_photo/sawc2025_01.jpg" alt="SAWC 2025 - 01">
-        <img src="files/amazing_photo/sawc2025_02.jpg" alt="SAWC 2025 - 02">
-        <img src="files/amazing_photo/sawc2025_03.jpg" alt="SAWC 2025 - 03">
-        <img src="files/amazing_photo/sawc2025_04.jpg" alt="SAWC 2025 - 04">
-        <img src="files/amazing_photo/sawc2025_05.jpg" alt="SAWC 2025 - 05">
-        <img src="files/amazing_photo/sawc2025_06.jpg" alt="SAWC 2025 - 06">
+      <div class="photo-carousel" data-photo-carousel>
+        <button type="button" class="photo-carousel__arrow photo-carousel__arrow--prev" data-i18n-aria-label="photos.carousel.prev" aria-label="Scroll photos left">&#8249;</button>
+        <div class="photo-carousel__viewport" tabindex="0" role="region">
+          <div class="photo-carousel__track">
+            <img src="files/amazing_photo/sawc2025_01.jpg" alt="SAWC 2025 - 01" loading="lazy">
+            <img src="files/amazing_photo/sawc2025_02.jpg" alt="SAWC 2025 - 02" loading="lazy">
+            <img src="files/amazing_photo/sawc2025_03.jpg" alt="SAWC 2025 - 03" loading="lazy">
+            <img src="files/amazing_photo/sawc2025_04.jpg" alt="SAWC 2025 - 04" loading="lazy">
+            <img src="files/amazing_photo/sawc2025_05.jpg" alt="SAWC 2025 - 05" loading="lazy">
+            <img src="files/amazing_photo/sawc2025_06.jpg" alt="SAWC 2025 - 06" loading="lazy">
+          </div>
+        </div>
+        <button type="button" class="photo-carousel__arrow photo-carousel__arrow--next" data-i18n-aria-label="photos.carousel.next" aria-label="Scroll photos right">&#8250;</button>
       </div>
-    </div>
+    </section>
 
-    <!-- Event: Trip in Washington, DC | FEB 2025 -->
-    <div class="photo-section">
+    <!-- Event: Washington, DC | FEB 2025 -->
+    <section id="photo-washington-2025" class="photo-section">
       <div class="photo-title">Trip in Washington， DC | FEB 2025</div>
-      <div class="photo-scroll-wrapper">
-        <img src="files/amazing_photo/Washington_01.jpg" alt="Washington 2024 - 01">
-        <img src="files/amazing_photo/Washington_02.jpg" alt="Washington 2024 - 02">
-        <img src="files/amazing_photo/Washington_03.jpg" alt="Washington 2024 - 03">
-        <img src="files/amazing_photo/Washington_04.jpg" alt="Washington 2024 - 04">
-
+      <div class="photo-carousel" data-photo-carousel>
+        <button type="button" class="photo-carousel__arrow photo-carousel__arrow--prev" data-i18n-aria-label="photos.carousel.prev" aria-label="Scroll photos left">&#8249;</button>
+        <div class="photo-carousel__viewport" tabindex="0" role="region">
+          <div class="photo-carousel__track">
+            <img src="files/amazing_photo/Washington_01.jpg" alt="Washington 2024 - 01" loading="lazy">
+            <img src="files/amazing_photo/Washington_02.jpg" alt="Washington 2024 - 02" loading="lazy">
+            <img src="files/amazing_photo/Washington_03.jpg" alt="Washington 2024 - 03" loading="lazy">
+            <img src="files/amazing_photo/Washington_04.jpg" alt="Washington 2024 - 04" loading="lazy">
+          </div>
+        </div>
+        <button type="button" class="photo-carousel__arrow photo-carousel__arrow--next" data-i18n-aria-label="photos.carousel.next" aria-label="Scroll photos right">&#8250;</button>
       </div>
-    </div>
+    </section>
 
-
-    <!-- Event: Trip in vancouver | DEC 2024 -->
-    <div class="photo-section">
+    <!-- Event: Vancouver | DEC 2024 -->
+    <section id="photo-vancouver-2024" class="photo-section">
       <div class="photo-title">Trip in vancouver, CA | DEC 2024</div>
-      <div class="photo-scroll-wrapper">
-        <img src="files/amazing_photo/vancouver_01.jpg" alt="vancouver 2024 - 01">
-       
-        <img src="files/amazing_photo/vancouver_03.jpg" alt="vancouver 2024 - 03">
-     
+      <div class="photo-carousel" data-photo-carousel>
+        <button type="button" class="photo-carousel__arrow photo-carousel__arrow--prev" data-i18n-aria-label="photos.carousel.prev" aria-label="Scroll photos left">&#8249;</button>
+        <div class="photo-carousel__viewport" tabindex="0" role="region">
+          <div class="photo-carousel__track">
+            <img src="files/amazing_photo/vancouver_01.jpg" alt="vancouver 2024 - 01" loading="lazy">
+            <img src="files/amazing_photo/vancouver_03.jpg" alt="vancouver 2024 - 03" loading="lazy">
+          </div>
+        </div>
+        <button type="button" class="photo-carousel__arrow photo-carousel__arrow--next" data-i18n-aria-label="photos.carousel.next" aria-label="Scroll photos right">&#8250;</button>
       </div>
-    </div>
+    </section>
 
-
-    <!-- Event: Trip in Toronto | SEP  2024 -->
-    <div class="photo-section">
+    <!-- Event: Toronto | SEP 2024 -->
+    <section id="photo-toronto-2024" class="photo-section">
       <div class="photo-title">Trip in Tronto, CA | SEP 2024</div>
-      <div class="photo-scroll-wrapper">
-        <img src="files/amazing_photo/Tronto_01.jpg" alt="Tronto 2024 - 01">
-        <img src="files/amazing_photo/Tronto_02.jpg" alt="Tronto 2024 - 02">
-        <img src="files/amazing_photo/Tronto_03.jpg" alt="Tronto 2024 - 03">
-        <img src="files/amazing_photo/Tronto_04.jpg" alt="Tronto 2024 - 04">
+      <div class="photo-carousel" data-photo-carousel>
+        <button type="button" class="photo-carousel__arrow photo-carousel__arrow--prev" data-i18n-aria-label="photos.carousel.prev" aria-label="Scroll photos left">&#8249;</button>
+        <div class="photo-carousel__viewport" tabindex="0" role="region">
+          <div class="photo-carousel__track">
+            <img src="files/amazing_photo/Tronto_01.jpg" alt="Tronto 2024 - 01" loading="lazy">
+            <img src="files/amazing_photo/Tronto_02.jpg" alt="Tronto 2024 - 02" loading="lazy">
+            <img src="files/amazing_photo/Tronto_03.jpg" alt="Tronto 2024 - 03" loading="lazy">
+            <img src="files/amazing_photo/Tronto_04.jpg" alt="Tronto 2024 - 04" loading="lazy">
+          </div>
+        </div>
+        <button type="button" class="photo-carousel__arrow photo-carousel__arrow--next" data-i18n-aria-label="photos.carousel.next" aria-label="Scroll photos right">&#8250;</button>
+      </div>
+    </section>
+
+    <!-- Event: RCBU Symposium | SEP 2024 -->
+    <section id="photo-rcbu-2024" class="photo-section">
+      <div class="photo-title">RCBU Biomedical Ultrasound Symposium | September 2024</div>
+      <div class="photo-subtitle">September 2024 | University of Rochester</div>
+      <div class="photo-carousel" data-photo-carousel>
+        <button type="button" class="photo-carousel__arrow photo-carousel__arrow--prev" data-i18n-aria-label="photos.carousel.prev" aria-label="Scroll photos left">&#8249;</button>
+        <div class="photo-carousel__viewport" tabindex="0" role="region">
+          <div class="photo-carousel__track">
+            <img src="files/amazing_photo/rcbu2024_01.jpg" alt="RCBU 2024 - 01" loading="lazy">
+            <img src="files/amazing_photo/rcbu2024_02.jpg" alt="RCBU 2024 - 02" loading="lazy">
+            <img src="files/amazing_photo/rcbu2024_03.jpg" alt="RCBU 2024 - 03" loading="lazy">
+            <img src="files/amazing_photo/rcbu2024_04.jpg" alt="RCBU 2024 - 04" loading="lazy">
+          </div>
+        </div>
+        <button type="button" class="photo-carousel__arrow photo-carousel__arrow--next" data-i18n-aria-label="photos.carousel.next" aria-label="Scroll photos right">&#8250;</button>
+      </div>
+    </section>
+
+    <!-- Event: SPIE BIOS | JAN 2024 -->
+    <section id="photo-spie-2024" class="photo-section">
+      <div class="photo-title">SPIE BIOS | Photons Plus Ultrasound 2024</div>
+      <div class="photo-subtitle">January 27 – February 1, 2024</div>
+      <div class="photo-carousel" data-photo-carousel>
+        <button type="button" class="photo-carousel__arrow photo-carousel__arrow--prev" data-i18n-aria-label="photos.carousel.prev" aria-label="Scroll photos left">&#8249;</button>
+        <div class="photo-carousel__viewport" tabindex="0" role="region">
+          <div class="photo-carousel__track">
+            <img src="files/amazing_photo/spie2024_01.jpg" alt="SPIE 2024 - 01" loading="lazy">
+            <img src="files/amazing_photo/spie2024_02.jpg" alt="SPIE 2024 - 02" loading="lazy">
+          </div>
+        </div>
+        <button type="button" class="photo-carousel__arrow photo-carousel__arrow--next" data-i18n-aria-label="photos.carousel.next" aria-label="Scroll photos right">&#8250;</button>
+      </div>
+    </section>
+
+    <!-- Event: RCBU Symposium | NOV 2023 -->
+    <section id="photo-rcbu-2023" class="photo-section">
+      <div class="photo-title">RCBU Biomedical Ultrasound Symposium | November 2023</div>
+      <div class="photo-subtitle">November 9, 2023 | University of Rochester</div>
+      <div class="photo-carousel" data-photo-carousel>
+        <button type="button" class="photo-carousel__arrow photo-carousel__arrow--prev" data-i18n-aria-label="photos.carousel.prev" aria-label="Scroll photos left">&#8249;</button>
+        <div class="photo-carousel__viewport" tabindex="0" role="region">
+          <div class="photo-carousel__track">
+            <img src="files/amazing_photo/rcbu2023_01.jpg" alt="RCBU 2023 - 01" loading="lazy">
+            <img src="files/amazing_photo/rcbu2023_02.jpg" alt="RCBU 2023 - 02" loading="lazy">
+            <img src="files/amazing_photo/rcbu2023_03.jpg" alt="RCBU 2023 - 03" loading="lazy">
+          </div>
+        </div>
+        <button type="button" class="photo-carousel__arrow photo-carousel__arrow--next" data-i18n-aria-label="photos.carousel.next" aria-label="Scroll photos right">&#8250;</button>
+      </div>
+    </section>
+
+    <!-- Event: NEOMED & Kent State Visit 2022 -->
+    <section id="photo-neomed-2022" class="photo-section">
+      <div class="photo-title">NEOMED &amp; Kent State Visit | June 2022</div>
+      <div class="photo-subtitle">Department of Anatomy and Neurobiology, NEOMED &amp; Kent State University | Ohio, USA</div>
+      <div class="photo-carousel" data-photo-carousel>
+        <button type="button" class="photo-carousel__arrow photo-carousel__arrow--prev" data-i18n-aria-label="photos.carousel.prev" aria-label="Scroll photos left">&#8249;</button>
+        <div class="photo-carousel__viewport" tabindex="0" role="region">
+          <div class="photo-carousel__track">
+            <img src="files/amazing_photo/ohio2022_01.jpg" alt="Ohio Visit 2022 - 01" loading="lazy">
+            <img src="files/amazing_photo/ohio2022_02.jpg" alt="Ohio Visit 2022 - 02" loading="lazy">
+            <img src="files/amazing_photo/ohio2022_03.jpg" alt="Ohio Visit 2022 - 03" loading="lazy">
+          </div>
+        </div>
+        <button type="button" class="photo-carousel__arrow photo-carousel__arrow--next" data-i18n-aria-label="photos.carousel.next" aria-label="Scroll photos right">&#8250;</button>
+      </div>
+    </section>
 
       </div>
     </div>
 
-  
-
-<!-- Event: RCBU Symposium     |  SEP 2024  -->
-<div class="photo-section">
-  <div class="photo-title">RCBU Biomedical Ultrasound Symposium | September 2024</div>
-  <div class="photo-subtitle">September 2024 | University of Rochester</div>
-  <div class="photo-scroll-wrapper">
-    <img src="files/amazing_photo/rcbu2024_01.jpg" alt="RCBU 2024 - 01">
-    <img src="files/amazing_photo/rcbu2024_02.jpg" alt="RCBU 2024 - 02">
-    <img src="files/amazing_photo/rcbu2024_03.jpg" alt="RCBU 2024 - 03">
-    <img src="files/amazing_photo/rcbu2024_04.jpg" alt="RCBU 2024 - 04">
-  </div>
-</div>
-
-
-
-  <!-- Event: SPIE BIOS    |   JAN 2024 -->
-<div class="photo-section">
-  <div class="photo-title">SPIE BIOS | Photons Plus Ultrasound 2024</div>
-  <div class="photo-subtitle">January 27 – February 1, 2024</div>
-  <div class="photo-scroll-wrapper">
-    <img src="files/amazing_photo/spie2024_01.jpg" alt="SPIE 2024 - 01">
-    <img src="files/amazing_photo/spie2024_02.jpg" alt="SPIE 2024 - 02">
-
-
-  </div>
-</div>
-
-<!-- Event: RCBU Symposium |  SEP 2023 -->
-<div class="photo-section">
-  <div class="photo-title">RCBU Biomedical Ultrasound Symposium | November 2023</div>
-  <div class="photo-subtitle">November 9, 2023 | University of Rochester</div>
-  <div class="photo-scroll-wrapper">
-    <img src="files/amazing_photo/rcbu2023_01.jpg" alt="RCBU 2023 - 01">
-    <img src="files/amazing_photo/rcbu2023_02.jpg" alt="RCBU 2023 - 02">
-    <img src="files/amazing_photo/rcbu2023_03.jpg" alt="RCBU 2023 - 03">
-
-  </div>
-</div>
-
-<!-- Event: NEOMED & Kent State Visit 2022 -->
-<div class="photo-section">
-  <div class="photo-title">NEOMED & Kent State Visit | June 2022</div>
-  <div class="photo-subtitle">Department of Anatomy and Neurobiology, NEOMED & Kent State University | Ohio, USA</div>
-  <div class="photo-scroll-wrapper">
-    <img src="files/amazing_photo/ohio2022_01.jpg" alt="Ohio Visit 2022 - 01">
-    <img src="files/amazing_photo/ohio2022_02.jpg" alt="Ohio Visit 2022 - 02">
-    <img src="files/amazing_photo/ohio2022_03.jpg" alt="Ohio Visit 2022 - 03">
-
-  </div>
-</div>
-
-
-
-
-
-
-
-
-  <!-- 🔹 Footer -->
-  <div class="footer">
-    <span data-i18n="photos.footer.copyright">Photos © Yanda Cheng</span> | <span data-i18n="photos.footer.updated">Last updated</span> May 2025
+    <div class="footer">
+      <span data-i18n="photos.footer.copyright">Photos © Yanda Cheng</span> | <span data-i18n="photos.footer.updated">Last updated</span> May 2025
+    </div>
   </div>
 
+  <script src="scripts/i18n.js"></script>
+  <script src="scripts/listing-page.js?v=20260323"></script>
+  <script src="scripts/photos-carousel.js" defer></script>
+  <script src="scripts/nav-island.js" defer></script>
 </body>
 </html>

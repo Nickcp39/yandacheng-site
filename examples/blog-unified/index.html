@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Example · Blog 总览 + 分类时间线</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="shell">
+    <header class="blog-head">
+      <p class="kicker">Example · not production</p>
+      <h1 class="blog-h1">Yanda's Blog</h1>
+      <p class="dek" id="blog-dek">
+        Pick a category below, or stay here for the full timeline—newest first.
+      </p>
+    </header>
+
+    <nav class="blog-nav" aria-label="Categories and topics">
+      <p class="nav-label">Browse</p>
+      <div class="nav-all">
+        <a href="#all" id="nav-all-link">All posts</a>
+      </div>
+      <p class="nav-label">By topic</p>
+      <div class="nav-groups" id="nav-groups"></div>
+    </nav>
+
+    <h2 class="timeline-section-title" id="timeline-title">Timeline · everything (newest first)</h2>
+    <div id="timeline"></div>
+
+    <footer class="foot">
+      <p>
+        这是 <strong>examples/blog-unified</strong> 示意：总页为编辑风（接近样本 A），
+        <code>#all</code> 为全文时间线；<code>#main-…</code> 为某大类下所有子标签；
+        <code>#sub-…</code> 为单一子分类时间线。正式站尚未接入。
+      </p>
+      <p><a href="../../blog-samples/index.html">← 返回 blog-samples 索引</a></p>
+    </footer>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

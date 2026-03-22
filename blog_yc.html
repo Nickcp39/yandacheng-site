@@ -3,44 +3,73 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Yanda's Blog</title>
+  <title data-i18n="blog.title">Yanda's Blog</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;600&family=Inter:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="style_blog.css" />
 </head>
-<body>
+<body class="blog-page">
 
   <!-- 🔹 动态导航栏 -->
   <div id="navbar-placeholder"></div>
   <script>
-    fetch('navbar.html')
+      fetch('navbar.html')
       .then(res => res.text())
       .then(data => {
         document.getElementById('navbar-placeholder').innerHTML = data;
-        // navbar 加载完成后，触发语言按钮事件绑定
         if (window.attachLanguageButtonListeners) {
           window.attachLanguageButtonListeners();
+        }
+        if (typeof window.switchLanguage === 'function' && typeof window.getCurrentLanguage === 'function') {
+          window.switchLanguage(window.getCurrentLanguage());
         }
       });
   </script>
 
-  <!-- 🔸 双栏博客主区域 -->
-  <div class="blog-container" style="display: flex; gap: 40px; align-items: flex-start; flex-wrap: wrap;">
-    
-    <!-- ⬅ 左栏：分类结构 -->
-    <div style="flex: 1; min-width: 320px;">
-      <h1 class="blog-title">📚 <span data-i18n="blog.title">Yanda's Blog</span></h1>
-      <p class="blog-subtitle" data-i18n="blog.subtitle">Browse posts by category</p>
-      <div id="blog-category-list"></div>
+  <div class="blog-container">
+    <header class="blog-page-header">
+      <h1 class="blog-page-header__title" id="blog-editorial-title"><span data-i18n="blog.title">Yanda's Blog</span></h1>
+      <div class="blog-view-toggle" role="tablist" aria-label="Blog sort mode">
+        <button type="button" class="blog-view-toggle__btn is-active" id="blog-view-btn-date" role="tab" aria-selected="true" aria-controls="blog-view-date" data-mode="date" data-i18n="blog.view.date">By date</button>
+        <button type="button" class="blog-view-toggle__btn" id="blog-view-btn-category" role="tab" aria-selected="false" aria-controls="blog-view-category" data-mode="category" data-i18n="blog.view.category">By category</button>
+      </div>
+    </header>
+
+    <!-- 按日期：左齿轮 + 右时间线 -->
+    <div class="blog-view-panel" id="blog-view-date" role="tabpanel" aria-labelledby="blog-view-btn-date">
+      <div class="blog-below-nav">
+        <aside class="blog-left-rail" aria-label="Category filter">
+          <nav class="blog-date-filter-island blog-mini-island" id="blog-date-filter-island" aria-labelledby="blog-date-filter-heading">
+            <p class="blog-date-filter-island__title" id="blog-date-filter-heading" data-i18n="projects.jump.label">Jump</p>
+            <p class="blog-date-filter-island__hint" data-i18n="projects.jump.hint">Grouped by theme — tap to scroll.</p>
+            <div id="blog-date-filter" class="blog-date-filter-island__list" role="navigation" aria-label="Blog categories"></div>
+          </nav>
+        </aside>
+
+        <div class="blog-main-column">
+          <section class="blog-panel blog-panel--timeline" aria-labelledby="blog-timeline-heading">
+            <header class="blog-panel__head">
+              <h2 class="blog-panel__title" id="blog-timeline-heading" data-i18n="blog.timeline">Sorted by date</h2>
+            </header>
+            <div id="blog-timeline-list" class="blog-timeline-root"></div>
+          </section>
+        </div>
+      </div>
     </div>
 
-    <!-- ➡ 右栏：时间线结构 -->
-    <div style="flex: 1; min-width: 320px;">
-      <h2>🕒 <span data-i18n="blog.timeline">Sorted by date</span></h2>
-      <div id="blog-timeline-list"></div>
+    <!-- 按分类：顶栏一排点选分类 + 下方文章列表 -->
+    <div class="blog-view-panel" id="blog-view-category" role="tabpanel" aria-labelledby="blog-view-btn-category" hidden>
+      <section class="blog-panel blog-panel--category-full" aria-labelledby="blog-category-panel-heading">
+        <header class="blog-panel__head blog-panel__head--compact">
+          <h2 class="blog-panel__title" id="blog-category-panel-heading" data-i18n="blog.categories_heading">By category</h2>
+        </header>
+        <div class="blog-category-chips-wrap">
+          <div class="blog-category-chips" id="blog-category-chips" role="tablist" aria-label="Categories"></div>
+        </div>
+        <div id="blog-category-feed" class="blog-category-feed blog-timeline-root"></div>
+      </section>
     </div>
-
   </div>
 
   <!-- 🔻 Footer -->
@@ -49,10 +78,11 @@
   </div>
 
   <!-- 🔧 渲染脚本 -->
-  <script src="scripts/render_blog_dual.js?v=20260103"></script>
+  <script src="scripts/render_blog_dual.js?v=20260323"></script>
 
   <!-- 🌐 i18n 翻译脚本 -->
   <script src="scripts/i18n.js"></script>
+  <script src="scripts/nav-island.js" defer></script>
 
 </body>
 </html>

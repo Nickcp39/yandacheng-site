@@ -7,60 +7,167 @@
 
   <title>Experience | Yanda Cheng</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;600&family=Inter:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style_blog.css">
 </head>
-<body>
+<body class="blog-page listing-page experience-page" data-listing-page="experience">
 
 <div id="navbar-placeholder"></div>
 <script>
-  fetch('navbar.html')
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById('navbar-placeholder').innerHTML = data;
-      // navbar 加载完成后，触发语言按钮事件绑定
-      if (window.attachLanguageButtonListeners) {
-        window.attachLanguageButtonListeners();
-      }
-    });
+    fetch('navbar.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('navbar-placeholder').innerHTML = data;
+        if (window.attachLanguageButtonListeners) {
+          window.attachLanguageButtonListeners();
+        }
+        if (typeof window.switchLanguage === 'function' && typeof window.getCurrentLanguage === 'function') {
+          window.switchLanguage(window.getCurrentLanguage());
+        }
+      });
 </script>
 
-<!-- 🌐 i18n 翻译脚本 -->
-<script src="scripts/i18n.js"></script>
+<div class="blog-container">
+  <header class="blog-page-header">
+    <h1 class="blog-page-header__title" id="experience-heading"><span data-i18n="experience.title">Experience</span></h1>
+    <div class="blog-view-toggle" role="tablist" aria-label="Experience view mode">
+      <button type="button" class="blog-view-toggle__btn is-active" id="experience-view-btn-date" role="tab" aria-selected="true" aria-controls="experience-view-date" data-mode="date" data-i18n="blog.view.date">By date</button>
+      <button type="button" class="blog-view-toggle__btn" id="experience-view-btn-category" role="tab" aria-selected="false" aria-controls="experience-view-category" data-mode="category" data-i18n="blog.view.category">By category</button>
+    </div>
+  </header>
 
+  <div class="blog-view-panel" id="experience-view-date" role="tabpanel" aria-labelledby="experience-view-btn-date">
+    <div class="blog-below-nav">
+      <aside class="blog-left-rail" aria-label="Experience filters">
+        <nav class="blog-date-filter-island blog-mini-island" aria-labelledby="experience-jump-heading">
+          <p class="blog-date-filter-island__title" id="experience-jump-heading" data-i18n="projects.jump.label">Jump</p>
+          <p class="blog-date-filter-island__hint" data-i18n="projects.jump.hint">Grouped by theme — tap to scroll.</p>
+          <div id="experience-filter-rail" class="listing-jump-accordion" role="navigation" aria-label="Experience jump">
+            <button type="button" class="blog-date-filter-island__btn listing-jump-all" data-category="all" data-i18n="blog.category.all">All</button>
+            <details class="listing-jump-group" data-category="research">
+              <summary class="listing-jump-group__summary" data-i18n="experience.filter.research">Research &amp; academic</summary>
+              <nav class="listing-jump-group__links">
+                <a href="experience_yc.html#exp-ub" data-filter-category="research">UB PhD</a>
+                <a href="experience_yc.html#exp-roswell" data-filter-category="research">Roswell Park</a>
+                <a href="experience_yc.html#exp-cornell" data-filter-category="research">Cornell</a>
+                <a href="experience_yc.html#exp-uky" data-filter-category="research">Kentucky</a>
+              </nav>
+            </details>
+            <details class="listing-jump-group" data-category="industry">
+              <summary class="listing-jump-group__summary" data-i18n="experience.filter.industry">Industry &amp; startups</summary>
+              <nav class="listing-jump-group__links">
+                <a href="experience_yc.html#exp-sglang" data-filter-category="industry">SGLang</a>
+                <a href="experience_yc.html#exp-hydrosense" data-filter-category="industry">HydroSense Tech</a>
+                <a href="experience_yc.html#exp-seno" data-filter-category="industry">Seno Medical</a>
+                <a href="experience_yc.html#exp-cas" data-filter-category="industry">CAS</a>
+              </nav>
+            </details>
+            <details class="listing-jump-group" data-category="teaching">
+              <summary class="listing-jump-group__summary" data-i18n="experience.filter.teaching">Teaching</summary>
+              <nav class="listing-jump-group__links">
+                <a href="experience_yc.html#exp-ta503" data-filter-category="teaching">BME 503 TA</a>
+                <a href="experience_yc.html#exp-ta302" data-filter-category="teaching">BME 302 TA</a>
+              </nav>
+            </details>
+          </div>
+        </nav>
+        <div id="experience-filter-chips-source" hidden aria-hidden="true">
+          <button type="button" class="blog-date-filter-island__btn" data-category="all" data-i18n="blog.category.all">All</button>
+          <button type="button" class="blog-date-filter-island__btn" data-category="research" data-i18n="experience.filter.research">Research &amp; academic</button>
+          <button type="button" class="blog-date-filter-island__btn" data-category="industry" data-i18n="experience.filter.industry">Industry &amp; startups</button>
+          <button type="button" class="blog-date-filter-island__btn" data-category="teaching" data-i18n="experience.filter.teaching">Teaching</button>
+        </div>
+      </aside>
 
-<div class="container">
-  <h2 data-i18n="experience.title">Experience</h2>
+      <div class="blog-main-column">
+        <section class="blog-panel blog-panel--timeline" aria-labelledby="experience-timeline-heading">
+          <header class="blog-panel__head">
+            <h2 class="blog-panel__title" id="experience-timeline-heading" data-i18n="experience.timeline.title">Sorted by date</h2>
+          </header>
+          <div id="experience-timeline-list" class="blog-timeline-root">
 
-  <!-- Present -->
-  <div class="experience-card">
-    <img src="files/experience/ub_research.png" alt="UB Research">
+  <!-- SGLang -->
+  <div id="exp-sglang" class="experience-card" data-category="industry">
+    <img src="files/experience/sglang_experience.png" alt="Open-source ML">
     <div class="experience-content">
-      <h3 data-i18n="experience.ub.title">Research Assistant</h3>
-      <p><strong data-i18n="experience.ub.location">University at Buffalo</strong> – Buffalo, NY</p>
-      <p><em data-i18n="experience.ub.period">Sep 2021 – Present</em></p>
+      <h3 data-i18n="experience.sglang.title">Open-Source Contributor (SGLang)</h3>
+      <p><strong data-i18n="experience.sglang.location">SGLang · Mountain View, CA (remote)</strong></p>
+      <p><em data-i18n="experience.sglang.period">Aug 2025 – Feb 2026</em></p>
       <ul>
-        <li data-i18n="experience.ub.desc1">PhD research on photoacoustic imaging and AI-assisted diagnostics.</li>
-        <li data-i18n="experience.ub.desc2">Published in IEEE TUFFC, Optica, BOE; led NIH-funded projects.</li>
+        <li data-i18n="experience.sglang.desc1"></li>
+        <li data-i18n="experience.sglang.desc2"></li>
+        <li data-i18n="experience.sglang.desc3"></li>
+        <li data-i18n="experience.sglang.desc4"></li>
       </ul>
     </div>
   </div>
 
-  <div class="experience-card">
-    <img src="files/experience/sensor_company.png" alt="Startup">
+  <!-- HydroSense Tech -->
+  <div id="exp-hydrosense" class="experience-card" data-category="industry">
+    <img src="files/experience/sensor_company.png" alt="HydroSense Tech">
     <div class="experience-content">
       <h3 data-i18n="experience.startup.title">Co-founder & Core Engineer</h3>
-      <p><strong data-i18n="experience.startup.location">High-Precision Sensor Company</strong> – Beijing / Buffalo</p>
-      <p><em data-i18n="experience.startup.period">2015 – Present (Part-time)</em></p>
+      <p><strong data-i18n="experience.startup.location">HydroSense Tech — Beijing / Singapore</strong></p>
+      <p><em data-i18n="experience.startup.period">2015 – Present (part-time)</em></p>
       <ul>
-        <li data-i18n="experience.startup.desc1">Designed high-precision sensors for weather and medical applications.</li>
-        <li data-i18n="experience.startup.desc2">Built firmware (C, Python, GPT), expanded business to 5+ countries.</li>
+        <li data-i18n="experience.startup.desc1"></li>
+        <li data-i18n="experience.startup.desc2"></li>
+        <li data-i18n="experience.startup.desc3"></li>
+        <li data-i18n="experience.startup.desc4"></li>
+        <li data-i18n="experience.startup.desc5"></li>
       </ul>
     </div>
   </div>
 
+  <!-- UB PhD -->
+  <div id="exp-ub" class="experience-card" data-category="research">
+    <img src="files/experience/ub_research.png" alt="UB Research">
+    <div class="experience-content">
+      <h3 data-i18n="experience.ub.title">PhD Research / Research Assistant</h3>
+      <p><strong data-i18n="experience.ub.location">University at Buffalo (SUNY) — Buffalo, NY</strong></p>
+      <p><em data-i18n="experience.ub.period">Sep 2021 – Present</em></p>
+      <ul>
+        <li data-i18n="experience.ub.desc1"></li>
+        <li data-i18n="experience.ub.desc2"></li>
+        <li data-i18n="experience.ub.desc3"></li>
+      </ul>
+    </div>
+  </div>
 
-  <div class="experience-card">
+  <!-- Seno Medical -->
+  <div id="exp-seno" class="experience-card" data-category="industry">
+    <img src="files/experience/seno_experience.png" alt="Seno Medical">
+    <div class="experience-content">
+      <h3 data-i18n="experience.seno.title">Applied ML Engineer Intern</h3>
+      <p><strong data-i18n="experience.seno.location">Seno Medical — New York, NY</strong></p>
+      <p><em data-i18n="experience.seno.period">May 2024 – Aug 2024</em></p>
+      <ul>
+        <li data-i18n="experience.seno.desc1"></li>
+        <li data-i18n="experience.seno.desc2"></li>
+        <li data-i18n="experience.seno.desc3"></li>
+        <li data-i18n="experience.seno.desc4"></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Roswell Park -->
+  <div id="exp-roswell" class="experience-card" data-category="research">
+    <img src="files/experience/roswell_experience.png" alt="Roswell Park">
+    <div class="experience-content">
+      <h3 data-i18n="experience.roswell.title">Research Scientist</h3>
+      <p><strong data-i18n="experience.roswell.location">Roswell Park Comprehensive Cancer Center — Buffalo, NY</strong></p>
+      <p><em data-i18n="experience.roswell.period">May 2023 – Aug 2023</em></p>
+      <ul>
+        <li data-i18n="experience.roswell.desc1"></li>
+        <li data-i18n="experience.roswell.desc2"></li>
+        <li data-i18n="experience.roswell.desc3"></li>
+        <li data-i18n="experience.roswell.desc4"></li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="exp-ta503" class="experience-card" data-category="teaching">
     <img src="files/experience/ta_bme503.gif" alt="TA 503">
     <div class="experience-content">
       <h3 data-i18n="experience.ta503.title">Teaching Assistant – BME 503: Image Processing</h3>
@@ -72,7 +179,7 @@
     </div>
   </div>
 
-  <div class="experience-card">
+  <div id="exp-ta302" class="experience-card" data-category="teaching">
     <img src="files/experience/ta_bme302.gif" alt="TA 302">
     <div class="experience-content">
       <h3 data-i18n="experience.ta302.title">Teaching Assistant – BME 302: Medical Devices</h3>
@@ -84,51 +191,71 @@
     </div>
   </div>
 
-  <div class="experience-card">
+  <div id="exp-cornell" class="experience-card" data-category="research">
     <img src="files/experience/cornell02.png" alt="Cornell">
     <div class="experience-content">
       <h3 data-i18n="experience.cornell.title">Research Assistant</h3>
-      <p><strong data-i18n="experience.cornell.location">Cornell University</strong> – Ithaca, NY</p>
+      <p><strong data-i18n="experience.cornell.location">Cornell University — Ithaca, NY</strong></p>
       <p><em data-i18n="experience.cornell.period">Sep 2020 – Jun 2021</em></p>
       <ul>
-        <li data-i18n="experience.cornell.desc1">Developed musculoskeletal protocols using multiphoton microscopy.</li>
-        <li data-i18n="experience.cornell.desc2">Analyzed Ca2+ signals from osteocytes under mechanical stress.</li>
+        <li data-i18n="experience.cornell.desc1"></li>
+        <li data-i18n="experience.cornell.desc2"></li>
       </ul>
     </div>
   </div>
 
-  <div class="experience-card">
+  <div id="exp-cas" class="experience-card" data-category="industry">
     <img src="files/experience/cas.png" alt="CAS">
     <div class="experience-content">
       <h3 data-i18n="experience.cas.title">Research & Development Engineer</h3>
-      <p><strong data-i18n="experience.cas.location">Chinese Academy of Sciences</strong> – Beijing</p>
+      <p><strong data-i18n="experience.cas.location">Chinese Academy of Sciences — Beijing</strong></p>
       <p><em data-i18n="experience.cas.period">May 2018 – Sep 2020</em></p>
       <ul>
-        <li data-i18n="experience.cas.desc1">Led development of rocket signal communication systems.</li>
-        <li data-i18n="experience.cas.desc2">Wrote embedded software for real-time telemetry.</li>
+        <li data-i18n="experience.cas.desc1"></li>
+        <li data-i18n="experience.cas.desc2"></li>
       </ul>
     </div>
   </div>
 
-  <div class="experience-card">
+  <div id="exp-uky" class="experience-card" data-category="research">
     <img src="files/experience/kentucky.png" alt="UKY">
     <div class="experience-content">
       <h3 data-i18n="experience.uky.title">Undergraduate Research Assistant</h3>
-      <p><strong data-i18n="experience.uky.location">University of Kentucky</strong> – Lexington, KY</p>
+      <p><strong data-i18n="experience.uky.location">University of Kentucky — Lexington, KY</strong></p>
       <p><em data-i18n="experience.uky.period">Jan 2018 – Jan 2019</em></p>
       <ul>
-        <li data-i18n="experience.uky.desc1">Developed GUIs and image-processing pipelines using C# and LabView.</li>
-        <li data-i18n="experience.uky.desc2">Enhanced neonatal device interfaces for clinical reliability.</li>
+        <li data-i18n="experience.uky.desc1"></li>
+        <li data-i18n="experience.uky.desc2"></li>
       </ul>
     </div>
   </div>
 
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div class="blog-view-panel" id="experience-view-category" role="tabpanel" aria-labelledby="experience-view-btn-category" hidden>
+    <section class="blog-panel blog-panel--category-full" aria-labelledby="experience-category-heading">
+      <header class="blog-panel__head blog-panel__head--compact">
+        <h2 class="blog-panel__title" id="experience-category-heading" data-i18n="blog.categories_heading">By category</h2>
+      </header>
+      <div class="blog-category-chips-wrap">
+        <div class="blog-category-chips" id="experience-filter-chips" role="tablist" aria-label="Categories"></div>
+      </div>
+      <div id="experience-category-feed" class="blog-category-feed blog-timeline-root"></div>
+    </section>
+  </div>
 </div>
 
-<!-- 🔹 Footer -->
 <div class="footer">
-  <span data-i18n="experience.footer.copyright">Experience © Yanda Cheng</span> | <span data-i18n="experience.footer.updated">Last updated</span> May 2025
+  <span data-i18n="experience.footer.copyright">Experience © Yanda Cheng</span> | <span data-i18n="experience.footer.updated">Last updated</span> March 2026
 </div>
+
+<script src="scripts/i18n.js"></script>
+<script src="scripts/listing-page.js?v=20260323"></script>
+<script src="scripts/nav-island.js" defer></script>
 
 </body>
 </html>

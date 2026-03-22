@@ -1,12 +1,48 @@
 /* 🔹 General Layout */
 /* Note: CSS variables (--color-*, --radius-*, etc.) are defined in style.css */
 /* Blog pages must load style.css before this file */
+/* IMPORTANT: do not set padding shorthand on body — it clears style.css padding-top for the floating nav */
 body {
   font-family: var(--font-primary);
   margin: 0;
-  padding: 0;
   background: var(--color-bg);
   color: var(--color-text);
+}
+
+/* Editorial blog index: sample-a–style typography (Fraunces + Source Sans 3) */
+.blog-page {
+  --font-blog-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-blog-body: "Source Sans 3", var(--font-primary);
+  font-family: var(--font-blog-body);
+}
+
+/* 左侧浮岛：仅标题（短条，不堆 kicker/dek） */
+.blog-rail-title-island {
+  margin: 0;
+  padding: 12px 16px;
+}
+
+.blog-rail-title {
+  font-family: var(--font-blog-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--color-text);
+  font-variation-settings: "SOFT" 40;
+}
+
+/* 兼容旧类名（若其它页面仍引用） */
+.blog-editorial-title {
+  font-family: var(--font-blog-display);
+  font-size: clamp(1.85rem, 4.2vw, 2.65rem);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin: 0 0 12px;
+  color: var(--color-text);
+  font-variation-settings: "SOFT" 40;
 }
 
 a {
@@ -17,96 +53,462 @@ a:hover {
   color: var(--color-accent-hover);
 }
 
-/* 🔹 Navbar */
-.navbar {
-  background: #1d1d1f;
-  color: white;
-  padding: 10px 0;
-}
-.nav-container {
-  max-width: 1080px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-}
-.nav-left a,
-.nav-right a {
-  color: white;
-  margin-left: 20px;
-  font-weight: 500;
-}
-.nav-right a.active {
-  text-decoration: underline;
-}
-
-/* 🔹 Language Switcher */
-.lang-switcher {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  margin-left: 15px;
-}
-.lang-btn {
-  background: transparent;
-  border: 1px solid white;
-  color: white;
-  padding: 4px 10px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 500;
-  border-radius: 4px;
-  transition: all var(--transition-fast);
-}
-.lang-btn:hover {
-  background-color: var(--color-accent);
-  border-color: var(--color-accent);
-}
-.lang-btn.active {
-  background-color: var(--color-accent);
-  border-color: var(--color-accent);
-}
-.lang-switcher span {
-  color: white;
-  margin: 0 2px;
-}
+/* 🔹 Navbar: floating island styles live in style.css (Phase 2) */
 
 /* 🔹 Blog Container */
 .blog-container {
   max-width: 1400px !important;
-  margin: 50px auto;
+  margin: 24px auto 50px;
   padding: 0 40px;
   width: 100%;
   box-sizing: border-box;
 }
 
-/* 🔹 Main Content Area */
+/* 页顶：标题 + 单选「按日期 | 按分类」（二选一，不叠两套） */
+.blog-page-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 24px;
+  margin-bottom: 24px;
+}
+
+.blog-page-header__title {
+  font-family: var(--font-blog-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--color-text);
+}
+
+.blog-view-toggle {
+  display: inline-flex;
+  padding: 4px;
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-sm);
+  gap: 2px;
+}
+
+.blog-view-toggle__btn {
+  font-family: var(--font-primary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 8px 18px;
+  border: none;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.blog-view-toggle__btn:hover {
+  color: var(--color-text);
+}
+
+.blog-view-toggle__btn.is-active {
+  background: var(--color-bg-elevated);
+  color: var(--color-text);
+  box-shadow: var(--shadow-sm);
+}
+
+/* 宽屏：左侧浮岛承担筛选，隐藏顶栏「按日期 | 按分类」切换 */
+@media (min-width: 960px) {
+  .blog-view-toggle {
+    display: none !important;
+  }
+}
+
+.blog-view-panel[hidden] {
+  display: none !important;
+}
+
+/* 🔹 Blog index: 左侧小浮岛（页眉 + 各分类块）+ 右侧主栏时间线，避免与顶部主导航「横条对横条」 */
+.blog-below-nav {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.blog-left-rail {
+  flex: 0 1 260px;
+  width: 260px;
+  max-width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media (min-width: 960px) {
+  .blog-left-rail {
+    position: sticky;
+    top: 96px;
+    align-self: flex-start;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* 窄屏：左栏浮岛隐藏，用顶栏切换 + 「按分类」里的 chips 筛文章（与桌面共用 blogDateFilter） */
+@media (max-width: 959px) {
+  .blog-left-rail {
+    display: none !important;
+  }
+}
+
+.blog-main-column {
+  flex: 1 1 400px;
+  min-width: 0;
+}
+
+/* 左侧小块浮岛共用皮肤（与主导航浮岛错开：只在左栏出现） */
+.blog-mini-island {
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  box-sizing: border-box;
+}
+
+/* 左侧浮岛：按日期筛选（按钮列表，无滚轮） */
+.blog-date-filter-island {
+  padding: 14px 0 12px;
+}
+
+.blog-date-filter-island__title {
+  margin: 0 14px 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.blog-date-filter-island__hint {
+  margin: 0 14px 12px;
+  font-size: 0.65rem;
+  line-height: 1.35;
+  color: var(--color-text-tertiary);
+  letter-spacing: 0.02em;
+}
+
+.blog-date-filter-island__list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0 14px;
+}
+
+.blog-date-filter-island__btn {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 9px 10px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-align: left;
+  color: var(--color-text-secondary);
+  background: var(--color-bg);
+  border: 1px solid var(--palette-hairline);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.blog-date-filter-island__btn:hover {
+  background: var(--color-bg-elevated);
+  border-color: var(--color-border-subtle);
+  color: var(--color-text);
+}
+
+.blog-date-filter-island__btn.is-active {
+  background: var(--color-bg-elevated);
+  border-color: var(--palette-hairline);
+  color: var(--color-text);
+  box-shadow: var(--shadow-sm);
+}
+
+.blog-timeline-item--highlight {
+  transition: box-shadow 0.35s ease;
+  box-shadow: inset 0 0 0 2px var(--palette-ios-blue-muted);
+  border-radius: var(--radius-md);
+}
+
+.blog-panel {
+  width: 100%;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 28px 28px 32px;
+  box-sizing: border-box;
+}
+
+.blog-panel__head {
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.blog-panel__title {
+  margin: 0;
+  font-size: 1.35em;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+.blog-title {
+  font-size: 2em;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  margin: 0 0 8px;
+  color: var(--color-text);
+}
+
+.blog-subtitle {
+  font-size: 0.98em;
+  color: var(--color-text-secondary);
+  margin: 0;
+  line-height: 1.45;
+}
+
+/* Category column: nested sections from render_blog_dual.js — 每大类左侧独立小浮岛 */
+.blog-category-root {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.blog-category-section {
+  margin: 0;
+}
+
+.blog-left-rail .blog-category-section,
+.blog-panel--category-full .blog-category-section {
+  padding: 20px 18px 22px;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  box-sizing: border-box;
+}
+
+.blog-panel--category-full {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.blog-panel__head--compact {
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+}
+
+/* 按分类视图：顶栏一排 pill，点击即筛 */
+.blog-category-chips-wrap {
+  margin-bottom: 20px;
+  padding: 0 2px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.blog-category-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
+  min-height: 40px;
+}
+
+.blog-category-chip {
+  flex: 0 0 auto;
+  font-family: var(--font-primary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border-subtle);
+  background: var(--color-bg-alt);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.blog-category-chip:hover {
+  color: var(--color-text);
+  border-color: var(--palette-apple-gray-300);
+}
+
+.blog-category-chip.is-active {
+  background: var(--color-bg-elevated);
+  color: var(--color-text);
+  border-color: var(--palette-hairline);
+  box-shadow: var(--shadow-sm);
+}
+
+.blog-category-feed {
+  padding-top: 4px;
+}
+
+.blog-category-section__title {
+  font-size: 1.12em;
+  font-weight: 600;
+  margin: 0 0 16px;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+}
+
+.blog-category-block {
+  margin-bottom: 20px;
+}
+
+.blog-category-block:last-child {
+  margin-bottom: 0;
+}
+
+.blog-category-block__title {
+  font-size: 0.95em;
+  font-weight: 600;
+  margin: 0 0 10px;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.blog-post-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Category rows + timeline: shared editorial pattern (sample-a) */
+.blog-category-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.blog-category-row:first-child {
+  padding-top: 0;
+}
+
+.blog-category-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.blog-timeline-meta {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--color-text-secondary);
+}
+
+.blog-timeline-meta time {
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.blog-timeline-headline {
+  font-family: var(--font-blog-display, Georgia, serif);
+  font-size: 1.32rem;
+  font-weight: 600;
+  line-height: 1.22;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.blog-timeline-headline--compact {
+  font-size: 1.05rem;
+  line-height: 1.28;
+}
+
+.blog-timeline-headline__link {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition:
+    border-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.blog-timeline-headline__link:hover {
+  border-bottom-color: var(--color-accent);
+}
+
+.blog-timeline-excerpt {
+  margin: 0;
+  font-size: 0.96rem;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+}
+
+.blog-timeline-tag {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-top: 4px;
+}
+
+/* Timeline column */
+.blog-timeline-root {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.blog-timeline-item {
+  margin: 0;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.blog-timeline-item:first-child {
+  padding-top: 0;
+}
+
+.blog-timeline-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* 🔹 Main Content Area (article pages with <main>) */
 .blog-container main {
   max-width: none !important;
   flex: 1;
   min-width: 0;
 }
 
-.blog-title {
-  font-size: 2.2em;
-  margin-bottom: 10px;
-  color: var(--color-text);
-}
-.blog-subtitle {
-  font-size: 1em;
-  color: var(--color-text-secondary);
-  margin-bottom: 30px;
-}
-
-/* 🔸 Blog Post List */
+/* 🔸 Blog Post List (legacy article index pattern) */
 .post-list {
   display: flex;
   flex-direction: column;
   gap: 30px;
 }
 .post-item {
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border-subtle);
   padding-bottom: 15px;
 }
 .post-item h3 {
@@ -119,45 +521,31 @@ a:hover {
   margin-top: 5px;
 }
 
-/* 🔻 Footer */
+/* 🔻 Footer — align with main site Tesla ink strip */
 .footer {
-  margin-top: 60px;
-  padding: 20px;
+  margin-top: 48px;
+  padding: 14px 20px;
   text-align: center;
-  font-size: 0.9em;
-  background-color: var(--color-bg-alt);
-  color: var(--color-text-secondary);
+  font-size: 12px;
+  background-color: var(--color-footer-bar);
+  color: var(--color-text-on-dark);
 }
 
 /* === Responsive Design for Blog Pages === */
 @media (max-width: 768px) {
-  /* Navbar adjustments */
-  .navbar {
-    padding: 8px 0;
-  }
-
-  .nav-container {
+  .blog-page-header {
     flex-direction: column;
-    align-items: flex-start;
-    padding: 10px 15px;
-    gap: 10px;
+    align-items: stretch;
   }
 
-  .nav-left,
-  .nav-right {
+  .blog-view-toggle {
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    align-items: center;
+    justify-content: stretch;
   }
 
-  .nav-left a,
-  .nav-right a {
-    margin: 0;
-    font-size: 13px;
-    padding: 6px 10px;
-    white-space: nowrap;
+  .blog-view-toggle__btn {
+    flex: 1;
+    text-align: center;
   }
 
   /* Blog container adjustments */
@@ -167,13 +555,27 @@ a:hover {
   }
 
   /* Blog post layout - stack vertically on mobile */
-  .blog-container[style*="display: flex"] {
+  .blog-container[style*="display: flex"],
+  .blog-below-nav {
     flex-direction: column !important;
     gap: 20px !important;
   }
 
-  /* Sidebar adjustments */
-  .blog-container aside {
+  .blog-left-rail {
+    position: static !important;
+    max-height: none !important;
+    overflow: visible !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .blog-panel {
+    min-width: 0 !important;
+    padding: 22px 18px 26px !important;
+  }
+
+  /* Sidebar adjustments（博文页侧栏；排除博客首页左侧浮岛栏） */
+  .blog-container aside:not(.blog-left-rail) {
     flex: 1 1 100% !important;
     width: 100% !important;
     max-width: 100% !important;
@@ -184,14 +586,14 @@ a:hover {
   }
 
   /* Left sidebar specific */
-  .blog-container aside:first-of-type {
+  .blog-container aside:first-of-type:not(.blog-left-rail) {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
     align-items: flex-start;
   }
 
-  .blog-container aside:first-of-type p {
+  .blog-container aside:first-of-type:not(.blog-left-rail) p {
     margin: 0;
     flex: 1 1 auto;
     min-width: 120px;
@@ -236,6 +638,10 @@ a:hover {
 
   .blog-subtitle {
     font-size: 0.9em !important;
+  }
+
+  .blog-rail-title {
+    font-size: 1.1rem !important;
   }
 
   /* Translate control adjustments */
@@ -289,12 +695,6 @@ a:hover {
 
 /* Additional adjustments for very small screens */
 @media (max-width: 480px) {
-  .nav-left a,
-  .nav-right a {
-    font-size: 12px;
-    padding: 5px 8px;
-  }
-
   .blog-container {
     padding: 0 10px !important;
     margin: 15px auto !important;
@@ -326,6 +726,10 @@ a:hover {
     font-size: 1.5em !important;
   }
 
+  .blog-rail-title {
+    font-size: 1.05rem !important;
+  }
+
   /* Blockquote adjustments */
   .blog-container main blockquote {
     margin: 15px 0;
@@ -339,5 +743,382 @@ a:hover {
   .blog-container main code {
     font-size: 0.85em;
     overflow-x: auto;
+  }
+}
+
+/* === Listing pages (Projects / Experience / Publications) — blog shell + left rail === */
+body.listing-page.projects-page,
+body.listing-page.photos-page,
+body.listing-page.experience-page,
+body.listing-page.publications-page {
+  padding-top: 88px !important; /* override body.projects-page tray padding from style.css */
+  scroll-padding-top: 96px;
+}
+
+html:has(body.listing-page.projects-page),
+html:has(body.listing-page.photos-page),
+html:has(body.listing-page.experience-page),
+html:has(body.listing-page.publications-page) {
+  scroll-padding-top: 96px;
+}
+
+.listing-page .listing-jump-links {
+  padding: 0 14px 12px;
+  border-bottom: 1px solid var(--palette-hairline);
+  margin-bottom: 10px;
+}
+
+.listing-page .listing-jump-links__title {
+  margin: 0 0 8px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+
+.listing-page .listing-jump-links nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.listing-page .listing-jump-links a {
+  font-size: 0.72rem;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  padding: 4px 0;
+  line-height: 1.3;
+}
+
+.listing-page .listing-jump-links a:hover {
+  color: var(--color-accent);
+}
+
+/* Projects: jump-only — three theme groups (padding lives on .listing-jump-accordion when combined) */
+.listing-page .listing-jump-links--grouped:not(.listing-jump-accordion) {
+  padding: 0 14px 12px;
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.listing-page .listing-jump-group {
+  margin-bottom: 14px;
+}
+
+.listing-page .listing-jump-group:last-child {
+  margin-bottom: 0;
+}
+
+.listing-page .listing-jump-group__title {
+  margin: 0 0 6px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.listing-page .listing-jump-group nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-left: 2px;
+}
+
+/* Collapsible jump accordion (Projects / Experience / Blog / Photos “All”) */
+.listing-jump-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0 14px 12px;
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.listing-jump-accordion > .listing-jump-all {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.listing-jump-all-link {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 12px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--color-text);
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+  transition:
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.listing-jump-all-link:hover {
+  color: var(--color-accent);
+  border-color: var(--color-border);
+}
+
+details.listing-jump-group {
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-alt);
+  overflow: hidden;
+}
+
+details.listing-jump-group:last-child {
+  margin-bottom: 0;
+}
+
+details.listing-jump-group.is-active {
+  border-color: var(--color-accent);
+}
+
+summary.listing-jump-group__summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 8px 28px 8px 12px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  position: relative;
+  user-select: none;
+}
+
+summary.listing-jump-group__summary::-webkit-details-marker {
+  display: none;
+}
+
+summary.listing-jump-group__summary::after {
+  content: '\203A';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform var(--transition-fast);
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--color-text-tertiary);
+}
+
+details.listing-jump-group[open] summary.listing-jump-group__summary::after {
+  transform: translateY(-50%) rotate(90deg);
+}
+
+.listing-jump-group__links {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 10px 10px 14px;
+  border-top: 1px solid var(--palette-hairline);
+}
+
+.listing-jump-group__links a {
+  font-size: 0.72rem;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  padding: 4px 0;
+  line-height: 1.3;
+}
+
+.listing-jump-group__links a:hover {
+  color: var(--color-accent);
+}
+
+.listing-jump-links--flat {
+  padding-top: 8px;
+  margin-top: 4px;
+  border-top: 1px solid var(--palette-hairline);
+}
+
+/* Narrow screens normally hide left rail; Projects is jump-only — keep rail visible full-width */
+@media (max-width: 959px) {
+  body.listing-page.projects-page .blog-left-rail,
+  body.listing-page.photos-page .blog-left-rail {
+    display: flex !important;
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  body.listing-page.projects-page .blog-below-nav,
+  body.listing-page.photos-page .blog-below-nav {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+/* === Photos page — horizontal “prayer wheel” strips (no ugly scrollbar) === */
+.listing-page.photos-page .photo-section {
+  margin-bottom: 40px;
+  scroll-margin-top: 96px;
+}
+
+.listing-page.photos-page .photo-title {
+  font-family: var(--font-blog-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin: 0 0 6px;
+  color: var(--color-text);
+}
+
+.listing-page.photos-page .photo-subtitle {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  margin: 0 0 14px;
+  line-height: 1.45;
+}
+
+.listing-page.photos-page .photo-carousel {
+  display: flex;
+  align-items: stretch;
+  gap: 6px;
+  width: 100%;
+  min-width: 0;
+}
+
+.listing-page.photos-page .photo-carousel__arrow {
+  flex: 0 0 auto;
+  align-self: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-full);
+  background: var(--color-bg-elevated);
+  color: var(--color-text-secondary);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    opacity var(--transition-fast);
+}
+
+.listing-page.photos-page .photo-carousel__arrow:hover:not(:disabled) {
+  color: var(--color-accent);
+  border-color: var(--color-border);
+}
+
+.listing-page.photos-page .photo-carousel__arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.listing-page.photos-page .photo-carousel__viewport {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  cursor: grab;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-subtle);
+  background: var(--color-bg-alt);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.listing-page.photos-page .photo-carousel__viewport::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.listing-page.photos-page .photo-carousel__viewport.is-dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.listing-page.photos-page .photo-carousel__viewport.is-dragging img {
+  pointer-events: none;
+}
+
+.listing-page.photos-page .photo-carousel__track {
+  display: inline-flex;
+  padding: 12px 14px;
+  gap: 12px;
+  align-items: center;
+  min-height: 200px;
+}
+
+.listing-page.photos-page .photo-carousel__track img {
+  flex: 0 0 auto;
+  max-height: 200px;
+  width: auto;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border-subtle);
+  box-shadow: var(--shadow-sm);
+  vertical-align: middle;
+}
+
+/* Publications: cards inside blog panel (replaces inline styles on publications_yc.html) */
+.listing-page.publications-page .publication-listing-item.project-card {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 25px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--color-border-subtle);
+  padding-bottom: 20px;
+}
+
+.listing-page.publications-page .publication-listing-item .project-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.listing-page.publications-page .publication-listing-item .project-content img {
+  max-width: 400px;
+  max-height: 350px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+  margin: 0 0 12px;
+}
+
+.listing-page.publications-page .publication-listing-item .project-content h3 {
+  font-size: 1.3em;
+  line-height: 1.4;
+  margin-bottom: 10px;
+  color: var(--color-text);
+}
+
+.listing-page.publications-page .publication-listing-item .project-content p {
+  font-size: 1em;
+  line-height: 1.6;
+  margin-bottom: 8px;
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 768px) {
+  .listing-page.publications-page .publication-listing-item.project-card {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .listing-page.publications-page .publication-listing-item .project-content img {
+    max-width: 100% !important;
+    width: 100% !important;
   }
 }

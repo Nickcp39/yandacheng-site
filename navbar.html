@@ -1,22 +1,22 @@
-<!-- navbar.html -->
-<div class="navbar">
-  <div class="nav-container">
-    <div class="nav-left">
-      <a href="/" data-i18n="nav.home">Home</a>
-    </div>
-    <div class="nav-right">
-      <a href="/about_yc.html" data-i18n="nav.about">About</a>
-      <a href="/projects_yc.html" data-i18n="nav.projects">Projects</a>
-      <a href="/publications_yc.html" data-i18n="nav.publications">Publications</a>
-      <a href="/experience_yc.html" data-i18n="nav.experience">Experience</a>
-      <a href="/awards_yc.html" data-i18n="nav.awards">Awards</a>
-      <a href="/photos_yc.html" data-i18n="nav.photos">Photos</a>
-      <a href="/blog_yc.html" data-i18n="nav.blog">Blog</a>
-      <div class="lang-switcher">
-        <button type="button" class="lang-btn" data-lang="zh">中文</button>
-        <span>/</span>
-        <button type="button" class="lang-btn" data-lang="en">EN</button>
-      </div>
-    </div>
+<!-- navbar.html — Phase 2 floating island nav -->
+<nav class="nav-island floating-island" id="navIsland" aria-label="Main navigation">
+  <a href="/" class="nav-logo" data-i18n="nav.logo">Yanda Cheng</a>
+  <div class="nav-links" id="navMainLinks" role="navigation">
+    <button type="button" class="nav-mobile-close" aria-label="Close menu">&times;</button>
+    <a href="/" class="nav-link" data-i18n="nav.home">Home</a>
+    <a href="/about_yc.html" class="nav-link" data-i18n="nav.about">About</a>
+    <a href="/projects_yc.html" class="nav-link" data-i18n="nav.projects">Projects</a>
+    <a href="/publications_yc.html" class="nav-link" data-i18n="nav.publications">Publications</a>
+    <a href="/experience_yc.html" class="nav-link" data-i18n="nav.experience">Experience</a>
+    <a href="/awards_yc.html" class="nav-link" data-i18n="nav.awards">Awards</a>
+    <a href="/photos_yc.html" class="nav-link" data-i18n="nav.photos">Photos</a>
+    <a href="/blog_yc.html" class="nav-link" data-i18n="nav.blog">Blog</a>
   </div>
-</div>
+  <div class="lang-switcher">
+    <button type="button" class="lang-btn" data-lang="zh">中文</button>
+    <button type="button" class="lang-btn" data-lang="en">EN</button>
+  </div>
+  <button type="button" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMainLinks">
+    <span></span><span></span><span></span>
+  </button>
+</nav>

@@ -5,13 +5,13 @@
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Yanda Cheng</title>
+  <title data-i18n="page.title.home">Yanda Cheng</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="style_loading.css" />
 </head>
-<body>
+<body class="home-page">
 <div id="navbar-placeholder"></div>
 <script>
   (function() {
@@ -19,7 +19,7 @@
     if (window.LoadingManager) {
       window.LoadingManager.show(container, 'navbar');
     }
-    
+
     fetch('navbar.html')
       .then(res => {
         if (!res.ok) throw new Error('Failed to load navbar');
@@ -31,7 +31,6 @@
         } else {
           container.innerHTML = data;
         }
-        // navbar 加载完成后，触发语言按钮事件绑定
         if (window.attachLanguageButtonListeners) {
           window.attachLanguageButtonListeners();
         }
@@ -45,120 +44,131 @@
   })();
 </script>
 
-<!-- 🌐 i18n 翻译脚本 -->
 <script src="scripts/i18n.js"></script>
-
-<!-- 📦 加载动画脚本 -->
 <script src="scripts/loading.js"></script>
-
+<script src="scripts/nav-island.js" defer></script>
 
   <div class="container">
 
-    <!-- 🧑 Profile Card -->
-    <div class="profile-card fade-in-on-scroll">
-      <img src="files/yandacheng_profieimage.jpg" alt="Yanda Cheng" class="home-profile-pic">
+    <section class="home-hero profile-card fade-in-on-scroll" aria-label="Profile">
+      <img src="files/yandacheng_profieimage.jpg" alt="Yanda Cheng" class="home-profile-pic" width="180" height="180" data-i18n-alt="nav.logo">
       <div class="profile-info">
-        <h1>Yanda Cheng</h1>
-        <p>Ph.D. Candidate in Biomedical Engineering</p>
-        <p>University at Buffalo, SUNY</p>
-        <p>Email: yandache@buffalo.edu</p>
-        <p>
-          <a href="files/yandacheng_cv.pdf">📄 <span data-i18n="common.resume">Resume</span></a> |
-          <a href="https://github.com/nickcp39">GitHub</a> |
-          <a href="https://scholar.google.com/citations?user=XXXXX">Google Scholar</a> |
-          <a href="https://www.linkedin.com/in/yanda-cheng-4888a216b/">Linkedin</a> 
-        </p>
+        <h1 data-i18n="nav.logo">Yanda Cheng</h1>
+        <p class="profile-role">Ph.D. Candidate in Biomedical Engineering</p>
+        <p class="profile-org">University at Buffalo, SUNY</p>
+        <p class="profile-email"><a href="mailto:yandache@buffalo.edu">yandache@buffalo.edu</a></p>
+        <div class="profile-links">
+          <a href="/files/yanda_cheng_resume_V0312_CNEN.pdf" class="pill" target="_blank" rel="noopener noreferrer"><span data-i18n="common.resume">Resume</span></a>
+          <a href="https://github.com/nickcp39" class="pill">GitHub</a>
+          <a href="https://scholar.google.com/citations?user=XXXXX" class="pill">Google Scholar</a>
+          <a href="https://www.linkedin.com/in/yanda-cheng-4888a216b/" class="pill">LinkedIn</a>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <!-- 📌 About Me -->
-    <h2 data-i18n="home.about.title" class="fade-in-on-scroll">About Me</h2>
-    <p class="fade-in-on-scroll">
-      I am a Senior Engineer and Team Manager with 8 years of experience at HydroTech, specializing in <strong>IoT sensor development</strong>, <strong>hardware engineering</strong>, and <strong>AWS cloud-based data analytics</strong>. I lead teams in building end-to-end sensor systems—from hardware prototyping to cloud infrastructure deployment—using machine learning for real-time data processing and predictive analytics.
+    <section class="home-about" aria-labelledby="about-heading">
+      <h2 id="about-heading" class="section-title" data-i18n="home.about.title">About Me</h2>
+      <p class="home-lead fade-in-on-scroll">
+        I am a Senior Engineer and Team Manager with 8 years of experience at HydroTech, specializing in <strong>IoT sensor development</strong>, <strong>hardware engineering</strong>, and <strong>AWS cloud-based data analytics</strong>. I lead teams in building end-to-end sensor systems—from hardware prototyping to cloud infrastructure deployment—using machine learning for real-time data processing and predictive analytics.
+      </p>
+    </section>
+
+    <section class="home-news section-alt fade-in-on-scroll" aria-labelledby="news-heading">
+      <h2 id="news-heading" class="section-title" data-i18n="home.news.title">News</h2>
+      <div class="news-scroller">
+        <div id="news-placeholder"></div>
+      </div>
+    </section>
+
+    <script>
+      (function() {
+        const container = document.getElementById('news-placeholder');
+        if (window.LoadingManager) {
+          window.LoadingManager.show(container, 'news');
+        }
+
+        const timestamp = new Date().getTime();
+        fetch(`news.html?t=${timestamp}`)
+          .then(res => {
+            if (!res.ok) throw new Error('Failed to load news');
+            return res.text();
+          })
+          .then(data => {
+            if (window.LoadingManager) {
+              window.LoadingManager.hide(container, data, true);
+            } else {
+              container.innerHTML = data;
+            }
+          })
+          .catch(err => {
+            console.error('Error loading news:', err);
+            if (window.LoadingManager) {
+              window.LoadingManager.error(container, '新闻加载失败');
+            }
+          });
+      })();
+    </script>
+
+    <section class="home-quick" aria-labelledby="quick-heading">
+      <h2 id="quick-heading" class="section-title" data-i18n="home.quick.title">Explore</h2>
+      <div class="quick-links">
+        <a href="projects_yc.html" class="quick-card">
+          <h3 data-i18n="home.projects">Selected Projects</h3>
+          <p data-i18n="home.projects.desc">IoT, AI, robotics & hardware</p>
+        </a>
+        <a href="publications_yc.html" class="quick-card">
+          <h3 data-i18n="home.publications">Publications</h3>
+          <p data-i18n="home.publications.desc">Papers & publications</p>
+        </a>
+        <a href="experience_yc.html" class="quick-card">
+          <h3 data-i18n="home.experience">Experience</h3>
+          <p data-i18n="home.experience.desc">Industry & academia</p>
+        </a>
+        <a href="awards_yc.html" class="quick-card">
+          <h3 data-i18n="home.awards">Awards</h3>
+          <p data-i18n="home.awards.desc">Honors & service</p>
+        </a>
+        <a href="photos_yc.html" class="quick-card">
+          <h3 data-i18n="home.photos">Photo Gallery</h3>
+          <p data-i18n="home.photos.desc">Events & highlights</p>
+        </a>
+        <a href="blog_yc.html" class="quick-card">
+          <h3 data-i18n="nav.blog">Blog</h3>
+          <p data-i18n="home.blog.desc">Essays & notes</p>
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <footer class="footer home-footer">
+    <p class="home-footer-line">
+      <span data-i18n="home.footer.copyright">© Yanda Cheng</span>
+      <span class="home-footer-sep" aria-hidden="true"> · </span>
+      <span data-i18n="home.footer.updated">Last updated</span> January 2025
     </p>
 
-        <h2>
-          <span data-i18n="home.news.title">News</span>
-          <img src="files/amazing_photo/update_news.gif" alt="Update" style="height:16px; vertical-align: middle;">
-        </h2>
-
-        <div class="news-scroller">
-          <div id="news-placeholder"></div>
-        </div>
-
-        <script>
-          (function() {
-            const container = document.getElementById('news-placeholder');
-            if (window.LoadingManager) {
-              window.LoadingManager.show(container, 'news');
-            }
-            
-            const timestamp = new Date().getTime();
-            fetch(`news.html?t=${timestamp}`)
-              .then(res => {
-                if (!res.ok) throw new Error('Failed to load news');
-                return res.text();
-              })
-              .then(data => {
-                if (window.LoadingManager) {
-                  window.LoadingManager.hide(container, data, true);
-                } else {
-                  container.innerHTML = data;
-                }
-              })
-              .catch(err => {
-                console.error('Error loading news:', err);
-                if (window.LoadingManager) {
-                  window.LoadingManager.error(container, '新闻加载失败');
-                }
-              });
-          })();
-        </script>
-
-
-
-    <ul>
-      <li><a href="projects_yc.html">🧠 <span data-i18n="home.projects">Selected Projects</span></a></li>
-      <li><a href="publications_yc.html">📚 <span data-i18n="home.publications">Publications</span></a></li>
-      <li><a href="experience_yc.html">💼 <span data-i18n="home.experience">Experience</span></a></li>
-      <li><a href="awards_yc.html">🏆 <span data-i18n="home.awards">Awards</span></a></li>
-      <li><a href="photos_yc.html">📸 <span data-i18n="home.photos">Photo Gallery</span></a></li>
-    </ul>
-  </div>
-
-  <!-- 🔻 Footer -->
-  <div class="footer">
-    <span data-i18n="home.footer.updated">Last updated</span>: January 2025 | <span data-i18n="home.footer.copyright">© Yanda Cheng</span>
-  </div>
-
-  <!-- 👣 BTC + Visitor Map -->
-  <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 40px; padding-bottom: 20px; flex-wrap: wrap;">
-    <div style="text-align: center;">
-        <img src="files/experience/btc.gif" alt="BTC GIF" style="max-width: 100px; height: auto; display: block; margin: 0 auto;">
+    <div class="home-footer-btc-row" aria-label="Bitcoin">
+      <div class="home-btc-mascot">
+        <img src="files/experience/btc.gif" alt="Bitcoin GIF" class="home-btc-gif" loading="lazy" data-i18n-alt="home.btc.alt">
+      </div>
+      <div class="home-visitor-map">
+        <h3 class="home-visitor-title" data-i18n="home.visitor_map">Visitor Map</h3>
+        <div id="clustrmaps-widget"></div>
+      </div>
+      <div class="home-btc-mascot">
+        <img src="files/experience/btc.gif" alt="Bitcoin GIF" class="home-btc-gif" loading="lazy" data-i18n-alt="home.btc.alt">
+      </div>
     </div>
-
-    <div style="text-align: center;">
-        <h3 data-i18n="home.visitor_map">Visitor Map</h3>
-        <div id="clustrmaps-widget" style="margin: 0 auto;"></div>
-        <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=xj5ZWnwte7YeAZD7K7_8TpdIaEVZhU0szNMLG_AmptI&cl=ffffff&w=200"></script>
-    </div>
-
-    <div style="text-align: center;">
-        <img src="files/experience/btc.gif" alt="BTC GIF" style="max-width: 100px; height: auto; display: block; margin: 0 auto;">
-    </div>
-  </div>
-
-  <!-- 🤖 AI Chatbot Widget - Temporarily disabled for testing -->
-  <!--
-  <script>
-    fetch('chatbot/chatbot.html')
-      .then(res => res.text())
-      .then(html => {
-        document.body.insertAdjacentHTML('beforeend', html);
-      })
-      .catch(err => console.error('Failed to load chatbot:', err));
-  </script>
-  -->
+    <p class="home-btc-blog-line">
+      <span data-i18n="home.btc.blog_hint">BTC posts on the blog:</span>
+      <a href="posts/btc_4year_high_no_joy.html" data-i18n="home.btc.post.4y">4-year high, no joy</a>
+      <span class="home-btc-sep" aria-hidden="true"> · </span>
+      <a href="posts/btc_2026_prediction.html" data-i18n="home.btc.post.2026">2026 outlook</a>
+      <span class="home-btc-sep" aria-hidden="true"> · </span>
+      <a href="posts/btc_repeat_4years.html" data-i18n="home.btc.post.rhythm">The 4-year rhythm</a>
+    </p>
+    <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=xj5ZWnwte7YeAZD7K7_8TpdIaEVZhU0szNMLG_AmptI&cl=ffffff&w=200"></script>
+  </footer>
 
 </body>
 </html>

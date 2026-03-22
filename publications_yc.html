@@ -7,80 +7,11 @@
 
   <title>Publications | Yanda Cheng</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    .container {
-      max-width: 1200px !important;
-      margin: 0 auto;
-      padding: 20px 40px;
-    }
-    .project-card {
-      display: flex;
-      flex-direction: row;
-      align-items: flex-start;
-      gap: 25px;
-      margin-bottom: 40px;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 20px;
-    }
-    .project-content {
-      flex: 1;
-      min-width: 0;
-    }
-    .project-content img {
-      max-width: 400px;
-      max-height: 350px;
-      width: auto;
-      height: auto;
-      object-fit: contain;
-      display: block;
-      border: 1px solid #e0e0e0;
-      border-radius: 4px;
-      flex-shrink: 0;
-      margin: 0;
-    }
-    .project-content h3 {
-      font-size: 1.3em;
-      line-height: 1.4;
-      margin-bottom: 10px;
-      color: #222;
-    }
-    .project-content p {
-      font-size: 1em;
-      line-height: 1.6;
-      margin-bottom: 8px;
-      color: #444;
-    }
-    .project-content em {
-      font-size: 0.95em;
-      color: #666;
-    }
-    
-    /* Responsive design for publications page */
-    @media (max-width: 768px) {
-      .container {
-        padding: 15px !important;
-      }
-      .project-card {
-        flex-direction: column !important;
-        align-items: center !important;
-      }
-      .project-content {
-        width: 100%;
-      }
-      .project-content img {
-        max-width: 100% !important;
-        width: 100% !important;
-        margin-bottom: 15px;
-      }
-      .project-content h3 {
-        font-size: 1.1em;
-      }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;600&family=Inter:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style_blog.css">
 </head>
-<body>
+<body class="blog-page listing-page publications-page" data-listing-page="publications">
 
 <div id="navbar-placeholder"></div>
 <script>
@@ -88,22 +19,59 @@
     .then(res => res.text())
     .then(data => {
       document.getElementById('navbar-placeholder').innerHTML = data;
-      // navbar 加载完成后，触发语言按钮事件绑定
       if (window.attachLanguageButtonListeners) {
         window.attachLanguageButtonListeners();
       }
     });
 </script>
 
-<!-- 🌐 i18n 翻译脚本 -->
-<script src="scripts/i18n.js"></script>
+<div class="blog-container">
+  <header class="blog-page-header">
+    <h1 class="blog-page-header__title" id="publications-heading"><span data-i18n="publications.title">Selected Publications</span></h1>
+    <div class="blog-view-toggle" role="tablist" aria-label="Publications view mode">
+      <button type="button" class="blog-view-toggle__btn is-active" id="publications-view-btn-date" role="tab" aria-selected="true" aria-controls="publications-view-date" data-mode="date" data-i18n="blog.view.date">By date</button>
+      <button type="button" class="blog-view-toggle__btn" id="publications-view-btn-category" role="tab" aria-selected="false" aria-controls="publications-view-category" data-mode="category" data-i18n="blog.view.category">By category</button>
+    </div>
+  </header>
 
+  <div class="blog-view-panel" id="publications-view-date" role="tabpanel" aria-labelledby="publications-view-btn-date">
+    <div class="blog-below-nav">
+      <aside class="blog-left-rail" aria-label="Publication filters">
+        <nav class="blog-date-filter-island blog-mini-island" aria-labelledby="publications-filter-heading">
+          <p class="blog-date-filter-island__title" id="publications-filter-heading" data-i18n="blog.date_filter.title">Filter</p>
+          <p class="blog-date-filter-island__hint" data-i18n="publications.filter.hint">Filter first-author vs co-authored papers.</p>
+          <div id="publications-filter-rail" class="blog-date-filter-island__list" role="tablist">
+            <button type="button" class="blog-date-filter-island__btn is-active" data-category="all" data-i18n="publications.filter.all">All</button>
+            <button type="button" class="blog-date-filter-island__btn" data-category="first" data-i18n="publications.filter.first">First author</button>
+            <button type="button" class="blog-date-filter-island__btn" data-category="co" data-i18n="publications.filter.co">Co-author</button>
+          </div>
+        </nav>
+      </aside>
 
-<div class="container">
-  <h2 data-i18n="publications.title">Selected Publications</h2>
+      <div class="blog-main-column">
+        <section class="blog-panel blog-panel--timeline" aria-labelledby="publications-timeline-heading">
+          <header class="blog-panel__head">
+            <h2 class="blog-panel__title" id="publications-timeline-heading" data-i18n="publications.timeline.title">Sorted by date</h2>
+          </header>
+          <div id="publications-timeline-list" class="blog-timeline-root">
 
-  <!-- 📌 Paper 9 - pub_09: Med-X 2025 (最新) -->
-  <div class="project-card">
+  <!-- Paper 10 -->
+  <div class="project-card publication-listing-item" data-category="first">
+    <div class="project-content">
+      <img src="files/publications_yc/pub_10_npj_foot_ulcer_20260201.png" alt="thumbnail" />
+      <h3><strong>Predictive modeling of chronic foot ulcer outcomes using longitudinal photoacoustic imaging</strong></h3>
+      <p><strong>Yanda Cheng</strong>, Chuqin Huang, Shuliang Yu, Saptarshi Chakraborty, Yunqi Xi, Robert W. Bing, Huijuan Zhang, Xiaoyu Zhang, Isabel Komornicki, Linda M. Harris, Wenyao Xu, Jun Xia</p>
+      <p><em>npj Imaging, 2026</em></p>
+      <div>
+        <a class="btn btn-red" href="https://www.nature.com/articles/s44303-026-00143-0.pdf" target="_blank" rel="noopener">PDF</a>
+        <a class="btn" href="https://www.nature.com/articles/s44303-026-00143-0" target="_blank" rel="noopener">Link</a>
+        <a class="btn" href="files/publications_yc/pub_10_npj_foot_ulcer_20260201_bib.txt" target="_blank">BibTeX</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Paper 9 -->
+  <div class="project-card publication-listing-item" data-category="first">
     <div class="project-content">
       <img src="files/publications_yc/pub_09_dysphagia_20250101.png" alt="thumbnail" />
       <h3><strong>Dysphagia assessment based on photoacoustic imaging: a pilot ex vivo and in vivo study in infant swine models</strong></h3>
@@ -117,8 +85,8 @@
     </div>
   </div>
 
-  <!-- 📌 Paper 8 - pub_08: Photoacoustics 2025 -->
-  <div class="project-card">
+  <!-- Paper 8 -->
+  <div class="project-card publication-listing-item" data-category="co">
     <div class="project-content">
       <img src="files/publications_yc/pub_08_radiomics_20250101.png" alt="thumbnail" />
       <h3><strong>Radiomics-driven perfusion prediction in clinical photoacoustic foot imaging</strong></h3>
@@ -132,8 +100,8 @@
     </div>
   </div>
 
-  <!-- 📌 Paper 7 - pub_07: IEEE TMI 2025 -->
-  <div class="project-card">
+  <!-- Paper 7 -->
+  <div class="project-card publication-listing-item" data-category="co">
     <div class="project-content">
       <img src="files/publications_yc/pub_07_onetouch_breast_20250101.png" alt="thumbnail" />
       <h3><strong>OneTouch Automated Photoacoustic and Ultrasound Imaging of Breast in Standing Pose</strong></h3>
@@ -147,8 +115,8 @@
     </div>
   </div>
 
-  <!-- 📌 Paper 6 - pub_06: Photoacoustics 2025 -->
-  <div class="project-card">
+  <!-- Paper 6 -->
+  <div class="project-card publication-listing-item" data-category="co">
     <div class="project-content">
       <img src="files/publications_yc/pub_06_photoacoustics_skinloc_20250101.png" alt="thumbnail" />
       <h3><strong>Enhanced clinical photoacoustic vascular imaging through a skin localization network and adaptive weighting</strong></h3>
@@ -162,8 +130,8 @@
     </div>
   </div>
 
-  <!-- 📌 Paper 5 - pub_05: IoT 2025 -->
-  <div class="project-card">
+  <!-- Paper 5 -->
+  <div class="project-card publication-listing-item" data-category="co">
     <div class="project-content">
       <img src="files/publications_yc/pub_05_iot_mmskin_20250101.png" alt="thumbnail" />
       <h3><strong>mmSkin: An Over-Gauze Wound Assessment System Using Radio Frequency Technologies</strong></h3>
@@ -177,8 +145,8 @@
     </div>
   </div>
 
-  <!-- 📌 Paper 4 - pub_04: HCS 2025 -->
-  <div class="project-card">
+  <!-- Paper 4 -->
+  <div class="project-card publication-listing-item" data-category="co">
     <div class="project-content">
       <img src="files/publications_yc/pub_04_hcs_mmwave_20250101.png" alt="thumbnail" />
       <h3><strong>Through-dressing wound monitoring based on the mmWave sensor</strong></h3>
@@ -192,8 +160,8 @@
     </div>
   </div>
 
-  <!-- 📌 Paper 3 - pub_03: BOE 2024 -->
-  <div class="project-card">
+  <!-- Paper 3 -->
+  <div class="project-card publication-listing-item" data-category="first">
     <div class="project-content">
       <img src="files/publications_yc/pub_03_boe_denoising_20240101.png" alt="thumbnail" />
       <h3><strong>Unsupervised denoising of photoacoustic images based on the Noise2Noise network</strong></h3>
@@ -207,8 +175,8 @@
     </div>
   </div>
 
-  <!-- 📌 Paper 2 - pub_02: IEEE UFFC 2023 -->
-  <div class="project-card">
+  <!-- Paper 2 -->
+  <div class="project-card publication-listing-item" data-category="first">
     <div class="project-content">
       <img src="files/publications_yc/pub_02_ieee_foot_20230101.png" alt="thumbnail" />
       <h3><strong>Dual-scan photoacoustic tomography for the imaging of vascular structure on foot</strong></h3>
@@ -223,8 +191,8 @@
     </div>
   </div>
 
-  <!-- 📌 Paper 1 - pub_01: JBO 2021 (最旧) -->
-  <div class="project-card">
+  <!-- Paper 1 -->
+  <div class="project-card publication-listing-item" data-category="co">
     <div class="project-content">
       <img src="files/publications_yc/pub_01_jbo_bloodflow_20210101.png" alt="thumbnail" />
       <h3><strong>Simultaneous measurements of tissue blood flow and oxygenation using a wearable fiber-free optical sensor</strong></h3>
@@ -238,12 +206,32 @@
     </div>
   </div>
 
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div class="blog-view-panel" id="publications-view-category" role="tabpanel" aria-labelledby="publications-view-btn-category" hidden>
+    <section class="blog-panel blog-panel--category-full" aria-labelledby="publications-category-heading">
+      <header class="blog-panel__head blog-panel__head--compact">
+        <h2 class="blog-panel__title" id="publications-category-heading" data-i18n="blog.categories_heading">By category</h2>
+      </header>
+      <div class="blog-category-chips-wrap">
+        <div class="blog-category-chips" id="publications-filter-chips" role="tablist" aria-label="Categories"></div>
+      </div>
+      <div id="publications-category-feed" class="blog-category-feed blog-timeline-root"></div>
+    </section>
+  </div>
 </div>
 
-<!-- 🔹 Footer -->
 <div class="footer">
-  <span data-i18n="publications.footer.copyright">Publications © Yanda Cheng</span> | <span data-i18n="publications.footer.updated">Last updated</span> May 2025
+  <span data-i18n="publications.footer.copyright">Publications © Yanda Cheng</span> | <span data-i18n="publications.footer.updated">Last updated</span> March 2026
 </div>
+
+<script src="scripts/i18n.js"></script>
+<script src="scripts/listing-page.js?v=20260322"></script>
+<script src="scripts/nav-island.js" defer></script>
 
 </body>
 </html>

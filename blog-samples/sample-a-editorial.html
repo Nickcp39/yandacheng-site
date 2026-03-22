@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sample A — Editorial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;600&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --paper: #f6f1e8;
+      --ink: #1c1914;
+      --muted: #5c574e;
+      --rule: #d9d0c3;
+      --accent: #8b4518;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--paper); color: var(--ink);
+      font-family: "Source Sans 3", Georgia, serif; font-size: 1.05rem; line-height:1.55;
+    }
+    .shell { max-width: 720px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+    header { border-bottom: 1px solid var(--rule); padding-bottom: 2rem; margin-bottom: 2.5rem; }
+    .kicker { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin: 0 0 0.75rem; }
+    h1 {
+      font-family: Fraunces, Georgia, serif; font-size: clamp(2rem, 5vw, 2.75rem);
+      font-weight: 600; line-height: 1.15; margin: 0 0 0.75rem; font-variation-settings: "SOFT" 40;
+    }
+    .dek { margin: 0; color: var(--muted); font-size: 1.05rem; max-width: 36ch; }
+    article {
+      display: grid; gap: 2.25rem;
+      border-top: 1px solid var(--rule); padding-top: 2rem; margin-top: 2rem;
+    }
+    article:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+    .meta { font-size: 0.88rem; color: var(--muted); }
+    .meta time { font-weight: 500; color: var(--ink); }
+    h2 {
+      font-family: Fraunces, Georgia, serif; font-size: 1.45rem; font-weight: 600;
+      margin: 0.15rem 0 0.5rem; line-height: 1.25;
+    }
+    h2 a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .2s; }
+    h2 a:hover { border-bottom-color: var(--accent); }
+    .excerpt { margin: 0; color: var(--muted); font-size: 0.98rem; }
+    .tag { display: inline-block; font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-top: 0.65rem; }
+    footer.sample-foot {
+      margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--rule);
+      font-size: 0.85rem; color: var(--muted);
+    }
+    footer.sample-foot a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <p class="kicker">Sample A · Editorial</p>
+      <h1>Yanda's Blog</h1>
+      <p class="dek">Notes on research, engineering, and markets—written to be read slowly.</p>
+    </header>
+
+    <article>
+      <div>
+        <p class="meta"><time datetime="2026-01-22">Jan 22, 2026</time> · 12 min read</p>
+        <h2><a href="#">PhD to industry: what I wish I had optimized earlier</a></h2>
+        <p class="excerpt">A framework for choosing problems, managers, and comp—without losing the thread of what you actually want to build.</p>
+        <span class="tag">Career</span>
+      </div>
+    </article>
+
+    <article>
+      <div>
+        <p class="meta"><time datetime="2026-01-03">Jan 3, 2026</time> · 8 min read</p>
+        <h2><a href="#">Why sglang matters for clinical LLM serving</a></h2>
+        <p class="excerpt">Latency budgets in hospital workflows are unforgiving; this is what changes when the runtime is built for batching and memory layout.</p>
+        <span class="tag">Systems</span>
+      </div>
+    </article>
+
+    <article>
+      <div>
+        <p class="meta"><time datetime="2025-12-30">Dec 30, 2025</time> · 6 min read</p>
+        <h2><a href="#">BTC yield spread and the crash window</a></h2>
+        <p class="excerpt">A short note on carry, funding, and when the market prices in dislocations faster than narratives catch up.</p>
+        <span class="tag">Markets</span>
+      </div>
+    </article>
+
+    <article>
+      <div>
+        <p class="meta"><time datetime="2025-12-10">Dec 10, 2025</time> · 10 min read</p>
+        <h2><a href="#">Radiology linter in production: from demo to QA loop</a></h2>
+        <p class="excerpt">What breaks when you move from benchmark rows to real reports—and how we measured trust with clinicians.</p>
+        <span class="tag">Healthcare AI</span>
+      </div>
+    </article>
+
+    <footer class="sample-foot">
+      <a href="index.html">← 返回样本索引</a> · 示意页，非正式博客。
+    </footer>
+  </div>
+</body>
+</html>
