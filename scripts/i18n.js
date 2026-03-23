@@ -265,6 +265,8 @@ const translations = {
     
     // 奖项页面
     'awards.title': '奖项与荣誉',
+    'awards.honors.bj_seed_funding': '获北京市初创企业启动资金支持（100万元）',
+    'awards.honors.sequoia_loi': '获红杉资本投资意向书（3000万元）',
     'awards.honors.jbo': '<strong>审稿人认可</strong>，生物医学光学杂志（JBO）',
     'awards.honors.boe': '<strong>审稿人认可</strong>，生物医学光学快报（BOE）',
     'awards.honors.jbe': '<strong>审稿人认可</strong>，生物医学工程杂志',
@@ -1336,6 +1338,8 @@ const translations = {
     
     // Awards page
     'awards.title': 'Awards & Honors',
+    'awards.honors.bj_seed_funding': 'Received Beijing startup support funding (RMB 1 million, approx. USD 140K).',
+    'awards.honors.sequoia_loi': 'Received an investment letter of intent from Sequoia Capital (RMB 30 million, approx. USD 4.2M).',
     'awards.honors.jbo': '<strong>Reviewer Recognition</strong>, Journal of Biomedical Optics (JBO)',
     'awards.honors.boe': '<strong>Reviewer Recognition</strong>, Biomedical Optics Express (BOE)',
     'awards.honors.jbe': '<strong>Reviewer Recognition</strong>, Journal of Biomedical Engineering',
