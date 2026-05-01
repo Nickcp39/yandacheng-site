@@ -1,55 +1,23 @@
 {
-  "btc_regulation.html": {
-    "title": "BTC 的内在价值/The Intrinsic Value of Bitcoin",
-    "date": "2025-05-29",
-    "summary": "Bitcoin acts as digital gold. In an era of monetary expansion, it may experience a gold-like price surge, peaking in Q3 2025 and bottoming around 2028."
+  "20260429_circle_of_competence_sandisk_nebius.html": {
+    "title": "看不懂的公司不投：从 SanDisk、Nebius 到 NVDA 的复盘",
+    "date": "2026-05-01",
+    "summary": "从 SanDisk、Nebius 的暴涨，到曾经买过又卖掉 NVDA 的经历，复盘产品体感、股票估值、BTC 全仓和 missing fear 之间的关系。"
   },
-  "value_lessons.html": {
-    "title": "价值投资的四条核心心法/Four Core Principles of Value Investing",
-    "date": "2024-05-21",
-    "summary": "From Buffett and Munger to Templeton, history shows that mastering value investing requires overcoming human nature."
+  "20260315_startup_ten_years.html": {
+    "title": "创业十年，所有的坑都踩了，居然都活下来了 / Ten Years of Startups: Still Standing",
+    "date": "2026-03-15",
+    "summary": "十年创业复盘：如何选创始人、是否拿融资、何时算真正具备启动条件；以及行业生态、现金流与山姆·奥特曼式公开课里踩过的坑。"
   },
-  "staff_engineer.html": {
-    "title": "【职场分享】资深工程师的挑战和策略 / Challenges and Strategies of Being a Staff Engineer",
-    "date": "2025-12-19",
-    "summary": "在 Hydrotech 工作的经历让我明白：最难的不是技术，而是与人交流。分享如何获得客户信任、快速反应，以及在压力下保持冷静的真实案例。"
+  "20260122phd_career_transition.html": {
+    "title": "博士转码/转行：一次不那么成功的经验分享 / PhD Career Transition: Lessons from an Unsuccessful Journey",
+    "date": "2026-01-22",
+    "summary": "给未来想转码/转行的博士一个更真实的参照。分享半年找工过程中的经验教训：从投简历、内推、刷题到理解0→1和1→1000的区别，以及为什么转码要趁早。"
   },
-  "phd_possibilities.html": {
-    "title": "The Infinite Possibilities of a PhD: More Than Academia",
-    "date": "2024-04-15",
-    "summary": "From industry to medical AI, from quant finance to policy strategy, a PhD opens doors far beyond traditional academic paths."
-  },
-  "btc_repeat_4years.html": {
-    "title": "为什么比特币四年一轮回，但你依然赚不到钱？",
-    "date": "2025-05-31",
-    "summary": "从情绪波动、盲目追星到系统性压迫，剖析为什么多数人在比特币周期中仍旧难以盈利。"
-  },
-  "buffett_munger_weekend_reflection.html": {
-    "title": "每周往返的高速路上，我听巴菲特和芒格",
-    "date": "2025-06-07",
-    "summary": "在Buffalo到多伦多的孤独旅途中，我靠巴菲特与芒格的演讲保持精神秩序，也思考着如何守住博士毕业后的那份独处与清醒。"
-  },
-
-
-  "btc_4year_high_no_joy.html": {
-  "title": "BTC 又来到了四年的高点，但我却高兴不起来",
-  "date": "2025-07-14",
-  "summary": "四年过去，比特币再创新高，却让我在持仓与心态之间倍感复杂。这是一篇反思当前市场周期的个人感悟。"
-  },
-  "btc_2026_prediction.html": {
-    "title": "BTC 2026年价格预测：站在周期拐点的思考",
-    "date": "2025-12-18",
-    "summary": "预测稳定币将在2026年Q1-Q2暴雷，导致BTC深度回调。预计在10月左右见底，价格区间5.7-6.6万美元，中位数约6万美元。基于稳定币风险、技术分析和历史周期的综合判断。"
-  },
-  "sglang_llm_agent_id_scanner.html": {
-    "title": "Building LLM Agent ID Scanner with SGLang: A Deep Dive",
-    "date": "2025-12-28",
-    "summary": "A technical deep dive into building an LLM Agent ID Scanner using SGLang inference server. Covers architecture, performance optimization, and production deployment considerations."
-  },
-  "llm_hospital_rad_linter.html": {
-    "title": "使用SGLang构建Rad-Linter：医院端跨模态质控系统的生产实践",
-    "date": "2025-12-29",
-    "summary": "分享使用SGLang在医院端部署跨模态事实核查质控系统（Rad-Linter）的生产经验。聚焦可观测性、本地计算性能优化，以及Rad-Linter与报告生成任务的根本区别。"
+  "20260103rad_linter_clinical_sglang_advantage.html": {
+    "title": "Rad-Linter：用 SGLang 搭一个\"签发前\"的跨模态质控层（可插拔）",
+    "date": "2026-01-03",
+    "summary": "这套系统之所以能\"真落地\"，关键是底层用了 SGLang 做 serving / judge runtime。SGLang 不涉及云端API的问题，训练也都可以在本地做，而且适配大量的不同的GPU/CPU，Windows/Mac/Linux系统也都很容易适配，所以对大部分的医疗系统场景都容易嵌入。"
   },
   "20260102rad_linter_clinical_qa.html": {
     "title": "Rad-Linter：为什么临床签发前的跨模态质控是刚需",
@@ -61,20 +29,54 @@
     "date": "2025-12-30",
     "summary": "10y-2y利差的史诗级倒挂后重新转正，标记了我们正处在类似1983年的\"高通胀后敏感期\"。BTC的正常四年周期回调将触发稳定币缩表和边际买家消失，配合日本加息、外资退场和高额发债，可能在2026年年中某个国债相关环节\"漏水\"。"
   },
-  "20260103rad_linter_clinical_sglang_advantage.html": {
-    "title": "Rad-Linter：用 SGLang 搭一个\"签发前\"的跨模态质控层（可插拔）",
-    "date": "2026-01-03",
-    "summary": "这套系统之所以能\"真落地\"，关键是底层用了 SGLang 做 serving / judge runtime。SGLang 不涉及云端API的问题，训练也都可以在本地做，而且适配大量的不同的GPU/CPU，Windows/Mac/Linux系统也都很容易适配，所以对大部分的医疗系统场景都容易嵌入。"
+  "llm_hospital_rad_linter.html": {
+    "title": "使用SGLang构建Rad-Linter：医院端跨模态质控系统的生产实践",
+    "date": "2025-12-29",
+    "summary": "分享使用SGLang在医院端部署跨模态事实核查质控系统（Rad-Linter）的生产经验。聚焦可观测性、本地计算性能优化，以及Rad-Linter与报告生成任务的根本区别。"
   },
-  "20260122phd_career_transition.html": {
-    "title": "博士转码/转行：一次不那么成功的经验分享 / PhD Career Transition: Lessons from an Unsuccessful Journey",
-    "date": "2026-01-22",
-    "summary": "给未来想转码/转行的博士一个更真实的参照。分享半年找工过程中的经验教训：从投简历、内推、刷题到理解0→1和1→1000的区别，以及为什么转码要趁早。"
+  "sglang_llm_agent_id_scanner.html": {
+    "title": "Building LLM Agent ID Scanner with SGLang: A Deep Dive",
+    "date": "2025-12-28",
+    "summary": "A technical deep dive into building an LLM Agent ID Scanner using SGLang inference server. Covers architecture, performance optimization, and production deployment considerations."
   },
-  "20260315_startup_ten_years.html": {
-    "title": "创业十年，所有的坑都踩了，居然都活下来了 / Ten Years of Startups: Still Standing",
-    "date": "2026-03-15",
-    "summary": "十年创业复盘：如何选创始人、是否拿融资、何时算真正具备启动条件；以及行业生态、现金流与山姆·奥特曼式公开课里踩过的坑。"
+  "staff_engineer.html": {
+    "title": "【职场分享】资深工程师的挑战和策略 / Challenges and Strategies of Being a Staff Engineer",
+    "date": "2025-12-19",
+    "summary": "在 Hydrotech 工作的经历让我明白：最难的不是技术，而是与人交流。分享如何获得客户信任、快速反应，以及在压力下保持冷静的真实案例。"
+  },
+  "btc_2026_prediction.html": {
+    "title": "BTC 2026年价格预测：站在周期拐点的思考",
+    "date": "2025-12-18",
+    "summary": "预测稳定币将在2026年Q1-Q2暴雷，导致BTC深度回调。预计在10月左右见底，价格区间5.7-6.6万美元，中位数约6万美元。基于稳定币风险、技术分析和历史周期的综合判断。"
+  },
+  "btc_4year_high_no_joy.html": {
+    "title": "BTC 又来到了四年的高点，但我却高兴不起来",
+    "date": "2025-07-14",
+    "summary": "四年过去，比特币再创新高，却让我在持仓与心态之间倍感复杂。这是一篇反思当前市场周期的个人感悟。"
+  },
+  "buffett_munger_weekend_reflection.html": {
+    "title": "每周往返的高速路上，我听巴菲特和芒格",
+    "date": "2025-06-07",
+    "summary": "在Buffalo到多伦多的孤独旅途中，我靠巴菲特与芒格的演讲保持精神秩序，也思考着如何守住博士毕业后的那份独处与清醒。"
+  },
+  "btc_repeat_4years.html": {
+    "title": "为什么比特币四年一轮回，但你依然赚不到钱？",
+    "date": "2025-05-31",
+    "summary": "从情绪波动、盲目追星到系统性压迫，剖析为什么多数人在比特币周期中仍旧难以盈利。"
+  },
+  "btc_regulation.html": {
+    "title": "BTC 的内在价值/The Intrinsic Value of Bitcoin",
+    "date": "2025-05-29",
+    "summary": "Bitcoin acts as digital gold. In an era of monetary expansion, it may experience a gold-like price surge, peaking in Q3 2025 and bottoming around 2028."
+  },
+  "value_lessons.html": {
+    "title": "价值投资的四条核心心法/Four Core Principles of Value Investing",
+    "date": "2024-05-21",
+    "summary": "From Buffett and Munger to Templeton, history shows that mastering value investing requires overcoming human nature."
+  },
+  "phd_possibilities.html": {
+    "title": "The Infinite Possibilities of a PhD: More Than Academia",
+    "date": "2024-04-15",
+    "summary": "From industry to medical AI, from quant finance to policy strategy, a PhD opens doors far beyond traditional academic paths."
   }
-
 }

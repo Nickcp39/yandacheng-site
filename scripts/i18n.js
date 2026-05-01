@@ -1083,7 +1083,102 @@ const translations = {
     'article.rad_linter_clinical_qa.section7.para2': '在这个定位下，Rad-Linter不是"又一个报告生成系统"，而是<strong>放射科工作流中的一个关键质控环节</strong>，这个环节的价值不依赖于是否使用AI生成报告，而是依赖于"报告质量"这个永恒的需求。',
     'article.rad_linter_clinical_qa.footer': '技术实现细节请参考 <a href="/posts/llm_hospital_rad_linter.html">《使用SGLang构建Rad-Linter：医院端跨模态质控系统的生产实践》</a>。<br>如有问题或建议，欢迎通过 <a href="https://github.com/Nickcp39">GitHub</a> 或 <a href="https://www.linkedin.com/in/yanda-cheng-4888a216b/">LinkedIn</a> 联系我。',
   },
+    'article.circle_competence.list_title': '看不懂的公司不投：从 SanDisk、Nebius 到 NVDA 的复盘',
+    'article.circle_competence.title': '看不懂的公司不投',
+    'article.circle_competence.subtitle': '从 SanDisk、Nebius 到 NVDA 的复盘',
+    'article.circle_competence.summary': '从 SanDisk、Nebius 的暴涨，到曾经买过又卖掉 NVDA 的经历，复盘产品体感、股票估值、BTC 全仓和 missing fear 之间的关系。',
+    'article.circle_competence.date_display': '2026年5月1日',
+    'article.circle_competence.leave_comment': '留言',
+    'article.circle_competence.disclaimer': '本文为作者个人投资复盘，不构成任何投资建议。',
+    'article.circle_competence.kicker': '<p style="color: #888; font-size: 0.9em;">投资 · 价值投资 · 能力圈 · 心态</p>',
+    'article.circle_competence.full_html': `<p>最近 SanDisk 和 Nebius 都涨得很凶。</p>
+<p>这种股票最折磨人的地方在于，它不是那种涨两天就结束的妖股。它会涨一个月，涨三个月，涨半年，甚至涨一年。涨到最后你会开始怀疑自己：是不是我太保守了？是不是别人都看懂了，只有我还在装理性？</p>
+<p>我知道这种事情经常发生。NVDA 就是最典型的例子。</p>
+<p>其实我前年、去年也买过 NVDA。我不是完全没有体感。显卡会涨价这件事，我当时是知道的。我也买过显卡，显卡本身也翻倍了。这个东西我能理解，因为它很具体：缺货、涨价、AI 训练、二手市场、渠道价格，这些都是能看到的。</p>
+<p>但股票我确实不懂。</p>
+<p>显卡涨价是一回事，NVDA 这只股票该值多少钱是另一回事。中间隔着利润、毛利率、数据中心业务、CUDA、客户粘性、估值和市场预期。我买过，也卖了，后来换成 BTC。现在回头看当然可惜，但当时卖掉也正常，因为我没有真正形成能长期拿住它的理由。</p>
+<p>这件事让我意识到：有时候我不是没有发现机会，而是没有把机会翻译成可以持有的投资体系。</p>
+<h2>产品我懂，不代表股票我懂</h2>
+<p>一个产品涨价，我可能能看懂。显卡涨价，我能看懂。BTC 的周期，我也能看懂一部分。甚至 SanDisk 这种存储涨价、AI 数据中心需要 SSD、NAND 供给紧张，我大概也能听懂。</p>
+<p>但听懂一个行业故事，和重仓一家公司，是两件事。</p>
+<p>如果我只是知道“存储会涨价”，就去重仓 SanDisk，那和当年知道“显卡会涨价”就觉得自己懂 NVDA 没什么区别。股票涨的时候我会觉得自己懂了，跌的时候才发现自己其实没有估值锚。</p>
+<p>这就很尴尬。上涨拿不住，下跌也拿不住。最后不是在投资公司，而是在投资自己的情绪。</p>
+<h2>巴菲特大概率不会买</h2>
+<p>所以我最近又想起巴菲特那句话：看不懂的公司不投。</p>
+<p>以前我觉得这句话很简单，甚至有点老生常谈。现在发现它其实很难。难的不是看不懂的时候不投，而是看不懂的东西一直涨的时候，还能不能不投。</p>
+<p>SanDisk 这种机会，巴菲特大概率不会在这个阶段买。不是说公司不好，也不是说它一定不会继续涨，而是它太依赖周期、供需、技术变化和短期景气度。NAND 价格能涨多久？AI 数据中心采购会不会持续？竞争对手什么时候扩产？利润率是不是高点？这些问题每一个都很专业。</p>
+<p>巴菲特当然不是不会买科技股，他买 Apple。问题是 Apple 到后面更像一个现金流很强、生态粘性很高、品牌护城河极深的消费品公司。SanDisk 和 Nebius 这种，我很难说十年后竞争格局会是什么样。</p>
+<p>段永平讲的也是这个意思。不是所有钱都要赚。有些题你不会，就空着。最怕的是本来不会，看到别人都在写答案，自己也开始编。</p>
+<h2>全仓 BTC 的问题</h2>
+<p>但另一个问题是，我也不能一直全仓 BTC。</p>
+<p>全仓一个资产，最大的问题不是波动，而是它会把你的注意力绑架。你所有的胜负感、所有的机会成本、所有的焦虑，都会被一个资产吸走。然后每次看到 NVDA、SanDisk、Nebius 这种东西涨起来，就会有很强的 missing fear。</p>
+<p>这种恐惧不是简单的 FOMO。它更像一种精神上的不平衡：我是不是站错队了？如果 BTC 横盘两年，而 AI 股票一直涨，我是不是会越来越难受？</p>
+<p>所以仓位管理不只是为了控制回撤，也是为了控制心态。</p>
+<p>我现在越来越觉得，BTC 可以是核心仓，但不应该是全部仓。只要它是全部仓，我就很难冷静看别的机会。别的东西涨，我焦虑；BTC 跌，我也焦虑。最后投资变成一种精神内耗。</p>
+<h2>标的要少，注意力更少</h2>
+<p>但我也不想搞一堆股票。</p>
+<p>我的注意力是有限的。投资标的太多，表面上看是分散，实际上是认知摊薄。每个都知道一点，每个都不深。最后看起来很努力，其实很混乱。</p>
+<p>所以更适合我的方式，是标的少一点，但每个标的都要有明确身份。</p>
+<p>BTC 是核心资产，是我最熟悉的周期和叙事。NVDA 这种，如果未来再买，就不能只是因为它涨，而是因为我愿意长期研究它。SanDisk、Nebius 这种，就算买，也只能是观察仓。观察仓不是用来赚大钱的，是让我保持体感，防止完全脱离市场。</p>
+<p>如果一个东西我既没有时间研究，也没有能力理解，还想靠它改变命运，那基本就是在赌。</p>
+<h2>错过是可以接受的</h2>
+<p>错过 NVDA，很难受。错过 SanDisk，可能也会难受。尤其是当你明明提前看到一些现象，比如显卡涨价、存储涨价、AI 需求爆发，却没有把它转化成股票收益的时候，会特别难受。</p>
+<p>但我现在慢慢接受一件事：我不可能赚到所有的钱。</p>
+<p>有些钱是懂产业的人赚的，有些钱是懂财报的人赚的，有些钱是懂周期的人赚的，有些钱是胆子大的人赚的。不是每一种钱都属于我。我能做的，是把自己看得懂、拿得住、能复盘的那部分钱赚到。</p>
+<p>如果为了不想错过，就把自己拖进一个完全不懂的游戏里，最后大概率不是赚到新钱，而是把旧钱也亏出去。</p>
+<p>所以这篇不是说 SanDisk 或 Nebius 不好。它们未来可能还会涨，甚至可能涨得很夸张。我只是觉得，对我来说，它们目前还不是能重仓的东西。</p>
+<p>看不懂的公司不投，这句话不是让人显得高尚，而是让人少做蠢事。</p>
+<p>如果真想参与，可以小仓位观察，可以慢慢研究。但不能因为别人赚钱，就临时把它变成信仰。</p>
+<blockquote>本文只是个人投资复盘，不构成任何投资建议。</blockquote>`,
+
   en: {
+    'article.circle_competence.list_title': 'Do Not Invest in Companies You Do Not Understand: Reflections on SanDisk, Nebius, and NVDA',
+    'article.circle_competence.title': 'Do Not Invest in Companies You Do Not Understand',
+    'article.circle_competence.subtitle': 'Reflections on SanDisk, Nebius, and NVDA',
+    'article.circle_competence.summary': 'From the surge in SanDisk and Nebius to my own experience buying and selling NVDA, this is a reflection on product intuition, stock valuation, being all-in BTC, and missing fear.',
+    'article.circle_competence.date_display': 'May 1st, 2026',
+    'article.circle_competence.leave_comment': 'Leave a comment',
+    'article.circle_competence.disclaimer': 'This is a personal investment reflection and does not constitute investment advice.',
+    'article.circle_competence.kicker': '<p style="color: #888; font-size: 0.9em;">Investing · Value Investing · Circle of Competence · Psychology</p>',
+    'article.circle_competence.full_html': `<p>Recently SanDisk and Nebius have both gone up a lot.</p>
+<p>The most painful thing about this kind of stock is that it is not a two-day meme run. It can go up for a month, three months, half a year, even a whole year. At some point you start doubting yourself: am I too conservative? Did everyone else understand it while I was just pretending to be rational?</p>
+<p>I know this happens all the time. NVDA is the classic example.</p>
+<p>I actually bought NVDA the year before last and last year. It is not that I had no feel for it. I knew GPUs would go up in price. I also bought GPUs, and the GPUs themselves doubled. That was easy for me to understand because it was concrete: shortages, price hikes, AI training, the second-hand market, channel pricing. I could see all of that.</p>
+<p>But I really did not understand the stock.</p>
+<p>GPU prices going up is one thing. What NVDA stock should be worth is another. Between the two are profit, gross margin, data center revenue, CUDA, customer stickiness, valuation, and market expectations. I bought it, sold it, and later moved the money into BTC. Looking back, of course it feels painful. But selling was normal at the time, because I had not built a real reason to hold it long term.</p>
+<p>That made me realize something: sometimes I do not fail to notice the opportunity. I fail to translate the opportunity into an investment system I can actually hold.</p>
+<h2>Understanding the product does not mean understanding the stock</h2>
+<p>I may understand a product price cycle. I understood GPU prices. I understand part of the BTC cycle. Even with SanDisk, I can roughly follow the story: storage prices, AI data centers needing SSDs, tight NAND supply.</p>
+<p>But understanding an industry story and putting a large position into one company are two different things.</p>
+<p>If all I know is “storage prices will rise,” and then I heavily buy SanDisk, that is not much different from thinking I understood NVDA just because I knew GPUs would rise. When the stock goes up, I feel like I understand it. When it falls, I realize I have no valuation anchor.</p>
+<p>That is awkward. I cannot hold it when it rises, and I cannot hold it when it falls. In the end I am not investing in a company. I am investing in my own emotions.</p>
+<h2>Buffett probably would not buy it</h2>
+<p>So recently I thought again about Buffett’s line: do not invest in companies you do not understand.</p>
+<p>I used to think this sentence was simple, almost boring. Now I realize it is hard. The hard part is not avoiding what you do not understand when it is quiet. The hard part is still avoiding it when it keeps going up.</p>
+<p>SanDisk is the kind of opportunity Buffett probably would not buy at this stage. Not because the company is bad, and not because it cannot keep rising, but because it depends too much on cycles, supply and demand, technology shifts, and short-term industry strength. How long can NAND prices rise? Will AI data center purchasing continue? When will competitors expand capacity? Is margin already near a peak? Each of these questions is specialized.</p>
+<p>Buffett is not unable to buy tech stocks. He bought Apple. But Apple eventually looked more like a consumer company with strong cash flow, ecosystem stickiness, and a deep brand moat. With SanDisk and Nebius, I find it hard to say what the competitive landscape will look like ten years from now.</p>
+<p>Duan Yongping says something similar. Not every dollar has to be earned. Some questions in the market are not yours to answer. The most dangerous thing is not knowing the answer, seeing everyone else writing one, and then making one up.</p>
+<h2>The problem with being all-in BTC</h2>
+<p>But there is another problem: I probably should not stay all-in BTC forever.</p>
+<p>The biggest problem with being all-in one asset is not volatility. It is that the asset hijacks your attention. Your sense of winning, your opportunity cost, and your anxiety all get absorbed by one thing. Then every time NVDA, SanDisk, or Nebius goes up, the missing fear becomes very strong.</p>
+<p>This fear is not just FOMO. It is a deeper imbalance: did I choose the wrong side? If BTC goes sideways for two years while AI stocks keep rising, will I become more and more uncomfortable?</p>
+<p>So position sizing is not only about controlling drawdowns. It is also about controlling mental state.</p>
+<p>I increasingly feel that BTC can be a core position, but it should not be the entire portfolio. As long as it is everything, I cannot look at other opportunities calmly. If something else rises, I get anxious. If BTC falls, I also get anxious. Investing turns into mental exhaustion.</p>
+<h2>Fewer names, even less attention</h2>
+<p>But I also do not want to own a pile of stocks.</p>
+<p>My attention is limited. Too many investment targets look like diversification, but often become diluted cognition. I know a little about everything and deeply understand nothing. It looks busy, but it is actually chaotic.</p>
+<p>So the better system for me is to own fewer things, but give each one a clear role.</p>
+<p>BTC is the core asset, the cycle and narrative I know best. If I buy something like NVDA again, it cannot just be because it is going up. It has to be because I am willing to study it for years. SanDisk and Nebius, even if I buy them, should only be observation positions. An observation position is not for making life-changing money. It is for keeping market feel and not becoming completely detached.</p>
+<p>If I have neither the time to study something nor the ability to understand it, yet still hope it will change my life, then I am basically gambling.</p>
+<h2>Missing out is acceptable</h2>
+<p>Missing NVDA hurts. Missing SanDisk may also hurt. It hurts even more when you saw some of the early signs, like GPU prices, storage prices, and exploding AI demand, but failed to turn them into stock gains.</p>
+<p>But I am slowly accepting one thing: I cannot make all the money in the market.</p>
+<p>Some money belongs to people who understand industry. Some belongs to people who understand financial statements. Some belongs to people who understand cycles. Some belongs to people with more nerve. Not every kind of money belongs to me. What I can do is earn the part I understand, can hold, and can review.</p>
+<p>If I drag myself into a game I do not understand just because I do not want to miss out, I probably will not make new money. I will lose the old money too.</p>
+<p>So this is not saying SanDisk or Nebius are bad. They may keep rising, maybe even dramatically. I just think that, for me, they are not yet the kind of thing I can hold in size.</p>
+<p>“Do not invest in companies you do not understand” is not a sentence meant to make a person look noble. It is meant to stop a person from doing stupid things.</p>
+<p>If I really want to participate, I can take a small observation position and study slowly. But I cannot turn something into a belief just because other people are making money.</p>
+<blockquote>This is a personal investment reflection and does not constitute investment advice.</blockquote>`,
     // Navigation
     'nav.logo': 'Yanda Cheng',
     'nav.home': 'Home',

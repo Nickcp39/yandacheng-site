@@ -39,7 +39,8 @@ Promise.all([
     '20251230btc_yield_spread_crash.html': 'article.btc_yield_spread_crash.title',
     '20260103rad_linter_clinical_sglang_advantage.html': 'article.rad_linter_sglang_advantage.title',
     '20260122phd_career_transition.html': 'article.phd_career_transition.title',
-    '20260315_startup_ten_years.html': 'article.startup_ten_years.title'
+    '20260315_startup_ten_years.html': 'article.startup_ten_years.title',
+    '20260429_circle_of_competence_sandisk_nebius.html': 'article.circle_competence.list_title'
   };
 
   const articleSummaryKeyMap = {
@@ -57,7 +58,8 @@ Promise.all([
     '20251230btc_yield_spread_crash.html': 'article.btc_yield_spread_crash.summary',
     '20260103rad_linter_clinical_sglang_advantage.html': 'article.rad_linter_sglang_advantage.summary',
     '20260122phd_career_transition.html': 'article.phd_career_transition.summary',
-    '20260315_startup_ten_years.html': 'article.startup_ten_years.summary'
+    '20260315_startup_ten_years.html': 'article.startup_ten_years.summary',
+    '20260429_circle_of_competence_sandisk_nebius.html': 'article.circle_competence.summary'
   };
 
   const timeline = [];
