@@ -1082,7 +1082,6 @@ const translations = {
     'article.rad_linter_clinical_qa.section7.quote': '"We do not generate reports; we audit existing reports using auxiliary visual evidence. We do not replace radiologists; we assist them in quality control before sign-off."<br>— Rad-Linter的核心定位',
     'article.rad_linter_clinical_qa.section7.para2': '在这个定位下，Rad-Linter不是"又一个报告生成系统"，而是<strong>放射科工作流中的一个关键质控环节</strong>，这个环节的价值不依赖于是否使用AI生成报告，而是依赖于"报告质量"这个永恒的需求。',
     'article.rad_linter_clinical_qa.footer': '技术实现细节请参考 <a href="/posts/llm_hospital_rad_linter.html">《使用SGLang构建Rad-Linter：医院端跨模态质控系统的生产实践》</a>。<br>如有问题或建议，欢迎通过 <a href="https://github.com/Nickcp39">GitHub</a> 或 <a href="https://www.linkedin.com/in/yanda-cheng-4888a216b/">LinkedIn</a> 联系我。',
-  },
     'article.circle_competence.list_title': '看不懂的公司不投：从 SanDisk、Nebius 到 NVDA 的复盘',
     'article.circle_competence.title': '看不懂的公司不投',
     'article.circle_competence.subtitle': '从 SanDisk、Nebius 到 NVDA 的复盘',
@@ -1130,6 +1129,7 @@ const translations = {
 <p>看不懂的公司不投，这句话不是让人显得高尚，而是让人少做蠢事。</p>
 <p>如果真想参与，可以小仓位观察，可以慢慢研究。但不能因为别人赚钱，就临时把它变成信仰。</p>
 <blockquote>本文只是个人投资复盘，不构成任何投资建议。</blockquote>`,
+  },
 
   en: {
     'article.circle_competence.list_title': 'Do Not Invest in Companies You Do Not Understand: Reflections on SanDisk, Nebius, and NVDA',
