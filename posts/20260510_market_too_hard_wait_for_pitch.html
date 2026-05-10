@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="article.market_too_hard.list_title">市场又站上新高，我却看不懂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../style_blog.css">
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+  <script>
+    fetch('../navbar.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('navbar-placeholder').innerHTML = data;
+        if (window.attachLanguageButtonListeners) {
+          window.attachLanguageButtonListeners();
+        }
+      });
+  </script>
+
+  <script src="../scripts/i18n.js"></script>
+  <script src="../scripts/nav-island.js" defer></script>
+
+  <div class="blog-container" style="display: flex; gap: 40px; align-items: flex-start;">
+
+    <aside style="flex: 0 0 150px; font-size: 0.9em; color: #666;">
+      <p><strong data-i18n="article.meta.written_by_label">Written by</strong><br><span data-i18n="nav.logo">Yanda Cheng</span></p>
+      <p><strong data-i18n="article.meta.date_label">Date</strong><br><span data-i18n="article.market_too_hard.date_display">May 10th, 2026</span></p>
+      <p><a href="#disqus_thread" data-i18n="article.market_too_hard.leave_comment">Leave a comment</a></p>
+    </aside>
+
+    <main style="flex: 1;">
+      <div data-i18n="article.market_too_hard.kicker"><p style="color: #888; font-size: 0.9em;">投资 · 心态 · 迷茫</p></div>
+      <h1><span data-i18n="article.market_too_hard.title">市场又站上新高，我却看不懂</span><br><span style="font-weight: normal; font-size: 0.9em;" data-i18n="article.market_too_hard.subtitle">记录一次纯粹的迷茫</span></h1>
+
+      <div data-i18n="article.market_too_hard.full_html">
+        <p>最近几个月，市场一直在涨，我却没买到什么。</p>
+        <p>SanDisk、Nebius、AI 整个板块都在涨。有人一个月翻倍，有人半年财富自由。我就这么看着。</p>
+        <p>我以为上一篇写完《看不懂的公司不投》，自己心里就该有谱了。结果文章发完之后，这两只票又涨了一截，我心里反而更乱了。</p>
+        <p>不是后悔。是更糊涂。</p>
+        <p>虽然我上一篇专门写过 Nebius、SanDisk，到现在我还是不知道这些公司到底值多少钱。NAND 涨价能持续多久，AI 云的客户结构能撑多久，这一波 AI 是真改变世界，还是又一次估值幻觉。我看新闻看研报，越看越说不出口。</p>
+        <p>巴菲特和李嘉诚都在卖，可市场还在涨。两个我最尊敬的投资人都在退场，市场却用一波又一波的暴涨告诉我"他们错了"。</p>
+        <p>我不知道该听谁的。</p>
+        <p>我没有重仓在跌的痛苦，但有错过的痛苦。明明早就看到了趋势，却没赚到。明明分析过这些公司，却拿不住。看见了又错过，比直接亏钱还折磨人。</p>
+        <p>但我也没有冲进去的勇气。</p>
+        <p>所以我就这样耗着。</p>
+        <p>不知道现在是顶，还是中场。<br>不知道这一波是 1999，还是 2009。<br>不知道巴菲特是又早了，还是这次刚好。<br>不知道自己是踏空，还是躲过一劫。</p>
+        <p>不知道。</p>
+        <p>写下这些不是为了证明什么，也不是为了未来好回来嘲笑自己或者夸自己。只是觉得，当下的心情如果不写下来，过几个月连自己迷茫过都会忘掉。</p>
+        <p>只有现在记下，未来某一天回头看，才能知道这次的自己到底是对，还是错。</p>
+        <p>现在的我没有判断。<br>只有不动。</p>
+        <blockquote>本文只是个人投资记录，不构成任何投资建议。</blockquote>
+      </div>
+
+      <div id="disqus_thread" style="margin-top: 60px;"></div>
+      <script>
+        var disqus_config = function () {
+          this.page.url = window.location.href;
+          this.page.identifier = window.location.pathname;
+        };
+        (function() {
+          var d = document, s = d.createElement('script');
+          s.src = 'https://yanda-cheng.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    </main>
+
+    <aside style="flex: 0 0 250px;">
+      <div style="margin-bottom: 30px;">
+        <input type="text" placeholder="Search ..." style="width: 100%; padding: 6px;">
+      </div>
+
+      <div style="font-size: 0.9em; color: #555; margin-bottom: 30px;">
+        <h3>Disclaimer</h3>
+        <p data-i18n="article.market_too_hard.disclaimer">本文为作者个人投资记录，不构成任何投资建议。</p>
+      </div>
+
+      <div style="font-size: 0.9em; color: #555;">
+        <h3>Recent Posts</h3>
+        <ul style="list-style-type: none; padding-left: 0;">
+          <li><a href="/posts/20260429_circle_of_competence_sandisk_nebius.html">看不懂的公司不投：从 SanDisk、Nebius 到 NVDA 的复盘</a></li>
+          <li><a href="/posts/buffett_munger_weekend_reflection.html">每周往返的高速路上，我听巴菲特和芒格</a></li>
+          <li><a href="/posts/btc_4year_high_no_joy.html">BTC 又来到了四年的高点，但我却高兴不起来</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <div class="footer">
+    <span data-i18n="blog.footer.copyright">博客 © 程彦达</span> | Last updated May 2026
+  </div>
+</body>
+</html>

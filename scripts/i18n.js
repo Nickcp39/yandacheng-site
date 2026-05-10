@@ -1082,6 +1082,30 @@ const translations = {
     'article.rad_linter_clinical_qa.section7.quote': '"We do not generate reports; we audit existing reports using auxiliary visual evidence. We do not replace radiologists; we assist them in quality control before sign-off."<br>— Rad-Linter的核心定位',
     'article.rad_linter_clinical_qa.section7.para2': '在这个定位下，Rad-Linter不是"又一个报告生成系统"，而是<strong>放射科工作流中的一个关键质控环节</strong>，这个环节的价值不依赖于是否使用AI生成报告，而是依赖于"报告质量"这个永恒的需求。',
     'article.rad_linter_clinical_qa.footer': '技术实现细节请参考 <a href="/posts/llm_hospital_rad_linter.html">《使用SGLang构建Rad-Linter：医院端跨模态质控系统的生产实践》</a>。<br>如有问题或建议，欢迎通过 <a href="https://github.com/Nickcp39">GitHub</a> 或 <a href="https://www.linkedin.com/in/yanda-cheng-4888a216b/">LinkedIn</a> 联系我。',
+    'article.market_too_hard.list_title': '市场又站上新高，我却看不懂',
+    'article.market_too_hard.title': '市场又站上新高，我却看不懂',
+    'article.market_too_hard.subtitle': '记录一次纯粹的迷茫',
+    'article.market_too_hard.summary': '一篇不写判断、只记录迷茫的随笔。SanDisk、Nebius、AI 板块还在涨，巴菲特和李嘉诚都在卖。我没买到，也没勇气追，就这样耗着，把当下的心情先记下来。',
+    'article.market_too_hard.date_display': '2026年5月10日',
+    'article.market_too_hard.leave_comment': '留言',
+    'article.market_too_hard.disclaimer': '本文为作者个人投资记录，不构成任何投资建议。',
+    'article.market_too_hard.kicker': '<p style="color: #888; font-size: 0.9em;">投资 · 心态 · 迷茫</p>',
+    'article.market_too_hard.full_html': `<p>最近几个月，市场一直在涨，我却没买到什么。</p>
+<p>SanDisk、Nebius、AI 整个板块都在涨。有人一个月翻倍，有人半年财富自由。我就这么看着。</p>
+<p>我以为上一篇写完《看不懂的公司不投》，自己心里就该有谱了。结果文章发完之后，这两只票又涨了一截，我心里反而更乱了。</p>
+<p>不是后悔。是更糊涂。</p>
+<p>虽然我上一篇专门写过 Nebius、SanDisk，到现在我还是不知道这些公司到底值多少钱。NAND 涨价能持续多久，AI 云的客户结构能撑多久，这一波 AI 是真改变世界，还是又一次估值幻觉。我看新闻看研报，越看越说不出口。</p>
+<p>巴菲特和李嘉诚都在卖，可市场还在涨。两个我最尊敬的投资人都在退场，市场却用一波又一波的暴涨告诉我"他们错了"。</p>
+<p>我不知道该听谁的。</p>
+<p>我没有重仓在跌的痛苦，但有错过的痛苦。明明早就看到了趋势，却没赚到。明明分析过这些公司，却拿不住。看见了又错过，比直接亏钱还折磨人。</p>
+<p>但我也没有冲进去的勇气。</p>
+<p>所以我就这样耗着。</p>
+<p>不知道现在是顶，还是中场。<br>不知道这一波是 1999，还是 2009。<br>不知道巴菲特是又早了，还是这次刚好。<br>不知道自己是踏空，还是躲过一劫。</p>
+<p>不知道。</p>
+<p>写下这些不是为了证明什么，也不是为了未来好回来嘲笑自己或者夸自己。只是觉得，当下的心情如果不写下来，过几个月连自己迷茫过都会忘掉。</p>
+<p>只有现在记下，未来某一天回头看，才能知道这次的自己到底是对，还是错。</p>
+<p>现在的我没有判断。<br>只有不动。</p>
+<blockquote>本文只是个人投资记录，不构成任何投资建议。</blockquote>`,
     'article.circle_competence.list_title': '看不懂的公司不投：从 SanDisk、Nebius 到 NVDA 的复盘',
     'article.circle_competence.title': '看不懂的公司不投',
     'article.circle_competence.subtitle': '从 SanDisk、Nebius 到 NVDA 的复盘',
@@ -1132,6 +1156,30 @@ const translations = {
   },
 
   en: {
+    'article.market_too_hard.list_title': 'The Market Hits New Highs, but I Cannot Read It',
+    'article.market_too_hard.title': 'The Market Hits New Highs, but I Cannot Read It',
+    'article.market_too_hard.subtitle': 'A note on pure confusion',
+    'article.market_too_hard.summary': 'A short journal entry, not a judgment. SanDisk, Nebius, and AI stocks keep rising while Buffett and Li Ka-shing are both selling. I did not buy, and I do not have the nerve to chase. So I just sit here and write down the confusion.',
+    'article.market_too_hard.date_display': 'May 10th, 2026',
+    'article.market_too_hard.leave_comment': 'Leave a comment',
+    'article.market_too_hard.disclaimer': 'This is a personal investment journal and does not constitute investment advice.',
+    'article.market_too_hard.kicker': '<p style="color: #888; font-size: 0.9em;">Investing · Psychology · Confusion</p>',
+    'article.market_too_hard.full_html': `<p>For the past few months, the market has kept going up, and I have not bought anything.</p>
+<p>SanDisk, Nebius, the whole AI complex — they all keep going up. Some people doubled in a month. Some hit financial freedom in half a year. I just sat there and watched.</p>
+<p>I thought after my last post, "Don't Invest in Companies You Don't Understand," I would feel settled. But after I posted it, those two stocks ran up another leg, and I felt more confused, not less.</p>
+<p>Not regret. Just more lost.</p>
+<p>Even though I wrote a whole piece about Nebius and SanDisk, I still do not know what these companies are actually worth. How long can NAND prices keep rising? How long can the customer concentration of AI cloud companies hold up? Is this AI wave really changing the world, or just another valuation illusion? The more news and research I read, the less I can put into words.</p>
+<p>Buffett and Li Ka-shing are both selling, and the market keeps going up. The two investors I respect most are both stepping out, while the market shows me, rally after rally, that they are wrong.</p>
+<p>I do not know whom to listen to.</p>
+<p>I do not have the pain of holding a heavy position that is falling. But I have the pain of missing it. I saw the trend early but did not earn from it. I analyzed these companies but could not hold them. Seeing it and missing it — somehow this hurts more than just losing money.</p>
+<p>But I also do not have the nerve to chase in.</p>
+<p>So I just sit here, suspended.</p>
+<p>I do not know if this is the top, or just the intermission.<br>I do not know if this is 1999, or 2009.<br>I do not know if Buffett is early again, or right on time this once.<br>I do not know if I am missing out, or if I just dodged a bullet.</p>
+<p>I do not know.</p>
+<p>I am writing this not to prove anything, and not so I can come back later to laugh at myself or congratulate myself. I just feel that if I do not put down what I am feeling right now, in a few months I will not even remember being lost.</p>
+<p>Only by writing it down now will future-me, looking back, be able to tell whether the current me was right, or wrong.</p>
+<p>Right now I have no judgment.<br>Only stillness.</p>
+<blockquote>This is a personal investment journal. It does not constitute investment advice.</blockquote>`,
     'article.circle_competence.list_title': 'Do Not Invest in Companies You Do Not Understand: Reflections on SanDisk, Nebius, and NVDA',
     'article.circle_competence.title': 'Do Not Invest in Companies You Do Not Understand',
     'article.circle_competence.subtitle': 'Reflections on SanDisk, Nebius, and NVDA',
