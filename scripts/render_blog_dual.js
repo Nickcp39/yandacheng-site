@@ -25,6 +25,7 @@ Promise.all([
   };
 
   const articleTitleKeyMap = {
+    '20261112_job_search_matchmaking.html': 'article.job_search_matchmaking.title',
     'btc_4year_high_no_joy.html': 'article.btc_4year.title',
     'buffett_munger_weekend_reflection.html': 'article.buffett.title',
     'btc_regulation.html': 'article.btc_regulation.title',
@@ -45,6 +46,7 @@ Promise.all([
   };
 
   const articleSummaryKeyMap = {
+    '20261112_job_search_matchmaking.html': 'article.job_search_matchmaking.summary',
     'btc_4year_high_no_joy.html': 'article.btc_4year.summary',
     'buffett_munger_weekend_reflection.html': 'article.buffett.summary',
     'btc_regulation.html': 'article.btc_regulation.summary',
